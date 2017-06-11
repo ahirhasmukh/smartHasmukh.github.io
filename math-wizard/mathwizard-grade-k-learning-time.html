@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Time Activity</title>
+    <!--<link rel="stylesheet" href="style/styleSheet.css"/>-->
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery-ui-1.10.2.custom.js"></script>
+    <!--<script type="text/javascript" src="js/js.js" ></script>-->
+    <style type="text/css">
+        html {
+            font-family: verdana;
+            font-weight: bold;
+            background-color: #17b5b0;
+            /*	background: url("../images/night.jpg") no-repeat center center fixed; 
+	        -webkit-background-size: cover; */
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: 100% 100%;
+            height: 100%;
+            width: 100%;
+        }
+
+        #header {
+            height: 60px;
+            text-align: center;
+            width: 50%;
+            position: relative;
+            top: 60px;
+            left: 25%;
+            font-family: fantasy;
+            font-size: 50px;
+        }
+
+        #instruction {
+            height: 100px;
+            text-align: center;
+            width: 40%;
+            position: relative;
+            margin-top: 80px;
+            left: 30%;
+            font-family: cursive;
+            font-size: 20px;
+            font-weight: bolder;
+        }
+
+        input[type=text] {
+            margin: 0px;
+            padding: 0px;
+            width: 13%;
+            height: 50%;
+            font-size: 100%;
+            font-family: cursive;
+            border-radius: 10px;
+            border-color: black;
+            border-style: solid;
+            border-width: 2px;
+            text-align: center;
+        }
+
+        #time {
+            text-align: center;
+            font-size: 22px;
+            font-weight: bolder;
+            height: 58px;
+            width: 100%;
+            position: relative;
+            /*#background: yellow;*/
+        }
+
+        #hour_name, #min_name, #time_name {
+            display: inline-block;
+            margin-left: 0%;
+            position: relative;
+            font-size: 23px;
+        }
+
+        #time_name {
+            margin-left: 0%;
+        }
+
+        #hour_data, #min_data, #time_data {
+            height: 28px;
+            text-align: center;
+            width: 8.5%;
+            display: inline-block;
+            position: relative;
+            margin-left: 14px;
+            /*#background: pink;*/
+        }
+
+        #min_data {
+            left: -2%;
+        }
+
+        #time_data {
+            left: -4%;
+        }
+
+        #Timebtn, #start_btn {
+            margin-top: -1%;
+            height: 50px;
+            width: 11%;
+            margin-left: 44%;
+            border-radius: 100%;
+            border: 3px solid black;
+            font-size: 15px;
+            background-color: #22b380;
+            text-align: center;
+            position: relative;
+            font-weight: bolder;
+            padding-top: 3%;
+            color: black;
+        }
+
+        #start_btn {
+            margin-top: 2%;
+            width: 15%;
+            background-color: #da6234;
+            margin-left: 40%;
+        }
+
+        #Timebtn:hover {
+            cursor: pointer;
+            background-color: #7c7ac7;
+            color: #fff;
+        }
+
+        #start_btn:hover {
+            cursor: pointer;
+            background-color: #c4c417;
+            color: #fff;
+        }
+
+        #data_div {
+            color: #6825c2;
+        }
+
+        #exit_btn {
+            float: right;
+            width: 10%;
+            height: 70px;
+            border-radius: 100%;
+            border: 3px solid black;
+            font-size: 20px;
+            background-color: yellow;
+            text-align: center;
+            position: relative;
+            font-weight: bolder;
+            padding-top: 2%;
+        }
+
+            #exit_btn:hover {
+                cursor: pointer;
+                background-color: #d7c128;
+                color: #fff;
+            }
+
+        #numberDiv, #number, #numberDivMin, #numberMin, #timeMin, #timeDivMin {
+            height: 30px;
+            width: 100%;
+            position: relative;
+            font-size: 23px;
+            text-align: center;
+            /*#background: green;*/
+        }
+
+        #downvalue, #downvalueMin, #downTimeMin {
+            height: 15px;
+            width: 100%;
+            position: relative;
+            margin-top: -30px;
+            /*#background: purple;*/
+        }
+
+        #upvalue, #upvalueMin, #upTimeMin {
+            height: 15px;
+            width: 100%;
+            position: relative;
+            /*#background: pink;*/
+        }
+
+        @media only screen and (max-width:807px) {
+            #header {
+                width: 55%;
+                top: 60px;
+                font-size: 41px;
+                left: 20%;
+            }
+
+            #instruction {
+                width: 45%;
+                height: 110px;
+                font-size: 16px;
+                left: 25%;
+            }
+
+            #time {
+                height: 57%;
+            }
+        }
+
+        @media only screen and (max-width:835px) {
+            #start_btn {
+                font-size: 17px;
+                width: 18%;
+            }
+
+            #hour_data, #min_data, #time_data {
+                width: 10.5%;
+                /*#background: yellow;*/
+            }
+
+            #time_data {
+                /*#background: pink;*/
+                left: -3%;
+            }
+
+            #Timebtn {
+                padding-top: 17px;
+                margin-top: -1%;
+                margin-left: 40%;
+                width: 17%;
+            }
+
+            #exit_btn {
+                margin-top: -5%;
+            }
+        }
+
+        @media only screen and (max-width:776px) {
+            #start_btn {
+                font-size: 16px;
+                width: 20%;
+            }
+
+            #number, #numberMin, #timeMin, #hour_name, #min_name, #time_name {
+                font-size: 22px;
+            }
+        }
+
+        @media only screen and (max-width:683px) {
+            #start_btn {
+                font-size: 15px;
+                width: 20%;
+                margin-left: 40%;
+            }
+
+            #number, #numberMin, #timeMin, #hour_name, #min_name, #time_name {
+                font-size: 21px;
+            }
+        }
+
+        @media only screen and (max-width:612px) {
+            #header {
+                width: 75%;
+                top: 60px;
+                font-size: 35px;
+                left: 10%;
+            }
+
+            #instruction {
+                width: 45%;
+                height: 120px;
+                font-size: 16px;
+            }
+
+            #start_btn {
+                font-size: 15px;
+                width: 22%;
+                margin-left: 40%;
+            }
+        }
+
+        @media only screen and (max-width:650px) {
+
+            #exit_btn {
+                width: 13%;
+                height: 50px;
+                font-size: 18px;
+                padding-top: 3%;
+                right: 2px;
+            }
+
+            #hour_name, #min_name, #time_name {
+                margin-left: 0%;
+            }
+
+            #hour_data, #min_data, #time_data {
+                width: 10%;
+                position: relative;
+                left: -2%;
+            }
+
+            #min_data {
+                left: -4%;
+            }
+
+            #time_data {
+                left: -4%;
+            }
+
+            #downvalue, #downvalueMin, #downTimeMin {
+                height: 12px;
+                width: 100%;
+            }
+
+            #upvalue, #upvalueMin, #upTimeMin {
+                height: 12px;
+                width: 100%;
+            }
+
+            #number, #numberMin, #timeMin, #hour_name, #min_name, #time_name {
+                font-size: 19px;
+            }
+
+            #number, #numberMin, #timeMin, #hour_name, #min_name, #time_name {
+                font-size: 20px;
+            }
+
+            #Timebtn {
+                padding-top: 17px;
+                margin-top: -1%;
+                margin-left: 35%;
+                width: 24%;
+            }
+
+            #exit_btn {
+                margin-top: -5%;
+            }
+        }
+
+        @media only screen and (max-width:543px) {
+            #start_btn {
+                font-size: 12px;
+                width: 27%;
+                margin-left: 37%;
+            }
+
+            #hour_name, #min_name, #time_name {
+                margin-left: 0%;
+            }
+
+            #hour_data, #min_data, #time_data {
+                width: 10%;
+                position: relative;
+                left: -6%;
+            }
+
+            #Timebtn {
+                padding-top: 17px;
+                margin-left: 35%;
+                width: 26%;
+            }
+
+            #min_data {
+                left: -4%;
+            }
+
+            #time_data {
+                left: -1%;
+            }
+
+            #downvalue, #downvalueMin, #downTimeMin {
+                height: 12px;
+                width: 100%;
+            }
+
+            #upvalue, #upvalueMin, #upTimeMin {
+                height: 12px;
+                width: 100%;
+            }
+
+            #number, #numberMin, #timeMin, #hour_name, #min_name, #time_name {
+                font-size: 19px;
+            }
+        }
+
+        @media only screen and (max-width:437px) {
+            #start_btn {
+                font-size: 12px;
+                width: 30%;
+                margin-left: 35%;
+            }
+
+            #hour_data, #min_data, #time_data {
+                width: 15%;
+                position: relative;
+                left: -3%;
+            }
+
+            #min_data {
+                left: -6%;
+            }
+
+            #time_data {
+                left: -6%;
+            }
+
+            #downvalue, #downvalueMin, #downTimeMin {
+                height: 12px;
+                width: 100%;
+            }
+
+            #upvalue, #upvalueMin, #upTimeMin {
+                height: 12px;
+                width: 100%;
+            }
+        }
+
+        @media only screen and (max-width:380px) {
+            #start_btn {
+                font-size: 12px;
+                width: 34%;
+                margin-left: 35%;
+            }
+
+            #exit_btn {
+                width: 20%;
+                height: 50px;
+                font-size: 15px;
+                margin-top: -2%;
+                padding-top: 3%;
+                right: 2px;
+            }
+
+            #time {
+                height: 57px;
+            }
+
+            #hour_name, #min_name, #time_name {
+                margin-left: -1%;
+            }
+
+            #hour_data, #min_data, #time_data {
+                width: 15%;
+                position: relative;
+                left: -4%;
+            }
+
+            #min_data {
+                left: -6%;
+            }
+
+            #time_data {
+                left: -6%;
+            }
+
+            #downvalue, #downvalueMin, #downTimeMin {
+                height: 12px;
+                width: 100%;
+            }
+
+            #upvalue, #upvalueMin, #upTimeMin {
+                height: 12px;
+                width: 100%;
+            }
+
+            #number, #numberMin, #timeMin, #hour_name, #min_name, #time_name {
+                font-size: 18px;
+            }
+
+            #Timebtn {
+                margin-top: -3%;
+                margin-left: 30%;
+                width: 30%;
+            }
+
+            #exit_btn {
+                margin-top: -5%;
+            }
+        }
+
+        @media only screen and (max-width:325px) {
+            #hour_data, #min_data, #time_data {
+                width: 15%;
+                position: relative;
+                left: -6%;
+            }
+
+            #Timebtn {
+                padding-top: 17px;
+                margin-top: -6%;
+                margin-left: 30%;
+                width: 32%;
+                font-size: 12px;
+            }
+
+            #start_btn {
+                padding-top: 17px;
+                height: 35px;
+                margin-left: 30%;
+                font-size: 12px;
+            }
+
+            #exit_btn {
+                margin-top: -7%;
+                height: 30px;
+            }
+        }
+
+        @media only screen and (max-width:407px) {
+            #header {
+                width: 95%;
+                top: 60px;
+                font-size: 31px;
+                left: 5%;
+            }
+
+            #instruction {
+                width: 50%;
+                height: 140px;
+                font-size: 16px;
+            }
+        }
+    </style>
+
+    <script type="text/ecmascript">
+        var context;
+        var i;
+        var input_hour, input_min, input_time, message;
+        var flag;
+
+        var angl = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+        var anglmin = [1, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60];
+        var timerID = null;
+        $('document').ready(function () {
+            $('#data_div').hide();
+            $('#canvas_div').hide();
+            $('#exit_btn').click(function () {
+                $('#SplashScreen').show();
+                $('#data_div').hide();
+                $('#canvas_div').hide();
+                $('html').css({ "background": "none" });
+                $('html').css({ "background-color": "#17b5b0" });
+            });
+            $("#Timebtn").click(function () {
+                timeset();
+            });
+
+            var ismousedown = false;
+            var timer_counter = 0;
+            $("#downvalue").bind("mousedown", function (event) {
+                ismousedown = true;
+                timerID = setInterval(timeIncrement, 100);
+            });
+
+            function timeIncrement() {
+                timer_counter++;
+                if (timer_counter == 12)
+                    timer_counter = 0;
+            }
+            $("#downvalue").bind("mouseup", function (event) {
+                clearInterval(timerID);
+                if (ismousedown) {
+                    //	alert("in the if : "+ timer_counter);
+                    if (timer_counter >= 2) {
+                        while (timer_counter >= 2) {
+                            divClickDown();
+
+                            //			alert("in the while");
+                            timer_counter--;
+                        }
+                        timer_counter = 0;
+                    }
+                    else {
+                        //		alert("in the else :");
+                        timer_counter = 0;
+                        divClickDown();
+                    }
+                    ismousedown = false;
+                }
+                timer_counter = 0;
+            });
+
+            $("#upvalue").bind("mousedown", function (event) {
+                //	divClickDown();	
+                ismousedown = true;
+                timerID = setInterval(timeIncrement, 100);
+            });
+
+            $("#upvalue").bind("mouseup", function (event) {
+                clearInterval(timerID);
+                if (ismousedown) {
+                    //	alert("in the if : "+ timer_counter);
+                    if (timer_counter >= 2) {
+                        while (timer_counter >= 2) {
+                            divClickUp();
+                            //		alert("in the while");
+                            timer_counter--;
+                        }
+                        timer_counter = 0;
+                    }
+                    else {
+                        //		alert("in the else :");
+                        timer_counter = 0;
+                        divClickUp();
+                    }
+                    ismousedown = false;
+                }
+                timer_counter = 0;
+            });
+
+            $("#downvalueMin").bind("mousedown", function (event) {
+                //	divClickUpMin();
+                ismousedown = true;
+                timerID = setInterval(timeIncrement, 100);
+            });
+
+            $("#downvalueMin").bind("mouseup", function (event) {
+                clearInterval(timerID);
+                if (ismousedown) {
+                    //	alert("in the if : "+ timer_counter);
+                    if (timer_counter >= 2) {
+                        while (timer_counter >= 2) {
+                            divClickDownMin();
+                            //		alert("in the while");
+                            timer_counter--;
+                        }
+                        timer_counter = 0;
+                    }
+                    else {
+                        //		alert("in the else :");
+                        timer_counter = 0;
+                        divClickDownMin();
+                    }
+                    ismousedown = false;
+                }
+                timer_counter = 0;
+            });
+            $("#upvalueMin").bind("mousedown", function (event) {
+                //	divClickDownMin();	
+                ismousedown = true;
+                timerID = setInterval(timeIncrement, 100);
+            });
+            $("#upvalueMin").bind("mouseup", function (event) {
+                clearInterval(timerID);
+                if (ismousedown) {
+                    //	alert("in the if : "+ timer_counter);
+                    if (timer_counter >= 2) {
+                        while (timer_counter >= 2) {
+                            divClickUpMin();
+                            //		alert("in the while");
+                            timer_counter--;
+                        }
+                        timer_counter = 0;
+                    }
+                    else {
+                        //		alert("in the else :");
+                        timer_counter = 0;
+                        divClickUpMin();
+                    }
+                    ismousedown = false;
+                }
+                timer_counter = 0;
+            });
+
+            $("#downTimeMin").bind("mousedown", function (event) {
+                TimePeriodUp();
+            });
+            $("#upTimeMin").bind("mouseup", function (event) {
+                TimePeriodDown();
+            });
+            $('#start_btn').click(function () {
+                $('#SplashScreen').hide();
+                $('#data_div').show();
+                $('#canvas_div').show();
+                context = canvas.getContext('2d');
+                context.canvas.width = window.innerWidth - 20;
+                context.canvas.height = window.innerHeight / 1.7;
+                if (timerID != null)
+                    clearInterval(timerID);
+                timerID = setInterval(drawtime, 10);
+            });
+        });
+        function divClickUp() {
+
+            var temp = document.getElementById('number').innerHTML;
+            if (temp >= 2)
+                temp = parseInt(temp) - 1;
+            document.getElementById('number').innerHTML = temp;
+            flag = 1;
+        }
+
+        function divClickDown() {
+            var temp = document.getElementById('number').innerHTML;
+            if (temp == 12) {
+                temp = 0;
+            }
+            if (temp <= 11)
+                temp = parseInt(temp) + 1;
+
+            document.getElementById('number').innerHTML = temp;
+            flag = 1;
+        }
+        function divClickUpMin() {
+            var temp = document.getElementById('numberMin').innerHTML;
+            if (temp >= 2)
+                temp = parseInt(temp) - 1;
+            document.getElementById('numberMin').innerHTML = temp;
+            flag = 1;
+            i--;
+        }
+        function divClickDownMin() {
+
+            var tem = document.getElementById('numberMin').innerHTML;
+            if (tem == 60)
+                tem = 0;
+            if (tem <= 60)
+                tem = parseInt(tem) + 1;
+            document.getElementById('numberMin').innerHTML = tem;
+            if (i <= 60) {
+                i++;
+            }
+            if (tem == 60) {
+                var temp = document.getElementById('number').innerHTML;
+                if (temp <= 11)
+                    temp = parseInt(temp) + 1;
+                else
+                    temp = 1;
+                document.getElementById('number').innerHTML = temp;
+            }
+            flag = 1;
+
+        }
+        function TimePeriodDown() {
+            document.getElementById('timeMin').innerHTML = "PM";
+        }
+        function TimePeriodUp() {
+            document.getElementById('timeMin').innerHTML = "AM";
+        }
+        function drawtime() {
+            input_hour = document.getElementById('number').innerHTML;
+            input_min = document.getElementById('numberMin').innerHTML;
+
+            context.canvas.width = window.innerWidth - 20;
+            context.canvas.height = window.innerHeight / 1.7;
+            context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+            context.beginPath();
+
+            // for display outer circle.
+            context.lineWidth = 5;
+            context.arc(context.canvas.width / 2, (context.canvas.height / 2), (((context.canvas.height / 1.5) + (context.canvas.width) / 2) / 4.15), 0 * Math.PI, 2 * Math.PI, true);
+            context.fillStyle = "#C0C0C0";
+            context.strokeStyle = "black";
+            context.fill();
+            context.stroke();
+            context.closePath();
+
+            //for display inner circle.
+            context.beginPath();
+            context.arc(context.canvas.width / 2, (context.canvas.height / 2), (((context.canvas.height / 8) + (context.canvas.width) / 4) / 20), 0 * Math.PI, 2 * Math.PI, true);
+            context.fillStyle = 'purple';
+            context.fill();
+            context.closePath();
+
+            //for displaying the number
+            var nofromrad = (context.canvas.width / 4) - 30;
+            var n = new Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
+            var angofno;
+            if (window.innerWidth <= 600) {
+                context.font = "14px cursive";
+            }
+            else {
+                context.font = "25px cursive";
+            }
+
+            for (var x = 0; x < n.length; x++) {
+                angofno = Math.PI / 6 * (n[x] - 3);
+                if (window.innerWidth <= 600) {
+                    context.fillText(n[x], (context.canvas.width / 2 + (Math.cos(angofno) * (nofromrad / 2 + (context.canvas.height / 6)) - 5)), (context.canvas.height / 2 + (Math.sin(angofno) * (nofromrad / 2 + (context.canvas.height / 6)) + 7)));
+                }
+                else {
+                    context.fillText(n[x], (context.canvas.width / 2 + (Math.cos(angofno) * (nofromrad / 2 + (context.canvas.height / 7)) - 10)), (context.canvas.height / 2 + (Math.sin(angofno) * (nofromrad / 2 + (context.canvas.height / 7)) + 10)));
+
+                }
+
+            }
+            if (flag == 1) {
+                var nofromradm = (context.canvas.width / 6.5);
+                var clockradm = nofromradm;        // for resizing arms in 
+
+                var noformradh = (context.canvas.width / 7.5);
+                var clockradh = noformradh;
+                if (i == 60) {
+                    //	alert("in this if");
+                    i = 0;
+                }
+
+                if ((input_hour >= 13 || input_hour <= 0) || (input_min < 0 || input_min >= 61)) {
+                    flag = 0;
+                }
+
+                else {
+                    if (input_hour <= 2)
+                        var angleh = ((1 / 30 * Math.PI * i) + 282) + ((6 * input_hour) + 1);
+                    if (input_hour >= 3 && input_hour <= 5)
+                        var angleh = ((1 / 30 * Math.PI * i) + 282) + ((6 * input_hour) + 2);
+                    if (input_hour >= 6 && input_hour <= 8)
+                        var angleh = ((1 / 30 * Math.PI * i) + 282) + ((6 * input_hour) + 2.5);
+                    if (input_hour >= 9 && input_hour <= 11)
+                        var angleh = ((1 / 30 * Math.PI * i) + 282) + ((6 * input_hour) + 3.5);
+                    if (input_hour == 12)
+                        var angleh = ((1 / 30 * Math.PI * i) + 282) + ((6 * input_hour) + 4);
+
+                    if (input_min <= 5)
+                        var anglem = ((1 / 30 * Math.PI * i) + 282) + ((6 * input_min));
+                    else if (input_min >= 6 && input_min <= 25)
+                        var anglem = ((1 / 30 * Math.PI * i) + 282) + ((6 * input_min) + 4);
+                    else if (input_min >= 26 && input_min <= 30)
+                        var anglem = ((1 / 30 * Math.PI * i) + 282) + ((6 * input_min) + 6.5);
+                    else if (input_min >= 55 && input_min <= 59)
+                        var anglem = ((1 / 30 * Math.PI * i) + 288) + ((6 * input_min) + 9);
+                    else if (input_min == 60)
+                        var anglem = ((1 / 30 * Math.PI * i) + 288) + ((6 * input_min) + 12);
+                    else
+                        var anglem = ((1 / 30 * Math.PI * i) + 283.5) + ((6 * input_min) + 7);
+
+                    // for hour
+                    context.beginPath();
+                    context.moveTo(context.canvas.width / 2, context.canvas.height / 2);
+                    context.lineTo(context.canvas.width / 2 + (Math.cos((1 / 12) * angleh) * clockradh), (context.canvas.height / 2 + Math.sin((1 / 12) * angleh) * clockradh));
+                    context.strokeStyle = "red";
+                    context.stroke();
+                    context.closePath();
+
+                    // for minute
+                    context.beginPath();
+                    context.moveTo(context.canvas.width / 2, context.canvas.height / 2);
+                    context.lineTo(context.canvas.width / 2 + (Math.cos((1 / 60) * anglem) * clockradm), (context.canvas.height / 2 + Math.sin(1 / 60 * anglem) * clockradm));
+                    context.strokeStyle = "blue";
+                    context.stroke();
+                    context.closePath();
+                    flag = 1;
+                }
+
+            }
+            else {
+                i = 0;
+                var nofromrad = (context.canvas.width / 4) - 30;
+                var angleh = (1 / 30 * Math.PI * i) * 2.9;
+
+                var nofromradm = (context.canvas.width / 6.5);
+                var clockradm = nofromradm;        // for resizing arms in 
+
+                var noformradh = (context.canvas.width / 7.5);
+                var clockradh = noformradh;
+                var anglem = (1 / 30 * Math.PI * i) + 283.50;
+
+                context.beginPath();
+                //for hour hand
+                context.moveTo(context.canvas.width / 2, context.canvas.height / 2);
+                context.lineTo(context.canvas.width / 2 + (Math.cos((1 / 3600) * angleh + 29.84) * clockradh), context.canvas.height / 2 + Math.sin((1 / 3600) * angleh) * clockradh);
+                context.strokeStyle = "red";
+                context.stroke();
+                context.closePath();
+                //for minute hand
+                context.beginPath();
+                context.moveTo(context.canvas.width / 2, context.canvas.height / 2);
+                context.lineTo(context.canvas.width / 2 + (Math.cos(1 / 60 * anglem) * clockradm), (context.canvas.height / 2 + Math.sin(1 / 60 * anglem) * clockradm));
+                context.strokeStyle = "blue";
+                context.stroke();
+                context.closePath();
+
+            }
+        }
+        function timeset() {
+
+            flag = 1;
+            input_hour = document.getElementById('number').innerHTML;
+
+            input_min = document.getElementById('numberMin').innerHTML;
+            var x = document.getElementById("timeMin").innerHTML;
+            if (x == "AM") {
+                x = 0;
+            }
+            else {
+                x = 1;
+            }
+            if (input_min == 00) {
+                input_min = 0;
+            }
+            if (x == 0) {
+                //	alert("x=0");
+                //	alert("hour : min is : "+ input_hour +" : " + input_min);
+                if ((input_hour == 12 || (input_hour >= 1 && input_hour <= 5)) && (input_min >= 0 && input_min <= 60)) {
+                    $('html').css({
+                        "background": " url('images/night1.jpg') no-repeat center center fixed", "-moz-background-size": "cover",
+                        "background-origin": "content",
+                        "background-size": "100% 100%",
+                        "overflow": "hidden"
+                    });
+                }
+                else if ((input_hour >= 6 && input_hour <= 9) && (input_min >= 0 && input_min <= 60)) {
+                    $('html').css({
+                        "background": "url('images/day1.jpg') no-repeat center center fixed", "-moz-background-size": "cover",
+                        "background-origin": "content",
+                        "background-size": "100% 100%",
+                        "overflow": "hidden"
+                    });
+                }
+                else if ((input_hour >= 10 && input_hour <= 11) && (input_min >= 0 && input_min <= 60)) // || (input_min>=0 && input_min<=59))
+                {
+                    $('html').css({
+                        "background": "url('images/day.jpg') no-repeat center center fixed", "-moz-background-size": "cover",
+                        "background-origin": "content",
+                        "background-size": "100% 100%",
+                        "overflow": "hidden"
+                    });
+                }
+            }
+            else {
+                //	alert("x==1")
+                if ((input_hour == 12 || (input_hour >= 1 && input_hour <= 5)) && (input_min >= 0 && input_min <= 60))
+                    $('html').css({
+                        "background": "url('images/day.jpg') no-repeat center center fixed", "-moz-background-size": "cover",
+                        "background-origin": "content",
+                        "background-size": "100% 100%",
+                        "overflow": "hidden"
+                    });
+                else if ((input_hour >= 6 && input_hour <= 8) && (input_min >= 0 && input_min <= 60))
+                    $('html').css({
+                        "background": "url('images/evening1.jpg') no-repeat center center fixed", "-moz-background-size": "cover",
+                        "background-origin": "content",
+                        "background-size": "100% 100%",
+                        "overflow": "hidden"
+                    });
+                else if ((input_hour >= 10 && input_hour <= 11) && (input_min >= 0 && input_min <= 60))
+                    $('html').css({
+                        "background": "url('images/night.jpg') no-repeat center center fixed", "-moz-background-size": "cover",
+                        "background-origin": "content",
+                        "background-size": "100% 100%",
+                        "overflow": "hidden"
+                    });
+
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="SplashScreen">
+        <div id="header">
+            Learn To Read Time
+        </div>
+        <div id="instruction">
+            Set the clock's hour and minute arms and AM-PM then click on the show time 
+			button to see the time
+        </div>
+        <div id="start_game">
+            <div id="start_btn">Start Learning</div>
+        </div>
+    </div>
+    <div id="canvas_div">
+        <canvas id="canvas">Browser does not support canvas</canvas>
+    </div>
+
+    <div id="data_div">
+        <div id="time">
+            <div id="hour_name">Hour</div>
+            <div id="min_name">Minute</div>
+            <div id="time_name">Periods</div>
+            <br>
+            <div id="hour_data">
+                <div id="number">12</div>
+                <div id="numberDiv">
+                    <div id="downvalue"></div>
+                    <div id="upvalue"></div>
+                </div>
+            </div>
+            <div id="min_data">
+                <div id="numberMin">00</div>
+                <div id="numberDivMin">
+                    <div id="downvalueMin"></div>
+                    <div id="upvalueMin"></div>
+                </div>
+            </div>
+            <div id="time_data">
+                <div id="timeMin">AM</div>
+                <div id="timeDivMin">
+                    <div id="downTimeMin"></div>
+                    <div id="upTimeMin"></div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div id="btn">
+            <div id="Timebtn">Show Time</div>
+        </div>
+        <div id="exit_btn">EXIT</div>
+    </div>
+</body>
+</html>

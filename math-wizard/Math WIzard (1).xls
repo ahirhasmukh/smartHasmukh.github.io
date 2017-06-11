@@ -1,0 +1,3740 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+   <title>Sudoku Puzzles - Unlimited Free Sudoku Puzzles to Play Online</title>
+
+    <meta name="Description" content="Play unlimited Sudoku puzzles online from Easy to Hard levels. Sudoku Puzzles for all browsers, iPad and Android. Better than Sudoku puzzles for newspapers and Sudoku books."/>
+     <meta name="viewport" content="width=device-width"/>
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" name="viewport" />
+    <script src="script/jquery-1.9.1.js"></script>
+    <script type="text/javascript">
+        //var waitformenuscreen;
+        var main_screen;
+        var splash_screen;
+        var menu_screen;
+        var level = 1;
+        var nextlevelvalue = 1;
+        var theme_character = "digit";
+        var audio = true;
+        var input_restrict = true;
+        var matrix = "matrix22";
+        var k,
+            active = true,
+            object,
+            block,
+            key,
+            full,
+            flagg,
+            milisecond,
+            hour,
+            minute,
+            second,
+            start,
+            intermediate,
+            hgt,
+            wdt,
+            solution_clicked,
+            timer,
+            hide_object,
+            solution,
+            loop,
+            game,
+            game_data,
+            game_index,
+            game_string,
+            wait,
+            splash_screen,
+            popup,
+            playboardframe,
+            score_card,
+            cover,
+            playboard,
+            keyboard,
+            complete_level,
+            menu,
+            hidden_object,
+            player_string,
+            time,
+            attempts,
+            correct = 0,
+            block_N,
+            block_M,
+            total_block,
+            N,
+            M,
+            block_limit,
+            increment_by,
+            //startgame,
+            beginnergame,
+            intermediategame,
+            advancedgame,
+            livescore = 0,
+            levelcount = 1,
+            alerthighscore = 0,
+            storezerocount = 0,
+            //changethemedynamic,
+            home, option, audio, pause, trueaudio, falseaudio, congratsaudio, pageflipaudio, alerthighscoreaudio, startgameaudio, hiddenobjecttrack, hidden_index;
+
+        window.onload = load;
+
+        function load() {
+            //startgameaudio = document.getElementById('startgameaudio');
+
+            initialize();
+        }
+
+        function initialize() {
+            main_screen = document.getElementById("main_screen");
+            splash_screen = document.getElementById("splash_screen");
+            menu_screen = document.getElementById("menu_screen");
+            menu = document.getElementById("menu");
+            playboardframe = document.getElementById("playboardframe");
+            playboard = document.getElementById("playboard");
+            popup = document.getElementById("popup");
+            keyboard = document.getElementById("keyboard");
+            complete_level = document.getElementById("complete_level");
+            time = document.getElementById('time');
+            //startgame = document.getElementById('start');
+            beginnergame = document.getElementById('beginner');
+            intermediategame = document.getElementById('intermediate');
+            advancedgame = document.getElementById('advanced');
+            home = document.getElementById('home');
+            option = document.getElementById('option');
+            audio = document.getElementById('audio');
+            pause = document.getElementById('pause');
+            trueaudio = document.getElementById('trueaudio');
+            falseaudio = document.getElementById('falseaudio');
+            congratsaudio = document.getElementById('congratsaudio');
+            alerthighscoreaudio = document.getElementById('alerthighscoreaudio');
+            startgameaudio = document.getElementById('startgameaudio');
+            pageflipaudio = document.getElementById('pageflipaudio');
+
+            k = 0;
+            object = null;
+            block = null;
+            key = null;
+            full = false;
+            flagg = true;
+            milisecond = 0;
+            hour = 0;
+            minute = 0;
+            second = 0;
+            start = false;
+            //beginner = false;
+            solution_clicked = false;
+            hide_object = 0;
+            solution = new Array();
+            loop = 0;
+            game = new Array();
+            game_index = 0;
+            wait = 0;
+            hidden_object = new Array();
+            hiddenobjecttrack = new Array();
+            player_string = "";
+            attempts = 0;
+            correct = 0;
+            livescore = 0;
+            levelcount = 1;
+            alerthighscore = 0;
+            hidden_index = 0;
+
+
+            if (localStorage.getItem("theme") != null && localStorage.getItem("theme") != "undefined")
+                theme = localStorage.getItem("theme");
+            if (localStorage.getItem("theme_character") != null && localStorage.getItem("theme_character") != "undefined")
+                theme_character = localStorage.getItem("theme_character");
+            if (localStorage.getItem("audio") != null && localStorage.getItem("audio") != "undefined") {
+                if (localStorage.getItem("audio") == "true")
+                    audio = true;
+                else
+                    audio = false;
+            }
+            if (localStorage.getItem("input_restrict") != null && localStorage.getItem("input_restrict") != "undefined") {
+                if (localStorage.getItem("input_restrict") == "true")
+                    input_restrict = true;
+                else
+                    input_restrict = false;
+            }
+            if (localStorage.getItem("matrix") != null && localStorage.getItem("matrix") != "undefined")
+                matrix = localStorage.getItem("matrix");
+            gotomenu();
+            //waitformenuscreen = setTimeout(gotomenu, 500);
+        }
+        function gotomenu() {
+            //startgameaudio.load();
+            //startgameaudio.play();
+
+            startgameaudio.addEventListener('ended', function () {
+                this.currentTime = 0;
+                this.play();
+            }, false);
+            if (active) {
+                //startgameaudio = new GameSound("startgameaudio", "audio/ThemeMusic.mp3", "none");
+                startgameaudio.play();
+            }
+            menu_screen.style.display = "inline";
+            //document.getElementById("splash_screen_loading").style.display = "none";
+            if (input_restrict) {
+                document.getElementById("gamescore").innerHTML = ""
+            }
+        }
+
+        function menuoptionclicked(sender) {
+
+          
+
+            if (active) {
+                //buttonaudio = new GameSound("buttonaudio", "audio/buttonsound1.mp3", "none");
+                buttonaudio.play();
+            }
+            switch (sender.id) {
+
+                case "beginner":
+                    document.getElementById("beginner-level").style.display = "block";
+                    document.getElementById("intermediate-level").style.display = "none";
+                    document.getElementById("advance-level").style.display = "none";
+                    document.getElementById("main-level-container").style.display = "block";
+                    break;
+                case "intermediate":
+                    document.getElementById("beginner-level").style.display = "none";
+                    document.getElementById("intermediate-level").style.display = "block";
+                    document.getElementById("advance-level").style.display = "none";
+                    document.getElementById("main-level-container").style.display = "block";
+                    break;
+                case "advanced":
+                    document.getElementById("beginner-level").style.display = "none";
+                    document.getElementById("intermediate-level").style.display = "none";
+                    document.getElementById("advance-level").style.display = "block";
+                    document.getElementById("main-level-container").style.display = "block";
+                    break;
+                case "play":
+                    document.documentElement.style.webkitTapHighlightColor = "rgba(0,0,0,0)";
+                    document.getElementById("beginner-level").style.display = "block";
+                    document.getElementById("main-level-container").style.display = "block";
+                    document.getElementById("intermediate-level").style.display = "none";
+                    document.getElementById("advance-level").style.display = "none";
+                    document.getElementById("playboardframe").style.display = "block";
+                    document.getElementById("playboard").style.display = "none";
+                    document.getElementById("keyboard").style.display = "none";
+                    document.getElementById("beginner").style.display = "block";
+                    document.getElementById("intermediate").style.display = "block";
+                    document.getElementById("advanced").style.display = "block";
+                    document.getElementById("audio").style.display = "block";
+                    document.getElementById("home").style.display = "block";
+                    //document.getElementById("main_help_div").style.display = "block"
+
+                    clearTimeout(timer);
+                    time.innerHTML = "";
+                    splash_screen.style.display = "none";
+                    menu_screen.style.display = "none";
+                    play_screen.style.display = "inline";
+                    if (input_restrict) {
+                        document.getElementById("gamescore").innerHTML = ""
+                        livescore = 0;
+                    }
+                    $('#beginner').addClass('activeoption');
+                    $('#intermediate').removeClass('activeoption');
+                    $('#advanced').removeClass('activeoption');
+
+                    $('.option').click(function () {
+                        if ($('#beginner').hasClass('activeoption')) {
+                            $('#beginner').removeClass('activeoption');
+                        }
+                        if ($('#intermediate').hasClass('activeoption')) {
+                            $('#intermediate').removeClass('activeoption');
+                        }
+                        if ($('#advanced').hasClass('activeoption')) {
+                            $('#advanced').removeClass('activeoption');
+                        }
+
+                        $(this).addClass('activeoption');
+
+                        $('#play').removeClass('activeoption');
+                        $('#score').removeClass('activeoption');
+                    });
+
+                    break;
+
+                case "backtolevel":
+                    document.documentElement.style.webkitTapHighlightColor = "rgba(0,0,0,0)";
+                    if (active) {
+                        //buttonaudio = new GameSound("buttonaudio", "audio/buttonsound1.mp3", "none");
+                        buttonaudio.play();
+                    };
+                    document.getElementById("menuscore").style.display = "none";
+                    document.getElementById("play_screen").style.display = "block";
+                    document.getElementById("playboardframe").style.display = "block";
+                    document.getElementById("home").style.display = "block";
+                    document.getElementById("audio").style.display = "block";
+                    document.getElementById("beginner").style.display = "block";
+                    document.getElementById("intermediate").style.display = "block";
+                    document.getElementById("advanced").style.display = "block";
+                    document.getElementById("main-level-container").style.display = "block";
+                    document.getElementById("keyboard").style.display = "none";
+                    document.getElementById("playboard").style.display = "none";
+                    document.getElementById("leveldisplay").style.display = "none";
+                    document.getElementById("pause").style.display = "none";
+                    document.getElementById("time_holder").style.display = "none";
+                    document.getElementById("gamescore_holder").style.display = "none";
+                    document.getElementById("backtolevel").style.display = "none";
+                    //document.getElementById("theme_container").style.display = "block";
+                    //document.getElementById("main_help_div").style.display = "block";
+                    clearTimeout(timer);
+                    time.innerHTML = "";
+                    hidden_index = 0;
+                    break;
+
+                case "score":
+                    document.documentElement.style.webkitTapHighlightColor = "rgba(0,0,0,0)";
+                    menuscore.style.display = "block";
+                    splash_screen.style.display = "none";
+                    menu_screen.style.display = "none";
+
+                    var html = "";
+                    var sum = 0;
+                    var highestvalue = new Array();
+                    var k = 0;
+                    for (var i = 1; i <= 32; i++) {
+                        t = localStorage.getItem("livescore" + i);
+
+                        if (t != null && t != "undefined") {
+                            sum += parseInt(t);
+                            highestvalue[k++] = parseInt(t);
+                            //var h = parseInt(t / 3600);
+                            var m = parseInt((t % 3600) / 60);
+                            var s = parseInt((t % 3600) % 60);
+                            //html = h + ":" + m + ":" + s;
+                            html = m + ":" + s;
+                            var time_temp = html.split(":");
+                            html = "";
+                            for (var j = 0; j < time_temp.length; j++) {
+                                if (time_temp[j].length == 1) {
+                                    html += "0";
+                                    html += time_temp[j][0];
+                                }
+                                else if (time_temp[j].length == 2) {
+                                    html += time_temp[j][0];
+                                    html += time_temp[j][1];
+                                }
+                                if (j != time_temp.length - 1)
+                                    html += ":";
+                            }
+                        }
+                    }
+
+                    document.getElementById("myscore").innerHTML = sum;
+
+
+                    var functionName = "getscore";
+                    var iframe = document.createElement("IFRAME");
+                    iframe.setAttribute("src", "js-frame:" + functionName);
+                    document.documentElement.appendChild(iframe);
+                    iframe.parentNode.removeChild(iframe);
+                    iframe = null;
+                    html = "";
+                    //h = parseInt(sum / 3600);
+                    m = parseInt((sum % 3600) / 60);
+                    s = parseInt((sum % 3600) % 60);
+                    //html = h + ":" + m + ":" + s;
+                    html = m + ":" + s;
+                    var time_temp = html.split(":");
+                    html = "";
+                    for (var j = 0; j < time_temp.length; j++) {
+                        if (time_temp[j].length == 1) {
+                            html += "0";
+                            html += time_temp[j][0];
+                        }
+                        else if (time_temp[j].length == 2) {
+                            html += time_temp[j][0];
+                            html += time_temp[j][1];
+                        }
+                        if (j != time_temp.length - 1)
+                            html += ":";
+                    }
+                    //document.getElementById("score_card_grand_total").innerHTML = html;
+
+                    break;
+
+
+
+                case "quit":
+                    window.close();
+                    break;
+            }
+        }
+
+        function getscorevalue(highestvalue) {
+            if (highestvalue != null) {
+                var online_score = highestvalue.split(',');
+                for (var i = 0; i < online_score.length; i++) {
+                    document.getElementById('heighscorediv' + (i + 1)).innerHTML = online_score[i];
+                }
+            }
+            else {
+                alert('Sorry!!! Service is offline now!!!');
+            }
+        }
+
+        function play(sender) {
+
+            if (active) {
+                //buttonaudio = new GameSound("buttonaudio", "audio/buttonsound1.mp3", "none");
+                buttonaudio.play();
+            }
+            start = true;
+            beginnergame.style.display = "none";
+            intermediategame.style.display = "none";
+            advancedgame.style.display = "none";
+            document.getElementById("main-level-container").style.display = "none";
+            document.getElementById("playboard").style.display = "block";
+            document.getElementById("keyboard").style.display = "block";
+            document.getElementById("complete_level").style.display = "none";
+            document.getElementById("pause").style.display = "block";
+            document.getElementById("time_holder").style.display = "block";
+            document.getElementById("gamescore_holder").style.display = "block";
+            document.getElementById("backtolevel").style.display = "block";
+            document.getElementById("leveldisplay").style.display = "block";
+            document.getElementById("home").style.display = "none";
+            //document.getElementById("theme_container").style.display = "none";
+            //document.getElementById("main_help_div").style.display = "block";
+            alerthighscore = 0;
+            levelcount = sender.id.split("level")[1];
+
+            switch (sender.id) {
+
+                case "level1":
+                    input_restrict = true;
+                    level = 1;
+                    matrix = "matrix22";
+                    //theme_character = changethemedynamic+"/digit";
+                    theme_character = "digit";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+
+
+
+                    break;
+
+                case "level2":
+                    input_restrict = true;
+                    level = 2;
+                    matrix = "matrix22";
+                    //theme_character = changethemedynamic+"/digit";
+                    theme_character = "digit";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level3":
+                    input_restrict = true;
+                    level = 2;
+                    matrix = "matrix22";
+                    theme_character = "colormatrix22";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level4":
+                    input_restrict = true;
+                    level = 2;
+                    matrix = "matrix22";
+                    theme_character = "shapesformatrix22";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level5":
+                    input_restrict = true;
+                    level = 3;
+                    matrix = "matrix22";
+                    //theme_character = changethemedynamic + "/digit";
+                    theme_character = "digit";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level6":
+                    input_restrict = true;
+                    level = 3;
+                    matrix = "matrix22";
+                    theme_character = "colormatrix22";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level7":
+                    input_restrict = true;
+                    level = 3;
+                    matrix = "matrix22";
+                    theme_character = "shapesformatrix22";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level8":
+                    input_restrict = false;
+                    level = 2;
+                    matrix = "matrix22";
+                    //theme_character = changethemedynamic + "/digit";
+                    theme_character = "digit";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level9":
+                    input_restrict = false;
+                    level = 2;
+                    matrix = "matrix22";
+                    theme_character = "colormatrix22";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level10":
+                    input_restrict = false;
+                    level = 2;
+                    matrix = "matrix22";
+                    theme_character = "shapesformatrix22";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level11":
+                    input_restrict = false;
+                    level = 3;
+                    matrix = "matrix22";
+                    theme_character = "shapesformatrix22";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level12":
+                    input_restrict = false;
+                    level = 3;
+                    matrix = "matrix22";
+                    theme_character = "colormatrix22";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level13":
+                    input_restrict = false;
+                    level = 3;
+                    matrix = "matrix22";
+                    theme_character = "shapesformatrix22";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level14":
+                    input_restrict = true;
+                    level = 1;
+                    matrix = "matrix33";
+                    //theme_character = changethemedynamic + "/digit";
+                    theme_character = "digit";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level15":
+                    input_restrict = true;
+                    level = 2;
+                    matrix = "matrix33";
+                    //theme_character = changethemedynamic + "/digit";
+                    theme_character = "digit";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level16":
+                    input_restrict = true;
+                    level = 2;
+                    matrix = "matrix33";
+                    //theme_character = changethemedynamic + "/colors";
+                    theme_character = "colors";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level17":
+                    input_restrict = true;
+                    level = 2;
+                    matrix = "matrix33";
+                    //theme_character = changethemedynamic + "/shapes";
+                    theme_character = "shapes";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level18":
+                    input_restrict = true;
+                    level = 3;
+                    matrix = "matrix33";
+                    //theme_character = changethemedynamic + "/digit";
+                    theme_character = "digit";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level19":
+                    input_restrict = true;
+                    level = 3;
+                    matrix = "matrix33";
+                    //theme_character = changethemedynamic + "/colors";
+                    theme_character = "colors";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level20":
+                    input_restrict = true;
+                    level = 3;
+                    matrix = "matrix33";
+                    //theme_character = changethemedynamic + "/shapes";
+                    theme_character = "shapes";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level21":
+                    input_restrict = false;
+                    level = 2;
+                    matrix = "matrix33";
+                    //theme_character = changethemedynamic + "/digit";
+                    theme_character = "digit";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level22":
+                    input_restrict = false;
+                    level = 2;
+                    matrix = "matrix33";
+                    //theme_character = changethemedynamic + "/colors";
+                    theme_character = "colors";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level23":
+                    input_restrict = false;
+                    level = 2;
+                    matrix = "matrix33";
+                    //theme_character = changethemedynamic + "/shapes";
+                    theme_character = "shapes";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level24":
+                    input_restrict = false;
+                    level = 3;
+                    matrix = "matrix33";
+                    //theme_character = changethemedynamic + "/digit";
+                    theme_character = "digit";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level25":
+                    input_restrict = false;
+                    level = 3;
+                    matrix = "matrix33";
+                    //theme_character = changethemedynamic + "/colors";
+                    theme_character = "colors";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level26":
+                    input_restrict = false;
+                    level = 3;
+                    matrix = "matrix33";
+                    //theme_character = changethemedynamic + "/shapes";
+                    theme_character = "shapes";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level27":
+                    input_restrict = true;
+                    level = 4;
+                    matrix = "matrix33";
+                    //theme_character = changethemedynamic + "/digit";
+                    theme_character = "digit";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level28":
+                    input_restrict = true;
+                    level = 4;
+                    matrix = "matrix33";
+                    //theme_character = changethemedynamic + "/colors";
+                    theme_character = "colors";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level29":
+                    input_restrict = true;
+                    level = 4;
+                    matrix = "matrix33";
+                    //theme_character = changethemedynamic + "/shapes";
+                    theme_character = "shapes";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level30":
+                    input_restrict = false;
+                    level = 4;
+                    matrix = "matrix33";
+                    //theme_character = changethemedynamic + "/digit";
+                    theme_character = "digit";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+
+                case "level31":
+                    input_restrict = false;
+                    level = 4;
+                    matrix = "matrix33";
+                    //theme_character = changethemedynamic + "/digit";
+                    theme_character = "digit";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+
+                    break;
+
+                case "level32":
+                    input_restrict = false;
+                    level = 4;
+                    matrix = "matrix33";
+                    //theme_character = changethemedynamic + "/colors";
+                    theme_character = "colors";
+                    document.getElementById("leveldisplay").style.backgroundImage = "url('images/" + sender.id.split('level')[1] + ".png')";
+                    break;
+            }
+            //if (!input_restrict) {
+            unrestrictposition();
+            //}
+            k = 0;
+            object = null;
+            key = null;
+            full = false;
+            flagg = false;
+            milisecond = 0;
+            hour = 0;
+            minute = 0;
+            second = 0;
+            attempts = 0;
+            timer = clearTimeout;
+            hidden_object = new Array();
+            player_string = "";
+            gametimer();
+            matrixgenerator();
+            playdynamically();
+        }
+
+        function matrixgenerator() {
+            if (matrix == 'matrix22') {
+                block_N = 2;
+                block_M = 2;
+                total_block = 4;
+                N = 4;
+                M = 4;
+                block_limit = 3;
+                increment_by = 2;
+                game_data = ["1243432134122134", "1243431231242431", "1243342121344312", "1324423121433412", "1342421321343421", "1342423124133124", "1423234132144132", "1432234131244213", "1432234141233214", "1432321441232341", "1432321423414123", "1432324123144123", "2134342113424213", "2143341243211234", "2143431234211234", "2143341242311324", "2143341243211234", "2143341213244231", "2143432134121234", "2341142341323214", "2341413232141423", "2341412334121234", "2314412314323241", "2314142332414132", "2431134232144123", "2431312443121243", "3124423124131342", "3124241342311342", "3142241313244231", "3142421324311324", "3142243113244213", "3214413214232341", "3241413223141423", "3241412323141432", "3412214312344321", "3421213443121243", "4123234114323214", "4123321413422431", "4132234132141423", "4132231434211243", "4132321414232341", "4132324114232314", "4132324113242413", "4312214334211234", "4321213412433412", "4321124321343412", "4321123431422413", "4321124334122134", "4312213432411423", "4312213434211243"]
+
+                switch (level) {
+                    case 1:
+                        hide_object = 1;
+
+                        break;
+                    case 2:
+                        hide_object = 2;
+                        break;
+                    case 3:
+                        hide_object = 3;
+                        break;
+
+                    default:
+                        hide_object = 1;
+                        break;
+                }
+
+            }
+            else if (matrix == 'matrix33') {
+                block_N = 3;
+                block_M = 3;
+                total_block = 9;
+                N = 9;
+                M = 9;
+                block_limit = 7;
+                increment_by = 3;
+                game_data = ["786543219295168734143279856674912583519836472832457961357694128921385647468721395", "728953164153684729496127358389562417617498235542731896261845973835279641974316582", "317925486648173529592648137981456273273819654456237918825364791134792865769581342", "671583249498712536253469817312658794987341652546297381834926175169875423725134968", "857139246429856317316247859183764925695328471274591638931485762562973184748612593", "837269154245317968169548237472183695698425713351976482784631529526894371913752846", "148273965657941823329865741534692178986137254712458396461789532893524617275316489", "152463897873952641694817325729548136586321479431796582918674253245139768367285914", "857946312163572849942381756416837295785219463239654178591428637678193524324765981", "746813592152479368389625147821794635697351284435268971518946723263587419974132856", "257316489148759623396284517734891265862475931915623874489167352521938746673542198", "753641982812539746694287531439862175567914328128753694971426853345178269286395417", "231795648547836219698124357984267135715483962326519874463972581159648723872351496", "893672154764951283521438769146893527972145638385726941458217396637589412219364875", "297836154456179832813452679725913486948265713631784925384591267162347598579628341", "283471569159632748764598132695147823371826954428953671532789416846215397917364285", "285734916196528347734619528421856739359471862867392451642985173913247685578163294", "843657912915382467267194835631825794784931526529476381352719648478263159196548273", "825479316146358279739261845352184967674935128981627453413796582597842631268513794", "926853741451297368738614592815976234274135986693428175567341829189762453342589617", "918543726652187439437296185761854293823679514549312867295761348374928651186435972", "245983167687412935193675842814769253562134798379258416938547621456821379721396584", "871539642342167598956428137267983451439751286185246973713694825598312764624875319", "519876432243159687678234195927568314836421759154793268365947821491382576782615943", "673849512825176394914235876489563721531427689267918435752394168146782953398651247", "452716893381259674679348215296587431743921586815463729568192347134875962927634158", "257649831348751926916238754581964273794823165632175489475392618169587342823416597", "426873159518296734937541826391627485645318972872459361769135248283964517154782693", "215736498934812567867495123748659231153248976692173845589327614321564789476981352", "542831679693275148178469235819342567256718493437956812725194386961583724384627951", "576914823132587496849632517965241378417863952283795164654178239728359641391426785", "538614279647952381129783546975431862286579413314268957753826194461395728892147635", "957438162461275893382961574125847936634159287798326451846792315513684729279513648", "763254198291783465548619732976841523352976841184325976829137654417562389635498217", "472159836369248751518367429251684973786923145934715268825431697147596382693872514", "197623584453981627862475139781564392946132758235897416518246973679318245324759861", "987526413325941876641378952593214687468795321712683594239457168876139245154862739", "269548317731926485845371629512739864697482531483615972356297148174853296928164753", "234689571571234698986715432453891267629547813718362945847126359365978124192453786", "615849273247315968938672145392568417874291536561437892156724389789153624423986751", "893421576726589143154376289587914632432658791619732458348265917961847325275193864", "284796135756813429913254867592671348648932571371548296439187652165429783827365914", "324685197186749532759312846495238761671954283238176954942861375517493628863527419", "736219854584367192921854673167935248849621537352478961273586419698143725415792386", "983741256612385974457296813746512398325879641891634527268457139134928765579163482", "183549726625713948794826315957632184418957263362481597531264879876195432249378651", "384915627192736458657482913428597361913648275765123849879261534536874192241359786", "976253841213948675548176932864392157391785426752614389489567213137429568625831794", "192387546564921837873465291785639124436812759219574368651743982928156473347298615", "274186953389527641516934872162758394937642518458391267825419736691873425743265189", ];
+
+                switch (level) {
+                    case 1:
+                        hide_object = 2;
+                        break;
+                    case 2:
+                        hide_object = 2;
+                        break;
+                    case 3:
+                        hide_object = 4;
+                        break;
+                    case 4:
+                        hide_object = 7;
+                        break;
+                    default:
+                        hide_object = 4;
+                        break;
+                }
+            }
+
+            dynamicplayboard();
+        }
+
+        function dynamicplayboard() {
+            var html = "";
+            for (var i = 1; i <= block_limit; i += increment_by) {
+                html += ' <div class="block_row">';
+                for (var j = 1; j <= block_limit; j += increment_by) {
+                    html += '<div id="' + "b" + i + "" + j + '" class="block" onclick="clickblock(this.id);">';
+                    for (var k = i; k <= i + (block_M - 1) ; k++) {
+                        html += ' <div class="row">';
+                        for (var l = j; l <= j + (block_N - 1) ; l++) {
+                            html += '    <div class="column">';
+                            html += '        <div id="' + k + "" + l + '" class="object_' + matrix + '" onclick="objectclick(this)" ></div>';
+                            html += '    </div>';
+                        }
+                        html += '</div>';
+                    }
+                    html += '</div>';
+                }
+                html += '</div>';
+            }
+            playboard.innerHTML = html;
+            var block_rows = document.getElementsByClassName('block_row');
+            var block_rows_width = 100;
+            var block_rows_height = 100 / block_N;
+            for (var b = 0; b < block_rows.length; b++) {
+                block_rows[b].style.width = (block_rows_width) + "%";
+                block_rows[b].style.height = (block_rows_height - 1) + "%";
+            }
+            var blocks = document.getElementsByClassName('block');
+            var blocks_width = 100 / block_M;
+            var blocks_height = 100;
+            for (var b = 0; b < blocks.length; b++) {
+                blocks[b].style.width = (blocks_width - 5) + "%";
+                blocks[b].style.height = (blocks_height - 7) + "%";
+            }
+            var rows = document.getElementsByClassName('row');
+            var rows_width = 100;
+            var rows_height = 100 / block_N;
+            for (var b = 0; b < rows.length; b++) {
+                rows[b].style.width = (rows_width) + "%";
+                rows[b].style.height = (rows_height) + "%";
+            }
+            var columns = document.getElementsByClassName('column');
+            var columns_width = 100 / block_M;
+            var columns_height = 100;
+            for (var b = 0; b < columns.length; b++) {
+                columns[b].style.width = (columns_width) + "%";
+                columns[b].style.height = (columns_height) + "%";
+            }
+            randomgenerator();
+        }
+        //Date               : 15-06-2013
+        //Function Intention : This function selects a random game and generates 
+        //                     a playboard according to the theme that has been 
+        //                     selected by the player. It also stores the solution 
+        //                     in the back for future reference.
+        //called Functions   : leveldefiner()
+        function randomgenerator() {
+            var len = game_data.length - 1;
+            game_index = Math.ceil(Math.random() * len);
+            game_string = game_data[game_index];
+            var index = 0;
+            for (var i = 1; i <= M; i++) {
+                for (var j = 1; j <= N; j++) {
+                    var value = game_string[index++];
+                    var object = document.getElementById(i + "" + j);
+                    //object.childNodes[0].src = theme_character + "/" + value + ".png";
+                    object.style.backgroundImage = "url('" + theme_character + "/" + value + ".png" + "')";
+                    solution.push(value);
+                }
+            }
+            leveldefiner();
+        }
+        //Date               : 15-06-2013
+        //Function Intention : This function will generate a complexity of the
+        //                     sudoku playboard according to the level that has 
+        //                     been selected
+        function leveldefiner() {
+            for (var i = 1; i <= block_limit; i += increment_by) {
+                for (j = 1; j <= block_limit; j += increment_by) {
+                    for (var k = 0; k < hide_object; k++) {
+
+                        var r = parseInt(Math.random() * block_M);
+                        var c = parseInt(Math.random() * block_N);
+                        var object = document.getElementById((i + r) + "" + (j + c));
+                        object.style.backgroundImage = "url('" + theme_character + "/0.png" + "')";
+                        hidden_object.push(object.id);
+
+                    }
+                }
+            }
+            correct = hidden_object.length;
+            hiddenobjecttrack = hidden_object.unique();
+            dynamickeyboard();
+        }
+        Array.prototype.contains = function (v) {
+            for (var i = 0; i < this.length; i++) {
+                if (this[i] === v) return true;
+            }
+            return false;
+        };
+        Array.prototype.unique = function () {
+            var arr = [];
+            for (var i = 0; i < this.length; i++) {
+                if (!arr.contains(this[i])) {
+                    arr.push(this[i]);
+                }
+            }
+            return arr;
+        }
+
+        function dynamickeyboard() {
+            var html = "";
+            for (var i = 1; i <= block_M * block_N; i++) {
+                html += '<div id="key' + i + '" class="key_' + matrix + '" style="background-image: url(' + theme_character + '/' + i + '.png);" onclick="keyboardclick(this);"></div>';
+                keyboard.innerHTML = html;
+                keyboard.className = "keyboard_" + matrix;
+
+            }
+
+        }
+
+        function clickblock(blockid) {
+            if (start) {
+                block = blockid;
+            }
+            else {
+                block = null;
+            }
+        }
+        var x;
+        var y;
+        function objectclick(sender) {
+            document.documentElement.style.webkitTapHighlightColor = "rgba(0,0,0,0)";
+            if (start) {
+                if (object != null) {
+                    $('#' + object).removeClass('active');
+                }
+                if ($('.highlight').length > 0) {
+                    $('.highlight').removeClass('highlight');
+                }
+                var xtemp = sender.id;
+                $('.highlightrowcolomn').removeClass('highlightrowcolomn');
+                if (hidden_object.indexOf(xtemp) > -1) {
+                    for (var a = 1; a <= M; a++) {
+                        $("#" + sender.id[0] + a).addClass('highlightrowcolomn');
+                        $("#" + a + sender.id[1]).addClass('highlightrowcolomn');
+                    }
+                }
+                if (!(ishidden(sender.id))) {
+                    var style = window.getComputedStyle(sender);
+                    var t = style.backgroundImage.split(theme_character + "/")[1].split(".")[0];
+                    for (var i = 1; i <= M; i++) {
+                        for (var j = 1; j <= N; j++) {
+                            var element = document.getElementById(i + "" + j);
+                            var style = window.getComputedStyle(element);
+                            var temp = style.backgroundImage.split(theme_character + "/")[1].split(".")[0];
+                            if (temp == t) {
+                                $(element).addClass('highlight');
+                            }
+                        }
+                    }
+                }
+                else {
+                    y = $(sender).offset().top + $(sender).height() / 2;
+                    x = $(sender).offset().left + $(sender).width() / 2;
+                    $(sender).addClass('active');
+                    object = sender.id;
+                }
+                start = true;
+            }
+            else {
+                start = false;
+            }
+        }
+
+        function ishidden(sender) {
+            var hidden_flag = false;
+            for (var h = 0; h < hidden_object.length; h++) {
+                if (hidden_object[h] == sender) {
+                    hidden_flag = true;
+                    break;
+                }
+            }
+            return hidden_flag;
+        }
+        function playdynamically() {
+            sender = document.getElementById(hiddenobjecttrack[hidden_index]);
+            document.documentElement.style.webkitTapHighlightColor = "rgba(0,0,0,0)";
+            // alert($("#" + hiddenobjecttrack[hidden_index]).parent().parent().parent().attr('id'));
+            block = $("#" + hiddenobjecttrack[hidden_index]).parent().parent().parent().attr('id');
+            if (start) {
+                if (object != null) {
+                    $('#' + object).removeClass('active');
+                }
+                if ($('.highlight').length > 0) {
+                    $('.highlight').removeClass('highlight');
+                }
+                if (!(ishidden(sender.id))) {
+                    var style = window.getComputedStyle(sender);
+                    var t = style.backgroundImage.split(theme_character + "/")[1].split(".")[0];
+                    for (var i = 1; i <= M; i++) {
+                        for (var j = 1; j <= N; j++) {
+                            var element = document.getElementById(i + "" + j);
+                            var style = window.getComputedStyle(element);
+                            var temp = style.backgroundImage.split(theme_character + "/")[1].split(".")[0];
+                            if (temp == t) {
+                                $(element).addClass('highlight');
+                            }
+                        }
+                    }
+                }
+                else {
+                    object = sender.id;
+                    y = $(sender).offset().top + $(sender).height() / 2;
+                    x = $(sender).offset().left + $(sender).width() / 2;
+                    $(sender).addClass('active');
+                }
+                start = true;
+            }
+            else {
+                start = false;
+            }
+            if (hiddenobjecttrack.length > 1) {
+                hiddenobjecttrack.splice(0, 1);
+            }
+        }
+
+        function keyboardclick(sender) {
+            document.documentElement.style.webkitTapHighlightColor = "rgba(0,0,0,0)";
+            $('.highlightrowcolomn').removeClass('highlightrowcolomn');
+            attempts++;
+            key = sender.id.split('key')[1];
+            if (input_restrict) {
+                var flagnum = true;
+                var r = object[0];
+                for (var i = 1; i <= M; i++) {
+                    if (object != (r + "" + i)) {
+                        var element = document.getElementById(r + "" + i);
+                        var style = window.getComputedStyle(element);
+                        var temp = style.backgroundImage.split(theme_character + "/")[1].split(".")[0];
+                        if (parseInt(key) == parseInt(temp)) {
+                            flagnum = false;
+                            break;
+                        }
+                    }
+                }
+                r = object[1];
+                for (var i = 1; i <= N; i++) {
+                    if (object != (i + "" + r)) {
+                        var element = document.getElementById(i + "" + r);
+                        var style = window.getComputedStyle(element);
+                        var temp = style.backgroundImage.split(theme_character + "/")[1].split(".")[0];
+                        if (parseInt(key) == parseInt(temp)) {
+                            flagnum = false;
+                            break;
+                        }
+                    }
+                }
+
+                if (flagnum) {
+                    var flagblock = true;
+                    var ilimit = parseInt(block[1]);
+                    var jlimit = parseInt(block[2]);
+                    var i = 0;
+                    var j = 0;
+                    for (i = ilimit; i <= ilimit + (block_M - 1) ; i++) {
+                        for (j = jlimit; j <= jlimit + (block_N - 1) ; j++) {
+                            var pos = i + "" + j;
+                            //document.getElementById("temp").value = object + "==" + pos ;
+                            if (object != pos) {
+                                //var element = document.getElementById(pos);
+                                //var style = window.getComputedStyle(element);
+                                var xtemp = $("#" + pos).css('background-image').split(theme_character + "/")[1];
+                                var temp = xtemp.split(".")[0];
+                                if (parseInt(key) == parseInt(temp)) {
+                                    flagblock = false;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    if (flagblock) {
+                        if (input_restrict) {
+                            if (active) {
+                                //trueaudio = new GameSound("trueaudio", "audio/GameWin.mp3", "none");
+                                trueaudio.play();
+                            }
+                            livescore = livescore + 100;
+                            //document.getElementById("gamescore").innerHTML = livescore;
+                            localStorage.setItem("livescore" + levelcount, livescore);
+                            alerthighscore++;
+                            unrestrictposition();
+                            if (alerthighscore >= 5) {
+                                if (active) {
+                                    if (input_restrict) {
+                                        //alerthighscoreaudio = new GameSound("alerthighscoreaudio", " audio/alerthighscore.mp3", "none");
+                                        alerthighscoreaudio.play();
+
+                                    }
+                                }
+                                alerthighscore = 0;
+                            }
+                        }
+                        else {
+                            unrestrictposition();
+                        }
+                        localStorage.setItem("livescore" + levelcount, livescore);
+                        var ghost = document.createElement("div");
+                        ghost.setAttribute("style", "height:7%;width:9%;position:absolute;top:" + event.y + "px;left:" + event.x + "px;background-size:100% 100%;background-position:center;background-repeat:no-repeat;");
+                        var style = window.getComputedStyle(sender);
+                        ghost.style.backgroundImage = style.backgroundImage;
+                        document.body.appendChild(ghost);
+                        // $(ghost).animate({
+                        //     top: (y - ($(ghost).height() / 2)) + "px",
+                        //     left: (x - ($(ghost).width() / 2)) + "px"
+                        // }, 'slow', function () {
+                        /*$('#fontanimation').css({ 'top': y, 'left': x, 'display': 'block' });
+                        document.getElementById("fontanimation").innerHTML = "+100";
+                        $('#fontanimation').addClass('font');
+                        setTimeout('fontnone();', 1000);*/
+
+                        var lastSheet = document.styleSheets[document.styleSheets.length - 1];
+                        animationname = "movethere";
+                        lastSheet.insertRule("@-webkit-keyframes " + animationname + " { to {top: " + (y - ($(ghost).height() / 2)) + "px;left: " + (x - ($(ghost).width() / 2)) + "px;} }", lastSheet.cssRules.length);
+                        ghost.style.webkitAnimationName = animationname;
+                        ghost.style.webkitAnimationDuration = "500ms";
+                        ghost.addEventListener('webkitAnimationEnd', function () {
+                            // alert('sairam');
+                            ghost.style.webkitAnimationName = "";
+                            ghost.style.webkitAnimationDuration = "";
+                            document.body.removeChild(ghost);
+                            document.getElementById(object).style.backgroundImage = "url('" + theme_character + "/" + key + ".png')";
+
+                            $('#fontanimation').css({ 'top': y, 'left': x, 'display': 'block' });
+                            document.getElementById("fontanimation").innerHTML = "+100";
+                            $('#fontanimation').addClass('font');
+                            // setTimeout('fontnone();', 1000);
+                            fontnone();
+
+                            $('#' + object).removeClass('active');
+                            player_string = "";
+                            flagg = true;
+                            for (var i = 1; i <= M; i++) {
+                                for (var j = 1; j <= N; j++) {
+                                    var element = document.getElementById(i + "" + j);
+                                    var style = window.getComputedStyle(element);
+                                    var temp = style.backgroundImage.split(theme_character + "/")[1].split(".")[0];
+                                    player_string += temp;
+                                }
+                            }
+                            if (active) {
+                                trueaudio.play();
+
+                            }
+                            isgameover();
+
+                            playdynamically();
+                        });
+
+                    }
+                    else {
+                        if (active) {
+                            //falseaudio = new GameSound("falseaudio", "audio/Bowling_IncorrectAnswer.mp3", "none");
+                            falseaudio.play();
+                        }
+                        if (livescore == 0) {
+                            if (input_restrict) {
+                                //document.getElementById("gamescore").innerHTML = livescore + "0";
+                                localStorage.setItem("livescore" + levelcount, livescore);
+                                unrestrictposition();
+                            }
+                            else {
+                                //unrestrictposition();
+                            }
+                            localStorage.setItem("livescore" + levelcount, livescore);
+                        }
+                        else {
+                            livescore = livescore - 50;
+                            if (input_restrict) {
+                                //document.getElementById("gamescore").innerHTML = livescore;
+                                alerthighscore--;
+                                unrestrictposition();
+                            }
+                            else {
+                                //unrestrictposition();
+                            }
+                            localStorage.setItem("livescore" + levelcount, livescore);
+
+                        }
+
+                        var ghost = document.createElement("div");
+                        var x1 = event.x;
+                        var y1 = event.y;
+                        ghost.setAttribute("style", "height:7%;width:5%;position:absolute;top:" + event.y + "px;left:" + event.x + "px;background-size:100% 100%;background-position:center;background-repeat:no-repeat;");
+                        var style = window.getComputedStyle(sender);
+                        ghost.style.backgroundImage = style.backgroundImage;
+                        document.body.appendChild(ghost);
+                        $(ghost).animate({
+                            top: y + "px",
+                            left: x + "px"
+                        }, 'slow', function () {
+                            $(ghost).animate({
+                                top: y1 + "px",
+                                left: x1 + "px"
+                            }, 'fast', function () {
+                                document.body.removeChild(ghost);
+                            });
+                        });
+                    }
+                }
+                else {
+                    setTimeout('wrongansweranimation();', 300);
+                    setTimeout('fontnone();', 1000);
+                    if (active) {
+                        //falseaudio = new GameSound("falseaudio", "audio/Bowling_IncorrectAnswer.mp3", "none");
+                        falseaudio.play();
+                    }
+                    if (livescore == 0) {
+                        if (input_restrict) {
+                            //document.getElementById("gamescore").innerHTML = livescore + "0";
+                            localStorage.setItem("livescore" + levelcount, livescore);
+                            unrestrictposition();
+                        }
+                        else {
+                            //unrestrictposition();
+                        }
+                        localStorage.setItem("livescore" + levelcount, livescore);
+
+                    }
+                    else {
+                        livescore = livescore - 50;
+                        if (input_restrict) {
+                            //document.getElementById("gamescore").innerHTML = livescore;
+                            alerthighscore--;
+                            unrestrictposition();
+                        }
+                        else {
+                            //unrestrictposition();
+                        }
+                        localStorage.setItem("livescore" + levelcount, livescore);
+
+                    }
+                    var ghost = document.createElement("div");
+                    var x1 = event.x;
+                    var y1 = event.y;
+                    ghost.setAttribute("style", "height:7%;width:5%;position:absolute;top:" + event.y + "px;left:" + event.x + "px;background-size:100% 100%;background-position:center;background-repeat:no-repeat;");
+                    var style = window.getComputedStyle(sender);
+                    ghost.style.backgroundImage = style.backgroundImage;
+                    document.body.appendChild(ghost);
+                    $(ghost).animate({
+                        top: y + "px",
+                        left: x + "px"
+                    }, 'slow', function () {
+                        $(ghost).animate({
+                            top: y1 + "px",
+                            left: x1 + "px"
+                        }, 'fast', function () {
+                            document.body.removeChild(ghost);
+                        });
+                    });
+                }
+            }
+            else {
+                if (active) {
+                    trueaudio.play();
+                    //trueaudio = new GameSound("trueaudio", "audio/GameWin.mp3", "none");
+                }
+                if (numberchecker(parseInt(key))) {
+                    setTimeout('wrongansweranimation();', 300);
+                    setTimeout('fontnone();', 1000);
+                    livescore = livescore + 100;
+                    if (input_restrict) {
+                        //document.getElementById("gamescore").innerHTML = livescore;
+                        localStorage.setItem("livescore" + levelcount, livescore);
+                        unrestrictposition();
+                    }
+                    else {
+                        //unrestrictposition();
+                    }
+                    localStorage.setItem("livescore" + levelcount, livescore);
+
+                    var ghost = document.createElement("div");
+                    ghost.setAttribute("style", "height:7%;width:5%;position:absolute;top:" + event.y + "px;left:" + event.x + "px;background-size:100% 100%;background-position:center;background-repeat:no-repeat;");
+                    var style = window.getComputedStyle(sender);
+                    ghost.style.backgroundImage = style.backgroundImage;
+                    document.body.appendChild(ghost);
+                    $(ghost).animate({
+                        top: (y - ($(ghost).height() / 2)) + "px",
+                        left: (x - ($(ghost).width() / 2)) + "px"
+                    }, 'slow', function () {
+                        document.getElementById(object).style.backgroundImage = "url('" + theme_character + "/" + key + ".png')";
+                        document.body.removeChild(ghost);
+                        $('#' + object).removeClass('active');
+                        player_string = "";
+                        flagg = true;
+                        for (var i = 1; i <= M; i++) {
+                            for (var j = 1; j <= N; j++) {
+                                var element = document.getElementById(i + "" + j);
+                                var style = window.getComputedStyle(element);
+                                var temp = style.backgroundImage.split(theme_character + "/")[1].split(".")[0];
+                                player_string += temp;
+                            }
+                        }
+                        //alert('sairam');
+                        setTimeout('isgameover()', 1500);
+                        playdynamically();
+                        alerthighscore++;
+                        if (alerthighscore >= 5) {
+                            if (active) {
+                                if (input_restrict) {
+                                    //alerthighscoreaudio = new GameSound("alerthighscoreaudio", " audio/alerthighscore.mp3", "none");
+                                    alerthighscoreaudio.play();
+                                }
+                            }
+                            alerthighscore = 0;
+                        }
+                    });
+                }
+                else {
+                    for (var i = 1; i <= M; i++) {
+                        for (var j = 1; j <= N; j++) {
+                            var element = document.getElementById(i + "" + j);
+                            var style = window.getComputedStyle(element);
+                            var temp = style.backgroundImage.split(theme_character + "/")[1].split(".")[0];
+                            player_string += temp;
+                        }
+                    }
+                    //var playerstringlength = player_string;
+                    storezerocount = 0;
+                    for (var i = 0; i < player_string.length; i++) {
+                        if (player_string[i] == 0) {
+                            storezerocount++;
+                        }
+                    }
+                    if (storezerocount == 2) {
+                        setTimeout('displaynotcomplatediv()', 1000);
+                    }
+                    if (livescore == 0) {
+                        if (input_restrict) {
+                            //document.getElementById("gamescore").innerHTML = livescore + "0";
+                            localStorage.setItem("livescore" + levelcount, livescore);
+                            unrestrictposition();
+                        }
+                        else {
+                            //unrestrictposition();
+                        }
+                        localStorage.setItem("livescore" + levelcount, livescore);
+
+                    }
+                    else {
+                        livescore = livescore - 50;
+                        if (input_restrict) {
+                            //document.getElementById("gamescore").innerHTML = livescore;
+                            alerthighscore--;
+                            localStorage.setItem("livescore" + levelcount, livescore);
+                            unrestrictposition();
+                        }
+                        else {
+                            //unrestrictposition();
+                        }
+                        localStorage.setItem("livescore" + levelcount, livescore);
+
+                    }
+                    var ghost = document.createElement("div");
+                    var x1 = event.x;
+                    var y1 = event.y;
+                    ghost.setAttribute("style", "height:7%;width:5%;position:absolute;top:" + event.y + "px;left:" + event.x + "px;background-size:100% 100%;background-position:center;background-repeat:no-repeat;");
+                    var style = window.getComputedStyle(sender);
+                    ghost.style.backgroundImage = style.backgroundImage;
+                    document.body.appendChild(ghost);
+                    $(ghost).animate({
+                        top: y + "px",
+                        left: x + "px"
+                    }, 'slow', function () {
+                        document.getElementById(object).style.backgroundImage = "url('" + theme_character + "/" + key + ".png')";
+                        document.body.removeChild(ghost);
+                        $('#' + object).removeClass('active');
+                        player_string = "";
+                        flagg = true;
+                        for (var i = 1; i <= M; i++) {
+                            for (var j = 1; j <= N; j++) {
+                                var element = document.getElementById(i + "" + j);
+                                var style = window.getComputedStyle(element);
+                                var temp = style.backgroundImage.split(theme_character + "/")[1].split(".")[0];
+                                player_string += temp;
+                            }
+                        }
+                        //alert('sairam');
+                        setTimeout('isgameover()', 1500);
+                        playdynamically();
+                    });
+                }
+            }
+        }
+
+        function displaynotcomplatediv() {
+            document.getElementById("gamenotcompletediv").style.display = "block";
+        }
+        function gamenotcompletedivnone() {
+            document.getElementById("gamenotcompletediv").style.display = "none";
+        }
+        function wrongansweranimation() {
+            if (input_restrict) {
+                $('#fontanimation').css({ 'top': y, 'left': x, 'display': 'block' });
+                document.getElementById("fontanimation").innerHTML = "-50";
+                $('#fontanimation').addClass('font');
+            }
+        }
+
+        function fontnone() {
+            $('#fontanimation').css({ 'display': 'none' });
+        }
+
+        function blockchecker(num) {
+            document.documentElement.style.webkitTapHighlightColor = "rgba(0,0,0,0)";
+            flag = true;
+            var ilimit = parseInt(block[1]);
+            var jlimit = parseInt(block[2]);
+            for (var i = ilimit; i <= ilimit + (block_M - 1) ; i++) {
+                for (var j = jlimit; j <= jlimit + (block_N - 1) ; j++) {
+                    var pos = i + "" + j;
+                    if (object != pos) {
+                        var element = document.getElementById(pos);
+                        var style = window.getComputedStyle(element);
+                        var temp = style.backgroundImage.split(theme_character + "/")[1].split(".")[0];
+                        if (num == temp) {
+                            flag = false;
+                            break;
+                        }
+                    }
+                }
+            }
+            return flag;
+        }
+
+        function numberchecker(num) {
+            flag = true;
+            var r = object[0];
+            for (var i = 1; i <= M; i++) {
+                if (object != (r + "" + i)) {
+                    var element = document.getElementById(r + "" + i);
+                    var style = window.getComputedStyle(element);
+                    var temp = style.backgroundImage.split(theme_character + "/")[1].split(".")[0];
+                    if (num == temp) {
+                        flag = false;
+                        break;
+                    }
+                }
+            }
+            r = object[1];
+            for (var i = 1; i <= N; i++) {
+                if (object != (i + "" + r)) {
+                    var element = document.getElementById(i + "" + r);
+                    var style = window.getComputedStyle(element);
+                    var temp = style.backgroundImage.split(theme_character + "/")[1].split(".")[0];
+                    if (num == temp) {
+                        flag = false;
+                        break;
+                    }
+                }
+            }
+            return flag;
+        }
+
+        function isgameover() {
+            if (game_string == player_string) {
+
+
+                if (!solution_clicked) {
+                    //congratsaudio = new GameSound("congratsaudio", "audio/WinningSound.mp3", "none");
+                    congratsaudio.play();
+                    clearTimeout(timer);
+                    congratsaudio = document.getElementById("congratsaudio");
+
+                    var getscore = 0;
+                    for (var i = 1; i <= 32; i++) {
+                        getscore = localStorage.getItem("livescore" + i);
+                        if (getscore != null && getscore != "undefined") {
+                            sum += parseInt(getscore);
+                        }
+                    }
+                    var functionName = "sendscore";
+                    var args = new Array();
+                    args[0] = sum;
+                    var iframe = document.createElement("IFRAME");
+                    iframe.setAttribute("src", "js-frame:" + functionName + ":" + encodeURIComponent(JSON.stringify(args)));
+                    document.documentElement.appendChild(iframe);
+                    iframe.parentNode.removeChild(iframe);
+                    iframe = null;
+                    if (levelcount != 32) {
+                        if (localStorage.getItem("Level" + levelcount + "Score") != null && localStorage.getItem("Level" + levelcount + "Score") != "undefined") {
+                            if (milisecond < parseInt(localStorage.getItem("Level" + levelcount + "Score"))) {
+                                localStorage.setItem("Level" + levelcount + "Score", milisecond);
+                            }
+                        }
+                        else {
+                            localStorage.setItem("Level" + levelcount + "Score", milisecond);
+                        }
+                        levelcount += 1;
+                        var accurancy = parseInt(correct / attempts * 100);
+                        var timetaken = time.innerHTML;
+                        document.getElementById("accurancy").innerHTML = livescore;
+                        document.getElementById("timetaken").innerHTML = timetaken;
+                        playboard.style.display = "none";
+                        keyboard.style.display = "none";
+                        complete_level.style.display = "inline";
+                    }
+                    else {
+                        levelcount = 1;
+                    }
+                    //livescore = 0;
+                    if (input_restrict) {
+                        document.getElementById("gamescore").innerHTML = "";
+                    }
+                }
+                else {
+                    keyboard.style.display = "block";
+                    reset();
+                }
+            }
+            else {
+                //$(trueaudio).bind("ended", function () {
+                //});
+            }
+
+        }
+
+        function gametimer() {
+            var html = "";
+            if (start) {
+                milisecond++;
+                hour = parseInt(milisecond / 3600);
+                minute = parseInt((milisecond % 3600) / 60);
+                second = parseInt((milisecond % 3600) % 60);
+                html = "";
+                var h = hour.toString();
+                var m = minute.toString();
+                var s = second.toString();
+                if (h.length == 1)
+                    //html += 0 + "" + h;
+                    html += "";
+                else
+                    html += h;
+                //html += ":";
+                if (m.length == 1)
+                    html += 0 + "" + m;
+                else
+                    html += m;
+                html += ":";
+                if (s.length == 1)
+                    html += 0 + "" + s;
+                else
+                    html += s;
+
+                time.innerHTML = html;
+
+                timer = setTimeout('gametimer();', 1000);
+            }
+        }
+
+        function chooselevel(level_no) {
+            level = level_no;
+        }
+
+        function backhome() {
+            document.documentElement.style.webkitTapHighlightColor = "rgba(0,0,0,0)";
+            if (active) {
+                //buttonaudio = new GameSound("buttonaudio", "audio/buttonsound1.mp3", "none");
+                buttonaudio.play();
+            }
+            document.getElementById("playboardframe").style.display = "none";
+            document.getElementById("playboard").style.display = "none";
+            document.getElementById("beginner").style.display = "none";
+            document.getElementById("intermediate").style.display = "none";
+            document.getElementById("advanced").style.display = "none";
+            document.getElementById("audio").style.display = "none";
+            document.getElementById("pause").style.display = "none";
+            document.getElementById("time_holder").style.display = "none";
+            document.getElementById("gamescore_holder").style.display = "none";
+            document.getElementById("home").style.display = "none";
+            document.getElementById("complete_level").style.display = "none";
+            document.getElementById("main-level-container").style.display = "none";
+            document.getElementById("splash_screen").style.display = "block";
+            document.getElementById("menu_screen").style.display = "block";
+            document.getElementById("play_screen").style.display = "none";
+            document.getElementById("main_help_div").style.display = "none";
+            hidden_index = 0;
+            alerthighscore = 0;
+        }
+
+        function backtoplay() {
+            document.documentElement.style.webkitTapHighlightColor = "rgba(0,0,0,0)";
+            if (active) {
+                //buttonaudio = new GameSound("buttonaudio", "audio/buttonsound1.mp3", "none");
+                buttonaudio.play();
+            }
+            document.getElementById("complete_level").style.display = "none";
+            document.getElementById("playboard").style.display = "none";
+            document.getElementById("keyboard").style.display = "none";
+            document.getElementById("beginner").style.display = "block";
+            document.getElementById("main-level-container").style.display = "block";
+            document.getElementById("intermediate").style.display = "block";
+            document.getElementById("advanced").style.display = "block";
+            document.getElementById("pause").style.display = "none";
+            document.getElementById("time_holder").style.display = "none";
+            document.getElementById("gamescore_holder").style.display = "none";
+            document.getElementById("leveldisplay").style.display = "none";
+            document.getElementById("theme_container").style.display = "block";
+            //document.getElementById("main_help_div").style.display = "block";
+            hidden_index = 0;
+            alerthighscore = 0;
+            livescore = 0;
+        }
+
+        function gotohome() {
+            document.documentElement.style.webkitTapHighlightColor = "rgba(0,0,0,0)";
+            if (active) {
+                //buttonaudio = new GameSound("buttonaudio", "audio/buttonsound1.mp3", "none");
+                buttonaudio.play();
+            }
+            document.getElementById("complete_level").style.display = "none";
+            document.getElementById("playboard").style.display = "none";
+            document.getElementById("splash_screen").style.display = "block";
+            document.getElementById("menu_screen").style.display = "block";
+            document.getElementById("playboardframe").style.display = "none";
+            document.getElementById("keyboard").style.display = "none";
+            document.getElementById("play_screen").style.display = "none";
+            document.getElementById("pause").style.display = "none";
+            document.getElementById("time_holder").style.display = "none";
+            document.getElementById("gamescore_holder").style.display = "none";
+            document.getElementById("leveldisplay").style.display = "none";
+            document.getElementById("main_help_div").style.display = "none";
+            hidden_index = 0;
+            alerthighscore = 0;
+            livescore = 0;
+        }
+        function onoffaudio() {
+            document.documentElement.style.webkitTapHighlightColor = "rgba(0,0,0,0)";
+            //buttonaudio = new GameSound("buttonaudio", "audio/buttonsound1.mp3", "none");
+            buttonaudio.play();
+            var activeaudio = document.getElementsByTagName('audio').length;
+            if (active) {
+                document.getElementById("audio").innerHTML = '<img style="position: absolute; height: 51%;width: 47%;left: 39%;top: 22%;" src="images/wrong.png" />';
+                $('#buttonaudio')[0].pause();
+                $('#trueaudio')[0].pause();
+                $('#falseaudio')[0].pause();
+                $('#congratsaudio')[0].pause();
+                $('#alerthighscoreaudio')[0].pause();
+                $('#startgameaudio')[0].pause();
+                $('#pageflipaudio')[0].pause();
+                active = false;
+            }
+            else {
+                startgameaudio.addEventListener('ended', function () {
+                    this.currentTime = 0;
+                    this.play();
+                }, false);
+                startgameaudio.play();
+                document.getElementById("audio").innerHTML = "";
+                active = true;
+            }
+        }
+
+        var activepause = true;
+        function pausemenu() {
+            document.documentElement.style.webkitTapHighlightColor = "rgba(0,0,0,0)";
+            if (active) {
+                //buttonaudio = new GameSound("buttonaudio", "audio/buttonsound1.mp3", "none");
+                buttonaudio.play();
+            }
+            document.getElementById("openpausemenu").style.display = "block";
+            document.getElementById("beginner").style.display = "none";
+            document.getElementById("intermediate").style.display = "none";
+            document.getElementById("advanced").style.display = "none";
+            if (activepause) {
+                $("#pause").css("background-image", "url(images/play.png)");
+                document.getElementById("openpausemenu").style.display = "block";
+                $("#pause").css({ 'z-Index': '10' });
+                clearTimeout(timer);
+                activepause = false;
+            }
+            else {
+                $("#pause").css("background-image", "url(images/pause.png)");
+                document.getElementById("openpausemenu").style.display = "none";
+                $("#pause").css({ 'z-Index': '0' });
+                gametimer();
+                activepause = true;
+            }
+        }
+
+        function pausemenubutton(sender) {
+            document.documentElement.style.webkitTapHighlightColor = "rgba(0,0,0,0)";
+            if (active) {
+                //buttonaudio = new GameSound("buttonaudio", "audio/buttonsound1.mp3", "none");
+                buttonaudio.play();
+            }
+            switch (sender) {
+                case "pausehome":
+                    document.getElementById("openpausemenu").style.display = "none";
+                    document.getElementById("complete_level").style.display = "none";
+                    document.getElementById("playboard").style.display = "none";
+                    document.getElementById("splash_screen").style.display = "block";
+                    document.getElementById("menu_screen").style.display = "block";
+                    document.getElementById("playboardframe").style.display = "none";
+                    document.getElementById("keyboard").style.display = "none";
+                    document.getElementById("play_screen").style.display = "none";
+                    document.getElementById("pause").style.display = "none";
+                    document.getElementById("time_holder").style.display = "none";
+                    document.getElementById("gamescore_holder").style.display = "none";
+                    document.getElementById("leveldisplay").style.display = "none";
+                    break;
+
+                case "pausecontinue":
+                    document.getElementById("openpausemenu").style.display = "none";
+                    gametimer();
+                    break;
+
+                case "pausesound":
+                    break;
+
+                case "pauseexit":
+                    window.close();
+                    break;
+            }
+        }
+
+        function scorehomebutton() {
+            for (var i = 0; i < 10; i++) {
+                document.getElementById('heighscorediv' + (i + 1)).innerHTML = "";
+
+            }
+            document.documentElement.style.webkitTapHighlightColor = "rgba(0,0,0,0)";
+            if (active) {
+                //buttonaudio = new GameSound("buttonaudio", "audio/buttonsound1.mp3", "none");
+                buttonaudio.play();
+            }
+            menuscore.style.display = "none";
+            splash_screen.style.display = "block";
+            menu_screen.style.display = "block";
+        }
+
+        function scoreplaybutton() {
+            document.documentElement.style.webkitTapHighlightColor = "rgba(0,0,0,0)";
+            $('#beginner').addClass('activeoption');
+            if (active) {
+                //buttonaudio = new GameSound("buttonaudio", "audio/buttonsound1.mp3", "none");
+                buttonaudio.play();
+            };
+            document.getElementById("menuscore").style.display = "none";
+            document.getElementById("play_screen").style.display = "block";
+            document.getElementById("playboardframe").style.display = "block";
+            document.getElementById("home").style.display = "block";
+            document.getElementById("audio").style.display = "block";
+            document.getElementById("beginner").style.display = "block";
+            document.getElementById("intermediate").style.display = "block";
+            document.getElementById("advanced").style.display = "block";
+            document.getElementById("main-level-container").style.display = "block";
+            document.getElementById("beginner-level").style.display = "block";
+            document.getElementById("intermediate-level").style.display = "none";
+            document.getElementById("advance-level").style.display = "none";
+            //document.getElementById("main_help_div").style.display = "block"
+        }
+
+        var sum = 0;
+        function unrestrictposition() {
+            sum = 0;
+            for (var i = 1; i <= 32; i++) {
+                t = localStorage.getItem("livescore" + i);
+                if (t != null && t != "undefined") {
+                    sum += parseInt(t);
+                }
+            }
+            document.getElementById("gamescore").innerHTML = sum;
+        }
+
+        function openhelppage() {
+            if (active) {
+
+                //pageflipaudio = new GameSound("pageflipaudio", " audio/pageFlip", "none");
+                pageflipaudio.play();
+            }
+
+            $("#main_help_div").css({ 'display': 'block' });
+
+
+        }
+        function closehelpmenu() {
+            $("#main_help_div").css({ 'display': 'none' });
+
+        }
+
+
+        //function GameSound(id, src, preload, loop) {
+
+        //    var audioElement = document.createElement('audio');
+        //    audioElement.setAttribute("id", id);
+        //    audioElement.setAttribute("src", src);
+        //    audioElement.setAttribute("preload", preload);
+        //    if (loop)
+        //        audioElement.setAttribute("loop", "loop");
+        //    document.body.appendChild(audioElement);
+
+        //    var me = this;
+
+        //    this.id = id;
+
+        //    this.soundobj = document.getElementById(id);
+        //    this.enable = false;
+        //    this.infocus = true;
+        //    this.loop = (loop == undefined) ? false : loop;
+        //    this.focus = function focus() {
+
+        //        if (!me.infocus) {
+        //            me.infocus = true;
+        //            if (me.enable && me.loop)
+        //                me.soundobj.play();
+        //        }
+        //    };
+        //    this.blur = function blur() {
+        //        if (me.infocus) {
+        //            me.infocus = false;
+        //            if (me.enable && me.loop)
+        //                me.soundobj.pause();
+        //        }
+        //    };
+        //    window.addEventListener('focus', me.focus, false);
+        //    window.addEventListener('blur', me.blur, false);
+
+        //    this.play = function play() {
+        //        this.enable = true;
+        //        if (this.infocus)
+        //            this.soundobj.play();
+        //    };
+        //    this.pause = function pause() {
+        //        this.enable = false;
+        //        this.soundobj.pause();
+        //    };
+        //}
+        //function changetheme(sender) {
+        //    alert(sender.id);
+        //    changethemedynamic = sender.id;
+
+        //    //$("#playboardframe").css("background-image", "url('" + sender.id + "/other/gameframe.png')");
+        //    $("#main_screen").css("background", "url('" + sender.id + "/images/backgroud.png')");
+        //    $("#main_screen").css("background-size", "100% 100%");
+        //}
+
+    </script>
+    <style type="text/css" media="screen" >
+        body {
+            margin: 0px;
+            padding: 0px;
+            overflow: hidden;
+        }
+
+        #main_screen {
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            height: 100%;
+            width: 100%;
+            background: url('images/background.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        #splash_screen {
+            position: absolute;
+            display: inline;
+            top: 5%;
+            left: 20%;
+            height: 70%;
+            width: 60%;
+        }
+
+        #splash_screen_image {
+            height: 60%;
+            width: 100%;
+            background: url('images/splash.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        /*#splash_screen_loading {
+            height: 40%;
+            width: 100%;
+            background: url('images/splashscreenloading.gif');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }*/
+
+        #playboardframe {
+            position: absolute;
+            top: 1%;
+            left: 17%;
+            height: 85%;
+            width: 80%;
+            background-image: url('images/gameframe.png');
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        #menu_screen {
+            position: absolute;
+            display: none;
+            top: 50%;
+            left: 40%;
+            height: 40%;
+            width: 20%;
+        }
+
+        #main-level-container {
+            position: absolute;
+            display: none;
+            top: 25%;
+            left: 29%;
+            height: 43%;
+            width: 62%;
+        }
+
+
+        .option {
+            margin-top: 2%;
+            height: 19%;
+            width: 100%;
+            background-size: 80% 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .optionstart {
+            margin-top: 2%;
+            height: 19%;
+            width: 100%;
+            background-size: 80% 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .activeoption {
+            -webkit-transform: scale(1.3);
+            -moz-transform: scale(1.3);
+        }
+
+        .option:hover {
+            -webkit-transform: scale(1.3);
+            -moz-transform: scale(1.3);
+        }
+        .optionstart:hover {
+            -webkit-transform: scale(1.3);
+            -moz-transform: scale(1.3);
+        }
+        #play_screen {
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            height: 100%;
+            width: 100%;
+            display: none;
+        }
+
+        #menu {
+            height: 10%;
+            width: 100%;
+        }
+
+        #playboard {
+            position: absolute;
+            top: 16%;
+            left: 12.5%;
+            height: 60%;
+            width: 80%;
+        }
+
+        .object_matrix33 {
+            height: 100%;
+            width: 100%;
+            visibility: visible;
+            background-size: 60% 70%;
+            background-repeat: no-repeat;
+            background-position: center;
+            box-shadow: 0px 0px 1px 0px gray;
+        }
+
+        .object_matrix22 {
+            height: 100%;
+            width: 100%;
+            visibility: visible;
+            background-size: 70% 88%;
+            background-repeat: no-repeat;
+            background-position: center;
+            box-shadow: 0px 0px 1px 0px gray;
+        }
+
+
+        .block_row {
+            float: none;
+            clear: both;
+        }
+
+        .block {
+            float: left;
+            margin: 1.5%;
+            box-shadow: -6px -6px 8px -4px rgba(255,0,0,0.75), 6px -6px 8px -4px rgba(0,255,0,0.75), 6px 6px 8px -4px rgba(255,0,0,0.75), -6px 6px 8px -4px rgba(0,255,0,0.75);
+        }
+
+        .row {
+            float: none;
+            clear: both;
+        }
+
+        .column {
+            float: left;
+        }
+
+        #menuscore {
+            position: absolute;
+            top: 1%;
+            left: 17%;
+            height: 85%;
+            width: 80%;
+            background-image: url('images/gameframe.png');
+            background-size: 100% 100%;
+            background-position: center;
+            display: none;
+        }
+
+        .keyboard_matrix33 {
+            position: absolute;
+            height: 6%;
+            width: 60%;
+            top: 86%;
+            left: 26%;
+        }
+
+        .key_matrix33 {
+            height: 100%;
+            width: 9%;
+            float: left;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+            margin-left:1%;
+        }
+
+        .keyboard_matrix22 {
+            position: absolute;
+            height: 6%;
+            width: 40%;
+            top: 86%;
+            left: 36%;
+        }
+
+        .key_matrix22 {
+            height: 100%;
+            margin-left: 10%;
+            width: 15%;
+            float: left;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+        }
+
+        .attempted_object_image {
+            height: 80%;
+            width: 80%;
+            padding-top: 8%;
+            font-size: 24px;
+            font-weight: 900;
+            background: #b5947b;
+            color: black;
+        }
+
+        .first_div {
+            height: 99%;
+            width: 100%;
+            text-align: center;
+        }
+
+        .button_div {
+            height: 90%;
+            width: 13%;
+            float: left;
+        }
+
+        .button {
+            height: 90%;
+            width: 90%;
+            box-shadow: 0px 0px 5px 0px #123;
+            font-size: 14px;
+            font-weight: 900;
+            background: #b5947b;
+            color: white;
+        }
+
+            .button:hover {
+                color: black;
+                box-shadow: 0px 0px 10px 0px #9dfb03;
+                cursor: pointer;
+            }
+
+        #popup {
+            position: absolute;
+            visibility: hidden;
+            z-index: 10;
+            background: #82573e;
+            border-radius: 2%;
+            box-shadow: 0px 0px 5px 0px #123;
+            border: medium solid #b5947b;
+        }
+
+
+        #popup_text {
+            padding-top: 20%;
+            height: 40%;
+            width: 100%;
+            font-weight: 900;
+            font-size: 14px;
+            color: white;
+            border-radius: 5%;
+            text-align: center;
+        }
+
+        #ok_image {
+            height: 25%;
+            width: 100%;
+        }
+
+        #popup_image {
+            height: 100%;
+            width: 25%;
+            box-shadow: 0px 0px 5px 0px rgba(229, 232, 231, 0.95);
+            font-size: 14px;
+            font-weight: 900;
+            background: #b5947b;
+            color: white;
+            text-align: center;
+            box-shadow: 0px 0px 5px 0px #123;
+        }
+
+
+        #cover {
+            position: absolute;
+            border: thin black solid;
+            z-index: 5;
+            background: black;
+            opacity: 0.5;
+            display: none;
+        }
+
+
+        .blink {
+            position: absolute;
+            font-size: 28px;
+            font-weight: 900;
+            color: white;
+            box-shadow: 0px 0px 5px 0px #123;
+            display: none;
+            z-index: 11;
+            background: #82573e;
+        }
+
+        #complete_level {
+            position: absolute;
+            top: 13%;
+            left: 25%;
+            height: 55%;
+            width: 63%;
+            display: none;
+        }
+
+        #congrates {
+            background-image: url('images/congratulations.gif');
+            position: absolute;
+            height: 40%;
+            width: 50%;
+            background-size: 100% 100%;
+            background-position: center;
+        }
+
+        #timeimage {
+            position: absolute;
+            top: 55%;
+            left: 22%;
+            height: 12%;
+            width: 18%;
+            background-image: url('images/time.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+
+
+        #scoreimage {
+            position: absolute;
+            top: 40%;
+            left: 22%;
+            height: 12%;
+            width: 18%;
+            background-image: url('images/score.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+
+        #accurancy {
+            position: absolute;
+            top: 42%;
+            left: 52%;
+            height: 12%;
+            width: 18%;
+            /*box-shadow: 0px 0px 1px 0px black;*/
+            text-align: center;
+            line-height: 2;
+            font-size: 21px;
+            font-family: sans-serif;
+        }
+
+        #timetaken {
+            position: absolute;
+            top: 55%;
+            left: 52%;
+            height: 12%;
+            width: 18%;
+            /*box-shadow: 0px 0px 1px 0px black;*/
+            text-align: center;
+            line-height: 2;
+            font-size: 21px;
+            font-family: sans-serif;
+        }
+
+        #complete_level_title {
+            height: 20%;
+            width: 100%;
+            text-align: center;
+            font-size: 30px;
+            color: white;
+            font-weight: 900;
+        }
+
+        .complete_level_row {
+            height: 20%;
+            width: 100%;
+        }
+
+        .complete_level_text {
+            padding-left: 10%;
+            height: 100%;
+            width: 30%;
+            text-align: right;
+            font-size: 30px;
+            color: white;
+            font-weight: 900;
+            vertical-align: middle;
+        }
+
+        .complete_level_per {
+            height: 100%;
+            width: 20%;
+            text-align: right;
+            font-size: 30px;
+            color: white;
+            font-weight: 900;
+            vertical-align: middle;
+        }
+
+        .thumb {
+            margin-left: 2%;
+            height: 80%;
+            width: auto;
+            vertical-align: middle;
+        }
+
+        .complete_level_button_div {
+            margin-top: 4%;
+            height: 15%;
+            width: 100%;
+        }
+
+        .complete_level_button {
+            padding-top: 2%;
+            height: 60%;
+            width: 20%;
+            margin-left: 20%;
+            box-shadow: 0px 0px 5px 0px rgba(229, 232, 231, 0.95);
+            font-size: 14px;
+            font-weight: 900;
+            background: #b5947b;
+            color: white;
+            text-align: center;
+            box-shadow: 0px 0px 5px 0px #123;
+            float: left;
+        }
+
+            .complete_level_button:hover {
+                cursor: pointer;
+                box-shadow: 0px 0px 10px 0px rgba(229, 232, 231, 0.95);
+            }
+
+        .highlight {
+            background-color: #92D300;
+            box-shadow: 0 0 0 4px #92D300, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
+        }
+
+        .active {
+            background-color: #EF9426;
+            border: 2px dashed #fff;
+            box-shadow: 0 0 0 4px #EF9426, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
+        }
+
+        @-webkit-keyframes vibrate {
+            from {
+                -webkit-transform: scale(1);
+            }
+
+            to {
+                -webkit-transform: scale(1.1);
+            }
+        }
+
+        @-moz-keyframes vibrate {
+            from {
+                -moz-transform: scale(1);
+            }
+
+            to {
+                -moz-transform: scale(1.1);
+            }
+        }
+
+        #home {
+            position: absolute;
+            top: 2%;
+            left: 2%;
+            height: 11%;
+            width: 8%;
+            background-image: url('images/home.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+        }
+
+        #backtolevel {
+            position: absolute;
+            top: 2%;
+            left: 2%;
+            height: 11%;
+            width: 8%;
+            background-image: url('images/home.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+        }
+
+        #leveldisplay {
+            position: absolute;
+            top: 12%;
+            left: 1%;
+            height: 11%;
+            width: 12%;
+            background-position: 100% 55%;
+            background-size: 98% 74%;
+            background-repeat: no-repeat;
+        }
+
+        #audio {
+            position: absolute;
+            top: 22%;
+            left: 1%;
+            height: 10%;
+            width: 8%;
+            background-image: url('images/sound.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+        }
+
+        #beginner {
+            position: absolute;
+            top: 14%;
+            left: 29%;
+            height: 8%;
+            width: 15%;
+            background-image: url('images/easy.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+            z-index: 1;
+        }
+
+        #intermediate {
+            position: absolute;
+            top: 14%;
+            left: 50%;
+            height: 8%;
+            width: 15%;
+            background-image: url('images/medium.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+            z-index: 1;
+        }
+
+        #advanced {
+            position: absolute;
+            top: 14%;
+            left: 70%;
+            height: 8%;
+            width: 15%;
+            background-image: url('images/hard.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+            z-index: 1;
+        }
+
+        #pause {
+            position: absolute;
+            top: 35%;
+            left: 1%;
+            height: 8%;
+            width: 11%;
+            background-image: url('images/pause.png');
+            background-repeat: no-repeat;
+            background-size: 64% 101%;
+            background-position: center;
+        }
+
+        #time_holder {
+            position: absolute;
+            top: 48%;
+            left: 1%;
+            height: 16%;
+            width: 10%;
+        }
+
+        #time_image {
+            height: 50%;
+            width: 100%;
+            background-image: url('images/time.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+        }
+
+        #time {
+            height: 50%;
+            width: 100%;
+            text-align: center;
+            font-size: 20px;
+            font-family: fantasy;
+        }
+
+        #gamescore_holder {
+            position: absolute;
+            top: 62%;
+            left: 1%;
+            height: 13%;
+            width: 10%;
+        }
+
+        #gamescore_image {
+            height: 50%;
+            width: 100%;
+            background-image: url('images/score.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+        }
+
+        #myscoreholder {
+            position: absolute;
+            top: 11%;
+            left: 32%;
+            height: 64%;
+            width: 42%;
+        }
+
+        #myscore_img {
+            height: 50%;
+            width: 100%;
+            background-image: url('images/score.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+        }
+
+        #gamescore {
+            height: 50%;
+            width: 100%;
+            text-align: center;
+            font-size: 22px;
+            font-family: sans-serif;
+        }
+
+        #myscore {
+            height: 50%;
+            width: 20%;
+            text-align: center;
+            font-size: 22px;
+            font-family: sans-serif;
+            position: absolute;
+            left: 50%;
+            top: 35%;
+        }
+
+        #scorecontainer {
+            position: absolute;
+            float: left;
+            width: 76%;
+            height: 29%;
+            left: 12%;
+            top: 24%;
+        }
+
+        #myscorecontainer {
+            position: absolute;
+            float: left;
+            width: 76%;
+            height: 20%;
+            left: 12%;
+            top: 57%;
+        }
+        #leftdiv {
+            height: 100%;
+            width: 46%;
+            /*box-shadow: 0px 0px 1px 0px;*/
+            position: relative;
+            float: left;
+        }
+
+
+        #rightdiv {
+            height: 100%;
+            width: 46%;
+            /*box-shadow: 0px 0px 1px 0px;*/
+            position: relative;
+            float: right;
+        }
+
+        #scorecontainerbeginner {
+            background-image: url('images/easyscore.png');
+            background-size: 79% 94%;
+            background-repeat: no-repeat;
+        }
+
+        #scorecontainerintermediate {
+            background-image: url('images/mediumscore.png');
+            background-size: 79% 94%;
+            background-repeat: no-repeat;
+        }
+
+        #scorecontaineradvanced {
+            background-image: url('images/hardscore.png');
+            background-size: 79% 94%;
+            background-repeat: no-repeat;
+        }
+
+        #buttoncontainer {
+            position: absolute;
+            height: 11%;
+            width: 37%;
+            top: 36%;
+            left: 39%;
+            border-radius: 15px;
+        }
+
+        .highlightrowcolomn {
+            box-shadow: inset 0px 0px 35px -13px red;
+        }
+
+        .buttoncontainer > div {
+            position: relative;
+            float: left;
+            height: 100%;
+            width: 25%;
+            color: black;
+            left: 20%;
+            font-size: 16px;
+            text-align: center;
+            line-height: 7.1;
+            font-weight: 900;
+
+        }
+
+        .updown {
+            -webkit-animation-name: updown;
+            -webkit-animation-iteration-count: 1;
+            -webkit-animation-timing-function: ease-in;
+            -webkit-animation-duration: 0.2s;
+            -moz-animation-name: updown;
+            -moz-animation-iteration-count: 1;
+            -moz-animation-timing-function: ease-in;
+            -moz-animation-duration: 0.2s;
+        }
+
+
+        @-webkit-keyframes updown {
+            0% {
+                top: -9%;
+            }
+
+            100% {
+                top: 9%;
+            }
+        }
+
+        @-moz-keyframes updown {
+            0% {
+                top: -9%;
+            }
+
+            100% {
+                top: 9%;
+            }
+        }
+
+        .font {
+            -webkit-animation-name: font;
+            -webkit-animation-iteration-count: 1;
+            -webkit-animation-timing-function: ease;
+            -webkit-animation-duration: 2s;
+            -moz-animation-name: font;
+            -moz-animation-iteration-count: 1;
+            -moz-animation-timing-function: ease;
+            -moz-animation-duration: 2s;
+        }
+
+        @-webkit-keyframes font {
+            0% {
+                color: red;
+                -webkit-transform: scale(1.5);
+                font-size: 10px;
+                font-weight: 500;
+            }
+
+            100% {
+                color: red;
+                -webkit-transform: scale(1.4);
+                font-size: 80px;
+                font-weight: 900;
+                opacity: 0;
+            }
+        }
+
+        @-moz-keyframes font {
+            0% {
+                color: red;
+                -moz-transform: scale(1.5);
+                font-size: 10px;
+                font-weight: 500;
+            }
+
+            100% {
+                color: red;
+                -moz-transform: scale(1.4);
+                font-size: 80px;
+                font-weight: 900;
+                opacity: 0;
+            }
+        }
+
+        #pausehome {
+            background-image: url('images/home.png');
+            background-repeat: no-repeat;
+            background-size: 64% 56%;
+            background-position: center;
+            background-position-y: 28%;
+        }
+
+        #pausecontinue {
+            background-image: url('images/contnue_50.png');
+            background-repeat: no-repeat;
+            background-size: 64% 56%;
+            background-position: center;
+            background-position-y: 28%;
+        }
+
+        .scorebutton {
+            position: absolute;
+            height: 16%;
+            width: 61%;
+            top: 98%;
+            left: 21%;
+            border-radius: 15px;
+        }
+
+            .scorebutton > div {
+                position: relative;
+                float: left;
+                height: 100%;
+                width: 25%;
+                color: black;
+                left: 20%;
+                font-size: 16px;
+                font-weight: 700;
+            }
+
+        #scorehome > div {
+            position: absolute;
+            left: 31%;
+            width: 100%;
+            bottom: 5%;
+        }
+        #scorehome {
+            background-image: url('images/home.png');
+            background-repeat: no-repeat;
+            background-size: 64% 59%;
+            background-position: center;
+            background-position-y: 9%;
+        }
+
+        #scoreplay > div {
+            position: absolute;
+            left: 40%;
+            width: 100%;
+            bottom: 5%;
+        }
+
+        #scoreplay {
+            background-image: url('images/sudokuscoreplay.png');
+            background-repeat: no-repeat;
+            background-size: 64% 59%;
+            background-position: center;
+            background-position-y: 9%;
+        }
+
+        .scoreboardbutton {
+            position: absolute;
+            height: 20%;
+            width: 61%;
+            top: 74%;
+            left: 17%;
+            border-radius: 15px;
+        }
+
+            .scoreboardbutton > div {
+                position: relative;
+                float: left;
+                height: 100%;
+                width: 25%;
+                color: black;
+                left: 20%;
+                font-size: 16px;
+                text-align: center;
+                font-weight: 700;
+            }
+
+        #scoreboardhome {
+            position: absolute;
+            left: 30%;
+            height: 100%;
+            background-image: url('images/home.png');
+            background-repeat: no-repeat;
+            background-size: 70% 74%;
+            background-position: center;
+            background-position-y: 0%;
+        }
+
+            #scoreboardhome > div {
+                position: absolute;
+                left: 30%;
+                height: 20%;
+                width: 44%;
+                top: 70%;
+            }
+
+        #scoreboardplay {
+            position: absolute;
+            left: 64%;
+            height: 100%;
+            background-image: url('images/sudokuscoreplay.png');
+            background-repeat: no-repeat;
+            background-size: 74% 74%;
+            background-position: center;
+            background-position-y: 0%;
+        }
+
+            #scoreboardplay > div {
+                position: absolute;
+                left: 30%;
+                height: 20%;
+                width: 44%;
+                top: 70%;
+            }
+
+        .openpausemenu {
+            position: absolute;
+            display: none;
+            height: 99%;
+            width: 99%;
+            top: 0.5%;
+            left: 0.6%;
+        }
+
+        #main_help_div {
+            position: absolute;
+            height: 96%;
+            width: 98%;
+            z-index: 10;
+            left: 3%;
+            top: 2%;
+        }
+
+        #helpclosebutton {
+            position: absolute;
+            height: 5%;
+            width: 7%;
+            box-shadow: 0px 0px 1px 0px;
+            top: 1%;
+            right: 5%;
+            z-index: 10;
+        }
+
+        #help_div {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            box-shadow: 0px 0px 1px 0px;
+            border-radius: 30px;
+            left: -2%;
+            z-index: 1;
+            background-color: red;
+        }
+
+        #help_button {
+            position: absolute ;
+            height: 8%;
+            width: 6%;
+            float: right;
+            /*right: -12%;
+            top: -17%;*/
+            border-radius: 35px;
+            opacity: 0.9;
+            cursor: pointer;
+            background-image: url('images/Question-mark-icon.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: 99%;
+            bottom:8%;
+            left:2%;
+        }
+        #help_button:hover {
+            opacity:1;
+        }
+            #help_button > h1 {
+                font-family:sans-serif;
+                color: white;
+                text-align: center;
+                font-size: 29px;
+                top: 23%;
+                position: relative;
+                left: 40%;
+                width: 48%;
+                margin: 0px;
+                padding: 0px;
+                float: left;
+            }
+
+      
+
+       
+         
+
+        #easytext {
+            position: absolute;
+            float: left;
+            top: 7%;
+            left: 1%;
+            box-shadow: 0px 0px 1px 0px;
+            height: auto;
+            width: 95%;
+            z-index:1;
+        }
+
+        #mediumtext {
+            position: absolute;
+            float: left;
+            top: 25%;
+            left: 1%;
+            box-shadow: 0px 0px 1px 0px;
+            height: auto;
+            width: 95%;
+            z-index: 1;
+        }
+
+        #hardtext {
+            position: absolute;
+            float: left;
+            top: 43%;
+            left: 1%;
+            box-shadow: 0px 0px 1px 0px;
+            height: auto;
+            width: 95%;
+            z-index: 1;
+        }
+
+        h1 {
+            font-family:sans-serif;
+            font-size:17px;
+            color:white;
+        }
+        #showeasybutton {
+            position: absolute;
+            top: -71%;
+            left: 0%;
+            height: 91%;
+            width: 15%;
+            background-image: url('images/easy.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+            z-index: 1;
+        }
+        #showmediumbutton {
+             position: absolute;
+            top: -73%;
+            left: 0%;
+            height: 91%;
+            width: 15%;
+            background-image: url('images/medium.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+            z-index: 1;
+        }
+
+        #showhardbutton {
+            position: absolute;
+            top: -45%;
+            left: 0%;
+            height: 58%;
+            width: 15%;
+            background-image: url('images/hard.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+            z-index: 1;
+        }
+
+        /*#theme_container {
+            position: absolute;
+            height: 17%;
+            width: 80%;
+            bottom: 1%;
+            left: 12%;
+        }*/
+
+        /*#theme_1 {
+            position: absolute;
+            height: 100%;
+            width: 21%;
+            box-shadow: 0px 0px 1px;
+            bottom: 1%;
+            left: 23%;
+            background: url("images/sudoku_1st%20screentheme1screen.png");
+            background-repeat: no-repeat;
+            background-position: 100% 100%;
+            background-size: 100% 100%;
+        }
+
+        #theme_2 {
+            position: absolute;
+            height: 100%;
+            width: 21%;
+            box-shadow: 0px 0px 1px;
+            bottom: 1%;
+            left: 45%;
+        }
+        #theme_3 {
+            position: absolute;
+            height: 100%;
+            width: 21%;
+            box-shadow: 0px 0px 1px;
+            bottom: 1%;
+            left: 67%;
+        }*/
+        .gamenotcompletediv {
+          display: none;
+        }
+
+            .gamenotcompletediv > div {
+                position: absolute;
+                height: 16%;
+                width: 54%;
+                top: 31%;
+                left: 30%;
+                background-color: rgba(21, 36, 10, 0.5);
+                box-shadow: 2px 2px 2px 0px;
+            }
+
+                .gamenotcompletediv > div > h1 {
+                    color: white;
+                    text-align: center;
+                    font-size: 15px;
+                }
+        /*ipad portrait media query*/
+        @media screen and (max-width: 768px) {
+
+            h1 {
+                font-size: 14px;
+            }
+
+            #scorehome {
+                background-size: 83% 52%;
+            }
+
+            #scoreplay {
+                background-size: 83% 52%;
+            }
+
+            #home {
+                width: 13%;
+            }
+
+            #audio {
+                width: 13%;
+            }
+
+            #help_button {
+                width: 11%;
+            }
+
+            #backtolevel {
+                width: 13%;
+            }
+
+            #leveldisplay {
+                width: 15%;
+            }
+
+            #pause {
+                width: 16%;
+                left: 0%;
+            }
+
+            #time_holder {
+                width: 15%;
+            }
+
+            #gamescore_holder {
+                width: 15%;
+            }
+
+            .scorebutton {
+                top: 94%;
+            }
+
+            #scoreplay > div {
+                bottom: 19%;
+            }
+
+            #scorehome > div {
+                bottom: 19%;
+            }
+
+            #congrates {
+                width: 60%;
+            }
+
+            #timeimage {
+                width: 24%;
+            }
+
+            #scoreimage {
+                width: 24%;
+            }
+
+            #accurancy {
+                width: 24%;
+            }
+
+            #timetaken {
+                width: 24%;
+            }
+
+            #scoreboardhome {
+                width: 34%;
+            }
+
+            #scoreboardplay {
+                width: 30%;
+            }
+
+            .scoreboardbutton {
+                position: absolute;
+                height: 20%;
+                width: 80%;
+                top: 74%;
+                left: 0%;
+                border-radius: 15px;
+            }
+
+            #main_help_div {
+                width: 98%;
+            }
+
+            #helpclosebutton > h1 {
+                margin: 0px;
+                font-size: 19px;
+            }
+
+            #myscoreholder {
+                position: absolute;
+                top: 11%;
+                left: 17%;
+                height: 64%;
+                width: 76%;
+            }
+
+            .object_matrix22 {
+                background-size: 70% 80%;
+            }
+
+            .key_matrix22 {
+                background-size: 100% 93%;
+            }
+
+            .gamenotcompletediv > div > h1 {
+                font-size: 33px;
+                top: 22%;
+                position: relative;
+                text-align: center;
+                margin: 0px;
+                padding: 0px;
+            }
+        }
+
+
+        /*iphone media query*/
+
+        @media screen and (max-width: 320px) {
+            #playboardframe {
+                top: 9%;
+                left: 0%;
+                height: 74%;
+                width: 100%;
+                background-size: 100% 100%;
+                background-position: 50% 50%;
+                background-color: none;
+            }
+
+            #splash_screen {
+                top: 3%;
+                left: 1%;
+                height: 72%;
+                width: 99%;
+            }
+
+            #menu_screen {
+                left: 33%;
+                width: 36%;
+            }
+
+            #main-level-container {
+                top: 31%;
+                left: 18%;
+                height: 36%;
+                width: 70%;
+            }
+
+            #intermediate {
+                top: 21%;
+                left: 40%;
+                height: 7%;
+                width: 22%;
+                background-image: url('images/medium.png');
+            }
+
+            #advanced {
+                top: 21%;
+                left: 67%;
+                height: 7%;
+                width: 22%;
+                background-image: url('images/hard.png');
+            }
+
+            #home {
+                height: 9%;
+                width: 15%;
+            }
+
+            #audio {
+                top: 2%;
+                left: 23%;
+                height: 9%;
+                width: 15%;
+            }
+
+            #pause {
+                top: 2%;
+                left: 71%;
+                height: 9%;
+                width: 23%;
+            }
+
+            #backtolevel {
+                height: 9%;
+                width: 15%;
+            }
+
+            #time_holder {
+                display: none;
+                visibility: hidden;
+                z-index: -15;
+            }
+
+            #playboard {
+                top: 16%;
+                left: 11.5%;
+                height: 64%;
+                width: 82%;
+            }
+
+            #gamescore_holder {
+                top: 1%;
+                left: 41%;
+                width: 26%;
+                height: 13%;
+            }
+
+            #complate_level {
+                top: 24%;
+                left: 15%;
+                height: 43%;
+                width: 69%;
+            }
+
+            #beginner {
+                top: 21%;
+                left: 13%;
+                height: 7%;
+                width: 22%;
+                background-image: url('images/easy.png');
+            }
+
+            .keyboard_matrix22 {
+                width: 57%;
+                left: 18%;
+                top: 84%;
+            }
+
+            .keyboard_matrix33 {
+                width: 84%;
+                left: 22%;
+                top: 84%;
+            }
+
+            #buttoncontainer {
+                width: 97%;
+                left: 3%;
+            }
+
+            #complete_level {
+                top: 22%;
+                left: 11%;
+                height: 47%;
+                width: 78%;
+            }
+
+            #timeimage {
+                left: 15%;
+                width: 30%;
+            }
+
+            #scoreimage {
+                left: 15%;
+                width: 30%;
+            }
+
+            #accurancy {
+                width: 32%;
+            }
+
+            #timetaken {
+                width: 32%;
+            }
+
+            .scoreboardbutton {
+                width: 86%;
+                left: 5%;
+                height: 19%;
+                top: 69%;
+            }
+            #scoreboardhome {
+                width:32%;
+            }
+                .scoreboardbutton > div {
+                    width: 24%;
+                    left: 20%;
+                }
+
+            #scoreboardhome {
+                left: 19%;
+                background-size: 80% 95%;
+            }
+
+                #scoreboardhome > div {
+                    left: 9%;
+                    top: 84%;
+                }
+
+            #scoreboardplay {
+                width: 24%;
+            }
+
+                #scoreboardplay > div {
+                    left: 23%;
+                    top: 87%;
+                }
+
+
+            .active {
+                box-shadow: 0 0 0 1px #EF9426, 0px 1px 0px 1px rgba(10, 10, 0, 0.5);
+            }
+
+            #menuscore {
+                left: 1%;
+                height: 90%;
+                width: 100%;
+                background-size: 100% 100%;
+                display: block;
+                background-position: 86% 23%;
+                background-repeat: no-repeat;
+                display: none;
+            }
+
+            #scorehome {
+                background-size: 72% 71%;
+            }
+
+                #scorehome > div {
+                    position: absolute;
+                    left: 5%;
+                    width: 100%;
+                    bottom: 5%;
+                }
+
+            #scoreplay > div {
+                left: 24%;
+            }
+
+            #scoreplay {
+                background-size: 72% 71%;
+            }
+
+                #scoreplay > div {
+                    left: 29%;
+                }
+
+            #scorecontainer {
+                -webkit-overflow-scrolling: touch;
+                overflow-y: scroll;
+                width: 66%;
+                height: 29%;
+                left: 17%;
+                top: 24%;
+            }
+
+            #leftdiv {
+                width: 98%;
+            }
+
+
+            #rightdiv {
+                width: 98%;
+            }
+
+            .scorebutton {
+                left: -5%;
+                width: 100%;
+                top: 94%;
+                height: 14%;
+            }
+
+                .scorebutton > div {
+                    left: 25%;
+                }
+
+            #scorecontainerbeginner {
+                background-size: 100% 100%;
+            }
+
+            #scorecontainerintermediate {
+                background-size: 100% 100%;
+            }
+
+            #scorecontaineradvanced {
+                background-size: 100% 100%;
+            }
+
+            #help_button {
+                position: absolute;
+                height: 7%;
+                width: 13%;
+                float: right;
+                bottom: 9%;
+            }
+
+            h1 {
+                font-size: 10px;
+            }
+
+            #main_help_div {
+                width: 98%;
+                height: 98%;
+                top: 1%;
+                /*left: -95%;*/
+            }
+
+            #helpclosebutton {
+                width: 15%;
+            }
+
+                #helpclosebutton > h1 {
+                    font-size: 17px;
+                    margin: 0px;
+                }
+
+            #easytext {
+                top: 7%;
+                width: 95%;
+            }
+
+            #showeasybutton {
+                height: 40%;
+                width: 25%;
+                top: -31%;
+            }
+
+            #mediumtext {
+                top: 30%;
+                width: 95%;
+            }
+
+            #showmediumbutton {
+                height: 40%;
+                width: 25%;
+                top: -30%;
+            }
+
+            #hardtext {
+                top: 53%;
+                width: 95%;
+            }
+
+            #showhardbutton {
+                height: 22%;
+                width: 26%;
+                top: -16%;
+            }
+
+            #myscoreholder {
+                position: absolute;
+                top: 11%;
+                left: -11%;
+                height: 64%;
+                width: 128%;
+            }
+
+
+            #leveldisplay {
+                display: none;
+                background-image: none;
+                visibility: hidden;
+                z-index: -15;
+            }
+
+            #congrates {
+                height: 25%;
+                width: 54%;
+            }
+
+            #scoreimage {
+                top: 27%;
+            }
+
+            #accurancy {
+                top: 27%;
+            }
+
+            #timeimage {
+                top: 48%;
+            }
+
+            #timetaken {
+                top: 48%;
+            }
+
+            .gamenotcompletediv > div {
+                left: 22%;
+            }
+
+                .gamenotcompletediv > div > h1 {
+                    top: 33%;
+                    font-size: 10px;
+                }
+        }
+    </style>
+</head>
+<body>
+    <!--<iframe id="main_screen" scrolling="no"></iframe>-->
+    <div id="main_screen"></div>
+    <div id="splash_screen">
+        <div id="splash_screen_image"></div>
+        <!--<div id="splash_screen_loading"></div>-->
+    </div>
+    <div id="menu_screen">
+        <a href ="sudoku-puzzles-menu-page.html">
+        <div id="play" class="optionstart" style="background-image: url('images/start.png');" ></div>
+            </a>
+        <div id="score" class="option" style="background-image: url('images/score1.png');" onclick="menuoptionclicked(this);"></div>
+    </div>
+    <div id="complete_level" style="z-index: 1;">
+        <div style="position: fixed; float: left; height: 100%; width: 100%; top: 0%; left: 0%; z-index: -1;">
+        </div>
+        <div id="congrates"></div>
+        <div id="timeimage"></div>
+        <div id="scoreimage"></div>
+        <div id="accurancy"></div>
+        <div id="timetaken"></div>
+        <div class="scoreboardbutton">
+            <div class="updown" id="scoreboardhome" onclick="gotohome();">
+                <div>
+                    Home
+                </div>
+            </div>
+            <div style="position: relative; visibility: hidden; float: left; height: 100%; width: 10%;"></div>
+            <div class="updown" id="scoreboardplay" onclick="backtoplay();">
+                <div>
+                    Play
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="play_screen">
+        <div id="backtolevel" onclick="menuoptionclicked(this);" class="updown" style="display: none;"></div>
+        <div id="leveldisplay" class="updown" style="display: none;"></div>
+        <div id="home" onclick="backhome();" class="updown"></div>
+        <div id="audio" onclick="onoffaudio();" class="updown"></div>
+        <div id="beginner" class="option" onclick="menuoptionclicked(this);"></div>
+        <div id="intermediate" class="option" onclick="menuoptionclicked(this);"></div>
+        <div id="advanced" class="option" onclick="menuoptionclicked(this);"></div>
+        <div id="pause" style="display: none;" onclick="pausemenu();"></div>
+        <div id="time_holder" style="display: none;">
+            <div id="time_image"></div>
+            <div id="time" style="font-family: sans-serif"></div>
+        </div>
+        <div id="gamescore_holder" style="display: none;">
+            <div id="gamescore_image"></div>
+            <div id="gamescore"></div>
+        </div>
+        <div id="playboardframe" style="">
+            <div id="playboard"></div>
+        </div>
+        <div id="keyboard"></div>
+
+
+<!--        <div id="theme_container">
+        <div id="theme_1" onclick="changetheme(this);">
+        </div>
+        <div id="theme_2" onclick="changetheme(this);">
+        </div>
+        <div id="theme_3" onclick="changetheme(this);">
+        </div>
+            </div>-->
+    </div>
+    <div id="popup"></div>
+
+    <div id="cover" onclick="downit();"></div>
+    <!--<div style="position: absolute; height: 50px; width: 100%; background: red; top: 93%; left: 0%; text-align: center">Advertisement Here</div>-->
+
+    <div id="menuscore">
+        <div id="scorebutton" class="scorebutton">
+            <div id="scorehome" class="updown" onclick="scorehomebutton();">
+                <div >
+                    Home
+                </div>
+            </div>
+            <div style="position: relative; visibility: hidden; float: left; height: 100%; width: 10%;"></div>
+            <div id="scoreplay" class="updown" onclick="scoreplaybutton();">
+                <div>
+                    play
+                </div>
+            </div>
+        </div>
+
+        <h2 id="toptenscoreheader" style="position: absolute; height: 9%; width: 60%; top: 13%; text-align: center; font-size: 23px; left: 21%;">Top 10 score: </h2>
+
+        <div id="scorecontainer">
+            <div id="leftdiv">
+                <div id="heighscorediv1" style="height: 20%; width: 100%; float: left;">
+                </div>
+                <div id="heighscorediv2" style="height: 20%; width: 100%; float: left;">
+                </div>
+                <div id="heighscorediv3" style="height: 20%; width: 100%; float: left;">
+                </div>
+                <div id="heighscorediv4" style="height: 20%; width: 100%; float: left;">
+                </div>
+                <div id="heighscorediv5" style="height: 20%; width: 100%; float: left;">
+                </div>
+            </div>
+            <div id="rightdiv">
+                <div id="heighscorediv6" style="height: 20%; width: 100%; float: left;">
+                </div>
+                <div id="heighscorediv7" style="height: 20%; width: 100%; float: left;">
+                </div>
+                <div id="heighscorediv8" style="height: 20%; width: 100%; float: left;">
+                </div>
+                <div id="heighscorediv9" style="height: 20%; width: 100%; float: left;">
+                </div>
+                <div id="heighscorediv10" style="height: 20%; width: 100%; float: left;">
+                </div>
+            </div>
+        </div>
+       
+        <div id="myscorecontainer">
+            <div id="myscoreholder" style="display: block;">
+                <h2 id="myscoreheader" style="position: absolute; height: 36%; margin: 0px; padding: 0px; width: 33%; top: 35%; text-align: center; font-size: 20px; left: 21%;">My score: </h2>
+             <div id="myscore"></div>
+        </div>
+    </div>
+    <div id="openpausemenu" class="openpausemenu" style="">
+    </div>
+    </div>
+    <div id="fontanimation" style="position: absolute; display: none; height: 10%; width: 13%;"></div>
+    <div id="main-level-container">
+        <div id="beginner-level" style="position: relative; float: left; display: none; height: 100%; width: 100%;">
+            <div style="position: relative; width: 33%; height: 100%; float: left;">
+                <div id="level1" style="background-image: url('images/level1.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+                <div id="level2" style="background-image: url('images/level2.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+                <div id="level3" style="background-image: url('images/level3.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+                <div id="level4" style="background-image: url('images/level4.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+                <div id="level5" style="background-image: url('images/level5.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+            </div>
+            <div style="position: relative; width: 33%; height: 100%; float: left;">
+                <div id="level6" style="background-image: url('images/level6.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+                <div id="level7" style="background-image: url('images/level7.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+                <div id="level8" style="background-image: url('images/level8.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+                <div id="level9" style="background-image: url('images/level9.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+                <div id="level10" style="background-image: url('images/level10.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+            </div>
+            <div style="position: relative; width: 33%; height: 100%; float: left;">
+                <div id="level11" style="background-image: url('images/level11.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+                <div id="level12" style="background-image: url('images/level12.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+                <div id="level13" style="background-image: url('images/level13.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+            </div>
+        </div>
+
+        <div id="intermediate-level" style="position: relative; float: left; display: none; height: 100%; width: 66%; left: 17%;">
+            <div style="position: relative; width: 50%; height: 100%; float: left;">
+                <div id="level14" style="background-image: url('images/level14.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+                <div id="level15" style="background-image: url('images/level15.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+                <div id="level16" style="background-image: url('images/level16.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+                <div id="level17" style="background-image: url('images/level17.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+                <div id="level18" style="background-image: url('images/level18.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+            </div>
+            <div style="position: relative; width: 50%; height: 100%; float: left;">
+                <div id="level19" style="background-image: url('images/level19.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+                <div id="level20" style="background-image: url('images/level20.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+            </div>
+        </div>
+
+
+        <div id="advance-level" style="position: relative; float: left; display: none; height: 100%; width: 100%;">
+            <div style="position: relative; width: 33%; height: 100%; float: left;">
+                <div id="level21" style="background-image: url('images/level21.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+                <div id="level22" style="background-image: url('images/level22.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+                <div id="level23" style="background-image: url('images/level23.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+                <div id="level24" style="background-image: url('images/level24.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+                <div id="level25" style="background-image: url('images/level25.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+            </div>
+            <div style="position: relative; width: 33%; height: 100%; float: left;">
+                <div id="level26" style="background-image: url('images/level26.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+                <div id="level27" style="background-image: url('images/level27.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+                <div id="level28" style="background-image: url('images/level28.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+                <div id="level29" style="background-image: url('images/level29.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+                <div id="level30" style="background-image: url('images/level30.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+            </div>
+            <div style="position: relative; width: 33%; height: 100%; float: left;">
+                <div id="level31" style="background-image: url('images/level31.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+                <div id="level32" style="background-image: url('images/level32.png'); background-repeat: no-repeat; background-size: 100% 100%; background-position: left; float: left; position: relative; height: 20%; width: 80%;" onclick="play(this);"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="helplayer" style="display: none; z-index: 1; height: 100%; width: 100%; position: absolute; float: left; left: 0%;">
+    </div>
+
+    <div id="help_button" onclick="openhelppage();">
+    </div>
+
+    <div id="main_help_div" style="display: none;">
+
+        <div id="helpclosebutton" onclick="closehelpmenu();">
+            <h1 style="color: white; font-size: 15px; text-align: center;">Close</h1>
+        </div>
+        <div id="help_div">
+        </div>
+
+        <div id="easytext">
+            <div id="showeasybutton">
+            </div>
+            <h1>The Soduku games in Easy Level consist of 4 x 4 matrix.
+Player has the chance to gather as many points as possible in this level.
+Each correct answer givest 100 (+100 )points.
+Each wrong choice deducts 50 ( -50)
+The Score is shown on the left side and keeps updating to show the progress</h1>
+        </div>
+
+        <div id="mediumtext">
+            <div id="showmediumbutton">
+            </div>
+            <h1>The Soduku games in Medium Level consist of 9 x 9 matrix.
+Player has the chance to gather as many points as possible in this level.
+Each correct answer givest 100 (+100 )points.
+Each wrong choice deducts 50 ( -50)
+The Score is shown on the left side and keeps updating to show the progress</h1>
+        </div>
+
+        <div id="hardtext">
+            <div id="showhardbutton">
+            </div>
+            <h1>The Soduku games in Medium Level consist of 9 x 9 matrix.
+Player has the chance to gather as many points as possible in this level.
+Each correct answer givest 100 (+100 )points.
+Each wrong choice deducts 50 ( -50) . 
+The difference here is that the answers are checked only after all the empty boxes are filled and the game complete.
+So the user gets the points for correct answers only after the entire game is completed.
+The Score is shown on the left side and updates only after entire game is complete.</h1>
+        </div>
+
+    </div>
+
+    <div id="gamenotcompletediv" class="gamenotcompletediv" style="position: absolute; height: 100%; width: 100%;" onclick="gamenotcompletedivnone();">
+        <div>
+
+            <h1>Game not complete</h1>
+
+        </div>
+    </div>
+
+    <!--<div id="totalscore" style="position:absolute;height:10%;width:10%;top:0%;box-shadow:0px 0px 1px 0px black;"></div>-->
+
+    <audio id="trueaudio" style="display: none;">
+        <source src="audio/GameWin.mp3" />
+    </audio>
+    <audio id="falseaudio" style="display: none;">
+        <source src="audio/Bowling_IncorrectAnswer.mp3" />
+    </audio>
+    <audio id="congratsaudio" style="display: none;">
+        <source src="audio/WinningSound.mp3" />
+    </audio>
+    <audio id="buttonaudio" style="display: none;">
+        <source src="audio/buttonsound1.mp3" />
+    </audio>
+    <audio id="alerthighscoreaudio" style="display: none;">
+        <source src="audio/alerthighscore.mp3" />
+    </audio>
+    <audio id="startgameaudio" style="display: none;">
+        <source src="audio/ThemeMusic.mp3" />
+    </audio>
+    <audio id="pageflipaudio" style="display: none;">
+        <source src="audio/pageFlip.mp3" />
+    </audio>
+
+
+</body>
+</html>

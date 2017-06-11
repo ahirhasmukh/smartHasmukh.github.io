@@ -1,0 +1,1446 @@
+﻿<blockquote>
+    <!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Hungry-fish</title>
+
+        <link href="js/jquery-ui-1.10.2.custom.css" rel="stylesheet" />
+        <link href="style/common.css" rel="stylesheet" />
+        <style type="text/css">
+            body {
+                margin: 0px;
+                overflow: hidden;
+            }
+
+            #play_screen {
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                top: 0%;
+                left: 0%;
+                box-shadow: 0px 0px 10px 0px #123;
+                overflow: hidden;
+                background: -webkit-linear-gradient(cyan,#366AB5,#4075BB,#5383C3,#6993CF,#7DA5D8,#95B6E1,#ADC5E9,#C4D5EF);
+                background: -moz-linear-gradient(cyan,#366AB5,#4075BB,#5383C3,#6993CF,#7DA5D8,#95B6E1,#ADC5E9,#C4D5EF);
+            }
+
+            #fish_image {
+                height: 100%;
+                width: 100%;
+            }
+
+            #fish_image, #fish_image1, #fish_image2 {
+                opacity: 0.7;
+            }
+
+            .object {
+                float: left;
+                height: 67%;
+                width: 8%;
+                border-radius: 100%;
+                background-color: yellow;
+                text-align: center;
+                font-size: 40px;
+                opacity: 0.6;
+                position: relative;
+                top: -150%;
+                font-family: cursive;
+                margin-right: 1%;
+                z-index: 2;
+            }
+
+                .object:hover {
+                    background-color: #c7f1f1;
+                    color: #000;
+                    cursor: pointer;
+                }
+
+            #random_answer {
+                position: absolute;
+                height: 13%;
+                width: 70%;
+                top: 25%;
+                left: 16%;
+                color: #000000;
+            }
+
+            #image_div {
+                height: 20%;
+                width: 20%;
+                position: absolute;
+                top: 70%;
+                left: 3%;
+            }
+
+                #image_div div:last-child {
+                    height: 35px;
+                    width: 20px;
+                    left: 69%;
+                }
+
+                #image_div div:nth-last-child(2) {
+                    height: 35px;
+                }
+
+            #rand_written, #rand_written_second {
+                width: 20%;
+                left: 40%;
+            }
+
+            #rand_written_second {
+                left: 69%;
+            }
+
+            #rand_written, #rand_written_second, #addsign {
+                height: 20%;
+                position: absolute;
+                top: 26%;
+                text-align: center;
+                color: #000;
+                font-family: 'Comic Sans MS';
+                font-size: 35px;
+                font-weight: bold;
+                z-index: 3;
+            }
+
+            #addsign {
+                width: 10%;
+                left: 57%;
+            }
+
+            /*#score_show {
+                top: 3%;
+            }*/
+
+            #score_display {
+                left: 35%;
+            }
+
+            /*.option_display {
+                position: absolute;
+                box-shadow: 0px 2px 0px 0px gray;
+                top: 0%;
+                left: 82%;
+                height: 5%;
+                width: 13%;
+                color: rgb(58, 53, 189);
+                font-size: 25px;
+                font-weight: bold;
+            }*/
+
+            /*.option {
+                float: left;
+                height: 50%;
+                width: 48%;
+                color: rgb(196, 38, 38);
+            }
+
+            .display_all_option {
+                float: left;
+                left: 35%;
+                height: 98%;
+                width: 48%;
+                text-align: center;
+            }*/
+
+            .fish_animation_class {
+                -webkit-animation: fish_animation 25s linear 1ms infinite;
+                -moz-animation: fish_animation 25s linear 1ms infinite;
+                top: 80%;
+                left: 2%;
+            }
+
+            @-webkit-keyframes fish_animation {
+                0% {
+                    top: 70%;
+                    left: 0%;
+                }
+
+                10% {
+                    top: 76%;
+                    left: 10%;
+                }
+
+                20% {
+                    top: 70%;
+                    left: 20%;
+                }
+
+                30% {
+                    top: 76%;
+                    left: 30%;
+                }
+
+                40% {
+                    top: 70%;
+                    left: 40%;
+                }
+
+                50% {
+                    top: 76%;
+                    left: 50%;
+                }
+
+                60% {
+                    top: 70%;
+                    left: 60%;
+                }
+
+                70% {
+                    top: 76%;
+                    left: 70%;
+                }
+
+                80% {
+                    top: 70%;
+                    left: 80%;
+                }
+
+                90% {
+                    top: 76%;
+                    left: 90%;
+                }
+
+                100% {
+                    top: 74%;
+                    left: 94%;
+                }
+            }
+
+            @-moz-keyframes fish_animation {
+                0% {
+                    top: 70%;
+                    left: 0%;
+                }
+
+                10% {
+                    top: 76%;
+                    left: 10%;
+                }
+
+                20% {
+                    top: 70%;
+                    left: 20%;
+                }
+
+                30% {
+                    top: 76%;
+                    left: 30%;
+                }
+
+                40% {
+                    top: 70%;
+                    left: 40%;
+                }
+
+                50% {
+                    top: 76%;
+                    left: 50%;
+                }
+
+                60% {
+                    top: 70%;
+                    left: 60%;
+                }
+
+                70% {
+                    top: 76%;
+                    left: 70%;
+                }
+
+                80% {
+                    top: 70%;
+                    left: 80%;
+                }
+
+                90% {
+                    top: 76%;
+                    left: 90%;
+                }
+
+                100% {
+                    top: 74%;
+                    left: 94%;
+                }
+            }
+
+            #fish_image1 {
+                float: left;
+                width: 40%;
+                height: 60%;
+                -webkit-animation: fish_animation1 30s linear 5s infinite;
+                -moz-animation: fish_animation1 30s linear 5s infinite;
+            }
+
+            @-webkit-keyframes fish_animation1 {
+                0% {
+                    top: 76%;
+                    left: 0%;
+                }
+
+                10% {
+                    top: 70%;
+                    left: 10%;
+                }
+
+                20% {
+                    top: 76%;
+                    left: 20%;
+                }
+
+                30% {
+                    top: 70%;
+                    left: 30%;
+                }
+
+                40% {
+                    top: 76%;
+                    left: 40%;
+                }
+
+                50% {
+                    top: 70%;
+                    left: 50%;
+                }
+
+                60% {
+                    top: 76%;
+                    left: 60%;
+                }
+
+                70% {
+                    top: 70%;
+                    left: 70%;
+                }
+
+                80% {
+                    top: 76%;
+                    left: 80%;
+                }
+
+                90% {
+                    top: 70%;
+                    left: 90%;
+                }
+
+                100% {
+                    top: 76%;
+                    left: 94%;
+                }
+            }
+
+            @keyframes fish_animation1 {
+                0% {
+                    top: 76%;
+                    left: 0%;
+                }
+
+                10% {
+                    top: 70%;
+                    left: 10%;
+                }
+
+                20% {
+                    top: 76%;
+                    left: 20%;
+                }
+
+                30% {
+                    top: 70%;
+                    left: 30%;
+                }
+
+                40% {
+                    top: 76%;
+                    left: 40%;
+                }
+
+                50% {
+                    top: 70%;
+                    left: 50%;
+                }
+
+                60% {
+                    top: 76%;
+                    left: 60%;
+                }
+
+                70% {
+                    top: 70%;
+                    left: 70%;
+                }
+
+                80% {
+                    top: 76%;
+                    left: 80%;
+                }
+
+                90% {
+                    top: 70%;
+                    left: 90%;
+                }
+
+                100% {
+                    top: 76%;
+                    left: 94%;
+                }
+            }
+
+            #fish_image1, #fish_image2 {
+                position: relative;
+                float: left;
+                width: 10%;
+                height: 10%;
+                top: 80%;
+                left: 2%;
+                z-index: 4;
+            }
+
+            #fish_image2 {
+                top: 430px;
+                left: 80%;
+                -webkit-transform: rotateY(180deg);
+                -moz-transform: rotateY(180deg);
+                -webkit-animation: fish_animation2 40s linear 0s infinite;
+                -moz-animation: fish_animation2 40s linear 0s infinite;
+            }
+
+            @-webkit-keyframes fish_animation2 {
+                100% {
+                    left: -25%;
+                }
+
+                50% {
+                    left: 40%;
+                    top: 520px;
+                }
+
+                0% {
+                    left: 80%;
+                }
+            }
+
+            @keyframes fish_animation2 {
+                100% {
+                    left: -20%;
+                }
+
+                50% {
+                    left: 40%;
+                    top: 550px;
+                }
+
+                0% {
+                    left: 80%;
+                }
+            }
+
+            .correct_answer {
+                -webkit-animation: correctanimation 2s forwards;
+                -moz-animation: correctanimation 2s forwards;
+            }
+
+            @-webkit-keyframes correctanimation {
+                from {
+                    top: 70%;
+                    left: 25%;
+                }
+
+                to {
+                    top: 70%;
+                    left: 50%;
+                }
+            }
+
+            @-moz-keyframes correctanimation {
+                from {
+                    top: 70%;
+                    left: 25%;
+                }
+
+                to {
+                    top: 70%;
+                    left: 50%;
+                }
+            }
+
+            #how_to_play {
+                z-index: 13;
+                position: absolute;
+                height: 80%;
+                width: 90%;
+                top: 8%;
+                left: 5%;
+                box-shadow: 0px 0px 10px 0px #123;
+                border-radius: 20px;
+                border-color: rgba(135, 96, 96, 0.79);
+                background-color: #ffd800;
+                font-size: 30px;
+            }
+
+            h1, h4 {
+                text-align: center;
+            }
+
+            #how_to_play:hover {
+                box-shadow: 2px 0px 20px 2px #123;
+                background-color: white;
+                cursor: pointer;
+            }
+
+            #showscore {
+                height: 30%;
+                width: 70%;
+                position: absolute;
+                top: 30%;
+                left: 15%;
+                background: white;
+                display: none;
+                font-family: 'Comic Sans MS';
+                font-weight: bolder;
+                font-size: 82px;
+                z-index: 15;
+                text-align: center;
+                line-height: 177px;
+            }
+
+            .rvr {
+                position: relative;
+                top: 490px;
+                height: 110px;
+            }
+
+            .river, .river1 {
+                height: 8%;
+                width: 100%;
+                margin-bottom: 2%;
+                position: relative;
+                border: 3px dashed #cae8e7;
+                border-left: none;
+                border-right: none;
+                opacity: 0.7;
+            }
+
+            .river {
+                -webkit-animation: r1 2s infinite;
+                animation: r1 2s infinite;
+            }
+
+            @-webkit-keyframes r1 {
+                0% {
+                    left: 0px;
+                    top: 0px;
+                }
+
+                100% {
+                    left: 20px;
+                    top: 1px;
+                }
+            }
+
+            @keyframes r1 {
+                0% {
+                    left: 0px;
+                    top: 1px;
+                }
+
+                100% {
+                    left: 20px;
+                    top: 0px;
+                }
+            }
+
+            .river1 {
+                -webkit-animation: r2 2s infinite reverse;
+                animation: r2 2s infinite reverse;
+                z-index: 11;
+            }
+
+            @-webkit-keyframes r2 {
+                0% {
+                    right: 0px;
+                    top: 1px;
+                }
+
+                100% {
+                    right: 20px;
+                    top: 0px;
+                }
+            }
+
+            @keyframes r2 {
+                0% {
+                    right: 0px;
+                    top: 1px;
+                }
+
+                100% {
+                    right: 20px;
+                    top: 0px;
+                }
+            }
+
+            #point-container {
+                top:88%;
+                z-index:11;
+            }
+            /* Media Query Start */
+            @media screen and (max-height:500px) {
+                h1, h2 {
+                    font-size: 10px;
+                }
+
+                #score {
+                    font-size: 10px;
+                }
+
+                /*#score_display {
+                    font-size: 10px;
+                }*/
+
+                #showscore {
+                    font-size: 30px;
+                }
+            }
+
+            @media screen and (max-width:1366px) {
+                .river, .river1 {
+                    margin-bottom: 1%;
+                }
+
+                #image_div {
+                    height: 16%;
+                    width: 18%;
+                    margin-top: -2%;
+                    left: 3%;
+                }
+
+                .rvr {
+                    top: 360px;
+                }
+
+                .object {
+                    top: -18%;
+                }
+
+                #fish_image1, #fish_image2 {
+                    width: 14%;
+                    height: 12%;
+                }
+
+                #rand_written, #rand_written_second, #addsign {
+                    top: 20%;
+                }
+            }
+
+            @media screen and (max-width:1024px) {
+                #image_div {
+                    height: 20%;
+                    width: 19%;
+                    margin-top: -10%;
+                    left: 3%;
+                }
+
+                .rvr {
+                    position: relative;
+                    top: 300px;
+                    height: 110px;
+                }
+
+                .object {
+                    top: -22%;
+                }
+
+                #fish_image1, #fish_image2 {
+                    width: 18%;
+                    height: 13%;
+                }
+
+                #point-container > div:nth-child(1) {
+                    margin-left: 16%;
+                }
+
+                #point-container > div {
+                    width: 5%;
+                }
+            }
+
+            @media screen and (max-width:768px) {
+                .object {
+                    height: 54%;
+                    width: 9%;
+                    font-size: 32px;
+                    top: 14%;
+                }
+
+                #image_div {
+                    height: 15%;
+                    width: 20%;
+                    top: 50%;
+                    left: 3%;
+                    margin-top: -14%;
+                }
+
+                .option {
+                    width: 52%;
+                }
+
+                #rand_written, #rand_written_second, #addsign {
+                    top: 30%;
+                    font-size: 20px;
+                    color: #000;
+                    left: 33%;
+                }
+
+                #addsign {
+                    left: 51%;
+                }
+
+                #image_div div:last-child {
+                    left: 61%;
+                }
+
+                .river, .river1 {
+                    margin-bottom: 1.5%;
+                }
+
+                #fish_image1, #fish_image2 {
+                    width: 16%;
+                    height: 10%;
+                }
+            }
+
+            @media screen and (max-width:640px) {
+                #how_to_play {
+                    font-size: 25px;
+                }
+
+                .object {
+                    height: 67%;
+                    width: 16%;
+                    font-size: 40px;
+                    top: -30%;
+                    margin-right: 1%;
+                    margin-top: 1%;
+                }
+
+                #image_div {
+                    height: 14%;
+                    width: 22%;
+                    top: 70%;
+                    left: 3%;
+                }
+
+                /*.option_display {
+                    font-size: 20px;
+                }*/
+
+                #rand_written, #rand_written_second, #addsign {
+                    top: 30%;
+                    font-size: 20px;
+                    color: #000;
+                    left: 33%;
+                }
+
+                #addsign {
+                    left: 51%;
+                }
+
+                #image_div div:last-child {
+                    left: 61%;
+                }
+
+                .river, .river1 {
+                    margin-bottom: 2%;
+                }
+
+                #fish_image1, #fish_image2 {
+                    width: 20%;
+                    height: 10%;
+                }
+            }
+
+            @media screen and (max-width:480px) {
+                h1, h2 {
+                    font-size: 10px;
+                }
+
+                #score, #score_display {
+                    font-size: 18px;
+                }
+
+                /*#score_display {
+                    left: 18%;
+                    position: relative;
+                }*/
+
+                #showscore {
+                    font-size: 24px;
+                    height: 19%;
+                    line-height: 91px;
+                }
+
+                #audio {
+                    height: 3%;
+                    width: 10%;
+                    top: 3%;
+                    left: 4%;
+                }
+
+                #time {
+                    height: 5%;
+                    width: 11%;
+                    top: 2%;
+                    left: 10%;
+                }
+
+                .object {
+                    height: 67%;
+                    width: 19%;
+                    font-size: 40px;
+                    top: -30%;
+                    margin-right: 1%;
+                    margin-top: 1%;
+                }
+
+                #image_div {
+                    height: 95px;
+                    width: 28%;
+                    margin-top: -20%;
+                }
+
+                #how_to_play {
+                    height: 230px;
+                    font-size: 18px;
+                }
+
+                #rand_written, #rand_written_second, #addsign {
+                    top: 28%;
+                    font-size: 20px;
+                    color: #000;
+                    left: 33%;
+                }
+
+                #addsign {
+                    left: 51%;
+                }
+
+                #image_div div:last-child {
+                    left: 61%;
+                }
+
+                .rvr {
+                    top: 300px;
+                }
+
+                #fish_image1, #fish_image2 {
+                    width: 20%;
+                    height: 10%;
+                }
+
+                #fish_image2 {
+                    top: 360px;
+                }
+
+                .river, .river1 {
+                    margin-bottom: 2%;
+                }
+
+                #point-container > div:nth-child(1) {
+                    margin-left: 16%;
+                }
+
+                #point-container > div {
+                    width: 5%;
+                }
+            }
+
+            @media only screen and (max-width:320px) {
+                body {
+                    overflow: hidden;
+                }
+
+                #how_to_play {
+                    height: 230px;
+                    width: 93%;
+                    top: 15%;
+                    left: 3%;
+                    border-radius: 10%;
+                    font-size: 16px;
+                }
+
+                h1 {
+                    font-size: 15px;
+                }
+
+                /*.option_display {
+                    left: 70%;
+                    height: 4%;
+                    width: 23%;
+                    font-size: 27px;
+                }*/
+
+                #score {
+                    font-size: 16px;
+                }
+
+                #image_div {
+                    height: 80px;
+                    width: 32%;
+                    margin-top: -13%;
+                }
+
+                #random_answer {
+                    top: 60%;
+                }
+
+                #rand_written, #rand_written_second, #addsign {
+                    top: 23%;
+                    font-size: 20px;
+                    color: #000;
+                    left: 34%;
+                }
+
+                #addsign {
+                    left: 51%;
+                }
+
+                #rand_written_second {
+                    left: 61%;
+                }
+
+                .object {
+                    height: 40px;
+                    width: 18%;
+                    margin: 1%;
+                    left: -4%;
+                    top: -155px;
+                    font-size: 25px;
+                }
+
+                /*#score_display {
+                    font-size: 18px;
+                }*/
+
+                .rvr {
+                    top: 250px;
+                }
+
+                #fish_image1, #fish_image2 {
+                    width: 20%;
+                    height: 10%;
+                }
+
+                #fish_image2 {
+                    top: 300px;
+                }
+
+                .river, .river1 {
+                    margin-bottom: 2%;
+                }
+
+                #point-container {
+                    top: 90%;
+                }
+
+                    #point-container > div:nth-child(1) {
+                        margin-left: 2%;
+                    }
+
+                    #point-container > div {
+                        width: 7%;
+                        margin: 4px;
+                    }
+            }
+        </style>
+        <script src="js/jquery-1.9.1.js"></script>
+        <script src="js/jquery-ui-1.10.2.custom.js"></script>
+        <script src="js/jquery.ui.touch-punch.js"></script>
+        <script src="js/jquery.ui.touch-punch.min.js"></script>
+
+        <script type="text/javascript">
+
+            var height, width, play_screen;
+            var fish_image;
+            var random, random_two, two_answer;
+            var rand_written, rand_written_second;
+            var number_arrange_first, number_arrange_second, number_arrange_third, number_arrange_fourth,
+            number_arrange_fifth, number_arrange_sixth, number_arrange_seventh, number_arrange_eight, number_arrange_nineth, number_arrange_ten;
+            var score_display, attempt_display, correct_display;
+            var image_div;
+            var a, b;
+            var score = 0;
+            var attemptq = 0;
+            var starttime;
+            var endtime;
+            var currentquestion = 1;
+            var correctattempts = 0;
+            var question_list_time = new Array();
+            var question_list = new Array();
+            var user_answer = new Array();              
+            var correct_answer = new Array();
+            var results = [];
+            var answer_list = new Array();
+            var totalquestions = 10;
+            window.onload = load;
+            window.onresize = resize;
+
+
+            function load() {
+                initialize();
+                sizer();
+                resize();
+                starttime = gettime();
+                gametimer();
+            }
+
+
+            function resize() {
+                sizer();
+            }
+            function sizer() {
+                height = window.innerHeight;
+                width = window.innerWidth;
+
+                //play_screen.style.height = height / 1.02 + "px";
+                //play_screen.style.width = width / 1.02 + "px";
+
+                //play_screen.style.top = (height / 2) - parseInt(play_screen.style.height) / 2 + "px";
+                //play_screen.style.left = (width / 2) - parseInt(play_screen.style.width) / 2 + "px";
+
+            }
+            function initialize() {
+                play_screen = document.getElementById('play_screen');
+                fish_image = document.getElementById('fish_image');
+                rand_written = document.getElementById('rand_written');
+                rand_written_second = document.getElementById('rand_written_second');
+                number_arrange_first = document.getElementById('number_arrange_first');
+                number_arrange_second = document.getElementById('number_arrange_second');
+                number_arrange_third = document.getElementById('number_arrange_third');
+                number_arrange_fourth = document.getElementById('number_arrange_fourth');
+                number_arrange_fifth = document.getElementById('number_arrange_fifth');
+                number_arrange_sixth = document.getElementById('number_arrange_sixth');
+                number_arrange_seventh = document.getElementById('number_arrange_seventh');
+                number_arrange_eight = document.getElementById('number_arrange_eight');
+                number_arrange_nineth = document.getElementById('number_arrange_nineth');
+                number_arrange_ten = document.getElementById('number_arrange_ten');
+                //score_display = document.getElementById('score_display');
+                correct_display = document.getElementById('correct_display');
+                attempt_display = document.getElementById('attempt_display');
+                image_div = document.getElementById('image_div');
+            }
+
+            function fish() {
+                random = Math.ceil(Math.random() * 4);
+                rand_written.innerHTML = random;
+                random_two = Math.ceil(Math.random() * 5);
+                rand_written_second.innerHTML = random_two;
+                two_answer = random + random_two;
+
+               
+            }
+
+            function object() {
+                var i, arr = [];
+                for (i = 0; i <= 9; i++) {
+                    arr.push(i);
+                }
+                arr.sort(function () {
+                    return Math.random() - 0.5;
+                });
+                number_arrange_first.innerHTML = arr[0];
+                number_arrange_second.innerHTML = arr[1];
+                number_arrange_third.innerHTML = arr[2];
+                number_arrange_fourth.innerHTML = arr[3];
+                number_arrange_fifth.innerHTML = arr[4];
+                number_arrange_sixth.innerHTML = arr[5];
+                number_arrange_seventh.innerHTML = arr[6];
+                number_arrange_eight.innerHTML = arr[7];
+                number_arrange_nineth.innerHTML = arr[8];
+                number_arrange_ten.innerHTML = arr[9];
+            }
+
+            function how_to_play() {
+                var how_to_play = document.getElementById("how_to_play");
+                fish();
+                object();
+                how_to_play.style.visibility = 'hidden';
+            }
+
+            var correct = 0;
+            var st = (21 + correct);
+            var abc, def;
+            var drop_count = 1;
+            var answer = 0;
+            
+
+            $(function () {
+                    if (navigator.userAgent.search("Firefox") >= 0) {
+                        $('#number_arrange_first').draggable({ revert: "valid", helper: "clone", cursor: "crosshair" });
+                        $('#number_arrange_second').draggable({ revert: "valid", helper: "clone", cursor: "crosshair" });
+                        $('#number_arrange_third').draggable({ revert: "valid", helper: "clone", cursor: "crosshair" });
+                        $('#number_arrange_fourth').draggable({ revert: "valid", helper: "clone", cursor: "crosshair" });
+                        $('#number_arrange_fifth').draggable({ revert: "valid", helper: "clone", cursor: "crosshair" });
+                        $('#number_arrange_sixth').draggable({ revert: "valid", helper: "clone", cursor: "crosshair" });
+                        $('#number_arrange_seventh').draggable({ revert: "valid", helper: "clone", cursor: "crosshair" });
+                        $('#number_arrange_eight').draggable({ revert: "valid", helper: "clone", cursor: "crosshair" });
+                        $('#number_arrange_nineth').draggable({ revert: "valid", helper: "clone", cursor: "crosshair" });
+                        $('#number_arrange_ten').draggable({ revert: "valid", helper: "clone", cursor: "crosshair" });
+                    }
+                    else {
+                        $('#number_arrange_first').draggable({ revert: "valid", helper: "clone", containment: "body", scroll: false, cursor: "crosshair" });
+                        $('#number_arrange_second').draggable({ revert: "valid", helper: "clone", containment: "body", scroll: false, cursor: "crosshair" });
+                        $('#number_arrange_third').draggable({ revert: "valid", helper: "clone", containment: "body", scroll: false, cursor: "crosshair" });
+                        $('#number_arrange_fourth').draggable({ revert: "valid", helper: "clone", containment: "body", scroll: false, cursor: "crosshair" });
+                        $('#number_arrange_fifth').draggable({ revert: "valid", helper: "clone", containment: "body", scroll: false, cursor: "crosshair" });
+                        $('#number_arrange_sixth').draggable({ revert: "valid", helper: "clone", containment: "body", scroll: false, cursor: "crosshair" });
+                        $('#number_arrange_seventh').draggable({ revert: "valid", helper: "clone", containment: "body", scroll: false, cursor: "crosshair" });
+                        $('#number_arrange_eight').draggable({ revert: "valid", helper: "clone", containment: "body", scroll: false, cursor: "crosshair" });
+                        $('#number_arrange_nineth').draggable({ revert: "valid", helper: "clone", containment: "body", scroll: false, cursor: "crosshair" });
+                        $('#number_arrange_ten').draggable({ revert: "valid", helper: "clone", containment: "body", scroll: false, cursor: "crosshair" });
+                    }
+                $('#image_div').droppable({
+                    drop: function (event, ui) {
+                        abc = ui.draggable.text();
+                        if (two_answer == abc) {
+                            correct_answer_as();
+                            score++;
+                            correct++;
+                            image_div.style.height = (st++) + "%";
+                            image_div.style.width = (st++) + "%";
+                            score = score + 9;
+                            //score_display.innerHTML = score;
+                            user_answer.push(abc);
+                            question_list.push(random + " + " + random_two);
+                            correct_answer.push(random + random_two);
+                            $('#image_div').droppable({ disabled: true });
+                        }
+                        else {
+                            correct_answer_as();
+                            fish();
+                            image_div.style.height = (st--) + "%";
+                            image_div.style.width = (st--) + "%";
+                            user_answer.push(abc);
+                            question_list.push(random + " + " + random_two);
+                            correct_answer.push(random + random_two);
+                            $('#image_div').droppable({ disabled: true });
+                        }
+                    }
+                });
+            });
+
+
+            function correct_answer_as() {
+                var corr_ans = document.createElement('div');
+                corr_ans.id = 'corr';
+                corr_ans.style.height = '20%';
+                corr_ans.style.width = '20%';
+                corr_ans.style.zIndex = '10';
+                corr_ans.style.position = 'absolute';
+                corr_ans.style.left = '35%';
+                corr_ans.style.top = '34%';
+                corr_ans.setAttribute('class', ' correct_answer');
+                document.body.appendChild(corr_ans);
+                var corr_imag = document.createElement('img');
+                corr_imag.id = 'corre_imag';
+                corr_imag.style.height = '100%';
+                corr_imag.style.width = '100%';
+                corr_ans.appendChild(corr_imag);
+                if (two_answer == abc) {
+                    corr_imag.setAttribute('src', 'images/correct.png');
+                    var create_point = "";
+                    create_point += '<div class="point-true"/>';
+                    $(".point-" + currentquestion).append(create_point);
+                    $("#points").append(create_point);
+                }
+                else {
+                    corr_imag.setAttribute('src', 'images/incorrect.png');
+                    var create_point = "";
+                    create_point += '<div class="point-false"/>';
+                    $(".point-" + currentquestion).append(create_point);
+                    $("#points").append(create_point);
+                }
+
+                if (navigator.userAgent.search("Firefox") >= 0) {
+                    document.getElementById('corr').addEventListener('animationend', function () {
+                        document.body.removeChild(this);
+                        attemptq += 1;
+                        userAnswer();
+                        fish();
+                        object();
+                        //attempt();
+                        $('#image_div').droppable({ disabled: false });
+                    }, false);
+                }
+                else {
+                    document.getElementById('corr').addEventListener('webkitAnimationEnd', function () {
+                        document.body.removeChild(this);
+                        attemptq += 1;
+                        userAnswer();
+                        fish();
+                        object();
+                        //attempt();
+                        $('#image_div').droppable({ disabled: false });
+                    }, false);
+                }
+            }
+
+            function userAnswer() {
+                //switch (what) {
+                //    case "correct":
+                //        answer_list[currentquestion - 1] = "correct";
+                //        correctattempts++;
+                //        //$("#question-dots").find(".dot").eq(currentquestion - 1).removeClass("active-dot");
+                //        //$("#question-dots").find(".dot").eq(currentquestion - 1).addClass("correct-dot");
+                //        //stopAllAudio();
+                //        //$("#correct").get(0).play();
+                //        break;
+                //    case "incorrect":
+                //        answer_list[currentquestion - 1] = "incorrect";
+                //        //$("#question-dots").find(".dot").eq(currentquestion - 1).removeClass("active-dot");
+                //        //$("#question-dots").find(".dot").eq(currentquestion - 1).addClass("incorrect-dot");
+                //        //stopAllAudio();
+                //        //$("#incorrect").get(0).play();
+                //        break;
+                //}
+
+                if (currentquestion == totalquestions) {
+                    gamestart = false;
+                    clearTimeout(timer);
+                    //$("#score-card-time").text($("#time-holder").text());
+                    var html = '';
+                    var correct = 0;
+                    for (var i = 0; i < question_list.length; i++) {
+                        //html += '<button class="score-card-question">' + question_list[i] + '</button>';
+                        //if (answer_list[i] == "correct") {
+                        //    html += '<button class="score-card-answer score-card-answer-correct"></button>';
+                        //    correct++;
+                        //}
+                        //else {
+                        //    html += '<button class="score-card-answer score-card-answer-incorrect"></button>';
+                        //}
+
+                        //var temphtml = '';
+                        $('#question').append('<button class="remove">' + question_list[i] + '</button>');
+                        $('#correct-answer').append('<button class="remove">' + correct_answer[i] + '</button>');
+                        $('#your-answer').append('<button class="remove">' + user_answer[i] + '</button>');
+                        hour = parseInt(question_list_time[i] / 3600);
+                        minute = parseInt((question_list_time[i] % 3600) / 60);
+                        second = parseInt((question_list_time[i] % 3600) % 60);
+                        temphtml = "";
+                        var h = hour.toString();
+                        var m = minute.toString();
+                        var s = second.toString();
+                        if (h.length == 1)
+                            temphtml += "";
+                        else
+                            temphtml += h;
+                        if (m.length == 1)
+                            temphtml += 0 + "" + m;
+                        else
+                            temphtml += m;
+                        temphtml += " : ";
+                        if (s.length == 1)
+                            temphtml += 0 + "" + s;
+                        else
+                            temphtml += s;
+                        //html += '<button class="score-card-question-time">' + temphtml + '</button>';
+                    }
+                    //$("#score-card-question-holder").html(html);
+                    $("#score-card").css('display', 'inline');
+                    $("#point-container").css('display', 'none');
+                    $("#image_div").css('display', 'none');     
+                    $("#fish_image1").css('display', 'none'); 
+                    $("#fish_image2").css('display', 'none');
+                    $(".rvr").css('display', 'none');
+                }
+                else {
+                    currentquestion++;
+                }
+            }
+
+            var milisecond = 0;
+            function gametimer() {
+                var html = "";
+                question_list_time[currentquestion - 2]++;
+                milisecond++;
+                hour = parseInt(milisecond / 3600);
+                minute = parseInt((milisecond % 3600) / 60);
+                second = parseInt((milisecond % 3600) % 60);
+                html = "";
+                var h = hour.toString();
+                var m = minute.toString();
+                var s = second.toString();
+                if (h.length == 1)
+                    html += "";
+                else
+                    html += h;
+                if (m.length == 1)
+                    html += 0 + "" + m;
+                else
+                    html += m;
+                html += " : ";
+                if (s.length == 1)
+                    html += 0 + "" + s;
+                else
+                    html += s;
+
+                //$("#time-holder").html(html);
+
+                timer = setTimeout('gametimer();', 1000);
+            }
+
+
+            var currentDate, hour, minutes, second, day, month, year;
+            function gettime() {
+                currentDate = new Date();
+                hour = currentDate.getHours();
+                minutes = currentDate.getMinutes();
+                second = currentDate.getSeconds();
+                day = currentDate.getDate();
+                month = currentDate.getMonth() + 1;
+                year = currentDate.getFullYear();
+                return (year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + second);
+            }
+
+            //function attempt() {
+            //    if (attemptq == 3) {
+            //        random_answer.style.visibility = "hidden";
+            //        image_div.style.visibility = "hidden";
+            //        score_show.style.visibility = "hidden";
+            //        //document.getElementById("mainimage").style.visibility = "hidden";
+            //        document.getElementById("showscore").style.display = "block";
+            //        document.getElementById("showscore").innerHTML = "Your Score is  " + score;
+            //        var totalscore = attemptq * 10;
+            //        endtime = gettime();
+
+            //        $.ajax({
+            //            url: "../../../../quiz.php?gameover=true&score=" + score + "&starttime=" + starttime + "&endtime=" + endtime + "&attempt=" + attemptq + "&totalscore=" + totalscore,
+            //            success: function (result) {
+            //                $.get("topic_view.php");
+            //            }
+            //        });
+            //    }
+            //}
+
+        </script>
+
+    </head>
+    <body>
+        <div id="play_screen">
+            <div id="header">
+                <!-- <a href="index.html">
+                <button id="mathwizard">MathWizardApps.com</button>
+            </a>-->
+                <a href="mathwizard-grade-1-exercise-topic.html">
+                    <button class="sitemap">&nbsp;Grade-1</button>
+                </a>
+                <a href="mathwizard-drade-1-addition-drag-drop.html">
+                    <button class="sitemap">&nbsp; >  &nbsp; Drag drop addition</button>
+                </a>
+                <!--<button id="header-desc">Math Activities and Games for Kids</button>-->
+            </div>
+            <!--<img id="mainimage" src="image/play_screen_image.jpg" style="height: 100%; width: 100%;" />-->
+            <div id="showscore"></div>
+            <div id="audio">
+                <audio id="aud" src="audio/ocean.mp3" />
+            </div>
+            <div id="how_to_play" onclick=" how_to_play()">
+                <h1>Drag and Drop Addition</h1>
+                <br />
+                <h4>Drag the Bottom side object
+   <img src="images/hint_2.png" style="height: 7%; width: 7%" />
+                    and drop on the fish
+   <img src="images/hint.png" style="height: 7%; width: 7%" />
+                    or arround the fish  
+              <br />
+                    drag the object related number which is disply on the fish.
+                </h4>
+                <h1>BeSt OF LuCk</h1>
+            </div>
+
+            <div id="image_div" class="fish_animation_class" style="z-index: 1;">
+                <img src="images/f2.png" id="fish_image" />
+                <div id="rand_written"></div>
+                <div id="addsign">+</div>
+                <div id="rand_written_second"></div>
+            </div>
+            <img src="images/f3.png" id="fish_image1" />
+            <img src="images/fish_1.png" id="fish_image2" />
+          <!-- <div id="score_show" class="option_display">
+                <div id="score" class="option">score:</div>
+                <div id="score_display" class="display_all_option"></div>
+            </div>-->
+            <div id="random_answer">
+                <div id="number_arrange_first" class="object"></div>
+                <div id="number_arrange_second" class="object"></div>
+                <div id="number_arrange_third" class="object"></div>
+                <div id="number_arrange_fourth" class="object"></div>
+                <div id="number_arrange_fifth" class="object"></div>
+                <div id="number_arrange_sixth" class="object"></div>
+                <div id="number_arrange_seventh" class="object"></div>
+                <div id="number_arrange_eight" class="object"></div>
+                <div id="number_arrange_nineth" class="object"></div>
+                <div id="number_arrange_ten" class="object"></div>
+            </div>
+            <div class="rvr">
+                <div class="river"></div>
+                <div class="river1"></div>
+                <div class="river"></div>
+                <div class="river1"></div>
+                <div class="river"></div>
+                <div class="river1"></div>
+                <div class="river"></div>
+                <div class="river1"></div>
+                <div class="river"></div>
+                <div class="river1"></div>
+                <div class="river"></div>
+            </div>
+
+             <div id="point-container">
+                <div class="point-1"></div>
+                <div class="point-2"></div>
+                <div class="point-3"></div>
+                <div class="point-4"></div>
+                <div class="point-5"></div>
+                <div class="point-6"></div>
+                <div class="point-7"></div>
+                <div class="point-8"></div>
+                <div class="point-9"></div>
+                <div class="point-10"></div>
+                </div>
+
+
+            <div id="footer" style="z-index:11;">
+                <a href="index.html">&copy;MathWizardApps.com</a>
+                <a href="sitemap.html">
+                    <button id="sitemap-div">Sitemap</button></a>
+                <button id="header-desc">Math Activities and Games for Kids</button>
+            </div>
+        </div>
+
+          <div id="score-card">
+
+
+
+        <!--<button style="z-index:5; position: absolute; height: 5%; width: 12%;color:white; box-shadow: 1px 1px 1px 0px; top: 2%; right: 2%; font-size: 20px; outline: none; border: none; background-color: #ff6a00;" onclick="remove_score_div();">
+            Close
+        </button>-->
+        <button id="score-board-label">Addition Result</button>
+        <div id="question">
+            <button id="question_heading">Question</button>
+        </div>
+        <div id="your-answer">
+            <button id="your-answer-heading">Your Answer</button>
+        </div>
+        <div id="correct-answer">
+            <button id="correct-answer-heading">Correct Answer</button>
+        </div>
+        <div id="points">
+            <button id="points-heading">Points</button>
+        </div>
+        <!--<button id="score-card-time"></button>-->
+    </div>
+    </body>
+    </html>
+</blockquote>

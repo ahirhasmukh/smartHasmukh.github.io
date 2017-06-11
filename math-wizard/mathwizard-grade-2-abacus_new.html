@@ -1,0 +1,1356 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Math Wizard-grade-1-abacus - Online math practice, math games and interactive math </title>
+
+    <meta name="description" content="Math Wizard-grade-1-abacus is one of the most interactive math practice apps. 
+Math wizard is completely free online for studnets, teachers and schools.
+Math wizard provides unlimited math practice to kids.
+Math wizard provides a simple , intuitive learning system for kids with games , interactive actvities , making learning fun!
+" />
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery-ui-1.10.2.custom.js"></script>
+    <script src="js/jquery.ui.touch-punch.js"></script>
+    <link href="style/common.css" rel="stylesheet" />
+
+    <style type="text/css">
+         body {
+            overflow: hidden;
+            margin: 0px;
+            padding: 0px;
+        }
+		#main_screen #btn{
+			position: absolute; 
+			top:2%;
+			left:-9%; 
+			width: 100%;
+			text-align: center;
+			font-size: 40px; 
+			color: black; 
+			background-color: transparent; 
+			border: none; 
+			z-index: 1;
+			font-family: cursive;
+		}
+        #main_screen {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background: #00E397;
+        }
+        #display_number {
+            position: absolute;
+            height: 10%;
+            width: 30%;
+            top: 6%;
+            left: 35%;
+            color: white;
+        }
+        .display_number h1 {
+            position: relative;
+            float: left;
+            left:92%;
+			top:-55%;
+            width: 60%;
+            text-align: center;
+            font-size:35px;
+            letter-spacing:1em;
+        }
+        .screen {
+            position: absolute;
+            height: 70%;
+            width: 25%;
+            top: 25%;
+            left: 20%;
+        }
+        .stick_div {
+            position: relative;
+            float: left;
+            height: 55%;
+            width: 17%;
+        }
+        .stick {
+            position: relative;
+            float: left;
+            height:35%;
+            width: 11%;
+            box-shadow: 0px 0px 1px 0px #808080;
+            top:3%;
+            left:-1%;
+            background-color: #BE9357;
+            border-top-right-radius: 20px;
+            border-top-left-radius: 20px;
+            margin-left: 27%;
+        }
+        .middle_div {
+            position: absolute;
+            float: left;
+            height: 7%;
+           	width: 22%;
+			left: 21.5%;
+			top: 51.5%;
+            border-radius: 30px;
+            background-color: #8F7B52;
+            box-shadow: 0px 0px 1px 0px gray;
+        }
+		.middle_div h1 {
+            position: relative;
+            left: 7%;
+            width: 29%;
+            float: left;
+            text-align: center;
+            font-size: 16px;
+            color: #fff;
+         }
+        .bottom_div {
+            position: absolute;
+            float: left;
+            height: 5.5%;
+			width: 19%;
+			left: 23.1%;
+			top: 58%;
+            border-bottom-left-radius: 25px;
+			border-bottom-right-radius:25px;
+            background-color: #FFDC7A;
+            box-shadow: 0px 0px 1px 0px gray;
+        }
+		.bottom_div h1,#bottom_div_h2,#bottom_div_h3{
+			width: 100%;
+			position: absolute;
+            float: left;
+            top: -45%;
+            text-align: center;
+            font-size: 26px;
+            letter-spacing:5em;
+		}
+        .bottom_div h1 {
+            left: 0%;
+        }
+		#bottom_div_h2 {
+            left: 35%;
+            letter-spacing:2em;
+        }
+		#bottom_div_h3 {
+            left: 11%;
+            letter-spacing:2em;
+        }
+       .objects {
+           	position: absolute;
+			height:35%;
+			width: 2%;
+			left: 55%;
+			top: 26%;
+			background-color:#a4a9d0;
+			box-shadow: 1px 1px 1px 1px #a4a9d0 inset;
+			border-bottom:15px solid lightyellow;
+			border-left:50px solid transparent;
+			border-right:50px solid transparent;
+			border-radius:5px; 
+        }
+		.object1{
+			position: absolute;
+            float: left;
+          	height:18px;
+			width:75px;
+			top:5%;
+            background-color: #1a80ad;
+			box-shadow: 0px 0px 1px 0px #808080;
+			border-radius:20px; 
+			left: -100%;
+            background-image: -webkit-gradient(linear, left top, right top, from(#1a80ad), color-stop(0.5, white), color-stop(0.1, #1a80ad), color-stop(0.5, white), to(#1a80ad));
+            background-image: -moz-gradient(linear, left top, right top, from(#1a80ad), color-stop(0.5, white), color-stop(0.1, #1a80ad), color-stop(0.5, white), to(#1a80ad));
+            background-image: -gradient(linear, left top, right top, from(#1a80ad), color-stop(0.5, white), color-stop(0.1, #1a80ad), color-stop(0.5, white), to(#1a80ad));
+		}
+		.object1_ob2{
+            top:15%;
+        }
+        .object1_ob3{
+            top:25%;
+        }
+        .object1_ob4{
+            top:35%;
+        }
+		.object1_ob5{
+            top:45%;
+        }
+		.object1_ob6{
+            top:55%;
+        }
+		.object1_ob7{
+            top:65%;
+        }
+		.object1_ob8{
+            top: 75%;
+        }
+		.object1_ob9{
+            top:85%;
+        }
+		.object1_ob10{
+            top: 95%;
+        }
+        #holder {
+            margin: 0px;
+        }
+
+        @-webkit-keyframes lightSpeedIn {
+            0% {-webkit-transform: translateX(100%) skewX(-30deg);opacity: 0;}
+            60% {-webkit-transform: translateX(-20%) skewX(30deg);opacity: 1;}
+            80% {-webkit-transform: translateX(0%) skewX(-15deg);opacity: 1;}
+            100% {-webkit-transform: translateX(0%) skewX(0deg);opacity: 1;}
+        }
+        @-moz-keyframes lightSpeedIn {
+            0% {-moz-transform: translateX(100%) skewX(-30deg);opacity: 0;}
+            60% {-moz-transform: translateX(-20%) skewX(30deg);opacity: 1;}
+            80% {-moz-transform: translateX(0%) skewX(-15deg);opacity: 1;}
+            100% {-moz-transform: translateX(0%) skewX(0deg); opacity: 1;}
+        }
+        @keyframes lightSpeedIn {
+            0% {transform: translateX(100%) skewX(-30deg);opacity: 0;}
+            60% {transform: translateX(-20%) skewX(30deg);opacity: 1;}
+            80% {transform: translateX(0%) skewX(-15deg);opacity: 1;}
+            100% {transform: translateX(0%) skewX(0deg);opacity: 1;}
+        }
+        .lightSpeedIn {
+            -webkit-animation: lightSpeedIn 2s ease-out;
+            -moz-animation: lightSpeedIn 2s ease-out;
+            animation: lightSpeedIn 2s ease-out;
+        }
+		#submit{
+			position: relative;
+			height: 5%;
+			width: 8%;
+			top: 75%;
+			left: 44%;
+			#border: 1px solid black;
+			box-shadow: 1px 1px 1px 1px black;
+			text-align: center;
+		}
+		#submit:hover{
+			box-shadow: 1px 1px 1px 1px black inset;
+			cursor: pointer;
+		}
+		#submit span{
+			font-size: 20px;
+		}
+		#stick_6{
+			left:18%;
+			top: -32%;
+		}
+@media only screen and (max-width:1280px){
+	#main_screen #btn{
+			font-size:35px; 
+			left: -12%;
+	}
+	#display_number{
+		left: 60%;
+		top:5%;
+	}
+	.display_number h1 {
+		width: 34%;
+		font-size:36px;
+		letter-spacing: 1em;
+		left: 5%;
+	}
+	.screen {
+		width: 30%;
+		left: 18%;
+		top: 27%;
+	}
+	.middle_div {
+		height:7%;
+		width:26%;
+		left: 20%;
+		top: 53.5%;
+	}
+	.middle_div h1 {
+		left: 9%;
+		width: 40%;
+		font-size:18px;
+	}
+	.bottom_div {
+		height: 6%;
+		width: 23%;
+		left:21.5%;
+		top: 60%;
+	}
+	.bottom_div h1 {
+		top: -26%;
+		left: 15%;
+		font-size: 21px;
+		letter-spacing: 10.5em;
+	}
+	#bottom_div_h2 {
+		font-size: 22px;
+		letter-spacing: 2em;
+	}
+	.objects {
+		width:2%;
+		left:59%;
+		height:35%;
+		top:30%;
+	}
+	.object1{
+		width:68px;
+		left:-25px;
+		height: 18px;
+		top:5%;
+	}
+	.object1_ob2{
+            top:15%;
+        }
+        .object1_ob3{
+            top:25%;
+        }
+        .object1_ob4{
+            top:35%;
+        }
+		.object1_ob5{
+            top:45%;
+        }
+		.object1_ob6{
+            top:55%;
+        }
+		.object1_ob7{
+            top:65%;
+        }
+		.object1_ob8{
+            top: 75%;
+        }
+		.object1_ob9{
+            top:85%;
+        }
+		.object1_ob10{
+            top: 95%;
+        }
+}
+@media only screen and (max-width:1024px){
+	#main_screen #btn {
+		left: -9%;
+	}
+	#display_number {
+		left: 70%;
+		top: 5%;
+	}
+}
+@media only screen and (max-width:800px){
+	#main_screen #btn{
+			font-size:35px; 
+	}
+	.display_number h1 {
+		width: 34%;
+		font-size:36px;
+		letter-spacing: 1em;
+		left: 5%;
+	}
+	.screen {
+		width: 40%;
+		left: 20%;
+	}
+	.middle_div {
+		height:7%;
+		width:30%;
+		left: 25%;
+	}
+	.middle_div h1 {
+		left: 9%;
+		width: 40%;
+		font-size:18px;
+	}
+	.bottom_div {
+		height: 5%;
+		width: 25%;
+		left:27.5%;
+	}
+	.bottom_div h1 {
+		top: -26%;
+		left: 15%;
+		font-size: 21px;
+		letter-spacing: 10.5em;
+	}
+	#bottom_div_h2 {
+		font-size: 22px;
+		letter-spacing:1em;
+	}
+	.objects {
+		width:4%;
+		left:70%;
+		height:30%;
+		top:24%;
+	}
+	.object1{
+		width:68px;
+		left:-25px;
+		height: 15px;
+		top:5%;
+	}
+	.object1_ob2{
+            top:15%;
+        }
+        .object1_ob3{
+            top:25%;
+        }
+        .object1_ob4{
+            top:35%;
+        }
+		.object1_ob5{
+            top:45%;
+        }
+		.object1_ob6{
+            top:55%;
+        }
+		.object1_ob7{
+            top:65%;
+        }
+		.object1_ob8{
+            top: 75%;
+        }
+		.object1_ob9{
+            top:85%;
+        }
+		.object1_ob10{
+            top: 95%;
+        }
+}
+@media only screen and (max-width:768px){
+	#main_screen #btn{
+			font-size:35px; 
+			left: -9%;
+	}
+	#display_number {
+		left: 75%;
+		top: 4%;
+	}
+	.display_number h1 {
+		width: 34%;
+		font-size:36px;
+		letter-spacing: 1em;
+		left: 5%;
+	}
+	.screen {
+		width: 40%;
+		left:9%;
+	}
+	.middle_div {
+		height:7%;
+		width:30%;
+		left:14%;
+	}
+	.middle_div h1 {
+		left: 9%;
+		width: 40%;
+		font-size:18px;
+	}
+	.bottom_div {
+		height:6%;
+		width: 25%;
+		left:16.5%;
+	}
+	.bottom_div h1 {
+		top: -26%;
+		left: 15%;
+		font-size: 21px;
+		letter-spacing: 10.5em;
+	}
+	#bottom_div_h2 {
+		font-size: 22px;
+		letter-spacing:1em;
+	}
+	.objects {
+		width:2%;
+		left:58%;
+		height:30%;
+		top:33%;
+	}
+	.object1{
+		width:60px;
+		left:-25px;
+		height: 15px;
+		top:5%;
+	}
+	.object1_ob2{
+            top:15%;
+        }
+        .object1_ob3{
+            top:25%;
+        }
+        .object1_ob4{
+            top:35%;
+        }
+		.object1_ob5{
+            top:45%;
+        }
+		.object1_ob6{
+            top:55%;
+        }
+		.object1_ob7{
+            top:65%;
+        }
+		.object1_ob8{
+            top: 75%;
+        }
+		.object1_ob9{
+            top:85%;
+        }
+		.object1_ob10{
+            top: 95%;
+        }
+		#point-container > div:nth-child(1) {
+			margin-left: 16%;
+		}
+		#point-container > div {
+			width: 5%;
+		}
+		#submit{
+			width: 140px;
+			height: 25px;
+			left: 42%;
+		}
+}
+@media only screen and (max-width:640px){
+	#main_screen #btn{
+			font-size:30px; 
+	}
+	#display_number {
+		left: 76%;
+		top: 4%;
+	}
+	.display_number h1 {
+		width: 34%;
+		font-size:36px;
+		letter-spacing: 1em;
+		left: 5%;
+	}
+	.screen {
+		width: 40%;
+		left:9%;
+	}
+	.middle_div {
+		height:7%;
+		width:38%;
+		left:10%;
+	}
+	.middle_div h1 {
+		left: 9%;
+		width: 40%;
+		font-size:18px;
+	}
+	.bottom_div {
+		height: 6%;
+		width: 33%;
+		left: 12.5%;
+	}
+	.bottom_div h1 {
+		top: -26%;
+		left: 15%;
+		font-size: 21px;
+		letter-spacing: 10.5em;
+	}
+	#bottom_div_h2 {
+		font-size: 22px;
+		letter-spacing:1em;
+	}
+	.objects {
+		width: 2%;
+		left: 59%;
+		height: 30%;
+		top: 33%;
+	}
+	.object1{
+		width:60px;
+		left:-25px;
+		height: 15px;
+		top:5%;
+	}
+	.object1_ob2{
+            top:15%;
+        }
+        .object1_ob3{
+            top:25%;
+        }
+        .object1_ob4{
+            top:35%;
+        }
+		.object1_ob5{
+            top:45%;
+        }
+		.object1_ob6{
+            top:55%;
+        }
+		.object1_ob7{
+            top:65%;
+        }
+		.object1_ob8{
+            top: 75%;
+        }
+		.object1_ob9{
+            top:85%;
+        }
+		.object1_ob10{
+            top: 95%;
+        }
+		#point-container > div:nth-child(1) {
+			margin-left: 16%;
+		}
+		#point-container > div {
+			width: 5%;
+		}
+		#submit{
+			width: 100px;
+			height: 25px;
+			left: 42%;
+		}
+}
+@media only screen and (max-width:480px){
+	#main_screen #btn{
+		font-size:25px; 
+		left: 0%;
+	}
+	#display_number {
+		left:40%;
+		top:10%;
+	}
+	.display_number h1 {
+		width: 34%;
+		font-size:36px;
+		letter-spacing: 1em;
+		left: 5%;
+	}
+	.screen {
+		width:55%;
+		left:5%;
+		top: 27.5%;
+	}
+	.middle_div {
+		height:7%;
+		width:48%;
+		left: 8%;
+		top: 54%;
+	}
+	.middle_div h1 {
+		left: 9%;
+		width: 40%;
+		font-size:18px;
+	}
+	.bottom_div {
+		height: 5%;
+		width: 42%;
+		left: 11%;
+		top: 60%;
+	}
+	.bottom_div h1 {
+		top: -26%;
+		left: 15%;
+		font-size: 21px;
+		letter-spacing: 10.5em;
+	}
+	#bottom_div_h2 {
+		font-size: 22px;
+		letter-spacing:1em;
+	}
+	.objects {
+		width:2%;
+		left:68%;
+		height:30%;
+		top:33%;
+	}
+	.object1{
+		width:60px;
+		left:-25px;
+		height: 15px;
+		top:5%;
+	}
+	.object1_ob2{
+            top:15%;
+        }
+        .object1_ob3{
+            top:25%;
+        }
+        .object1_ob4{
+            top:35%;
+        }
+		.object1_ob5{
+            top:45%;
+        }
+		.object1_ob6{
+            top:55%;
+        }
+		.object1_ob7{
+            top:65%;
+        }
+		.object1_ob8{
+            top: 75%;
+        }
+		.object1_ob9{
+            top:85%;
+        }
+		.object1_ob10{
+            top: 95%;
+        }
+}
+@media only screen and (max-width:320px){
+	#main_screen #btn{
+			font-size:20px; 
+	}
+	.display_number h1 {
+		width: 34%;
+		font-size:36px;
+		letter-spacing: 1em;
+		left: 5%;
+	}
+	.screen {
+		width: 70%;
+		left: -5%;
+		top:30%;
+	}
+	.middle_div {
+		height: 7%;
+		width: 50%;
+		left: 4%;
+		top: 56.5%;
+	}
+	.middle_div h1 {
+		left: 9%;
+		width: 40%;
+		font-size: 12px;
+	}
+	.bottom_div {
+		height: 7%;
+		width: 44%;
+		left: 7.2%;
+		top:61%;
+	}
+	.bottom_div h1 {
+		top: -26%;
+		left: 15%;
+		font-size: 21px;
+		letter-spacing: 10.5em;
+	}
+	#bottom_div_h2 {
+		font-size: 22px;
+		letter-spacing:1em;
+	}
+	.objects {
+		width:0%;
+		left: 60%;
+		height: 40%;
+		top:29%;
+	}
+	.object1 {
+		width: 52px;
+		left: -27px;
+		height: 15px;
+		top: 5%;
+	}
+	.object1_ob2{
+            top:15%;
+        }
+        .object1_ob3{
+            top:25%;
+        }
+        .object1_ob4{
+            top:35%;
+        }
+		.object1_ob5{
+            top:45%;
+        }
+		.object1_ob6{
+            top:55%;
+        }
+		.object1_ob7{
+            top:65%;
+        }
+		.object1_ob8{
+            top: 75%;
+        }
+		.object1_ob9{
+            top:85%;
+        }
+		.object1_ob10{
+            top: 95%;
+        }
+		#point-container {
+		top: 90%;
+ 	}
+	#point-container > div:nth-child(1) {
+		margin-left: 2%;
+	}
+	#point-container > div {
+		width: 7%;
+		margin: 4px;
+	}
+	#play_screen_content_center_middle {
+		top: 10%;
+		left:8%;
+		height: 80%;
+		width: 92%;
+	}
+	#submit{
+		width:100px;
+		height:25px;
+		left:38%;
+	}
+}
+</style>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <a href="mathwizard-grade-1-exercise-topic.html">
+                <button class="sitemap"> &nbsp;Grade-1</button>
+            </a>
+            <a href="mathwizard-grade-1-abacus.html">
+                <button class="sitemap">&nbsp; >  &nbsp; Abacus</button>
+            </a>
+        </div>
+        <div id="content" >			
+			 <div id="point-container">
+                <div class="point-1"></div>
+                <div class="point-2"></div>
+                <div class="point-3"></div>
+                <div class="point-4"></div>
+                <div class="point-5"></div>
+                <div class="point-6"></div>
+                <div class="point-7"></div>
+                <div class="point-8"></div>
+                <div class="point-9"></div>
+                <div class="point-10"></div>
+             </div>
+        </div>
+	<div id="score-card">
+        <button id="score-board-label">Abacus Result</button>
+        <div id="question">
+            <button id="question_heading">Question</button>
+        </div>
+        <div id="your-answer">
+            <button id="your-answer-heading">Your Answer</button>
+        </div>
+        <div id="correct-answer">
+            <button id="correct-answer-heading">Correct Answer</button>
+        </div>
+		<div id="points">
+            <button id="points-heading">Points</button>
+        </div>
+    </div>
+        <div id="footer"><a href="index.html">&copy;MathWizardApps.com</a> <a href="sitemap.html"><button id="sitemap-div">Sitemap</button></a>  <button id="header-desc">Math Activities and Games for Kids</button></div>
+    </div>
+	
+<script type="text/ecmascript">
+	
+  		var flag;
+        var isMobile = {
+            Android: function () {
+                return navigator.userAgent.match(/Android/i);
+            },
+            BlackBerry: function () {
+                return navigator.userAgent.match(/BlackBerry/i);
+            },
+            iOS: function () {
+                return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+            },
+            Opera: function () {
+                return navigator.userAgent.match(/Opera Mini/i);
+            },
+            Windows: function () {
+                return navigator.userAgent.match(/IEMobile/i);
+            },
+            any: function () {
+           return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+            }
+        };
+        var mouseDown = false;
+        var masterSelectedObject = null;
+        var selectedObject = null;
+        var selectedObjectWidth = null;
+        var selectedObjectHeight = null;
+        var selectedObjectOffsetLeft = null;
+        var selectedObjectOffsetTop = null;
+		var inner_div_length;
+		var inner_div_length_1;
+		var inner_div_length_2;
+		var counter=0;
+		var ques_array=new Array();
+		var ans_array=new Array();
+		var ques_counter=0;
+		
+        window.onload = function () {
+           
+            createabacus();
+        }
+
+        function createabacus() {
+
+            var main_content = "";
+            main_content += '<div id="main_screen">';
+            main_content += '<button id="btn"> Drag on the abacus and count</button>';
+            main_content += '<div id="display_number" class="display_number">';
+            main_content += '<h1 id="display_number_h1"></h1>';
+            main_content += '</div>';
+            main_content += '<div class="screen">';
+            main_content += '<div id="stick_4" class="stick droppable">';
+            main_content += '</div>';
+            main_content += '<div id="stick_5" class="stick droppable">';
+            main_content += '</div>';
+			main_content += '<div id="stick_6" class="stick droppable">';
+            main_content += '</div>';
+            main_content += '</div>';
+            main_content += '<div class="bottom_div">';
+            main_content += '<h1 id="bottom_div_h1"></h1>';
+			main_content += '<h1 id="bottom_div_h2"></h1>';
+			main_content += '<h1 id="bottom_div_h3"></h1>';
+            main_content += '</div>';
+            main_content += '<div class="middle_div">';
+			main_content += '<h1>Thousand</h1>';
+            main_content += '<h1>Tens</h1>';
+            main_content += '<h1>Ones</h1>';
+            main_content += '</div>';
+            main_content += '</div>';
+            main_content += '<div class="objects">';
+            main_content += '<div class="object1 object1_ob1 draggable"></div>';
+            main_content += '<div class="object1 object1_ob2 draggable"></div>';
+            main_content += '<div class="object1 object1_ob3 draggable"></div>';
+            main_content += '<div class="object1 object1_ob4 draggable"></div>';
+            main_content += '<div class="object1 object1_ob5 draggable"></div>';
+            main_content += '<div class="object1 object1_ob6 draggable"></div>';
+            main_content += '<div class="object1 object1_ob7 draggable"></div>';
+            main_content += '<div class="object1 object1_ob8 draggable"></div>';
+            main_content += '<div class="object1 object1_ob9 draggable"></div>';
+            main_content += '<div class="object1 object1_ob10 draggable"></div>';
+            main_content += '</div>';
+			main_content += '<div id="submit">';
+			main_content += '<span>Submit</span>';
+			main_content += '</div>';
+			main_content += '<div id="point-container">';
+            main_content += '<div class="point-1"></div>';
+            main_content += '<div class="point-2"></div>';
+            main_content += '<div class="point-3"></div>';
+            main_content += '<div class="point-4"></div>';
+            main_content += '<div class="point-5"></div>';
+            main_content += '<div class="point-6"></div>';
+            main_content += '<div class="point-7"></div>';
+            main_content += '<div class="point-8"></div>';
+            main_content += '<div class="point-9"></div>';
+            main_content += '<div class="point-10"></div>';
+            main_content += '</div>';
+
+            $("#content").html(main_content);
+            initialize();
+        }
+	
+	function createobjects(){
+			var main_content = "";
+            main_content += '<div class="object1 object1_ob1 draggable"></div>';
+            main_content += '<div class="object1 object1_ob2 draggable"></div>';
+            main_content += '<div class="object1 object1_ob3 draggable"></div>';
+            main_content += '<div class="object1 object1_ob4 draggable"></div>';
+            main_content += '<div class="object1 object1_ob5 draggable"></div>';
+            main_content += '<div class="object1 object1_ob6 draggable"></div>';
+            main_content += '<div class="object1 object1_ob7 draggable"></div>';
+            main_content += '<div class="object1 object1_ob8 draggable"></div>';
+            main_content += '<div class="object1 object1_ob9 draggable"></div>';
+            main_content += '<div class="object1 object1_ob10 draggable"></div>';
+			$(".objects").html(main_content);
+	}
+        function initialize() {
+            var sum4 = 0;
+            var sum5 = 0;
+			var sum6 = 0;
+            var randomally_number = 0;
+            randomally_number = Math.floor(Math.random() * 998) + 2;
+            document.getElementById("display_number_h1").innerHTML = randomally_number;
+            document.getElementById("bottom_div_h1").innerHTML = '0';
+			document.getElementById("bottom_div_h2").innerHTML = '0';
+			document.getElementById("bottom_div_h3").innerHTML = '0';
+
+            if (isMobile.any()) {
+              
+                var touch = false;
+                document.getElementById("wrapper").addEventListener("touchstart", function (event) {
+                    //alert('sairam');
+                    event.preventDefault();
+                    if (event.touches.length == 1) {
+                        touch = event.changedTouches[0];
+                        elem = document.elementFromPoint(touch.pageX, touch.pageY);
+                        if ($(elem).hasClass("draggable") && selectedObject == null) {
+                            masterSelectedObject = elem;
+                            selectedObjectWidth = $("#adroparea-" + $(elem).attr('id').split("-")[1]).width();
+                            selectedObjectHeight = $("#adroparea-" + $(elem).attr('id').split("-")[1]).height();
+                            selectedObjectOffsetLeft = $(elem).offset().left;
+                            selectedObjectOffsetTop = $(elem).offset().top;
+                            selectedObject = elem.cloneNode(true);
+                            $(this).append(selectedObject);
+                            $(selectedObject).removeClass('draggable').addClass('draggableinparent');
+                            $(selectedObject).css({
+                                position: 'absolute',
+                                left: touch.pageX - selectedObjectWidth / 2,
+                                top: touch.pageY - selectedObjectHeight / 2,
+                                width: selectedObjectWidth + "px",
+                                height: selectedObjectHeight + "px",
+                                zIndex: 1
+                            });
+                            selectedObjectWidth = $(selectedObject).width() / 2;
+                            selectedObjectHeight = $(selectedObject).height() / 2;
+                            selectedObjectOffsetLeft = $(selectedObject).offset().left;
+                            selectedObjectOffsetTop = $(selectedObject).offset().top;
+                            mouseDown = true;
+
+                        }
+                    }
+                }, false);
+                document.getElementById("wrapper").addEventListener("touchmove", function (event) {
+                    //alert('sairam');
+                    event.preventDefault();
+                    if (mouseDown) {
+                        touch = event.changedTouches[0];
+                        $(selectedObject).css({ left: (touch.pageX - selectedObjectWidth) + "px", top: (touch.pageY - selectedObjectHeight) + "px" });
+                    }
+                }, false);
+                document.getElementById("wrapper").addEventListener("touchend", function (event) {
+                    //alert('sairam');
+                    event.preventDefault();
+                    $(selectedObject).css('z-index', '-1');
+                    touch = event.changedTouches[0];
+                    elem = document.elementFromPoint(touch.pageX, touch.pageY);
+                    $(selectedObject).css('z-index', '0');
+                    if ($(elem).hasClass("droppable") && selectedObject != null) {
+                        //alert('sairam');
+                        if ($(selectedObject).attr('id').split("-")[1] == $(elem).attr('id').split("-")[1]) {
+                            var clone = selectedObject.cloneNode(true);
+                            $(clone).removeClass('draggable').addClass('dropped');
+                            $(clone).css('position', 'static');
+                            $(clone).css({
+                                position: 'static',
+                                left: '0%',
+                                top: '0%',
+                                width: '100%',
+                                height: '100%'
+                            });
+                            $(elem).append(clone);
+                            //$(elem).find('.sticker-label').removeClass('hide').addClass('show');
+                            $(selectedObject).remove();
+                            $(masterSelectedObject).parent().remove();
+
+                            if (isMobile.Android()) {
+                                Android.playIt('audios_correct');
+                            }
+                            else {
+                                $("#audio").attr('src', '../audios/audios_correct.mp3');
+                                $("#audio").load();
+                                $("#audio").get(0).play();
+                            }
+                        }
+                        else {
+                            if (isMobile.Android()) {
+                                Android.playIt('audios_incorrect');
+                            }
+                            else {
+                                $("#audio").attr('src', '../audios/audios_incorrect.mp3');
+                                $("#audio").load();
+                                $("#audio").get(0).play();
+                            }
+                            $(selectedObject).remove();
+
+                        }
+                        var sidebar_div_length = $('#sidebar > div').length;
+
+                        if (sidebar_div_length == 0) {
+                            if (isMobile.Android()) {
+                                Android.playIt('audios_excellent');
+                            }
+                            else {
+                                $("#audio").attr('src', '../audios/audios_excellent.mp3');
+                                $("#audio").load();
+                                $("#audio").get(0).play();
+                            }
+                            $("#gameover-wrapper").removeClass("hide").removeClass("show");
+                        }
+                    }
+                    else {
+                        $(selectedObject).remove();
+                    }
+                    mouseDown = false;
+                    selectedObject = null;
+                }, false);
+            } else {
+			
+				
+					
+             document.getElementById("wrapper").addEventListener("mousedown", function (event) {					
+			 		if($('.objects > div').length==1){
+						createobjects();
+					}
+                    //alert('sairam');
+                    event.preventDefault();
+                    elem = document.elementFromPoint(event.pageX, event.pageY);
+									
+				//if(flag==true){
+                    if ($(elem).hasClass("draggable")) {
+                        masterSelectedObject = elem;
+                        selectedObjectWidth = $(".objects .object1").width();
+						selectedObjectHeight = $(".objects .object1").height();
+						selectedObjectOffsetLeft = $(elem).offset().left;
+                        selectedObjectOffsetTop = $(elem).offset().top;
+                        selectedObject = elem.cloneNode(true);
+                        $(this).append(selectedObject);                       
+                        $(selectedObject).addClass('draggableinparent');
+                        $(selectedObject).css({
+                            position: 'absolute',
+                            left: event.pageX - selectedObjectWidth / 2,
+                            top: event.pageY - selectedObjectHeight / 2,
+                            width: selectedObjectWidth + "px",
+                            height: selectedObjectHeight + "px",
+                            zIndex: 1
+                        });
+                        selectedObjectWidth = $(selectedObject).width() / 2;
+                        selectedObjectHeight = $(selectedObject).height() / 2;
+                        selectedObjectOffsetLeft = $(selectedObject).offset().left;
+                        selectedObjectOffsetTop = $(selectedObject).offset().top;
+                        mouseDown = true;
+
+                    }
+						
+					
+				//}
+                }, false);
+                document.getElementById("wrapper").addEventListener("mousemove", function (event) {
+                    //alert('sairam');
+	                    event.preventDefault();
+	                    if (mouseDown) {
+						$('.screen').find('.stick').addClass('droppable');
+						$('.objects').addClass('droppable');
+						$('.objects').addClass('temp');
+                        $(selectedObject).css({ left: (event.pageX - selectedObjectWidth) + "px", top: (event.pageY - selectedObjectHeight) + "px" });
+						
+                    }
+                }, false);
+                document.getElementById("wrapper").addEventListener("mouseup", function (event) {
+					flag=false;
+                    event.preventDefault();
+                    $(selectedObject).css('z-index', '-1');
+                    elem = document.elementFromPoint(event.pageX, event.pageY);
+                    $(selectedObject).css('z-index', '0');
+
+					var temp_obj=".objects";
+					
+					/*if(temp_obj==".objects"){
+						
+						if($('.objects').hasClass("droppable")){
+							$(selectedObject).remove();
+							$('.objects').removeClass('droppable');	
+						}
+					}*/
+					//else{				
+					if ($(elem).hasClass("droppable")) {						
+                            var clone = selectedObject.cloneNode(true);
+                            //$(clone).removeClass('draggable').addClass('dropped');
+                           
+                            $(clone).css({'position':'absolute','left': '-10%','width':'120%','height':'10%','top': '0%'});  							if($(elem).hasClass("objects")){
+								
+							}
+							else{
+							$(elem).append(clone);	
+							}
+                            
+                            $(selectedObject).remove();
+							
+							if	($(elem).attr('id')=="stick_4") {
+							    inner_div_length = $('#stick_4 > div').length;
+																	
+                                $(clone).delay(150).animate({
+                                    top: (100 - (inner_div_length) * 10) + "%",
+                                }, 1000);
+                                sum4 = inner_div_length;
+								
+                            }
+                            if ($(elem).attr('id')=="stick_5") {
+                                inner_div_length = $('#stick_5 > div').length;
+								
+                                $(clone).delay(150).animate({
+                                    top: (100 - (inner_div_length) * 10) + "%",
+                                }, 1000);
+                                sum5 = inner_div_length;
+								
+                            }
+							if	($(elem).attr('id')=="stick_6") {
+							    inner_div_length = $('#stick_6 > div').length;
+																	
+                                $(clone).delay(150).animate({
+                                    top: (100 - (inner_div_length) * 10) + "%",
+                                }, 1000);
+                                sum6 = inner_div_length;
+								
+                            }
+                            document.getElementById("bottom_div_h1").innerHTML = sum4;
+							document.getElementById("bottom_div_h2").innerHTML = sum5;
+							document.getElementById("bottom_div_h3").innerHTML = sum6;
+							
+							
+							
+							
+							/*if (temp == randomally_number) {
+                                correct_answer_as();
+                            }*/
+                           
+                                $(masterSelectedObject).remove();
+                                if (isMobile.Android()) {
+                                    Android.playIt('audios_correct');
+                                }
+                                else {
+                           
+                                }
+								$('.screen').find('.droppable').removeClass('droppable');
+								$('.objects').removeClass('droppable');
+								//$('.screen').find('.draggable').removeClass('draggable');
+								if( $(".stick > div").is( ':last-child')) {
+									$('.draggableinparent').removeClass('draggable');
+									$('.stick > div:last-child').addClass('draggable');
+								} 
+								
+                            }
+							//}
+                            else {
+                                if (isMobile.Android()) {
+                                    Android.playIt('audios_incorrect');
+                                }
+                                else {
+                               
+                                }
+                                $(selectedObject).remove();
+                            }
+						//}////////////////////
+                            var sidebar_div_length = $('#sidebar > div').length;
+                            if (sidebar_div_length == 0) {
+                                if (isMobile.Android()) {
+                            Android.playIt('audios_excellent');
+                        }
+                        else {
+                                    //$("#audio").attr('src', '../audios/audios_excellent.mp3');
+                                    //$("#audio").load();
+                                    //$("#audio").get(0).play();
+                        }
+                                //$("#gameover-wrapper").removeClass("hide").removeClass("show");
+                    }
+                //}
+                else {
+                    $(selectedObject).remove();
+                }
+                    mouseDown = false;
+					checklength();
+                }, false);
+				
+        }
+
+function checklength(){
+	inner_div_length_1 = $('#stick_4 > div').length;
+	sum4=inner_div_length_1;
+	inner_div_length = $('#stick_5 > div').length;
+	sum5=inner_div_length;
+	inner_div_length_2 = $('#stick_6 > div').length;
+	sum6=inner_div_length_2;
+	document.getElementById("bottom_div_h1").innerHTML = sum4;
+	document.getElementById("bottom_div_h2").innerHTML = sum5;
+	document.getElementById("bottom_div_h3").innerHTML = sum6;
+}
+$('#submit').click(function(){	
+	var temp=""+sum4+""+sum6+""+ sum5;
+	ans_array.push(temp);
+	//alert(ans_array);
+	var ques_num=$('#display_number_h1').text();
+	ques_array.push(ques_num);
+	//alert(ques_array);
+	correct_answer_as();
+	counter++;
+	if(counter==10){
+		gamecomplete();
+	}
+})
+function randomnumber(){
+	sum4 = 0;
+    sum5 = 0;
+    randomally_number = 0;
+    randomally_number = Math.floor(Math.random() * 998) + 2;
+    document.getElementById("display_number_h1").innerHTML = randomally_number;
+    document.getElementById("bottom_div_h1").innerHTML = '0';
+	document.getElementById("bottom_div_h2").innerHTML = '0';
+	document.getElementById("bottom_div_h3").innerHTML = '0';
+}
+
+function gamecomplete(){
+	$('#content > div').hide();
+	for (var i = 0; i < ques_array.length; i++) {
+        $('#question').append('<button class="remove">' + ques_array[i] + '</button>');
+        $('#correct-answer').append('<button class="remove">' + ques_array[i] + '</button>');
+    	$('#your-answer').append('<button class="remove">' + ans_array[i] + '</button>');
+	}
+	$("#score-card").css('display', 'inline');
+}
+
+        function correct_answer_as() {
+            var corr_ans = document.createElement('div');
+            corr_ans.id = 'corr';
+            corr_ans.style.height = '20%';
+                corr_ans.style.width = '20%';
+                corr_ans.style.zIndex = '10';
+                corr_ans.style.position = 'absolute';
+                corr_ans.style.left = '35%';
+                corr_ans.style.top = '34%';
+                corr_ans.setAttribute('class', 'lightSpeedIn');
+                document.body.appendChild(corr_ans);				
+				var corr_imag = document.createElement('img');
+				var ans=""+sum4+""+sum6+""+ sum5;
+				var ques=$('#display_number_h1').text();
+				
+				
+				if (ans.trim() == ques.trim()) {
+					ques_counter++;
+            		corr_imag.setAttribute('src', 'images/correct.png');
+					$("#point-container :nth-child("+ques_counter+")").css('background', 'green');
+					var create_point = "";
+                	create_point += '<div class="point-true"/>';
+                	$("#points").append(create_point);
+        		}
+        		else {
+            		corr_imag.setAttribute('src', 'images/incorrect.png');
+					ques_counter++;
+					$("#point-container :nth-child("+ques_counter+")").css('background', 'red');
+					var create_point = "";
+                	create_point += '<div class="point-false"/>';
+                	$("#points").append(create_point);
+        		}
+         
+
+                if (navigator.userAgent.search("Firefox") >= 0) {
+                    corr_imag.style.height = '100%';
+                    corr_imag.style.width = '100%';
+                    corr_ans.appendChild(corr_imag);
+                    document.getElementById('corr').addEventListener('animationend', function () {
+                        document.body.removeChild(this);
+                        $("#corr").remove();
+						$('#stick_4 > div').remove();
+						$('#stick_5 > div').remove();
+						$('#stick_6 > div').remove();
+						$('.objects > div').remove();
+						createobjects();
+						randomnumber();
+						
+                    }, false);
+                }
+                else {
+                    corr_imag.style.height = '100%';
+                    corr_imag.style.width = '100%';
+                    corr_ans.appendChild(corr_imag);
+                    document.getElementById('corr').addEventListener('webkitAnimationEnd', function () {
+                        document.body.removeChild(this);
+                        $("#corr").remove();
+						$('#stick_4 > div').remove();
+						$('#stick_5 > div').remove();
+						$('#stick_6 > div').remove();
+						$('.objects > div').remove();
+						createobjects();
+						randomnumber();
+                    }, false);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

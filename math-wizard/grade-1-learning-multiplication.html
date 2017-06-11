@@ -1,0 +1,619 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery-ui-1.10.2.custom.js"></script>
+    <link href="style/common.css" rel="stylesheet" />
+    <script src="js/jquery.ui.touch-punch.js"></script>
+    <script type="text/javascript">
+        function selectnumber(sender, value) {
+            window.location = "multiplication.html?value=" + value;
+        }
+    </script>
+    <style type="text/css">
+     
+      body {
+    margin: 0;
+}
+
+#wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #97CAFF;
+    overflow:auto;
+}
+
+.h1 {
+    text-align: center;
+    box-shadow: 0px 0px 0px 1px black;
+    padding: 0;
+}
+
+
+.title {
+    height: auto;
+    width: 100%;
+    background-color: #3F2B71;
+    color: white;
+}
+
+.selection_wrapper {
+    height: auto;
+    width: 100%;
+}
+
+.select_number {
+    height: 65px;
+    width: 8.9%;
+    background-color: #CE4198;
+    line-height: 65px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 1%;
+    float: left;
+    cursor: pointer;
+    color: white;
+}
+
+.drop_wrapper {
+    height: 30px;
+    /*width: 78%;*/
+    width: 72%;
+    box-shadow: 0px 0px 0px 1px black;
+    position: relative;
+    margin: 1% 0 1% 1%;
+    background-color: #F41971;
+    float: left;
+}
+
+.drag_wrapper {
+    top: 1%;
+    margin-left: 5.5px;
+    height: 37px;
+    /*width: 44.5px;*/
+   width: 41.5px;
+    box-shadow: 0px 0px 0px 1px black;
+    float: left;
+}
+
+    .drag_wrapper:first-child {
+        background-color: #D1A265;
+    }
+
+    .drag_wrapper:nth-child(2) {
+        background-color: #E8BA54;
+    }
+
+    .drag_wrapper:nth-child(3) {
+        background-color: #AA8763;
+    }
+
+    .drag_wrapper:nth-child(4) {
+        background-color: #7D7345;
+    }
+
+    .drag_wrapper:nth-child(5) {
+        background-color: #ADACB7;
+    }
+
+    .drag_wrapper:nth-child(6) {
+        background-color: #E8BA54;
+    }
+
+    .drag_wrapper:nth-child(7) {
+        background-color: #D1A265;
+    }
+
+    .drag_wrapper:nth-child(8) {
+        background-color: #AA8763;
+    }
+
+    .drag_wrapper:nth-child(9) {
+        background-color: #7D7345;
+    }
+
+    .drag_wrapper:nth-child(10) {
+        background-color: #E8BA54;
+    }
+
+.side_wrapper {
+    height: 97%;
+    width: 49%;
+    margin: 0.5%;
+    float: left;
+    box-shadow: 0px 0px 0px 1px black;
+    background-color: #1AE8CF;
+}
+
+.draggable {
+    height: 40px;
+    width: auto;
+    top: 1%;
+    position: relative;
+    float: left;
+}
+
+.counting-wrapper {
+    float: right;
+    /*width: 20%;*/
+    width:25%;
+    height: 90%;
+    box-shadow: 0px 0px 0px 1px black;
+}
+
+.counting_wrapper_addition {
+    float: right;
+    width: 20%;
+    height: 90%;
+    /*box-shadow: 0px 0px 0px 1px black;*/
+}
+
+.concept_title {
+    height: 10%;
+    width: 100%;
+    box-shadow: 0px 0px 0px 1px black;
+    background-color: #FFAA01;
+}
+
+.h1_tag {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.h4_tag {
+    margin: 0.47em;
+    text-align: center;
+    border-bottom: 2px dotted black;
+    color: floralwhite;
+    background: crimson;
+   
+}
+.answer_get {
+ -webkit-animation:answer 800ms infinite;
+    -moz-animation:answer 800ms infinite;
+}
+#popup_wrapper {
+    position: fixed;
+    top: 0%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.48);
+}
+
+.show {
+    display: inline;
+}
+
+.hide {
+    display: none;
+}
+
+.addition_answer {
+    height: auto;
+    width: 100%;
+    position: relative;
+    border-top: 1px dotted black;
+    font-size: 20px;
+}
+
+.draggableinparent {
+    width: 100%;
+}
+
+.multiplication_answer {
+    font-size: 15px;
+    margin: 0.17em;
+}
+.addition_margin {
+    margin-left: 15px;
+}
+.groups_answer {
+        float:left;
+        margin-top:1%;
+        font-size:18px;
+        position:relative;
+        text-align:center;
+        
+}
+
+@-webkit-keyframes answer {
+    from {
+        font-size:20px;
+    }
+    to {
+        font-size:30px;
+    }
+}
+@-moz-keyframes answer {
+    from {
+        font-size:20px;
+    }
+    to {
+        font-size:30px;
+    }
+}
+@-webkit-keyframes fadeIn {
+   0% {
+    opacity: 0;
+  }
+    25% {
+    opacity:0.25;
+    }
+    50% {
+        opacity:0.50;
+    }
+    75% {
+    opacity:0.75;
+    }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+    25% {
+    opacity:0.25;
+    }
+    50% {
+        opacity:0.50;
+    }
+    75% {
+    opacity:0.75;
+    }
+  100% {
+    opacity: 1;
+  }
+}
+.fadeIn {
+  -webkit-animation: fadeIn 1000ms forwards;
+  -moz-animation: fadeIn 1000ms forwards;
+}
+@media screen and (max-width:1280px) {
+    .drop_wrapper {
+        width: 74%;
+    }
+
+    .drag_wrapper {
+       width: 40.3px;
+    }
+    .counting_wrapper {
+        width:24%;
+    }
+    .multiplication_answer {
+        margin: 0.30em;
+    }
+    .h4_tag {
+        border:none;
+    }
+}
+
+@media screen and (max-width:1200px) {
+    .drop_wrapper {
+        width: 73%;
+    }
+
+    .drag_wrapper {
+      width: 37px;
+    }
+
+    .h1_tag {
+        padding: 2% 0 2% 0;
+    }
+
+}
+
+@media screen and (max-width:1024px) {
+    .drop_wrapper {
+        width: 72%;
+    }
+
+    .drag_wrapper {
+        width: 30px;
+    }
+
+    .multiplication_answer {
+        font-size: 15px;
+        margin-top: 0.27em;
+    }
+}
+
+@media screen and (max-width:960px) {
+    .drop_wrapper {
+        width: 70%;
+    }
+
+    .drag_wrapper {
+        width: 25px;
+        height:25px;
+    }
+
+    .multiplication_answer {
+        font-size: 14px;
+        margin-top: 0.27em;
+    }
+}
+
+@media screen and (max-width:800px) {
+    .drop_wrapper {
+        width: 75%;
+    }
+
+    .counting-wrapper {
+        width: 23%;
+    }
+    .drag_wrapper {
+        width: 22px;
+    }
+
+   .multiplication_answer{
+        margin-left: 0;
+        margin-right: 0;
+        font-size: 13px!important;
+        word-break: break-all;
+        text-align: center;
+        margin-top: 0.57em!important;
+    }
+    .h4_tag {
+        font-size: 24px;
+        margin-top: 0.27em;
+    }
+    .addition_margin {
+        margin-left: 10px;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .drop_wrapper {
+        width: 70%;
+    }
+    .drag_wrapper {
+        width: 20px;
+        height: 23px;
+    }
+    .counting-wrapper {
+        width: 28%;
+    }
+    .counting_wrapper_addition {
+    width: 28%;
+    }
+    .h4_tag {
+        margin-left: 0;
+        margin-right: 0;
+        font-size: 20px;
+        word-break: break-all;
+        margin-top: 0.47em;
+        margin-bottom: 0.77em;
+    }
+    .multiplication_answer {
+        font-size: 12px!important;
+        margin-top: 0.57em!important;
+        margin-bottom: 0.57em!important;
+    }
+}
+
+@media screen and (max-width:720px) {
+    .side_wrapper {
+        width: 98%;
+        height: 85%;
+    }
+
+    .drag_wrapper {
+     width: 42.2px;
+       height: 34px;
+    }
+
+
+    .h4_tag {
+        margin-top: 0.27em;
+        margin-bottom: 0.57em;
+    }
+    .h1_tag {
+        padding: 0.6% 0 1% 0;
+    }
+    .multiplication_answer {
+        font-size: 15px!important;
+        margin-top: 0.27em!important;
+        margin-bottom: 0.27em!important;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width:685px) {
+    .drop_wrapper {
+        width: 78%;
+    }
+
+    .drag_wrapper {
+        width: 45.2px;
+    }
+
+    .counting-wrapper {
+        width: 20%;
+    }
+    .counting_wrapper_addition {
+        width: 20%;
+    }
+}
+
+@media screen and (max-width:640px) {
+    .drop_wrapper {
+        width: 78%;
+    }
+
+    .drag_wrapper {
+        width: 40px;
+    }
+
+    .counting-wrapper {
+        width: 20%;
+    }
+    .counting_wrapper_addition {
+       width: 20%;
+    }
+    .h1_tag {
+        padding: 1.5% 0 1% 0;
+    }
+}
+
+@media screen and (max-width:568px) {
+    .drag_wrapper {
+      width: 36px;
+    }
+    .h4_tag {
+        font-size: 21px;
+    }
+    .h1_tag {
+        padding: 0.5% 0 1% 0;
+    }
+}
+
+@media screen and (max-width:480px) {
+    .drag_wrapper {
+        width: 29.5px;
+    }
+    .h4_tag {
+        font-size: 17px;
+        margin-top: 0.57em;
+        margin-bottom: 0.97em;
+    }
+    .multiplication_answer {
+    font-size: 14px!important;
+    }
+}
+
+@media screen and (max-width:380px) {
+    .drag_wrapper {
+        width: 21.5px;
+        height: 21.5px;
+    }
+    .draggable {
+        height: 28px;
+    }
+    .h4_tag {
+        font-size: 13px;
+        margin-top: 0.47em;
+        margin-bottom: 0.77em;
+    }
+    .select_number {
+     margin-top:1%;
+        width: 18.8%;
+    }
+    .multiplication_answer {
+        font-size: 10px!important;
+    }
+    .side_wrapper {
+        width: 98%;
+        height: 63%;
+    }
+    .h1_tag {
+        padding: 1%;
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width:320px) {
+    .concept_title {
+        height: 5%;
+    }
+
+    .counting-wrapper {
+        height: 100%;
+    }
+
+    .drop_wrapper {
+    height: 20px;
+    }
+    .h1_tag {
+        font-size: 10px;
+        padding: 0;
+        text-align: center;
+        font-weight:normal;
+    }
+    .counting_wrapper_addition {
+        width: 20%;
+        height:94%;
+    }
+
+    .h4_tag {
+        font-size: 11px;
+        margin-top: 0.57em;
+        margin-bottom: 0.87em;
+    }
+
+    .side_wrapper {
+        height: 55%;
+    }
+
+    .select_number {
+        margin-top: 1%;
+        width: 18.9%;
+    }
+
+    .drag_wrapper {
+      width: 17px;
+        height: 17px;
+    }
+
+    .draggable {
+        height: 25px;
+    }
+    .select_number {
+        margin-top: 1%;
+        width: 47.8%;
+        height: 82px;
+        line-height: 85px;
+    }
+    .multiplication_answer {
+        font-size: 8px!important;
+    }
+    @-webkit-keyframes answer {
+    from {
+        font-size:8px;
+    }
+    to {
+        font-size:10px;
+    }
+}
+@-moz-keyframes answer {
+    from {
+        font-size:8px;
+    }
+    to {
+        font-size:10px;
+    }
+}
+}
+ 
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <div class="title">
+            <h1 class="h1">Select Your Number</h1>
+        </div>
+        <div class="selection_wrapper">
+          <div class="select_number" onclick="selectnumber(this,1)">1</div>
+             <div class="select_number" onclick="selectnumber(this,2)">2</div>
+             <div class="select_number" onclick="selectnumber(this,3)">3</div>
+             <div class="select_number" onclick="selectnumber(this,4)">4</div>
+             <div class="select_number" onclick="selectnumber(this,5)">5</div>
+             <div class="select_number" onclick="selectnumber(this,6)">6</div>
+            <div class="select_number" onclick="selectnumber(this,7)">7</div>
+             <div class="select_number" onclick="selectnumber(this,8)">8</div>
+            <div class="select_number" onclick="selectnumber(this,9)">9</div>
+             <div class="select_number" onclick="selectnumber(this,10)">10</div>
+        </div>
+    </div>
+</body>
+</html>
+

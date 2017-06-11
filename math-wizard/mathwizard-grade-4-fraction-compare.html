@@ -1,0 +1,720 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title> Math Wizard-grade-4-fraction-compare - Online math practice, math games and interactive math </title>
+
+    <meta name="description" content="Math Wizard-grade-4-fraction-compare is one of the most interactive math practice apps. 
+Math wizard is completely free online for studnets, teachers and schools.
+Math wizard provides unlimited math practice to kids.
+Math wizard provides a simple , intuitive learning system for kids with games , interactive actvities , making learning fun!
+" />
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery-ui-1.10.2.custom.js"></script>
+     <link href="style/common.css" rel="stylesheet" />
+    <script src="js/jquery.ui.touch-punch.js"></script>
+    <script src="js/raphael.js"></script>
+    <style type="text/css">
+        /*@font-face {
+            font-family: score-digit-font;
+            src: url('../font/PatuaOne-Regular.ttf');
+        }*/
+
+        body {
+            overflow: hidden;
+            padding: 0px;
+            margin: 0px;
+            position:absolute;
+            height:100%;
+            width:100%;
+        }
+
+        svg {
+            height: 100% !important;
+            width: 100% !important;
+            z-index:1;
+        }
+
+        span {
+            font-family: score-digit-font;
+            font-size: 25px;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+            font-size: 20px;
+        }
+
+        #a_0 {
+           background-color:#ff6a00;
+           border-radius:8px;
+        }
+            #a_0:hover {
+                 /*-webkit-transform: scale(1.2);
+                    -moz-transform: scale(1.2);*/
+                     /*background-color:#00C3F7;*/
+            }
+
+        #a_1 {
+             background-color:#ff6a00;
+              border-radius:8px;
+        }
+
+            #a_1:hover {
+                 /*-webkit-transform: scale(1.2);
+                    -moz-transform: scale(1.2);*/
+                     /*background-color:#00C3F7;*/
+            }
+        /*#main_container {
+            position: absolute;
+            float:left;
+            top: 0%;
+            height: 100%;
+            width: 100%;
+           
+        }*/
+        #object_0 {
+            /*background-image: url('images/woodentexture_768x1024.png');*/
+            background-position: center;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            z-index:5;
+        }
+        
+         @-webkit-keyframes lightSpeedIn {
+            0% {
+                -webkit-transform: translateX(100%) skewX(-30deg);
+                opacity: 0;
+            }
+
+            60% {
+                -webkit-transform: translateX(-20%) skewX(30deg);
+                opacity: 1;
+            }
+
+            80% {
+                -webkit-transform: translateX(0%) skewX(-15deg);
+                opacity: 1;
+            }
+
+            100% {
+                -webkit-transform: translateX(0%) skewX(0deg);
+                opacity: 1;
+            }
+        }
+
+        @-moz-keyframes lightSpeedIn {
+            0% {
+                -moz-transform: translateX(100%) skewX(-30deg);
+                opacity: 0;
+            }
+
+            60% {
+                -moz-transform: translateX(-20%) skewX(30deg);
+                opacity: 1;
+            }
+
+            80% {
+                -moz-transform: translateX(0%) skewX(-15deg);
+                opacity: 1;
+            }
+
+            100% {
+                -moz-transform: translateX(0%) skewX(0deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes lightSpeedIn {
+            0% {
+                transform: translateX(100%) skewX(-30deg);
+                opacity: 0;
+            }
+
+            60% {
+                transform: translateX(-20%) skewX(30deg);
+                opacity: 1;
+            }
+
+            80% {
+                transform: translateX(0%) skewX(-15deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(0%) skewX(0deg);
+                opacity: 1;
+            }
+        }
+
+        .lightSpeedIn {
+            -webkit-animation: lightSpeedIn 2s ease-out;
+            -moz-animation: lightSpeedIn 2s ease-out;
+            animation: lightSpeedIn 2s ease-out;
+        }
+    </style>
+</head>
+<body>
+   
+    
+      <div id="point-container" style="position:relative;height:100%;width:100%;background-color:red;">
+                <div class="point-1"></div>
+                <div class="point-2"></div>
+                <div class="point-3"></div>
+                <div class="point-4"></div>
+                <div class="point-5"></div>
+                <div class="point-6"></div>
+                <div class="point-7"></div>
+                <div class="point-8"></div>
+                <div class="point-9"></div>
+                <div class="point-10"></div>
+                </div>
+
+    <!-- <div id="wraper">
+          <div id="header">
+            <a href="index.html">
+                <button id="mathwizard">MathWizardApps.com</button>
+            </a>
+            <a href="mathwizard-grade-2-topic.html">
+                <button class="sitemap">&nbsp; >  &nbsp;Grade-K</button>
+            </a>
+            <a href="mathwizard-grade-k-dissimilar.html">
+                <button class="sitemap">&nbsp; >  &nbsp;Dissimilar Object</button>
+            </a>
+             <button id="header-desc">Math Activities and Games for Kids</button>
+        </div>
+        <div id="content" class="green">
+     <button style="position: absolute; top: 9%; left: 45%; font-size: 20px; color: white; background-color: transparent; border: none; z-index: 1;">
+           Click on the right answer
+        </button>
+            </div>
+          <div id="footer">&copy;MathWizardApps.com</div>
+         </div>-->
+    </body>
+    <script type="text/javascript">
+
+        var answer = "";
+        var button = "";
+        var answerdiv = "";
+        var answer_div_id;
+        var fractionid;
+        var dynamicnumberofquestions = 1;
+        var numerator;
+        var denomerator;
+        var paths = new Array();
+        var total;
+        var start;
+        var numerator;
+        var denomerator;
+        var numerator2;
+        var denomerator2;
+        var question_list_time = new Array();
+        var question_list = new Array();
+        var user_answer = new Array();
+        var correct_answer = new Array();
+        var answer_div_id;
+        var answer_list = new Array();
+        var totalquestions = 10;
+        var currentquestion = 1;
+        var correctattempts = 0;
+
+        window.onload = function () {
+            initialize();
+            gametimer();
+            fractionplay();
+        }
+
+        function initialize() {
+            var answer = "";
+            var button = "";
+            var answerdiv = "";
+            var answer_div_id;
+            var fractionid;
+            var dynamicnumberofquestions = 1;
+            var numerator;
+            var denomerator;
+            var paths = new Array();
+            var total;
+            var start;
+            var currentquestion = 1;
+            var question_list = new Array();
+            var answer_list = new Array();
+            //var fractionaudio;
+        }
+
+        var flag_animation = true;
+
+        function fractionplay() {
+            var answer = "";
+            var button = "";
+            var answerdiv = "";
+            var answer_div_id;
+            var fractionid;
+            var dynamicnumberofquestions = 1;
+            var ques_text;
+            var paths = new Array();
+            var total;
+            var start;
+            var currentquestion = 1;
+            var question_list = new Array();
+            var answer_list = new Array();
+
+            //fractionaudio = document.getElementById("fractionaudio");
+            //alert(fractionaudio);
+            //fractionaudio.src = "audio/WhipCrackBegin.mp3";
+            //fractionaudio.play();
+            //setTimeout("fractionaudio.play();", 1000);
+
+
+
+            button += '<div id="remove" class="delete_temp" style="position:absolute;height:7%;line-height:2;width:20%;right:1%;top:1%;background: -webkit-linear-gradient(top, rgba(212,212,212,1) 0%,rgba(190,190,190,1) 100%);color:black;text-align:center;position:absolute;">Remove </div>';
+            answerdiv += '<div id="answerdiv" class="delete_temp" style="height:10%;width:90%;left:20%;top:10%;color:black;text-align:center;position:absolute;z-index:2;"/>';
+
+            document.getElementsByTagName("body")[0].innerHTML = button;
+            document.getElementsByTagName("body")[0].innerHTML = answerdiv;
+
+
+            for (var k = 0; k <= dynamicnumberofquestions - 1; k++) {
+                numerator = Math.floor(Math.random() * 4 + 3);
+                denomerator = Math.floor(Math.random() * 10 + 5);
+
+                var sum = numerator + denomerator;
+
+                question_list.push(numerator + " / " + denomerator);
+                currentquestion++;
+
+                var html = "";
+                html += '<div id="wraper">';
+                html += '<div id="header">';
+                html += '   <a href="mathwizard-grade-4-topic.html">';
+                html += '  <button class="sitemap">  &nbsp; Grade-4</button>';
+                html += '</a>';
+                html += ' <a href="mathwizard-grade-4-fraction-compare.html">';
+                html+=' <button class="sitemap"> &nbsp; > &nbsp; Fraction Comparision</button>';
+                html += '  </a>';
+                html += '</div>';
+                html += '<div id="content">';
+
+                html += '</div>';
+                html += '<div id="footer">';
+                html+=' <a href="index.html">&copy;MathWizardApps.com</a>';
+                html+=' <a href="sitemap.html"><button id="sitemap-div">Sitemap</button></a>';
+                html += ' <button id="header-desc">Math Activities and Games for Kids</button></div>';
+                html+=' </div>';
+                html += '</div>';
+                html += '<div id="holder_' + sum + '" class="holder" style="height:65%;width:35%;left:56%;top:27%;position:relative;"/>';
+                var dynamicactivity = document.createElement("div");
+                dynamicactivity.setAttribute("id", "object_" + k);
+                dynamicactivity.setAttribute("class", "dynamicactivity");
+                dynamicactivity.setAttribute("style", "background-color:white;background-repeat: no-repeat;z-index:1;background-position:center; position: absolute;float:left; height: 100%;float:left; width: 100%; outline:none;border:none;");
+                document.getElementsByTagName("body")[0].appendChild(dynamicactivity);
+                dynamicactivity.innerHTML = html;
+                //$(document).ready(function () {
+                //$("#button").click(function () {
+                //$('body').empty();
+                var data = new Array();
+                for (var p = 0; p < denomerator; p++) {
+                    data[p] = 1;
+                }
+                //alert("numerator==" + numerator + "denomerator==" + denomerator);
+                var r = Raphael("holder_" + sum);
+                r.customAttributes.segment = function (x, y, r, a1, a2, color) {
+                    //alert('sairam1');
+
+                    var flag = (a2 - a1) > 180,
+                        clr = (a2 - a1) / 360;
+                    a1 = (a1 % 360) * (Math.PI / 180);
+                    a2 = (a2 % 360) * (Math.PI / 180);
+
+                    return {
+                        path: [["M", x, y], ["l", r * Math.cos(a1), r * Math.sin(a1)], ["A", r, r, 0, +flag, 1, x + r * Math.cos(a2), y + r * Math.sin(a2)], ["z"]],
+                        fill: color
+                    };
+                };
+
+                function animate(ms) {
+                    var start = 0,
+                        val;
+
+                    for (i = 0; i < ii; i++) {
+                        val = 360 / total * data[i];
+                        if (i < numerator) {
+                            //paths[i].animate({ segment: [160, 170, 120, start, start += val, "gray"], }, ms || 700, "bounce");
+                            paths[i].animate({ segment: [window.innerWidth / 6, window.innerWidth / 6, window.innerWidth / 8, start, start += val, "gray"], }, ms || 700, "bounce");
+                        }
+                        else {
+                            //paths[i].animate({ segment: [160, 170, 120, start, start += val, ""] }, ms || 0, "bounce");
+                            paths[i].animate({ segment: [window.innerWidth / 6, window.innerWidth / 6, window.innerWidth / 8, start, start += val, "rgba(50,100,200,0.6)"] }, ms || 700, "bounce");
+                        }
+                        paths[i].angle = start - val / 2;
+
+                    }
+
+                }
+
+                paths = r.set();
+
+                bg = r.circle(window.innerWidth / 6, window.innerWidth / 6, 0).attr({ fill: "rgba(50,100,200,0.6)" });
+
+
+
+                data = data.sort(function (a, b) { return b - a; });
+                total = 0;
+                for (var i = 0, ii = data.length; i < ii; i++) {
+                    total += data[i];
+                }
+                start = 0;
+                for (i = 0; i < ii; i++) {
+                    var val = 360 / total * data[i];
+                    (function (i, val) {
+                        paths.push(r.path().attr({ segment: [110, 110, 2, start, start + val, "red"], stroke: "#080808", "stroke-width": 2 }).click(function () {
+                            total += data[i];
+                            data[i] *= 2;
+                            //animate();
+                        }));
+                    })(i, val);
+                    start += val;
+                }
+                bg.animate({ r: window.innerWidth / window.innerWidth }, 600);
+                animate(00);
+                //});
+
+
+            }
+            onresize = function (ms) {
+                animate(ms);
+            }
+            fractionplay_2()
+        }
+
+        //fracitonplay_2 created
+
+        function fractionplay_2() {
+            var answer = "";
+            var button = "";
+            var answerdiv = "";
+            var answer_div_id;
+            var fractionid;
+            var dynamicnumberofquestions = 1;
+
+            var paths = new Array();
+            var total;
+            var start;
+
+            for (var k = 0; k <= dynamicnumberofquestions - 1; k++) {
+                numerator2 = Math.floor(Math.random() * 4 + 1);
+                denomerator2 = Math.floor(Math.random() * 8 + 3);
+
+                var sum = numerator2 + denomerator2;
+
+                var html = "";
+                html += '<div id="holder2_' + sum + '" style="height:90%;width:90%;float:left;left:6%;top:21%;position:relative;z-index:5"/>';
+                var dynamicactivity = document.createElement("div");
+                dynamicactivity.setAttribute("id", "object1_" + k);
+                dynamicactivity.setAttribute("class", "dynamicactivity");
+                dynamicactivity.setAttribute("style", "background-color:white;background-repeat: no-repeat;background-position:center; position: absolute;float:left;top: 10%; height: 80%;float:left;left:10%; width: 40%; outline:none;border:none;");
+                document.getElementsByTagName("body")[0].appendChild(dynamicactivity);
+                dynamicactivity.innerHTML = html;
+                //$(document).ready(function () {
+                //$("#button").click(function () {
+                //$('body').empty();
+                var data = new Array();
+                for (var p = 0; p < denomerator2; p++) {
+                    data[p] = 1;
+                }
+                //alert("numerator==" + numerator + "denomerator==" + denomerator);
+                var r = Raphael("holder2_" + sum);
+                r.customAttributes.segment = function (x, y, r, a1, a2, color) {
+                    //alert('sairam1');
+
+                    var flag = (a2 - a1) > 180,
+                        clr = (a2 - a1) / 360;
+                    a1 = (a1 % 360) * (Math.PI / 180);
+                    a2 = (a2 % 360) * (Math.PI / 180);
+
+                    return {
+                        path: [["M", x, y], ["l", r * Math.cos(a1), r * Math.sin(a1)], ["A", r, r, 0, +flag, 1, x + r * Math.cos(a2), y + r * Math.sin(a2)], ["z"]],
+                        fill: color
+                    };
+                };
+
+                function animate(ms) {
+
+                    var start = 0,
+                        val;
+
+                    for (i = 0; i < ii; i++) {
+                        val = 360 / total * data[i];
+                        if (i < numerator2) {
+                            //paths[i].animate({ segment: [160, 170, 120, start, start += val, "gray"], }, ms || 700, "bounce");
+                            paths[i].animate({ segment: [window.innerWidth / 6, window.innerWidth / 6, window.innerWidth / 8, start, start += val, "gray"], }, ms || 700, "bounce");
+                        }
+                        else {
+                            //paths[i].animate({ segment: [160, 170, 120, start, start += val, ""] }, ms || 0, "bounce");
+                            paths[i].animate({ segment: [window.innerWidth / 6, window.innerWidth / 6, window.innerWidth / 8, start, start += val, "rgba(50,100,200,0.6)"] }, ms || 700, "bounce");
+                        }
+                        paths[i].angle = start - val / 2;
+
+                    }
+
+                }
+                paths = r.set();
+                bg = r.circle(window.innerWidth / 6, window.innerWidth / 6, 0).attr({ fill: "rgba(50,100,200,0.6)" });
+                data = data.sort(function (a, b) { return b - a; });
+                total = 0;
+                for (var i = 0, ii = data.length; i < ii; i++) {
+                    total += data[i];
+                }
+                start = 0;
+                for (i = 0; i < ii; i++) {
+                    var val = 360 / total * data[i];
+                    (function (i, val) {
+                        paths.push(r.path().attr({ segment: [110, 110, 2, start, start + val, "red"], stroke: "#080808", "stroke-width": 2 }).click(function () {
+                            total += data[i];
+                            data[i] *= 2;
+                            //animate();
+                        }));
+                    })(i, val);
+                    start += val;
+                }
+                bg.animate({ r: window.innerWidth / window.innerWidth }, 600);
+                animate(00);
+
+            }
+            onresize = function (ms) {
+                animate(ms);
+            }
+            answerdisplay()
+        }
+        var k = 0;
+        var selectanswer;
+        var select_numerator;
+        var select_denometor;
+        function answerdisplay() {
+            //var ki = Math.floor(Math.random() * 4 + 1);
+            //var ku = Math.floor(Math.random() * 10 + 5);
+            //var karray = [];
+           
+            answer = "";
+            selectanswer = Math.floor(Math.random() * 2);
+            if (selectanswer == 0) {
+                select_numerator = numerator;
+                select_denometor = denomerator;
+            } else {
+                select_numerator = numerator2;
+                select_denometor = denomerator2;
+            }
+            //for (var k = 0; k < 2; k++) {
+            //karray[k] = k;
+            answer += '<button class="delete_temp" style="position:absolute;height:100%;width:26%;z-index:1; background-color:transparent;border:none;font-size:20px;float:left;left:0%;color:black;">Select the fraction</button>';
+            answer += '<div id="a_' + k + '" class="delete_temp" style="height:100%;width:10%;backgroundcolor:black;top:1%;color:black;position:relative;float:right;right:64%"><span style="font-size:20px;height:9%;width:20%;float:left;width:100%;position:relative;">' + select_numerator + '</span> <span style="font-size:20px;height:40%;width:20%;float:left;width:100%;position:relative;"> _ </span> <span style="font-size:20px;height:40%;width:33%;float:left;width:100%;position:relative;">' + select_denometor + '</span> </div>';
+            answer += '<div style="height:100%;width:10%;position:relative;float:left;color:white;"></div>';
+            //answer += '<div style="height:100%;width:11%;backgroundcolor:black;top:1%;color:black;background-color:orange;position:relative;float:left;"><span style="font-size:20px;height:9%;width:20%;float:left;width:100%;position:relative;">' + ki + '</span> <span style="font-size:20px;height:40%;width:20%;float:left;width:100%;position:relative;"> _ </span> <span style="font-size:20px;height:40%;width:33%;float:left;width:100%;position:relative;">' + ku + '</span> </div>';
+            //answer += '<div style="height:100%;width:2%;position:relative;float:left;"></div>';
+            document.getElementById('answerdiv').innerHTML = answer;
+            $('.holder').click(function (event, ui) {
+                top_ans_id = $(this).attr('id');
+                answer_div_id = $(this).attr('id');
+                if (answer_div_id.split('_')[1] == (select_denometor + select_numerator)) {
+                    
+                    correct_answer_as();
+                    answer_list[currentquestion - 1] = "correct";
+                } else {
+                    correct_answer_as();
+                    answer_list[currentquestion - 1] = "incorrect";
+                }
+            });
+            $('#object1_0').click(function (event, ui) {
+                top_ans_id = $(this).attr('id');
+                answer_div_id = $(this).children().attr('id');
+               
+                //alert(answer_div_id.split('_')[1] + "selected===" + (select_denometor + select_numerator));
+                if (answer_div_id.split('_')[1] == (select_denometor + select_numerator)) {
+                    correct_answer_as();
+                    answer_list[currentquestion - 1] = "correct";
+                } else {
+                    correct_answer_as();
+                    answer_list[currentquestion - 1] = "incorrect";
+                }
+            });
+            //var functionName = "questionComplete";
+            //var args = new Array();
+            //args[0] = "Question : " + question_list[currentquestion - 2];
+            ////args[1] = "UserAnswer : " + ui.draggable.text().trim();
+            ////args[2] = "CorrectAnswer : " + answer;
+            //args[1] = "Status : " + answer_list[currentquestion - 1];
+            //var iframe = document.createElement("IFRAME");
+            //iframe.setAttribute("src", "js-frame:" + functionName + ":" + encodeURIComponent(JSON.stringify(args)));
+            //document.documentElement.appendChild(iframe);
+            //iframe.parentNode.removeChild(iframe);
+            //iframe = null;
+        }
+
+
+
+        function correct_answer_as() {
+            var corr_ans = document.createElement('div');
+            corr_ans.id = 'corr';
+            corr_ans.style.height = '20%';
+            corr_ans.style.width = '20%';
+            corr_ans.style.zIndex = '10';
+            corr_ans.style.position = 'absolute';
+            corr_ans.style.left = '35%';
+            corr_ans.style.top = '34%';
+            corr_ans.setAttribute('class', ' lightSpeedIn');
+            document.body.appendChild(corr_ans);
+            var corr_imag = document.createElement('img');
+
+            if (answer_div_id.split('_')[1] == (select_denometor + select_numerator)) {
+                corr_imag.setAttribute('src', 'images/correct.png');
+
+            }
+            else {
+                corr_imag.setAttribute('src', 'images/incorrect.png');
+               
+            }
+            corr_imag.style.height = '100%';
+            corr_imag.style.width = '100%';
+            corr_ans.appendChild(corr_imag);
+            if (navigator.userAgent.search("Firefox") >= 0) {
+
+                document.getElementById('corr').addEventListener('animationend', function () {
+                    document.body.removeChild(this);
+                    //source.innerHTML = "";
+                    //target.value = "";
+                    //attempt();
+                    //keyboard.style.visibility = "visible";
+                    //$("#corr").remove();
+                    //$("#source > div").remove();
+                    flag_animation = true;
+                    userAnswer();
+                    fractionplay();
+                }, false);
+            } else {
+                document.getElementById('corr').addEventListener('webkitAnimationEnd', function () {
+                    document.body.removeChild(this);
+                    //operatorone.innerHTML = "";
+                    //operatortwo.innerHTML = "";
+                    flag_animation = true;
+                    userAnswer();
+                    fractionplay();
+                }, false);
+            }
+        }
+
+        function userAnswer() {
+            //switch (what) {
+            //    case "correct":
+            //        answer_list[currentquestion - 1] = "correct";
+            //        correctattempts++;
+            //        //$("#question-dots").find(".dot").eq(currentquestion - 1).removeClass("active-dot");
+            //        //$("#question-dots").find(".dot").eq(currentquestion - 1).addClass("correct-dot");
+            //        //stopAllAudio();
+            //        //$("#correct").get(0).play();
+            //        break;
+            //    case "incorrect":
+            //        answer_list[currentquestion - 1] = "incorrect";
+            //        //$("#question-dots").find(".dot").eq(currentquestion - 1).removeClass("active-dot");
+            //        //$("#question-dots").find(".dot").eq(currentquestion - 1).addClass("incorrect-dot");
+            //        //stopAllAudio();
+            //        //$("#incorrect").get(0).play();
+            //        break;
+            //}
+          
+            if (currentquestion == totalquestions) {
+                gamestart = false;
+                clearTimeout(timer);
+                alert("game over");
+
+                //$("#score-card-time").text($("#time-holder").text());
+                var html = '';
+                var correct = 0;
+                for (var i = 0; i < question_list.length; i++) {
+                    //html += '<button class="score-card-question">' + question_list[i] + '</button>';
+                    //if (answer_list[i] == "correct") {
+                    //    html += '<button class="score-card-answer score-card-answer-correct"></button>';
+                    //    correct++;
+                    //}
+                    //else {
+                    //    html += '<button class="score-card-answer score-card-answer-incorrect"></button>';
+                    //}
+
+                    //var temphtml = '';
+                    $('#question').append('<button class="remove">' + question_list[i] + '</button>');
+                    $('#correct-answer').append('<button class="remove">' + correct_answer[i] + '</button>');
+                    $('#your-answer').append('<button class="remove">' + user_answer[i] + '</button>');
+                    hour = parseInt(question_list_time[i] / 3600);
+                    minute = parseInt((question_list_time[i] % 3600) / 60);
+                    second = parseInt((question_list_time[i] % 3600) % 60);
+                    temphtml = "";
+                    var h = hour.toString();
+                    var m = minute.toString();
+                    var s = second.toString();
+                    if (h.length == 1)
+                        temphtml += "";
+                    else
+                        temphtml += h;
+                    if (m.length == 1)
+                        temphtml += 0 + "" + m;
+                    else
+                        temphtml += m;
+                    temphtml += " : ";
+                    if (s.length == 1)
+                        temphtml += 0 + "" + s;
+                    else
+                        temphtml += s;
+                    //html += '<button class="score-card-question-time">' + temphtml + '</button>';
+                }
+                //$("#score-card-question-holder").html(html);
+                $("#score-card").css('display', 'inline');
+
+            }
+            else {
+                currentquestion++;
+            }
+        }
+
+        var milisecond = 0;
+        function gametimer() {
+            var html = "";
+            question_list_time[currentquestion - 2]++;
+            milisecond++;
+            hour = parseInt(milisecond / 3600);
+            minute = parseInt((milisecond % 3600) / 60);
+            second = parseInt((milisecond % 3600) % 60);
+            html = "";
+            var h = hour.toString();
+            var m = minute.toString();
+            var s = second.toString();
+            if (h.length == 1)
+                html += "";
+            else
+                html += h;
+            if (m.length == 1)
+                html += 0 + "" + m;
+            else
+                html += m;
+            html += " : ";
+            if (s.length == 1)
+                html += 0 + "" + s;
+            else
+                html += s;
+            //$("#time-holder").html(html);
+            timer = setTimeout('gametimer();', 1000);
+        }
+
+        function remove_score_div() {
+            $(".remove").remove();
+            question_list.length = 0;
+            correct_answer.length = 0;
+            user_answer.length = 0;
+            currentquestion = 1;
+            $("#score-card").css('display', 'none');
+            $(".point-false").remove();
+            $(".point-true").remove();
+        }
+ 
+    </script>
+
+   <!-- <div id="main_container" style="background-color: brown;">
+    </div>-->
+
+  <!--  <audio id="fractionaudio" src="audio/WhipCrackBegin.mp3" style="display: none">
+    </audio>-->
+</html>

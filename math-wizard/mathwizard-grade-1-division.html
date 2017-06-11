@@ -1,0 +1,782 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title> Math Wizard-grade-1-division - Online math practice, math games and interactive math </title>
+
+    <meta name="description" content="Math Wizard-grade-1-division is one of the most interactive math practice apps. 
+Math wizard is completely free online for studnets, teachers and schools.
+Math wizard provides unlimited math practice to kids.
+Math wizard provides a simple , intuitive learning system for kids with games , interactive actvities , making learning fun!
+" />
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery-ui-1.10.2.custom.js"></script>
+     <link href="style/common.css" rel="stylesheet" />
+    <script src="js/jquery.ui.touch-punch.js"></script>
+
+    <style type="text/css">
+
+         body {
+            margin: 0px;
+            padding: 0px;
+            overflow: hidden;
+        }
+
+		#point-container {
+   	 		background-color:#78a411!important;
+		}
+        #play_screen_substracion {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+         
+        }
+
+
+        #navigationbar {
+            height: 100%;
+            width: 100%;
+        }
+
+        #main_div {
+           
+            width: 100%;
+            height:100%;
+         
+        }
+
+        #answerdisplay {
+            margin-top: 1%;
+            margin-left: 5%;
+            float: left;
+            width: 8%;
+            height: 80%;
+            box-shadow: 0px 0px 5px 0px black;
+            text-align: center;
+            font-size: 69px;
+            border-radius: 3px;
+            color: black;
+            background: -webkit-linear-gradient(top, #ff670f 0%,#ff670f 100%);
+        }
+
+        #answerdisplay2 {
+            margin-top: 1%;
+            margin-left: 11%;
+            float: left;
+            width: 8%;
+            height: 80%;
+            box-shadow: 0px 0px 5px 0px black;
+            text-align: center;
+            font-size: 69px;
+            border-radius: 3px;
+            color: black;
+            background: -webkit-linear-gradient(top, #ff670f 0%,#ff670f 100%);
+        }
+
+        #answertext {
+            height: 92%;
+            width: 97%;
+            font-size: 52px;
+            font-weight: 900;
+        }
+
+        #value-container {
+            position: absolute;
+            height: 16%;
+            width: 50%;
+            top: 70%;
+            left: 25%;
+        }
+
+            #value-container > button {
+                position: relative;
+                float: left;
+                height: 100%;
+                width: 22%;
+                margin-left: 2%;
+                text-align: center;
+                background-color:white;
+                font-size: 50px;
+                color: #333333;
+	            border-radius: 10px;
+	            line-height: 95px;				
+		    	font-family: chalkdust;
+				box-shadow: 1px 2px 5px 1px black;
+            }
+			#value-container > button:nth-child(odd) {
+				border: 7px solid #e67e22;	
+			}
+			#value-container >button:nth-child(even) {
+				border: 7px solid #9b59b6;	
+			}
+             #value-container >  button:hover {
+                   # -webkit-transform: scale(1.2);
+                   # -moz-transform: scale(1.2);
+                     background-color:#11cfff;
+             }
+      @-webkit-keyframes lightSpeedIn {
+            0% {
+                -webkit-transform: translateX(100%) skewX(-30deg);
+                opacity: 0;
+            }
+
+            60% {
+                -webkit-transform: translateX(-20%) skewX(30deg);
+                opacity: 1;
+            }
+
+            80% {
+                -webkit-transform: translateX(0%) skewX(-15deg);
+                opacity: 1;
+            }
+
+            100% {
+                -webkit-transform: translateX(0%) skewX(0deg);
+                opacity: 1;
+            }
+        }
+
+        @-moz-keyframes lightSpeedIn {
+            0% {
+                -moz-transform: translateX(100%) skewX(-30deg);
+                opacity: 0;
+            }
+
+            60% {
+                -moz-transform: translateX(-20%) skewX(30deg);
+                opacity: 1;
+            }
+
+            80% {
+                -moz-transform: translateX(0%) skewX(-15deg);
+                opacity: 1;
+            }
+
+            100% {
+                -moz-transform: translateX(0%) skewX(0deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes lightSpeedIn {
+            0% {
+                transform: translateX(100%) skewX(-30deg);
+                opacity: 0;
+            }
+            60% {
+                transform: translateX(-20%) skewX(30deg);
+                opacity: 1;
+            }
+            80% {
+                transform: translateX(0%) skewX(-15deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(0%) skewX(0deg);
+                opacity: 1;
+            }
+        }
+
+        .lightSpeedIn {
+            -webkit-animation: lightSpeedIn 2s ease-out;
+            -moz-animation: lightSpeedIn 2s ease-out;
+            animation: lightSpeedIn 2s ease-out;
+        }
+		#wrapper #btn{
+			font-family: cursive;
+			position: absolute; 
+			top:4%; 
+			text-align: center;
+			font-size:40px; 
+			width: 100%;
+			background-color: transparent; 
+			border: none; 
+			z-index: 1;
+		}
+        #operatorone_s{
+			margin-left: 10%; 
+			margin-top: 5%; 
+			float: left; 
+			width: 30%; 
+			height: 80%; 
+			border-radius: 3%;
+		}
+		#operatortwo_s{
+		  	 margin-left: 17%; 
+			 margin-top: 5%; 
+			 float: left; 
+			 width: 30%; 
+			 height: 80%; 
+			 border-radius: 3%;
+		}
+		#operand_s{
+		  	 top: 17%; 
+			 left: 46%; 
+			 float: left; 
+			 width: 8%; 
+			 height: 18%; 
+			 position: absolute;
+		}
+		#main_div {
+    		margin-top:0%;
+		}
+@media only screen and (max-width:800px){
+	#operatorone_s,#operatortwo_s{
+		margin-left: -2%;
+		width: 45.5%;
+		height: 72%;
+		margin-top: 9%;
+	}
+	#operatortwo_s{
+		margin-left: 10%;  
+	}
+	#operand_s{
+		top: 24%;
+		left: 45.5%;
+		width: 9%;
+		height: 10%;
+	}
+	#wrapper #btn {
+		top: 5%;
+		font-size:50px;
+	}
+	#value-container {
+		width: 65%;
+		left: 16%;
+	}
+	#point-container > div:nth-child(1) {
+		margin-left: 16%;
+	}
+	#point-container > div {
+		width: 5%;
+	}
+	#value-container > button:hover {
+		-webkit-transform: scale(1.1);
+		-moz-transform: scale(1.1);
+	}
+}
+@media only screen and (max-width:768px){		
+ #operatorone_s,#operatortwo_s{
+		margin-left: -3%;
+		width: 46%;
+		height: 72%;
+		margin-top: 12%;
+	}
+	#operatortwo_s{
+		margin-left: 10%;  
+	}
+	#operand_s{
+		top: 27%;
+		left: 44.5%;
+		width: 9%;
+		height:12%;
+	}
+	#wrapper #btn {
+		top: 5%;
+		font-size:50px;
+	}
+	#value-container {
+		width: 65%;
+		left: 16%;
+	}
+	#point-container > div:nth-child(1) {
+		margin-left: 16%;
+	}
+	#point-container > div {
+		width: 5%;
+	}
+	#value-container > button:hover {
+		-webkit-transform: scale(1.1);
+		-moz-transform: scale(1.1);
+	}
+}
+@media screen and (max-width : 640px) {
+	
+	.class_button {
+		font-size: 58px;
+	}
+	#value-container {
+		width: 65%;
+		height: 15%
+	}
+	#value-container > button{
+		font-size: 50px;
+	}
+	#value-container > button:nth-child(odd) {
+		border: 6px solid #e67e22;	
+	}
+	#value-container >button:nth-child(even) {
+		border: 6px solid #9b59b6;	
+	}	
+}
+@media screen and (max-width : 480px) {	
+	#wrapper #btn {
+		top: 3%;
+	}
+	#value-container {
+		width: 90%;
+		height: 15%;
+		left: 6%;
+	}
+	#value-container > button{
+		font-size: 50px;
+	}
+	#value-container > button:nth-child(odd) {
+		border: 5px solid #e67e22;	
+	}
+	#value-container >button:nth-child(even) {
+		border: 5px solid #9b59b6;	
+	}
+	
+}
+@media only screen and (max-width:320px){
+	#operatorone_s,#operatortwo_s{
+		margin-left: -2%;
+		width: 45.5%;
+		height:45%;
+		margin-top: 12%;
+	}
+	#operatortwo_s{
+		margin-left:8%;  
+	}
+	#operand_s{
+		top:15%;
+		left: 44%;
+		width: 10%;
+		height:10%;
+	}
+	#wrapper #btn {
+		top:4%;
+		font-size:30px;
+	}
+	
+	#point-container {
+		top:90%;
+ 	}
+	#point-container > div:nth-child(1) {
+		margin-left: 2%;
+	}
+	#point-container > div {
+		width: 7%;
+		margin: 4px;
+	}
+	#play_screen_content_center_middle {
+		top: 10%;
+		left:8%;
+		width: 92%;
+		height: 80%;
+	}
+	#value-container {
+		width: 100%;
+		top: 72%;
+		left: 0%;
+	}
+	#value-container > button {
+        font-size: 30px;
+        width: 23.7%;
+        margin-left: 1%;
+    	line-height: 65px;
+    }
+	#value-container > button:nth-child(odd) {
+		border: 4px solid #e67e22;	
+	}
+	#value-container >button:nth-child(even) {
+		border: 4px solid #9b59b6;	
+	}
+	#value-container > button:hover {
+		-webkit-transform: scale(1.1);
+		-moz-transform: scale(1.1);
+	}
+}	
+</style>
+</head>
+<body>
+
+     <div id="wrapper">
+         <button id="btn">Division</button>
+        <div id="header">
+           <!-- <a href="index.html">
+                <button id="mathwizard">MathWizardApps.com</button>
+            </a>-->
+            <a href="mathwizard-grade-1-exercise-topic.html">
+                <button class="sitemap">  &nbsp; Grade-1</button>
+            </a>
+
+            <a href="mathwizard-grade-1-division.html">
+                <button class="sitemap"> &nbsp; > &nbsp; Division</button>
+            </a>
+            <!--<button id="header-desc">Math Activities and Games for Kids</button>-->
+
+        </div>
+        <div id="content" class="w99CF15">
+            
+             <div id="play_screen_substracion">
+
+                 <div id="navigationbar">
+
+                     <div id="main_div">
+           				<div style="margin-left: 2%;float: left; width: 98%; height: 71%;">
+                             <div id="operatorone_s"></div>
+                             <div id="operatortwo_s"></div>
+
+                         </div>
+                         <div id="operand_s">
+                           <img src="images/division.png" style="height: 100%; width: 100%;" />
+                         </div>
+
+
+                     </div>
+                 </div>
+             </div>
+             <div id="value-container">
+                 <button id="value-1" onclick="answer_display_sub(this,'correct');"></button>
+                 <button id="value-2" onclick="answer_display_sub(this,'correct');"></button>
+                 <button id="value-3" onclick="answer_display_sub(this,'correct');"></button>
+                 <button id="value-4" onclick="answer_display_sub(this,'correct');"></button>
+             </div>
+
+             <div id="point-container">
+                <div class="point-1 point_anim"></div>
+                <div class="point-2 point_anim"></div>
+                <div class="point-3 point_anim"></div>
+                <div class="point-4 point_anim"></div>
+                <div class="point-5 point_anim"></div>
+                <div class="point-6 point_anim"></div>
+                <div class="point-7 point_anim"></div>
+                <div class="point-8 point_anim"></div>
+                <div class="point-9 point_anim"></div>
+                <div class="point-10 point_anim"></div>
+                </div>
+         </div>
+        <div id="footer"><a href="index.html">&copy;MathWizardApps.com</a> 
+            <a href="sitemap.html"><button id="sitemap-div">Sitemap</button></a>
+            <button id="header-desc">Math Activities and Games for Kids</button></div>
+    </div>
+
+     <div id="score-card">
+       <!-- <button style="z-index:5; position: absolute; height: 5%; width: 12%;color:white; box-shadow: 1px 1px 1px 0px; top: 2%; right: 2%; font-size: 20px; outline: none; border: none; background-color: #ff6a00;" onclick="remove_score_div();">
+            Close
+        </button>-->
+        <button id="score-board-label">Division Result</button>
+        <div id="question">
+            <button id="question_heading">Question</button>
+        </div>
+        <div id="your-answer">
+            <button id="your-answer-heading">Your Answer</button>
+        </div>
+        <div id="correct-answer">
+            <button id="correct-answer-heading">Correct Answer</button>
+        </div>
+        <div id="points">
+            <button id="points-heading">Points</button>
+        </div>
+        <!--<button id="score-card-time"></button>-->
+    </div>
+
+    <script type="text/javascript">
+
+        var source, countables = 20;
+        var play_screen = document.getElementById("play_screen_adition");
+        var answerdisplay2 = document.getElementById("answerdisplay2");
+        var operatorone = document.getElementById("operatorone_s");
+        var operatortwo = document.getElementById("operatortwo_s");
+        var results = [];
+        var totalquestions = 10;
+        var currentquestion = 1;
+        var correctattempts = 0;
+        var question_list_time = new Array();
+        var question_list = new Array();
+        var user_answer = new Array();
+        var correct_answer = new Array();
+        var answer_list = new Array();
+
+
+
+        window.onload = function () {
+            randomnumber_sub();
+            gametimer();
+        }
+
+        function randomnumber_sub() {
+            results = [];
+            randomnumbr1 = Math.round(Math.random() * 10 + 2);
+            randomnumbr2 = Math.round(Math.random() * 10 + 2);
+
+            if ((randomnumbr1 % randomnumbr2) != 0) {
+                randomnumber_sub();
+            } else {
+                generaterandomnumber();
+                //alert(randomnumbr1 / randomnumbr2);
+            }
+        }
+
+        var otherrandomnumber;
+        function otherrandom() {
+            otherrandomnumber = Math.ceil(Math.random() * (Math.abs((randomnumbr1 / randomnumbr2) - 9)) + (Math.abs((randomnumbr1 / randomnumbr2) - 4)));
+            results = [];
+        }
+        var correctanswer_id;
+        function generaterandomnumber() {
+            results = [];
+            var selectdiv = Math.ceil(Math.random() * 4);
+            for (var i = 1; i <= 4; i++) {
+                if (selectdiv == i) {
+                    $("#value-" + i).html((Math.abs(randomnumbr1 / randomnumbr2)));
+                    correctanswer_id = i;
+                } else {
+                    otherrandom();
+                    $("#value-" + i).html(otherrandomnumber);
+                }
+            }
+            findunique();
+            // playaudio.play();
+        }
+        var arr = new Array();
+
+        function findunique() {
+            for (var i = 1; i <= 4; i++) {
+                arr[i] = $("#value-" + i).text();
+            }
+            var sorted_arr = arr.sort();
+            for (var i = 0; i < arr.length - 1; i++) {
+                if (sorted_arr[i + 1] == sorted_arr[i]) {
+                    results.push(sorted_arr[i]);
+                }
+            }
+            if (results == "") {
+                randomimagegenerate_sub();
+            } else {
+                randomnumber_sub();
+            }
+        }
+
+        function randomimagegenerate_sub() {
+            var html = "";
+            for (var i = 0; i <= randomnumbr1 - 1; i++) {
+                html += '<div style="margin-left:3%;margin-top:3%;float:right;height:20%;width:20%;"><img src="images/hat.png" style="height:100%;width:100%;"/></div>';
+            }
+
+            if (randomnumbr1 < randomnumbr2) {
+                operatortwo.innerHTML = html;
+
+            } else {
+                operatorone.innerHTML = html;
+            }
+            html = "";
+            for (var j = 0; j <= randomnumbr2 - 1; j++) {
+                html += '<div style="margin-left:3%;margin-top:3%;float:left;height:20%;width:20%;"><img src="images/hat.png" style="height:100%;width:100%;"/></div>';
+            }
+            if (randomnumbr1 < randomnumbr2) {
+                operatorone.innerHTML = html;
+            } else {
+                operatortwo.innerHTML = html;
+            }
+        }
+        var sender_id;
+        var sender_value;
+        var flag_animation = true;
+        function answer_display_sub(sender,what) {
+            if (flag_animation) {
+                flag_animation = false;
+                answer = Math.abs(randomnumbr1 / randomnumbr2);
+                sender_value = $(sender).text();
+                sender_id = $(sender).attr('id');
+                user_answer.push(sender_value);
+                question_list.push(randomnumbr1 + " / " + randomnumbr2 + "=" + randomnumbr1 / randomnumbr2);
+                correct_answer.push(randomnumbr1 / randomnumbr2);
+
+
+                var create_true = "";
+                create_true += '<div class="true"/>';
+                $("#value-" + correctanswer_id).append(create_true);
+
+                var html = "";
+                for (var k = 0; k <= answer - 1; k++) {
+                    html += '<div style="margin-left:3%;margin-top:3%;float:left;height:10%;width:10%;"><img src="images/hat.png" style="height:100%;width:100%;"/></div>';
+                }
+                if (answer == $(sender).text()) {
+                    var create_point = "";
+                    create_point += '<div class="point-true"/>';
+                    $(".point-" + currentquestion).append(create_point);
+                    $("#points").append(create_point);
+                    correct_answer_as(sender,what);
+                    //document.getElementById("answertext_s").value = "";
+                }
+                else {
+                    var create_point = "";
+                    create_point += '<div class="point-false"/>';
+                    $(".point-" + currentquestion).append(create_point);
+                    $("#points").append(create_point);
+                    correct_answer_as(sender, what);
+                    //document.getElementById("answertext_s").value = "";
+                }
+            }
+        }
+
+        function correct_answer_as(sender, what) {
+
+            var corr_ans = document.createElement('div');
+            corr_ans.id = 'corr';
+            corr_ans.style.height = '20%';
+            corr_ans.style.width = '20%';
+            corr_ans.style.zIndex = '10';
+            corr_ans.style.position = 'absolute';
+            corr_ans.style.left = '35%';
+            corr_ans.style.top = '34%';
+            corr_ans.setAttribute('class', ' lightSpeedIn');
+            document.body.appendChild(corr_ans);
+            var corr_imag = document.createElement('img');
+            if (answer == sender_value) {
+               
+                corr_imag.setAttribute('src', 'images/correct.png');
+            }
+            else {
+                corr_imag.setAttribute('src', 'images/incorrect.png');
+            }
+            if (navigator.userAgent.search("Firefox") >= 0) {
+                corr_imag.style.height = '100%';
+                corr_imag.style.width = '100%';
+                corr_ans.appendChild(corr_imag);
+                document.getElementById('corr').addEventListener('animationend', function () {
+                    document.body.removeChild(this);
+                    //source.innerHTML = "";
+                    //target.value = "";
+                    //attempt();
+                    //keyboard.style.visibility = "visible";
+                    $("#corr").remove();
+                    flag_animation = true;
+                    //$("#source > div").remove();
+                    userAnswer(sender, what);
+                    randomnumber_sub();
+                }, false);
+            } else {
+                corr_imag.style.height = '100%';
+                corr_imag.style.width = '100%';
+                corr_ans.appendChild(corr_imag);
+                document.getElementById('corr').addEventListener('webkitAnimationEnd', function () {
+                    document.body.removeChild(this);
+                    //operatorone.innerHTML = "";
+                    //operatortwo.innerHTML = "";
+                    $("#corr").remove();
+                    flag_animation = true;
+                    userAnswer(sender, what);
+                    randomnumber_sub();
+                }, false);
+            }
+        }
+
+        function userAnswer(sender, what) {
+            switch (what) {
+                case "correct":
+                    answer_list[currentquestion - 1] = "correct";
+                    correctattempts++;
+                    //$("#question-dots").find(".dot").eq(currentquestion - 1).removeClass("active-dot");
+                    //$("#question-dots").find(".dot").eq(currentquestion - 1).addClass("correct-dot");
+                    //stopAllAudio();
+                    //$("#correct").get(0).play();
+                    break;
+                case "incorrect":
+                    answer_list[currentquestion - 1] = "incorrect";
+                    //$("#question-dots").find(".dot").eq(currentquestion - 1).removeClass("active-dot");
+                    //$("#question-dots").find(".dot").eq(currentquestion - 1).addClass("incorrect-dot");
+                    //stopAllAudio();
+                    //$("#incorrect").get(0).play();
+                    break;
+            }
+            if (currentquestion == totalquestions) {
+                gamestart = false;
+                clearTimeout(timer);
+                //$("#score-card-time").text($("#time-holder").text());
+                var html = '';
+                var correct = 0;
+                for (var i = 0; i < question_list.length; i++) {
+                    //html += '<button class="score-card-question">' + question_list[i] + '</button>';
+                    //if (answer_list[i] == "correct") {
+                    //    html += '<button class="score-card-answer score-card-answer-correct"></button>';
+                    //    correct++;
+                    //}
+                    //else {
+                    //    html += '<button class="score-card-answer score-card-answer-incorrect"></button>';
+                    //}
+
+                    //var temphtml = '';
+                    $('#question').append('<button class="remove">' + question_list[i] + '</button>');
+                    $('#correct-answer').append('<button class="remove">' + correct_answer[i] + '</button>');
+                    $('#your-answer').append('<button class="remove">' + user_answer[i] + '</button>');
+                    hour = parseInt(question_list_time[i] / 3600);
+                    minute = parseInt((question_list_time[i] % 3600) / 60);
+                    second = parseInt((question_list_time[i] % 3600) % 60);
+                    temphtml = "";
+                    var h = hour.toString();
+                    var m = minute.toString();
+                    var s = second.toString();
+                    if (h.length == 1)
+                        temphtml += "";
+                    else
+                        temphtml += h;
+                    if (m.length == 1)
+                        temphtml += 0 + "" + m;
+                    else
+                        temphtml += m;
+                    temphtml += " : ";
+                    if (s.length == 1)
+                        temphtml += 0 + "" + s;
+                    else
+                        temphtml += s;
+                    //html += '<button class="score-card-question-time">' + temphtml + '</button>';
+                }
+                //$("#score-card-question-holder").html(html);
+                $("#score-card").css('display', 'inline');
+
+            }
+            else {
+                currentquestion++;
+            }
+        }
+
+        function remove_score_div() {
+            $(".remove").remove();
+            question_list.length = 0;
+            correct_answer.length = 0;
+            user_answer.length = 0;
+            currentquestion = 1;
+            $("#score-card").css('display', 'none');
+            $(".point-false").remove();
+            $(".point-true").remove();
+        }
+
+        var milisecond = 0;
+        function gametimer() {
+            var html = "";
+            question_list_time[currentquestion - 2]++;
+            milisecond++;
+            hour = parseInt(milisecond / 3600);
+            minute = parseInt((milisecond % 3600) / 60);
+            second = parseInt((milisecond % 3600) % 60);
+            html = "";
+            var h = hour.toString();
+            var m = minute.toString();
+            var s = second.toString();
+            if (h.length == 1)
+                html += "";
+            else
+                html += h;
+            if (m.length == 1)
+                html += 0 + "" + m;
+            else
+                html += m;
+            html += " : ";
+            if (s.length == 1)
+                html += 0 + "" + s;
+            else
+                html += s;
+
+            //$("#time-holder").html(html);
+
+            timer = setTimeout('gametimer();', 1000);
+        }
+
+
+    </script>
+   
+</body>
+</html>

@@ -1,0 +1,501 @@
+﻿body {
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    font-family: Tahoma;
+}
+@font-face {
+    font-family: chalkdust;
+    src: url('../font/ChalkDust.ttf');
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    outline:none;
+}
+
+#wraper {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0%;
+    left: 0%;
+    margin: 0%;
+    padding: 0%;
+}
+
+#header {
+    position: absolute;
+    height: 5%;
+    width: 100%;
+    background-color: brown;
+    z-index: 5;
+}
+
+#footer {
+    position: absolute;
+    height: 5%;
+    width: 100%;
+    top: 95%;
+    background-color: black;
+    z-index: 1;
+    text-align: left;
+    font-size: 20px;
+    line-height: 40px;
+    color: white;
+    font-family: chalkdust;
+}
+
+#content {
+    position: absolute;
+    height: 90%;
+    width: 100%;
+    top: 5%;
+    overflow: auto;
+}
+
+
+#mathwizard {
+    height: 100%;
+    font-size: 20px;
+    color: white;
+    font-family: chalkdust;
+    /*color: #376F92;*/
+    cursor: pointer;
+    text-align: left;
+    float: left;
+    border: none;
+    background-color: transparent;
+    outline: none;
+}
+
+.sitemap {
+    height: 100%;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    text-align: left;
+    float: left;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    font-family: chalkdust;
+}
+
+#header-desc {
+    float: right;
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 20px;
+    color: white;
+    font-family: chalkdust;
+    /*color: #376F92;*/
+}
+.w3498db{
+	background-color: #3498db;
+}
+.w99CC00 {
+    background-color: #99CC00;
+}
+
+.w00C3F7 {
+    background-color: #00C3F7;
+}
+.w66A614 {
+    background-color:#66A614;
+}
+.wCDEDE4 {
+    background-color:#CDEDE4;
+}
+.wFFE000 {
+    background-color:#FFE000;
+}
+.wB992F4 {
+    background-color:#B992F4;
+}
+.wA6EF18 {
+    background-color:#A6EF18;
+}
+.w99CF15 {
+    background-color:#99CF15;
+}
+.w78BFFB {
+    background-color:#78BFFB;
+}
+.wEF9426 {
+    background-color:#EF9426;
+}
+.wd85e50{
+	background-color: #d85e50;
+}
+.wf1c40f{
+	background-color: #f1c40f;
+}
+.orange {
+    background-color: orange;
+}
+
+.green {
+    background-color: #2ecc71;
+}
+
+.light-blue {
+    background-color: #c4a6d1;
+}
+
+.light-pink {
+    background-color: #F1562C;
+}
+.rgbcolor {
+background: rgb(146,211,0);
+}
+.true {
+    top:-5%;
+    left:25%;
+    height:70%;
+    width:50%;
+    display:block;
+    position:absolute;
+    background-image:url('../images/true.png');
+    background-size:100% 100%;
+    background-position:center;
+    opacity:0.8;
+}
+
+.false{
+    top:-10%;
+    left:-10%;
+    height:50%;
+    width:40%;
+    display:block;
+    position:absolute;
+    background-image:url('../images/false.png');
+     background-size:100% 100%;
+    background-position:center;
+}
+
+#point-container {
+    position: absolute;
+    top: 92%;
+    width: 100%;
+    height: 7%;
+    background-color: white;
+}
+
+    #point-container > div {
+        float: left;
+        height: 72%;
+        width: 3%;
+        background-color: #808080;
+        border-radius: 100%;
+        margin-left: 30%;
+        margin: 6px;
+        box-shadow: 0px 1px 0px 1px inset;
+    }
+
+        #point-container > div:nth-child(1) {
+            margin-left:30%;
+        }
+
+.point-true {
+    float: left;
+    height: 100%;
+    width: 100%;
+    background-color: green;
+    border-radius: 100%;
+    box-shadow: 3px -1px 9px -3px inset;
+}
+.point-false {
+    float: left;
+    height: 100%;
+    width: 100%;
+    background-color: red;
+    border-radius: 100%;
+    box-shadow: 3px -1px 9px -3px inset;
+}
+
+#points > div {
+    height: 24px;
+    width: 29px;
+    margin-left: 40%;
+    margin-top: 6px;
+}
+
+#sitemap-div {
+    position: absolute;
+    height: 100%;
+    margin-left: 1%;
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-size: 12px;
+    outline: none;
+    cursor: pointer;
+}
+
+.privacynpolicy {
+    position: absolute;
+    color: white;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    font-family: sans-serif;
+    top: 0%;
+    left: 28%;
+    height: 100%;
+    width: 20%;
+}
+
+    .privacynpolicy > button {
+        float:left;
+        border: none;
+        background-color: transparent;
+        outline: none;
+        font-family: sans-serif;
+        height: 100%;
+        color:white;
+        cursor:pointer;
+    }
+
+.grade-div > p {
+    height: auto;
+    margin: 0 25px 0 10px;
+    color: black;
+    margin-top: 0%;
+    font-size: 13px;
+    text-align: left;
+    letter-spacing: normal;
+    word-spacing: normal;
+    color: burlywood;
+}
+        .grade-div > span {
+            height: auto;
+            margin: 0 13px 0 15px;
+            color: black;
+            margin-top: 0%;
+            font-size: 13px;
+            text-align: left;
+            letter-spacing: normal;
+            word-spacing: normal;
+            color:gray;
+        }
+         .app-icon> p  {
+            height: auto;
+            margin: 0 13px 0 15px;
+            color: black;
+            margin-top: 0%;
+            font-size: 13px;
+            text-align: left;
+            letter-spacing: normal;
+            word-spacing: normal;
+           color:gray;
+        }
+        .app-icon > span {
+            height: auto;
+            margin: 0 13px 0 15px;
+            color: black;
+            margin-top: 0%;
+            font-size: 13px;
+            text-align: left;
+            letter-spacing: normal;
+            word-spacing: normal;
+            color:gray;
+        }
+
+         #question {
+            position: absolute;
+            top: 15%;
+            width: 25%;
+            height: 75%;
+            left: 5%;
+        }
+
+            #question > button {
+                border: none;
+                background-color: transparent;
+                width: 100%;
+                font-size: 20px;
+                text-align: left;
+            }
+
+        #your-answer {
+            position: absolute;
+            top: 15%;
+            width: 20%;
+            height: 75%;
+            left: 40%;
+        }
+
+            #your-answer > button {
+                border: none;
+                background-color: transparent;
+                width: 100%;
+                font-size: 20px;
+            }
+
+        #correct-answer {
+            position: absolute;
+            top: 15%;
+            width: 20%;
+            height: 75%;
+            left: 60%;
+            font-size: 20px;
+        }
+
+            #correct-answer > button {
+                border: none;
+                background-color: transparent;
+                width: 100%;
+                font-size: 20px;
+            }
+
+        #points {
+            position: absolute;
+            top: 15%;
+            width: 20%;
+            height: 75%;
+            left: 80%;
+        }
+
+            #points > button {
+                border: none;
+                background-color: transparent;
+                width: 100%;
+                font-size:20px;
+            }
+
+
+         #score-card {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0%;
+            left: 0%;
+            background-color: white;
+            display: none;
+            z-index: 3;
+            background-color: #fef0df;
+        }
+
+        #score-board-label {
+            position: absolute;
+            height: 10%;
+            top: 5%;
+            /*left: 24%;*/
+            width: 100%;
+            background-color: transparent;
+            border: none;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+            background-color: transparent;
+            border: none;
+            float: left;
+            font-family: score-digit-font;
+            font-size: 30px;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+            z-index: 1;
+            outline:none;
+        }
+
+        #score-card-question-holder {
+            position: absolute;
+            height: 50%;
+            top: 50%;
+            left: 0%;
+            width: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+      
+        /*#score-card-time {
+            position: absolute;
+            height: 10%;
+            top: 9%;
+            left: 60%;
+            width: 40%;
+            background-color: transparent;
+            border: none;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+            background-color: transparent;
+            border: none;
+            float: left;
+            font-family: score-digit-font;
+            font-size: 25px;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+        }*/
+
+        #score-card-question-holder {
+            position: absolute;
+            height: 50%;
+            top: 50%;
+            left: 0%;
+            width: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+@media screen and (max-width:1024px) {
+    #mathwizard, #header-desc, .sitemap, #footer {
+        font-size: 18px;
+    }
+}
+@media screen and (max-width:800px) {
+	
+}
+@media screen and (max-width:768px) {
+    #mathwizard, #header-desc, .sitemap, #footer {
+        font-size: 14px;
+    }
+	.grade-div > p {
+		margin-top: -40%;
+	}
+}
+@media screen and (max-width:640px) {
+    #mathwizard, #header-desc, .sitemap, #footer {
+        margin: 0%;
+        padding: 0%;
+        font-size: 12px;
+    }
+     #header-desc {
+        display: none;
+    }
+}
+
+@media screen and (max-width:480px) {
+    #mathwizard, .sitemap {
+        margin: 0%;
+        padding: 0%;
+        font-size: 12px;
+    }
+
+    #header-desc {
+        display: none;
+    }
+   
+}
+@media screen and (max-width:320px) {
+
+	.grade-div > p {
+			margin-top: 20%;
+			width: 81px;
+	}
+	#footer {
+		height: 10%;
+		top: 92%;
+		font-size: 11px;
+	}
+	.privacynpolicy > button {
+		float: right;
+		position: relative;
+		left: 250%;
+	}
+	#mathwizard, .sitemap {
+		font-size: 14px;
+	}
+}

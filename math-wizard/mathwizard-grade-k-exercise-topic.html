@@ -1,0 +1,213 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title> Mathwizard-grade-k-topic - Online math practice, math games and interactive math </title>
+
+    <meta name="description" content=" Mathwizard-grade-k-topic is one of the most interactive math practice apps. 
+Math wizard is completely free online for studnets, teachers and schools.
+Math wizard provides unlimited math practice to kids.
+Math wizard provides a simple , intuitive learning system for kids with games , interactive actvities , making learning fun!
+" />
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery-ui-1.10.2.custom.js"></script>
+    <script src="js/JavaScript.js"></script>
+    <link href="style/common.css" rel="stylesheet" />
+    <link href="style/StyleSheet.css" rel="stylesheet" />
+    <script src="js/jquery.ui.touch-punch.js"></script>
+    <style type="text/css">
+        /*#banner-icon {
+            height: 100% !important;
+            width: 100% !important;
+           position:initial;
+        }
+        #jquery-slider-placer {
+            height: auto!important;
+            width: 100%!important;
+            float: left!important;
+        }
+        #activity-select-screen {
+            height: auto;
+            width: 100%;
+            overflow: hidden;
+        }*/
+    </style>
+</head>
+<body>
+
+    <div id="wraper">
+        <div id="header">
+            <a href="index.html">
+                <button id="mathwizard">MathWizardApps.com</button>
+            </a>
+            <a href="mathwizard-grade-k-exc-lear.html">
+                <button class="sitemap">&nbsp; > &nbsp;Grade-K</button>
+            </a>
+            <!--<button id="header-desc">Math Activities and Games for Kids</button>-->
+        </div>
+        <div id="content">
+            <div id="banner"></div>
+            <div id="banner-icon">
+
+                <a href="mathwizard-grade-k-counting.html">
+                    <div id="activity-select-screen">
+                        <div class="grade-div">
+                            <div class="grade-content">
+                                <div class="grade-content-placer w00C3F7" id="counting" onclick="select_activity(this);"></div>
+                                <button class="grade-content-taxt-placer">Counting</button>
+                            </div>
+                            <p>
+                                   Practice counting . Count the objects shown 
+                               </p>
+                        </div>
+                </a>
+
+                <a href="mathwizard-grade-k-addition.html">
+                    <div class="grade-div">
+                        <div class="grade-content">
+                            <div class="grade-content-placer w99CC00" id="addition" onclick="select_activity(this);"></div>
+                            <button class="grade-content-taxt-placer">Addition</button>
+                        </div>
+                        <p> Add the objects shown. Learn and practice your addition skills
+                               </p>
+                    </div>
+                </a>
+
+                <a href="mathwizard-grade-k-substraction.html">
+                    <div class="grade-div">
+                        <div class="grade-content">
+                            <div class="grade-content-placer light-blue" id="substraction" onclick="select_activity(this);"></div>
+                            <button class="grade-content-taxt-placer">Subtraction</button>
+                        </div>
+                        <p>Subtract the objects shown.  Take away the objects by subtraction and get the correct answer.
+                               </p>
+                    </div>
+                </a>
+
+                <a href="mathwizard-grade-k-shape.html">
+                    <div class="grade-div">
+                        <div class="grade-content">
+                            <div class="grade-content-placer w66A614" id="shapeidentification" onclick="select_activity(this);"></div>
+                            <button class="grade-content-taxt-placer">Shape Identification</button>
+                        </div>
+                        <p>Recognise real world shapes and match them to the actual shape given below.
+                               </p>
+                    </div>
+                </a>
+
+                <a href="mathwizard-grade-k-dissimilar.html">
+                    <div class="grade-div">
+                        <div class="grade-content">
+                            <div class="grade-content-placer wCDEDE4" id="dissimilarobject" onclick="select_activity(this);"></div>
+                            <button class="grade-content-taxt-placer">Dissimilar Object</button>
+                        </div>
+                        <p>Check your ability to find out the dissimilar shape and object.
+                               </p>
+                    </div>
+                </a>
+
+
+                <!--  <div class="grade-div">
+                        <div class="grade-content">
+                            <div class="grade-content-placer orange" id="moneycount" onclick="select_activity(this);"></div>
+                            <button class="grade-content-taxt-placer">Money Count</button>
+                        </div>
+                    </div>-->
+
+
+                <a href="mathwizard-grade-k-ordering.html">
+                    <div class="grade-div">
+                        <div class="grade-content">
+                            <div class="grade-content-placer wFFE000" id="ordering" onclick="select_activity(this);"></div>
+                            <button class="grade-content-taxt-placer">Ordering</button>
+                        </div>
+                        <p>What number comes after ? Answer by selecting the correct number in order.
+                               </p>
+                    </div>
+                </a>
+
+
+            </div>
+
+
+            <div id="jquery-slider-placer">
+
+               <!-- <div id="itune-placer"><span>Available on App Store</span></div>
+                <div id="appstore-app">
+                    <a href="https://itunes.apple.com/us/app/sudoku-puzzles-for-all/id687267982?ls=1&mt=8" target="_newtab">
+                        <div class="app-icon">
+                            <div class="appstore-placer">
+                                <div class="grade-content-placer" id="sudoku-icon"></div>
+                                <button class="grade-content-taxt-placer">Sudoku</button>
+                            </div>
+                            <p>
+                               </p>
+                        </div>
+                    </a>
+
+                    <a href="https://itunes.apple.com/us/app/equalo-number-balance-game/id687280970?ls=1&mt=8" target="_newtab">
+                        <div class="app-icon">
+                            <div class="appstore-placer">
+                                <div class="grade-content-placer" id="equolo"></div>
+                                <button class="grade-content-taxt-placer">Equalo</button>
+                            </div>
+                            <p>
+                               </p>
+                        </div>
+                    </a>
+
+                    <a href="https://itunes.apple.com/us/app/mathwizard-grade-k-ipad-version/id509805446?ls=1&mt=8" target="_newtab">
+                        <div class="app-icon">
+                            <div class="appstore-placer">
+                                <div class="grade-content-placer" id="mathwiz-gradek"></div>
+                                <button class="grade-content-taxt-placer">Math Wizard Grade K</button>
+                            </div>
+                            <p>
+                               </p>
+                        </div>
+                    </a>
+
+
+                    <a href="https://itunes.apple.com/us/app/math-wizard-grade-1-ipad-version/id515636172?ls=1&mt=8" target="_newtab">
+                        <div class="app-icon">
+                            <div class="appstore-placer">
+                                <div class="grade-content-placer" id="mathwiz-grade1"></div>
+                                <button class="grade-content-taxt-placer">Math Wizard Grade 1</button>
+                            </div>
+                            <p>
+                               </p>
+                        </div>
+                    </a>
+
+                    <a href="https://itunes.apple.com/us/app/lion-mouse-interactive-storybook/id531665236?ls=1&mt=8" target="_newtab">
+                        <div class="app-icon">
+                            <div class="appstore-placer">
+                                <div class="grade-content-placer" id="lion-mouse"></div>
+                                <button class="grade-content-taxt-placer">Lion and Mouse</button>
+                            </div>
+                            <p>
+                               </p>
+                        </div>
+                    </a>
+                </div>-->
+
+                <!--                 <a href="http://www.apple.com" target="_newtab"> <div id="sudoku-icon" class="picture-placer"></div></a> 
+                  <a href="http://www.apple.com" target="_newtab">  <div id="equolo" class="picture-placer"></div></a> 
+                  <a href="http://www.apple.com" target="_newtab">  <div id="mathwiz-gradek" class="picture-placer"></div></a> 
+                  <a href="http://www.apple.com" target="_newtab">  <div id="mathwiz-grade1" class="picture-placer"></div></a> -->
+            </div>
+
+            <!--<div id="jquery-slider-placer">
+                  <a href="http://www.apple.com" target="_newtab"> <div id="sudoku-icon" class="picture-placer" ></div></a> 
+               
+                  <a href="http://www.apple.com" target="_newtab">  <div id="equolo" class="picture-placer"></div></a> 
+                  <a href="http://www.apple.com" target="_newtab">  <div id="mathwiz-gradek" class="picture-placer"></div></a> 
+                  <a href="http://www.apple.com" target="_newtab">  <div id="mathwiz-grade1" class="picture-placer"></div></a> 
+                </div>-->
+        </div>
+    </div>
+    <div id="footer"><a href="index.html">&copy;MathWizardApps.com</a> 
+        <a href="sitemap.html"><button id="sitemap-div">Sitemap</button></a>
+        <button id="header-desc">Math Activities and Games for Kids</button></div>
+    </div>
+</body>
+</html>

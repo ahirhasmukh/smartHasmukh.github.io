@@ -1,0 +1,901 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title> Mathwizard-grade-k-counting - Online math practice, math games and interactive math </title>
+
+<meta name="description" content="Mathwizard-grade-k-counting is one of the most interactive math practice apps. 
+Math wizard is completely free online for studnets, teachers and schools.
+Math wizard provides unlimited math practice to kids.
+Math wizard provides a simple , intuitive learning system for kids with games , interactive actvities , making learning fun!
+"/>
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery-ui-1.10.2.custom.js"></script>
+    <script src="js/jquery.ui.touch-punch.js"></script>
+     <link href="style/common.css" rel="stylesheet" />
+    <style type="text/css">
+        body {
+            overflow:hidden;
+        }
+		#wraper #btn{
+			font-family: cursive;
+			position: absolute; 
+			top:4%; 
+			font-size:40px; 
+			width: 100%;
+			color: yellow; 
+			background-color: transparent; 
+			border: none; 
+			z-index: 1;
+		}
+        #play-screen {
+            display: none;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0%;
+        }
+
+        #play_screen_footer {
+            display: none;
+            position: absolute;
+            height: 14%;
+            width: 100%;
+            /*box-shadow: 0px 0px 4px 0px black;*/
+        }
+
+        /*#keyboard {
+            position: absolute;
+            border-radius: 6px;
+            opacity: 0.95;
+            height: 11%;
+            width: 100%;
+            background-color: #6FBCDB;
+        }*/
+
+        #score {
+            display: none;
+        }
+
+        #displayscore {
+            display: none;
+        }
+
+        #play_screen_footer_center {
+            float: left;
+            top: 80%;
+        }
+
+        #play_screen_header {
+            height: 10%;
+            width: 100%;
+            position: absolute;
+            box-shadow: 0px 0px 1px 0px black;
+        }
+
+        #play_screen_footer {
+            height: 11%;
+            width: 100%;
+            position: absolute;
+            top: 78%;
+            left: 0%;
+        }
+
+        #play_screen_content {
+            width: 100%;
+            height: 100%;
+            
+            left: 0%;
+        }
+
+        #play_screen_content_left {
+            height: 100%;
+            width: 15%;
+            float: left;
+        }
+
+        #play_screen_content_center {
+            height: 85%;
+            width: 70%;
+            float: left;
+        }
+
+
+        #play_screen_content_center_middle {
+            position: absolute;
+            top: 10%;
+            left: 25%;
+            height: 80%;
+            width: 50%;
+        }
+
+        #play_screen_content_center_bottom {
+            height: 10%;
+            width: 100%;
+        }
+
+        #play_screen_content_right {
+            height: 100%;
+            width: 15%;
+            float: left;
+        }
+
+        #source {
+            height: 100%;
+            width: 100%;
+            float: left;
+            border-radius: 10px;
+        }
+
+        /*#target_placeholder {
+            height: 18%;
+            width: 27%;
+            float: left;
+            position: relative;
+            top: 40%;
+        }
+
+
+        #target_placeholder_middle {
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            height: 100%;
+            width: 100%;
+        }*/
+
+        /*#target {
+            margin-left: 2.5%;
+            height: 100%;
+            width: 80%;
+            font-size: 39px;
+            text-align: center;
+            font-family: 'Comic Sans MS';
+            border: none;
+            outline: none;
+            /*background-color: #ffaf46;*/
+        /*border-radius: 5px;
+            float: left;
+            box-shadow: 0px 1px 4px 0px black;
+        }*/
+
+        #go {
+            margin-left: 2.5%;
+            float: left;
+            height: 100%;
+            width: 40%;
+        }
+
+        #buttonbox {
+            font-size: 20px;
+            padding: 0%;
+            margin: 0%;
+            height: 100%;
+            width: 100%;
+            font-family: 'Comic Sans MS';
+        }
+
+        #score {
+            height: 100%;
+            width: 50%;
+            float: left;
+            box-shadow: 0px 0px 1px 0px black;
+            text-align: center;
+            font-family: 'Comic Sans MS';
+            font-weight: bold;
+            font-size: 43px;
+            color: white;
+        }
+
+        #displayscore {
+            height: 100%;
+            width: 50%;
+            float: left;
+            box-shadow: 0px 0px 1px 0px black;
+            font-family: 'Comic Sans MS';
+            font-weight: bold;
+            font-size: 43px;
+            color: white;
+        }
+
+        #myTypingText {
+            width: 100%;
+            height: 100%;
+            padding: 0px;
+            color: black;
+            font-family: 'Comic Sans MS';
+            font-size: 75px;
+            line-height: 1.5em;
+        }
+
+        /*.scorecard {
+    display: none;
+    text-align: center;
+    font-family: 'Comic Sans MS';
+    z-index: 100;
+    position: absolute;
+    top: 22%;
+    left: 23%;
+    background-color: white;
+    height: 56%;
+    width: 58%;
+    font-size: 59px;
+}*/
+
+
+
+        #play_screen_middle {
+            height: 100%;
+            width: 25%;
+            float: left;
+            box-shadow: 0px 0px 1px 0px black;
+            position: absolute;
+            top: 0%;
+            left: 35%;
+        }
+
+        #play_screen_right {
+            height: 100%;
+            width: 33.33333333333333%;
+            float: left;
+            box-shadow: 0px 0px 1px 0px black;
+            position: absolute;
+            top: 0%;
+            left: 60%;
+        }
+
+      @-webkit-keyframes lightSpeedIn {
+            0% {
+                -webkit-transform: translateX(100%) skewX(-30deg);
+                opacity: 0;
+            }
+
+            60% {
+                -webkit-transform: translateX(-20%) skewX(30deg);
+                opacity: 1;
+            }
+
+            80% {
+                -webkit-transform: translateX(0%) skewX(-15deg);
+                opacity: 1;
+            }
+
+            100% {
+                -webkit-transform: translateX(0%) skewX(0deg);
+                opacity: 1;
+            }
+        }
+
+        @-moz-keyframes lightSpeedIn {
+            0% {
+                -moz-transform: translateX(100%) skewX(-30deg);
+                opacity: 0;
+            }
+
+            60% {
+                -moz-transform: translateX(-20%) skewX(30deg);
+                opacity: 1;
+            }
+
+            80% {
+                -moz-transform: translateX(0%) skewX(-15deg);
+                opacity: 1;
+            }
+
+            100% {
+                -moz-transform: translateX(0%) skewX(0deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes lightSpeedIn {
+            0% {
+                transform: translateX(100%) skewX(-30deg);
+                opacity: 0;
+            }
+
+            60% {
+                transform: translateX(-20%) skewX(30deg);
+                opacity: 1;
+            }
+
+            80% {
+                transform: translateX(0%) skewX(-15deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(0%) skewX(0deg);
+                opacity: 1;
+            }
+        }
+
+        .lightSpeedIn {
+            -webkit-animation: lightSpeedIn 2s ease-out;
+            -moz-animation: lightSpeedIn 2s ease-out;
+            animation: lightSpeedIn 2s ease-out;
+        }
+
+        #value-container {
+	            position: absolute;
+	            height: 16%;
+	            width: 50%;
+	            top: 71%;
+	            left: 25%;
+	        }
+
+	            #value-container > button {
+	                position: relative;
+	                float: left;
+	                height: 100%;
+	                width: 20%;
+	                margin-left: 2%;
+	                text-align: center;
+	                background-color: white;
+	                font-size: 55px;
+	                border: none;
+	                color: #333333;
+	                border-radius: 10px;
+	                line-height: 90px;				
+		    		font-family: chalkdust;
+					box-shadow: 1px 2px 5px 1px black;
+	            }
+				
+				#value-container > button:nth-child(odd) {
+					border: 7px solid #2ecc71;	
+				}
+				#value-container > button:nth-child(even) {
+					border: 7px solid #e74c3c;	
+				}
+
+            
+              #value-container >  button:active {
+                    -webkit-transform: scale(1.2);
+                    -moz-transform: scale(1.2);
+                     background-color:#ffd800;
+            }
+			#point-container {
+				background-color: #2980b9;
+			}
+@media only screen and (max-width:800px){
+	#play_screen_content_center_middle {
+		left: 14%;
+		width: 72%;
+	}
+	#value-container {
+		width: 65%;
+		left: 16%;
+	}
+	#wraper #btn {
+		font-size: 45px;
+		top:4%; 
+	}
+	#point-container > div:nth-child(1) {
+		margin-left: 16%;
+	}
+	#point-container > div {
+		width: 5%;
+	}
+	#value-container > button:active {
+		-webkit-transform: scale(1.1);
+		-moz-transform: scale(1.1);
+	}
+}
+@media only screen and (max-width:768px){	
+ #play_screen_content_center_middle {
+		left: 14%;
+		width: 72%;
+	}
+	#value-container {
+		width: 65%;
+		left: 20%;
+	}
+	
+	#wraper #btn {
+		top:4%;
+		font-size: 45px;
+	}
+	#point-container > div:nth-child(1) {
+		margin-left: 16%;
+	}
+	#point-container > div {
+		width: 5%;
+	}
+	#value-container > button:active {
+		-webkit-transform: scale(1.1);
+		-moz-transform: scale(1.1);
+	}
+}
+@media screen and (max-width : 480px) {
+	#value-container {
+		width: 70%;
+		height: 15%;
+		top:73%;	
+		left: 15%;	
+	}
+	#value-container >button{
+		font-size: 40px;
+		width: 23%;
+	}
+	#value-container > button:nth-child(odd) {
+		border: 5px solid #2ecc71;	
+	}
+	#value-container > button:nth-child(even) {
+		border: 5px solid #e74c3c;	
+	}	
+	#source {
+		height: 90%;
+	}
+}
+@media only screen and (max-width:320px){
+	#wraper #btn{
+		top:4%;
+		font-size: 27px;
+	}
+ 	#value-container {
+	    width: 100%;
+	    top: 68%;
+	    left: 0%;
+		height: 14%;
+	}
+	#point-container {
+		top: 90%;
+ 	}
+	#point-container > div:nth-child(1) {
+		margin-left: 2%;
+	}
+	#point-container > div {
+		width: 7%;
+		margin: 4px;
+	}
+	#play_screen_content_center_middle {
+		top: 10%;
+		left:8%;
+		height: 62%;
+		width: 92%;
+	}
+	#value-container > button:active {
+		-webkit-transform: scale(1.1);
+		-moz-transform: scale(1.1);
+	}
+	
+    #value-container > button {
+		font-size: 34px;
+	    width: 17%;
+	    margin-left: 4%;
+	    line-height: 58px;
+		box-shadow: 1px 1px 3px 1px black;
+	}
+}
+</style>
+</head>
+<body>
+
+    <div id="wraper" style="position: absolute;">
+        <button id="btn">How many? </button>
+
+        <div id="header">
+           <!-- <a href="index.html">
+                <button id="mathwizard">MathWizardApps.com</button>
+            </a>-->
+            <a href="mathwizard-grade-k-exercise-topic.html">
+                <button class="sitemap"> &nbsp;Grade-K</button>
+            </a>
+            <a href="mathwizard-grade-k-counting.html">
+                <button class="sitemap">&nbsp; >  &nbsp;Counting</button>
+            </a>
+             <!--<button id="header-desc">Math Activities and Games for Kids</button>-->
+        </div>
+        <div id="content" class="w3498db">
+            <div id="play_screen_content">
+       
+        <div id="play_screen_content_left"></div>
+        <div id="play_screen_content_center">
+            <div id="play_screen_content_center_middle">
+                <div id="source">
+                </div>
+                <!--<div id="target_placeholder">
+                    <div id="target_placeholder_middle">
+                        <input type="text" id="target" onclick="atbottom();" />
+                    </div>
+                </div>-->
+            </div>
+        </div>
+        <div id="play_screen_content_right"></div>
+    </div>
+    <div id="play_screen_footer">
+        <div id="play_screen_footer_center"></div>
+    </div>
+
+    <div id="value-container">
+        <button id="value-1" onmousedown="correct_answer_as(this);" ontouchstart="correct_answer_as(this);"></button>
+        <button id="value-2" onmousedown="correct_answer_as(this);" ontouchstart="correct_answer_as(this);"></button>
+        <button id="value-3" onmousedown="correct_answer_as(this);" ontouchstart="correct_answer_as(this);"></button>
+        <button id="value-4" onmousedown="correct_answer_as(this);" ontouchstart="correct_answer_as(this);"></button>
+    </div>
+             <div id="point-container">
+                <div class="point-1"></div>
+                <div class="point-2"></div>
+                <div class="point-3"></div>
+                <div class="point-4"></div>
+                <div class="point-5"></div>
+                <div class="point-6"></div>
+                <div class="point-7"></div>
+                <div class="point-8"></div>
+                <div class="point-9"></div>
+                <div class="point-10"></div>
+                </div>
+        </div>
+        <div id="footer"><a href="index.html">&copy;MathWizardApps.com</a>
+            <a href="sitemap.html"><button id="sitemap-div">Sitemap</button></a>
+             <button id="header-desc">Math Activities and Games for Kids</button></div>
+
+    </div>
+    
+    
+     <div id="score-card">
+       <!-- <button style="z-index: 5; position: absolute; height: 5%; width: 12%; color: white; box-shadow: 1px 1px 1px 0px; top: 2%; right: 2%; font-size: 20px; outline: none; border: none; background-color: #ff6a00;" onclick="remove_score_div();">
+            Close
+        </button>-->
+        <button id="score-board-label">Counting Result</button>
+        <div id="question">
+            <button id="question_heading">Question</button>
+        </div>
+        <div id="your-answer">
+            <button id="your-answer-heading">Your Answer</button>
+        </div>
+        <div id="correct-answer">
+            <button id="correct-answer-heading">Correct Answer</button>
+        </div>
+        <div id="points">
+            <button id="points-heading">Points</button>
+        </div>
+        <!--<button id="score-card-time"></button>-->
+    </div>
+
+   
+
+
+ <script type="text/javascript">
+
+     var source, countables = 20;
+     var attemptquestion, randomnumber, play_screen, play_screen_footer_center, play_screen_middle, container, middlecenter;
+     var objectimage = "images/lvl3-card-cup.png";
+     var correctimage = "images/correct.png";
+     var incorrectimage = "images/incorrect.png";
+     var totalquestions = 10;
+     var currentquestion = 1;
+     var correctattempts = 0;
+     var question_list_time = new Array();
+     var question_list = new Array();
+     var user_answer = new Array();
+     var correct_answer = new Array();
+     var flag = true;
+     //var life = "images/wrongattempt.png";
+     var html = "";
+     onload = function () {
+         initialize();
+         gametimer();
+     }
+
+     var results = [];
+     function initialize() {
+         $(".lightSpeedIn").remove();
+         html = "";
+         results = [];
+         //document.getElementById("target").value = "";
+         play_screen = document.getElementById("play-screen");
+         source = document.getElementById("source");
+         //play_screen.style.backgroundImage = "url('" + backgoundimage + "')";
+         //displayscore = document.getElementById("displayscore");
+         //playaudio = document.getElementById("playaudio");
+         play_screen_footer_center = document.getElementById("play_screen_footer_center");
+         //target = document.getElementById("target");
+         //keyboardkey = new Array("1", "2", "3", "0", "4", "5", "6", "X", "7", "8", "9", "Go");
+         //bottomkeyboard = new Array("1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "X", "Go");
+         play_screen_middle = document.getElementById("play_screen_middle");
+         container = document.getElementById("container");
+         middlecenter = document.getElementById("middlecenter");
+         generaterandomnumber();
+     }
+
+     var otherrandomnumber;
+     function otherrandom() {
+         otherrandomnumber = Math.ceil(Math.random() * Math.abs(randomnumber - 9)) + Math.abs(randomnumber - 4);
+         results = [];
+     }
+     var correctanswer_id;
+     function generaterandomnumber() {
+         results = [];
+         randomnumber = Math.ceil(Math.random() * countables);
+         attemptquestion += 1;
+
+         var selectdiv = Math.ceil(Math.random() * 4);
+
+         for (var i = 1; i <= 4; i++) {
+             if (selectdiv == i) {
+                 $("#value-" + i).html(randomnumber);
+                 correctanswer_id = i;
+             } else {
+                 otherrandom();
+                 $("#value-" + i).html(otherrandomnumber);
+             }
+         }
+
+         findunique();
+         // playaudio.play();
+     }
+     var arr = new Array();
+
+     function findunique() {
+         for (var i = 1; i <= 4; i++) {
+             arr[i] = $("#value-" + i).text();
+         }
+         var sorted_arr = arr.sort();
+         for (var i = 0; i < arr.length - 1; i++) {
+             if (sorted_arr[i + 1] == sorted_arr[i]) {
+                 results.push(sorted_arr[i]);
+             }
+         }
+         if (results == "") {
+             imagegenerate();
+         } else {
+             generaterandomnumber();
+         }
+     }
+
+
+     function imagegenerate() {
+         for (var i = 0; i < randomnumber; i++) {
+             html += '<div style="height:15%; width:15%; margin-top:3%; margin-left:3%; float:left;" class="objectanimation" ><img src="' + objectimage + '" style="height:100%; width:100%;" /></div>';
+         }
+         source.innerHTML = html;
+     }
+
+     //function atbottom() {
+     //    bottomkeyboard;
+     //    $("#play_screen_footer").css('display', 'block');
+     //    if (navigator.userAgent.search("Firefox") >= 0) {
+     //        var html = "";
+     //        html += ' <div id="keyboard" style="position:absolute;border-radius:6px;opacity:0.95;height:86%;width:100%;background-color:#6FBCDB;"> <div id="keyboardupspace" style="height:15%;width:100%;float:left;"> </div> </div>';
+     //        play_screen_footer_center.innerHTML = html;
+     //        html = "";
+     //        for (i = 0; i < bottomkeyboard.length; i++) {
+     //            html += '<div style="height:76%;width:1.4%;float:left;"></div><div id="key_' + bottomkeyboard[i] + '" style="z-index:25;float:left;background-color:white;box-shadow:0.9px 0.9px 0.9px 1px #159DCD;border-radius:8px;height:75%;width:6.9%;text-align:center;font-family:Comic Sans MS;color:#159DCD;font-size: 33px;cursor:pointer;" onclick="displayvalue(this);">' + bottomkeyboard[i] + '</div>';
+     //        }
+     //        keyboard = document.getElementById("keyboard");
+     //        keyboard.innerHTML += html;
+
+     //    }
+     //    else {
+     //        cancelBubble(event);
+     //        var html = "";
+     //        html += ' <div id="keyboard" style="position:absolute;border-radius:6px;opacity:0.95;height:100%;width:100%;background-color:#6FBCDB;"> <div id="keyboardupspace" style="height:15%;width:100%;float:left;"> </div> </div>';
+     //        play_screen_footer_center.innerHTML = html;
+     //        html = "";
+     //        for (i = 0; i < bottomkeyboard.length; i++) {
+     //            html += '<div style="height:76%;width:1.4%;float:left;"></div><div id="key_' + bottomkeyboard[i] + '" style="z-index:25;float:left;background-color:white;box-shadow:0.9px 0.9px 0.9px 1px #159DCD;border-radius:8px;height:75%;width:6.9%;text-align:center;font-family:Comic Sans MS;color:#159DCD;font-size: 33px;cursor:pointer;" onclick="displayvalue(this);">' + bottomkeyboard[i] + '</div>';
+     //        }
+     //        keyboard = document.getElementById("keyboard");
+     //        keyboard.innerHTML += html;
+
+     //        document.onclick = function () {
+     //            keyboard.style.visibility = "hidden";
+     //        }
+     //    }
+     //}
+     function cancelBubble(e) {
+         var evt = e ? e : window.event;
+         if (evt.stopPropagarion) evt.stopPropagation();
+         if (evt.cancelBubble != null) evt.cancelBubble = true;
+         //alert('sairam');
+     }
+     //function displayvalue(sender) {
+     //    if (navigator.userAgent.search("Firefox") >= 0) { }
+     //    else {
+     //        cancelBubble(event);
+     //    }
+
+     //switch (sender.id.split("_")[1]) {
+     //    case "X":
+     //        target.value = target.value.toString().substr(0, target.value.toString().length - 1);
+     //        break;
+     //    case "Go": correct_answer();
+     //        keyboard.style.visibility = "hidden";
+     //        break;
+     //    default:
+     //        target.value += sender.innerHTML;
+     //        break;
+     //}
+     //    correct_answer();
+     //}
+    
+     var sender_id;
+
+     function correct_answer_as(sender) {
+         if (flag) {
+             flag = false;
+             sender_id = $(sender).attr('id');
+             var sender_value = $(sender).text();
+             user_answer.push(sender_value);
+             question_list.push(randomnumber);
+             correct_answer.push(randomnumber);
+
+             var create_true = "";
+             create_true += '<div class="true"/>';
+             $("#value-" + correctanswer_id).append(create_true);
+
+             var corr_ans = document.createElement('div');
+             corr_ans.id = 'corr';
+             corr_ans.style.height = '20%';
+             corr_ans.style.width = '20%';
+             corr_ans.style.zIndex = '10';
+             corr_ans.style.position = 'absolute';
+             corr_ans.style.left = '35%';
+             corr_ans.style.top = '34%';
+             corr_ans.setAttribute('class', ' lightSpeedIn');
+             document.body.appendChild(corr_ans);
+
+             var create_true = "";
+             create_true += '<div class="true"/>';
+             $("#value-" + correctanswer_id).append(create_true);
+
+             var corr_imag = document.createElement('img');
+             if (randomnumber == $(sender).text()) {
+                 var create_point = "";
+                 create_point += '<div class="point-true"/>';
+                 $(".point-" + currentquestion).append(create_point);
+                 $("#points").append(create_point);
+                 corr_imag.setAttribute('src', 'images/correct.png');
+             }
+             else {
+                 var create_point = "";
+                 create_point += '<div class="point-false"/>';
+                 $(".point-" + currentquestion).append(create_point);
+                 $("#points").append(create_point);
+                 corr_imag.setAttribute('src', 'images/incorrect.png');
+             }
+             corr_imag.style.height = '100%';
+             corr_imag.style.width = '100%';
+             corr_ans.appendChild(corr_imag);
+             if (navigator.userAgent.search("Firefox") >= 0) {
+
+                 document.getElementById('corr').addEventListener('animationend', function () {
+                     document.body.removeChild(this);
+                     //source.innerHTML = "";
+                     //target.value = "";
+                     //attempt();
+                     //keyboard.style.visibility = "visible";
+                     $("#corr").remove();
+                     //$("#source > div").remove();
+                     flag = true;
+                     userAnswer();
+                     initialize();
+                 }, false);
+             } else {
+                 document.getElementById('corr').addEventListener('webkitAnimationEnd', function () {
+                     document.body.removeChild(this);
+                     //operatorone.innerHTML = "";
+                     //operatortwo.innerHTML = "";
+                     $("#corr").remove();
+                     flag = true;
+                     userAnswer();
+                     initialize();
+                 }, false);
+             }
+         }
+     }
+
+         function userAnswer() {
+             //switch (what) {
+             //    case "correct":
+             //        answer_list[currentquestion - 1] = "correct";
+             //        correctattempts++;
+             //        //$("#question-dots").find(".dot").eq(currentquestion - 1).removeClass("active-dot");
+             //        //$("#question-dots").find(".dot").eq(currentquestion - 1).addClass("correct-dot");
+             //        //stopAllAudio();
+             //        //$("#correct").get(0).play();
+             //        break;
+             //    case "incorrect":
+             //        answer_list[currentquestion - 1] = "incorrect";
+             //        //$("#question-dots").find(".dot").eq(currentquestion - 1).removeClass("active-dot");
+             //        //$("#question-dots").find(".dot").eq(currentquestion - 1).addClass("incorrect-dot");
+             //        //stopAllAudio();
+             //        //$("#incorrect").get(0).play();
+             //        break;
+             //}
+             if (currentquestion == totalquestions) {
+                 gamestart = false;
+                 clearTimeout(timer);
+                 //$("#score-card-time").text($("#time-holder").text());
+                 var html = '';
+                 var correct = 0;
+                 for (var i = 0; i < question_list.length; i++) {
+                     //html += '<button class="score-card-question">' + question_list[i] + '</button>';
+                     //if (answer_list[i] == "correct") {
+                     //    html += '<button class="score-card-answer score-card-answer-correct"></button>';
+                     //    correct++;
+                     //}
+                     //else {
+                     //    html += '<button class="score-card-answer score-card-answer-incorrect"></button>';
+                     //}
+
+                     //var temphtml = '';
+                     $('#question').append('<button class="remove">' + question_list[i] + '</button>');
+                     $('#correct-answer').append('<button class="remove">' + correct_answer[i] + '</button>');
+                     $('#your-answer').append('<button class="remove">' + user_answer[i] + '</button>');
+                     hour = parseInt(question_list_time[i] / 3600);
+                     minute = parseInt((question_list_time[i] % 3600) / 60);
+                     second = parseInt((question_list_time[i] % 3600) % 60);
+                     temphtml = "";
+                     var h = hour.toString();
+                     var m = minute.toString();
+                     var s = second.toString();
+                     if (h.length == 1)
+                         temphtml += "";
+                     else
+                         temphtml += h;
+                     if (m.length == 1)
+                         temphtml += 0 + "" + m;
+                     else
+                         temphtml += m;
+                     temphtml += " : ";
+                     if (s.length == 1)
+                         temphtml += 0 + "" + s;
+                     else
+                         temphtml += s;
+                     //html += '<button class="score-card-question-time">' + temphtml + '</button>';
+                 }
+                 //$("#score-card-question-holder").html(html);
+                 $("#score-card").css('display', 'inline');
+
+             }
+             else {
+                 currentquestion++;
+             }
+         }
+
+         var milisecond = 0;
+         function gametimer() {
+             var html = "";
+             question_list_time[currentquestion - 2]++;
+             milisecond++;
+             hour = parseInt(milisecond / 3600);
+             minute = parseInt((milisecond % 3600) / 60);
+             second = parseInt((milisecond % 3600) % 60);
+             html = "";
+             var h = hour.toString();
+             var m = minute.toString();
+             var s = second.toString();
+             if (h.length == 1)
+                 html += "";
+             else
+                 html += h;
+             if (m.length == 1)
+                 html += 0 + "" + m;
+             else
+                 html += m;
+             html += " : ";
+             if (s.length == 1)
+                 html += 0 + "" + s;
+             else
+                 html += s;
+
+             //$("#time-holder").html(html);
+
+             timer = setTimeout('gametimer();', 1000);
+         }
+
+         function remove_score_div() {
+             $(".remove").remove();
+             question_list.length = 0;
+             correct_answer.length = 0;
+             user_answer.length = 0;
+             currentquestion = 1;
+             $("#score-card").css('display', 'none');
+         }
+
+
+ </script>
+</body>
+
+</html>

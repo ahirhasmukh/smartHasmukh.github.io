@@ -1,0 +1,908 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Math Wizard-grade-3-shape - Online math practice, math games and interactive math </title>
+
+    <meta name="description" content="Math Wizard-grade-2-shape is one of the most interactive math practice apps. 
+Math wizard is completely free online for studnets, teachers and schools.
+Math wizard provides unlimited math practice to kids.
+Math wizard provides a simple , intuitive learning system for kids with games , interactive actvities , making learning fun!
+" />
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery-ui-1.10.2.custom.js"></script>
+    <script src="js/jquery.ui.touch-punch.js"></script>
+    <link href="style/common.css" rel="stylesheet" />
+    <style type="text/css">
+        #shape_identification {
+            float: left;
+            height: 75%;
+            width: 99%;
+            position: absolute;
+            top: 15%;
+        }
+
+        #shape_question {
+            position: absolute;
+            height: 45%;
+            width: 20%;
+            /*box-shadow: 0px 0px 8px 0px black inset;*/
+            top: 5%;
+            left: 40%;
+        }
+
+        #shape_answer {
+            position: absolute;
+            height: 50%;
+            width: 100%;
+            top: 50%;
+        }
+
+        #square_ques {
+            display: none;
+            float: left;
+            /*background-color: #6C6;*/
+            background-image: url('images/diagram.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+        }
+
+        #square_ans {
+            float: left;
+            /*background-color: #6C6;*/
+            background-image: url('images/square.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+        }
+
+        #triangle_ques {
+            display: none;
+            position: relative;
+            float: left;
+            /*border-left: 73px solid transparent;
+    border-right: 68px solid transparent;
+    border-bottom: 129px solid red;*/
+            background-image: url('images/cap.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+        }
+
+        #rectangle_ques {
+            display: none;
+            position: relative;
+            float: left;
+            /*border-left: 73px solid transparent;
+    border-right: 68px solid transparent;
+    border-bottom: 129px solid red;*/
+            background-image: url('images/postcard.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+        }
+
+        #diamand_ques {
+            display: none;
+            position: relative;
+            float: left;
+            /*border-left: 73px solid transparent;
+    border-right: 68px solid transparent;
+    border-bottom: 129px solid red;*/
+            background-image: url('images/starfish.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+        }
+
+        #haxagon_ques {
+            display: none;
+            position: relative;
+            float: left;
+            /*border-left: 73px solid transparent;
+    border-right: 68px solid transparent;
+    border-bottom: 129px solid red;*/
+            background-image: url('images/cylinder_2.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+        }
+
+        #triangle_ans {
+            /*border-left: 73px solid transparent;
+    border-right: 68px solid transparent;
+    border-bottom: 129px solid red;*/
+            top: 0%;
+            background-image: url('images/triangle.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+        }
+
+        #shape_question > div {
+            width: 90%;
+            height: 90%;
+            position: relative;
+            top: 5%;
+            left: 7%;
+        }
+
+        #shape_answer > div {
+            position: relative;
+            float: left;
+            margin: -1%;
+            width: 12%;
+            height: 50%;
+            margin-left: 4%;
+            margin-top: 6%;
+        }
+
+        #circle_ans {
+            /*background: #6FBCDB;*/
+            background-image: url('images/circle.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+        }
+
+        #rectangle_ans {
+            /*background: #6FBCDB;*/
+            background-image: url('images/rectangle.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+        }
+
+        #diamand_ans {
+            /*background: #6FBCDB;*/
+            background-image: url('images/DImage.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+        }
+
+        #haxagon_ans {
+            /*background: #6FBCDB;*/
+            background-image: url('images/cylinder.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+        }
+
+        /*#octagon_ans:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-bottom: 29px solid #6FBCDB;
+        border-left: 48px solid white;
+        border-right: 48px solid white;
+        width: 42px;
+        height: 0;
+    }*/
+
+        /*#octagon_ans:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-top: 29px solid #6FBCDB;
+        border-left: 48px solid white;
+        border-right: 48px solid white;
+        width: 42px;
+        height: 0;
+    }*/
+
+        #circle_ques {
+            display: none;
+            position: relative;
+            float: left;
+            width: 28%;
+            height: 63%;
+            top: 13%;
+            background-image: url('images/hat.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+        }
+
+        /*#octagon_ques:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-bottom: 29px solid red;
+        border-left: 48px solid white;
+        border-right: 48px solid white;
+        width: 42px;
+        height: 0;
+    }
+
+    #octagon_ques:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-top: 29px solid red;
+        border-left: 48px solid white;
+        border-right: 48px solid white;
+        width: 42px;
+        height: 0;
+    }*/
+
+        .shape-correct-color {
+            background-color: green;
+        }
+
+        .shape-incorrect-color {
+            background-color: red;
+        }
+
+
+        .shape-correct {
+            -webkit-animation: shape-correct 1s linear;
+            -moz-animation: shape-correct 1s linear;
+        }
+
+        @-webkit-keyframes shape-correct {
+            0% {
+                -webkit-transform: scale(0);
+                -webkit-transform: rotateX(0deg);
+                -moz-transform: scale(0);
+                -moz-transform: rotateX(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                -webkit-transform: rotateX(190deg);
+                -moz-transform: rotateX(190deg);
+            }
+
+            20% {
+                -webkit-transform: scale(1.2);
+                -webkit-transform: rotateX(360deg);
+                -moz-transform: scale(1.2);
+                -moz-transform: rotateX(360deg);
+                opacity: 0.7;
+            }
+        }
+
+
+        @-moz-keyframes shape-correct {
+            0% {
+                -webkit-transform: scale(0);
+                -webkit-transform: rotateX(0deg);
+                -moz-transform: scale(0);
+                -moz-transform: rotateX(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                -webkit-transform: rotateX(190deg);
+                -moz-transform: rotateX(190deg);
+            }
+
+            20% {
+                -webkit-transform: scale(1.2);
+                -webkit-transform: rotateX(360deg);
+                -moz-transform: scale(1.2);
+                -moz-transform: rotateX(360deg);
+                opacity: 0.7;
+            }
+        }
+
+        .shape-correct-text {
+            -webkit-animation: shape-correct-text 1s linear;
+            -moz-animation: shape-correct-text 1s linear;
+        }
+
+        @-webkit-keyframes shape-correct-text {
+            0% {
+                -webkit-transform: scale(0);
+                -moz-transform: scale(0);
+                /*-webkit-transform:rotateX(0deg);*/
+                opacity: 0;
+            }
+
+            10% {
+                -webkit-transform: scale(1.5);
+                -moz-transform: scale(1.5);
+            }
+
+            20% {
+                -webkit-transform: scale(2);
+                -moz-transform: scale(2);
+                /*-webkit-transform:rotateX(360deg);
+        opacity: 0.7;*/
+            }
+        }
+
+        @-moz-keyframes shape-correct-text {
+            0% {
+                -webkit-transform: scale(0);
+                -moz-transform: scale(0);
+            }
+
+            10% {
+                -webkit-transform: scale(1.5);
+                -moz-transform: scale(1.5);
+            }
+
+            20% {
+                -webkit-transform: scale(2);
+                -moz-transform: scale(2);
+                /*-webkit-transform:rotateX(360deg);
+        opacity: 0.7;*/
+            }
+        }
+
+
+        @-webkit-keyframes lightSpeedIn {
+            0% {
+                -webkit-transform: translateX(100%) skewX(-30deg);
+                opacity: 0;
+            }
+
+            60% {
+                -webkit-transform: translateX(-20%) skewX(30deg);
+                opacity: 1;
+            }
+
+            80% {
+                -webkit-transform: translateX(0%) skewX(-15deg);
+                opacity: 1;
+            }
+
+            100% {
+                -webkit-transform: translateX(0%) skewX(0deg);
+                opacity: 1;
+            }
+        }
+
+        @-moz-keyframes lightSpeedIn {
+            0% {
+                -moz-transform: translateX(100%) skewX(-30deg);
+                opacity: 0;
+            }
+
+            60% {
+                -moz-transform: translateX(-20%) skewX(30deg);
+                opacity: 1;
+            }
+
+            80% {
+                -moz-transform: translateX(0%) skewX(-15deg);
+                opacity: 1;
+            }
+
+            100% {
+                -moz-transform: translateX(0%) skewX(0deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes lightSpeedIn {
+            0% {
+                transform: translateX(100%) skewX(-30deg);
+                opacity: 0;
+            }
+
+            60% {
+                transform: translateX(-20%) skewX(30deg);
+                opacity: 1;
+            }
+
+            80% {
+                transform: translateX(0%) skewX(-15deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(0%) skewX(0deg);
+                opacity: 1;
+            }
+        }
+
+        .lightSpeedIn {
+            -webkit-animation: lightSpeedIn 2s ease-out;
+            -moz-animation: lightSpeedIn 2s ease-out;
+            animation: lightSpeedIn 2s ease-out;
+        }
+
+        #correct-text {
+            display: none;
+            background-color: transparent;
+            border: none;
+            position: absolute;
+            color: white;
+            top: 20%;
+            left: 45%;
+            height: 10%;
+            width: 15%;
+            font-size: 23px;
+        }
+
+        #incorrect-text {
+            display: none;
+            background-color: transparent;
+            border: none;
+            position: absolute;
+            color: white;
+            top: 20%;
+            left: 45%;
+            height: 10%;
+            width: 15%;
+            font-size: 23px;
+        }
+		#wraper #btn{
+			 position: absolute; 
+			 top: 9%; 
+			 width: 100%;
+			 text-align: center;
+			 font-family: cursive;
+			 font-size: 50px; 
+			 color: black; 
+			 background-color: transparent; 
+			 border: none; 
+			 z-index: 1;
+		}
+@media only screen and (max-width:800px){
+	#wraper #btn{
+		top:5%;
+		font-size:40px; 
+	}
+	#point-container > div:nth-child(1) {
+		margin-left: 16%;
+	}
+	#point-container > div {
+		width: 5%;
+	}
+	#shape_question > div {
+		width: 150%;
+		height: 95%;
+		top:0%;
+		left:-25%;
+	}
+	#shape_answer {
+		top: 48%;
+	}
+	#shape_answer > div {
+		width: 13%;
+		height: 40%;
+	}
+}
+@media only screen and (max-width:768px){
+	#wraper #btn{
+		top:5%;
+		font-size:40px; 
+	}
+	#point-container > div:nth-child(1) {
+		margin-left: 16%;
+	}
+	#point-container > div {
+		width: 5%;
+	}
+	#shape_question > div {
+		width: 150%;
+		height: 95%;
+		top:0%;
+		left:-25%;
+	}
+	#shape_answer {
+		top: 48%;
+	}
+	#shape_answer > div {
+		width: 13%;
+		height: 40%;
+	}
+}
+@media only screen and (max-width:320px){
+	#wraper #btn{
+		top:5%;
+		font-size:27px; 
+	}
+	#point-container {
+		top: 90%;
+ 	}
+	#point-container > div:nth-child(1) {
+		margin-left: 2%;
+	}
+	#point-container > div {
+		width: 7%;
+		margin: 4px;
+	}
+	#shape_question > div {
+		width: 180%;
+		height: 81%;
+		top:0%;
+		left: -50%;
+	}
+	#shape_answer {
+		top: 48%;
+	}
+	#shape_answer > div {
+		width: 27%;
+		height: 52%;
+		margin-top: -1.4%;
+	}
+	#shape_answer > div:nth-child(4),
+	#shape_answer > div:nth-child(5),
+	#shape_answer > div:nth-child(6){
+		margin-top:1%;
+	}
+}	
+</style>
+</head>
+<body>
+
+    <div id="wraper" style="position:absolute;">
+        <button id="btn">Match similar shapes</button>
+        <div id="header">
+            <!--  <a href="index.html">
+                <button id="mathwizard">MathWizardApps.com</button>
+            </a>-->
+            <a href="mathwizard-grade-3-topic.html">
+                <button class="sitemap">&nbsp;Grade-3</button>
+            </a>
+            <a href="mathwizard-grade-3-shape.html">
+                <button class="sitemap">&nbsp; >  &nbsp;Shape Identification</button>
+            </a>
+        </div>
+
+        <div id="content" class="light-pink">
+            <div id="shape_identification">
+                <div id="shape_question">
+                    <div id="square_ques"></div>
+                    <div id="triangle_ques"></div>
+                    <div id="circle_ques"></div>
+                    <div id="rectangle_ques"></div>
+                    <div id="diamand_ques"></div>
+                    <div id="haxagon_ques"></div>
+                </div>
+                <div id="shape_answer">
+                    <div id="square_ans" onclick="correct_answer_as(this,'correct');">
+                    </div>
+                    <div id="haxagon_ans" onclick="correct_answer_as(this,'correct');">
+                    </div>
+                    <div id="triangle_ans" onclick="correct_answer_as(this,'correct');">
+                    </div>
+                    <div id="diamand_ans" onclick="correct_answer_as(this,'correct');">
+                    </div>
+                    <div id="circle_ans" onclick="correct_answer_as(this,'correct');">
+                    </div>
+                    <div id="rectangle_ans" onclick="correct_answer_as(this,'correct');">
+                    </div>
+
+
+                </div>
+
+                <!--   <svg viewBox="0 0 200 200" version="1.1">
+                        <circle cx="100" cy="100" r="80" fill="orange" stroke="navy" stroke-width="10" />
+                    </svg>-->
+                <button id="correct-text">correct</button>
+                <button id="incorrect-text">incorrect</button>
+            </div>
+
+            <div id="point-container">
+                <div class="point-1"></div>
+                <div class="point-2"></div>
+                <div class="point-3"></div>
+                <div class="point-4"></div>
+                <div class="point-5"></div>
+                <div class="point-6"></div>
+                <div class="point-7"></div>
+                <div class="point-8"></div>
+                <div class="point-9"></div>
+                <div class="point-10"></div>
+            </div>
+
+        </div>
+        <div id="footer">
+            <a href="index.html">&copy;MathWizardApps.com</a>
+
+            <a href="sitemap.html">
+                <button id="sitemap-div">Sitemap</button></a>
+
+            <button id="header-desc">Math Activities and Games for Kids</button>
+        </div>
+    </div>
+
+    <div id="score-card">
+       <!-- <button style="z-index: 5; position: absolute; height: 5%; width: 12%; color: white; box-shadow: 1px 1px 1px 0px; top: 2%; right: 2%; font-size: 20px; outline: none; border: none; background-color: #ff6a00;" onclick="remove_score_div();">
+            Close
+        </button>-->
+        <button id="score-board-label">Shape Identification Result</button>
+       <!-- <div id="question">
+            <button id="question_heading">Question</button>
+        </div>-->
+        <div id="your-answer" style="left:18%;">
+            <button id="your-answer-heading">Your Answer</button>
+        </div>
+        <div id="correct-answer" style="left:45%;">
+            <button id="correct-answer-heading">Correct Answer</button>
+        </div>
+        <div id="points" style="left:65%;">
+            <button id="points-heading">Points</button>
+        </div>
+        <!--<button id="score-card-time"></button>-->
+    </div>
+
+    <script type="text/ecmascript">
+
+        var answer_list = new Array();
+        var totalquestions = 10;
+        var currentquestion = 1;
+        var correctattempts = 0;
+        var question_list_time = new Array();
+        var question_list = new Array();
+        var user_answer = new Array();
+        var correct_answer = new Array();
+
+        window.onload = function () {
+            create_shape();
+            gametimer();
+        }
+
+        function create_shape() {
+            $("#shape_question").css('background-color', '');
+            $("#correct-text").css('display', 'none');
+            $("#incorrect-text").css('display', 'none');
+            shape_selection = ["square_ques", "triangle_ques", "circle_ques", "rectangle_ques", "haxagon_ques", "diamand_ques"];
+            shape_rand_selection = Math.floor(Math.random() * 6);
+            shape_split = shape_selection[shape_rand_selection].split('_')[0];
+            $("#" + shape_selection[shape_rand_selection]).css('display', 'block');
+        }
+
+
+        var flag_animation = true;
+        var sender_id;
+        function correct_answer_as(sender, what) {
+            if (flag_animation) {
+                flag_animation = false;
+                shape_id = $(sender).attr('id').trim().split('_')[0];
+                sender_id = $(sender).attr('id');
+
+                sender_value = shape_id;
+                user_answer.push(sender_value);
+                question_list.push(shape_id);
+                correct_answer.push(shape_split);
+                var corr_ans = document.createElement('div');
+                corr_ans.id = 'corr';
+                corr_ans.style.height = '20%';
+                corr_ans.style.width = '20%';
+                corr_ans.style.zIndex = '10';
+                corr_ans.style.position = 'absolute';
+                corr_ans.style.left = '35%';
+                corr_ans.style.top = '34%';
+                corr_ans.setAttribute('class', 'lightSpeedIn');
+                document.body.appendChild(corr_ans);
+
+                var create_true = "";
+                create_true += '<div class="true"/>';
+                $("#" + shape_split + "_ans").append(create_true);
+
+                var corr_imag = document.createElement('img');
+                if (shape_split == shape_id) {
+                    var create_point = "";
+                    create_point += '<div class="point-true"/>';
+                    $(".point-" + currentquestion).append(create_point);
+                    $("#points").append(create_point);
+                    corr_imag.setAttribute('src', 'images/correct.png');
+                }
+                else {
+                    var create_point = "";
+                    create_point += '<div class="point-false"/>';
+                    $(".point-" + currentquestion).append(create_point);
+                    $("#points").append(create_point);
+                    corr_imag.setAttribute('src', 'images/incorrect.png');
+                }
+                if (navigator.userAgent.search("Firefox") >= 0) {
+                    corr_imag.style.height = '100%';
+                    corr_imag.style.width = '100%';
+                    corr_ans.appendChild(corr_imag);
+                    document.getElementById('corr').addEventListener('animationend', function () {
+                        document.body.removeChild(this);
+                        //source.innerHTML = "";
+                        //target.value = "";
+                        //attempt();
+                        //keyboard.style.visibility = "visible";
+                        $("#corr").remove();
+                        flag_animation = true;
+                        //$("#source > div").remove();
+                        $("#shape_question > div").removeClass('shape-correct');
+                        $("#" + shape_selection[shape_rand_selection]).css('display', 'none');
+                        $(".true").remove();
+                        $(".false").remove();
+                        userAnswer(sender, what);
+                        create_shape();
+                    }, false);
+                }
+                else {
+                    corr_imag.style.height = '100%';
+                    corr_imag.style.width = '100%';
+                    corr_ans.appendChild(corr_imag);
+                    document.getElementById('corr').addEventListener('webkitAnimationEnd', function () {
+
+                        document.body.removeChild(this);
+                        //source.innerHTML = "";
+                        //target.value = "";
+                        //attempt();
+                        //keyboard.style.visibility = "visible";
+                        $("#corr").remove();
+                        flag_animation = true;
+                        //$("#source > div").remove();
+                        $("#shape_question > div").removeClass('shape-correct');
+                        $("#" + shape_selection[shape_rand_selection]).css('display', 'none');
+                        $(".true").remove();
+                        $(".false").remove();
+                        userAnswer(sender, what);
+                        create_shape();
+                    }, false);
+                }
+            }
+        }
+
+        function userAnswer(sender, what) {
+            switch (what) {
+                case "correct":
+                    answer_list[currentquestion - 1] = "correct";
+                    correctattempts++;
+                    //$("#question-dots").find(".dot").eq(currentquestion - 1).removeClass("active-dot");
+                    //$("#question-dots").find(".dot").eq(currentquestion - 1).addClass("correct-dot");
+                    //stopAllAudio();
+                    //$("#correct").get(0).play();
+                    break;
+                case "incorrect":
+                    answer_list[currentquestion - 1] = "incorrect";
+                    //$("#question-dots").find(".dot").eq(currentquestion - 1).removeClass("active-dot");
+                    //$("#question-dots").find(".dot").eq(currentquestion - 1).addClass("incorrect-dot");
+                    //stopAllAudio();
+                    //$("#incorrect").get(0).play();
+                    break;
+            }
+            if (currentquestion == totalquestions) {
+                gamestart = false;
+                clearTimeout(timer);
+                //$("#score-card-time").text($("#time-holder").text());
+                var html = '';
+                var correct = 0;
+                for (var i = 0; i < question_list.length; i++) {
+                    //html += '<button class="score-card-question">' + question_list[i] + '</button>';
+                    //if (answer_list[i] == "correct") {
+                    //    html += '<button class="score-card-answer score-card-answer-correct"></button>';
+                    //    correct++;
+                    //}
+                    //else {
+                    //    html += '<button class="score-card-answer score-card-answer-incorrect"></button>';
+                    //}
+
+                    //var temphtml = '';
+                    //$('#question').append('<button class="remove">' + question_list[i] + '</button>');
+                    $('#correct-answer').append('<button class="remove">' + correct_answer[i] + '</button>');
+                    $('#your-answer').append('<button class="remove">' + user_answer[i] + '</button>');
+                    hour = parseInt(question_list_time[i] / 3600);
+                    minute = parseInt((question_list_time[i] % 3600) / 60);
+                    second = parseInt((question_list_time[i] % 3600) % 60);
+                    temphtml = "";
+                    var h = hour.toString();
+                    var m = minute.toString();
+                    var s = second.toString();
+                    if (h.length == 1)
+                        temphtml += "";
+                    else
+                        temphtml += h;
+                    if (m.length == 1)
+                        temphtml += 0 + "" + m;
+                    else
+                        temphtml += m;
+                    temphtml += " : ";
+                    if (s.length == 1)
+                        temphtml += 0 + "" + s;
+                    else
+                        temphtml += s;
+                    //html += '<button class="score-card-question-time">' + temphtml + '</button>';
+                }
+                //$("#score-card-question-holder").html(html);
+                $("#score-card").css('display', 'inline');
+
+            }
+            else {
+                currentquestion++;
+            }
+        }
+
+        var milisecond = 0;
+        function gametimer() {
+            var html = "";
+            question_list_time[currentquestion - 2]++;
+            milisecond++;
+            hour = parseInt(milisecond / 3600);
+            minute = parseInt((milisecond % 3600) / 60);
+            second = parseInt((milisecond % 3600) % 60);
+            html = "";
+            var h = hour.toString();
+            var m = minute.toString();
+            var s = second.toString();
+            if (h.length == 1)
+                html += "";
+            else
+                html += h;
+            if (m.length == 1)
+                html += 0 + "" + m;
+            else
+                html += m;
+            html += " : ";
+            if (s.length == 1)
+                html += 0 + "" + s;
+            else
+                html += s;
+
+            //$("#time-holder").html(html);
+
+            timer = setTimeout('gametimer();', 1000);
+        }
+
+        function remove_score_div() {
+            $(".remove").remove();
+            question_list.length = 0;
+            correct_answer.length = 0;
+            user_answer.length = 0;
+            currentquestion = 1;
+            $("#score-card").css('display', 'none');
+            $(".point-false").remove();
+            $(".point-true").remove();
+        }
+
+
+        //////function shape_match(sender) {
+        //////    alert("p");
+        //////    correct_answer_as(shape_id);
+        //    $("#shape_question > div").removeClass('shape-correct');
+        //    $("#" + shape_selection[shape_rand_selection]).addClass('shape-correct');
+        //    $(".shape-correct").on('webkitAnimationEnd animationend', function (e) {
+        //        $("#shape_question").css('background-color', 'green');
+        //        $("#correct-text").css('display', 'none');
+        //        $("#correct-text").css('display', 'block').addClass('shape-correct-text');
+        //        if (navigator.userAgent.search("Firefox") >= 0) {
+        //            $("#" + shape_selection[shape_rand_selection]).removeClass('shape-correct');
+        //            $("#" + shape_selection[shape_rand_selection]).css('display', 'none');
+        //            create_shape();
+        //        }
+        //        else {
+        //            $(".shape-correct-text").on('webkitAnimationEnd animationend', function (e) {
+        //                $("#" + shape_selection[shape_rand_selection]).removeClass('shape-correct');
+        //                $("#" + shape_selection[shape_rand_selection]).css('display', 'none');
+        //                create_shape();
+        //            });
+        //        }
+        //    });
+
+        //} else {
+        //    $("#shape_question > div").removeClass('shape-correct');
+        //    $("#" + shape_selection[shape_rand_selection]).addClass('shape-correct');
+        //    $(".shape-correct").on('webkitAnimationEnd animationend', function (e) {
+        //        $("#shape_question").css('background-color', 'rgba(237, 55, 3, 0.88)');
+        //        $("#incorrect-text").css('display', 'none');
+        //        $("#incorrect-text").css('display', 'block').addClass('shape-correct-text');
+
+        //        if (navigator.userAgent.search("Firefox") >= 0) {
+        //            $("#" + shape_selection[shape_rand_selection]).removeClass('shape-correct');
+        //            $("#" + shape_selection[shape_rand_selection]).css('display', 'none');
+        //            create_shape();
+        //        }
+        //        else {
+        //            $(".shape-correct-text").on('webkitAnimationEnd animationend', function (e) {
+        //                $("#" + shape_selection[shape_rand_selection]).removeClass('shape-incorrect');
+        //                $("#" + shape_selection[shape_rand_selection]).css('display', 'none');
+        //                create_shape();
+        //            });
+        //        }
+        //    });
+        //}
+
+        //}
+
+    </script>
+
+</body>
+</html>

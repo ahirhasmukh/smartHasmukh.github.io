@@ -1,0 +1,942 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<script src="js/jquery-1.9.1.js"></script>
+<link href="js/jquery-ui-1.10.2.custom.css" rel="stylesheet" />
+<script src="js/jquery-ui-1.10.2.custom.js"></script>
+      <link href="style/common.css" rel="stylesheet" />
+    <title>Mathwizard-count Balloon</title>
+<style type="text/css">
+        body{
+			background:-webkit-linear-gradient(#4075BB,lightblue,#C4D5EF);
+			background:-moz-linear-gradient(#4075BB,lightblue,#C4D5EF);
+			overflow: hidden;
+			height: 654px;
+		}
+		#count_div  {
+            font-size:38px;
+			text-align: center;
+			text-shadow: 1px 1px 1px #000;
+			position: absolute;
+			height: 10%;
+			width: 70.2%;
+			top: 6%;
+			left: 3.5%;
+			border-top-left-radius: 20px;
+			border-top-right-radius: 20px;
+			font-family:verdana;
+			color: #fff;
+			font-weight: bold;
+			border: 10px double brown;
+			border-bottom: none;
+        }
+		.border{
+			width:150%;
+			height:550px; 
+            position:relative;
+			left: -50%;
+        }
+        .number {
+	        position: relative;
+			height: 50px;
+			width: 18%;
+			margin-left: 0%;
+			background: url('images/balloon_1.png') -2% no-repeat;
+			background-size: 71%;
+			top: -450px;
+			left: 92.5%;
+			font-size: 20px;
+			text-align: center;
+			font-family: cursive;
+			font-weight: bolder;
+			margin-bottom: -20px;
+			z-index: 1;
+			-webkit-animation: balloon1 2s linear infinite alternate;
+			-moz-animation: balloon1 2s linear infinite alternate;
+			box-shadow: 1px 1px 1px 1px inset lightblue;
+		}
+		@-webkit-keyframes balloon1{
+			to{-webkit-transform: rotateZ(0deg);}
+			from{-webkit-transform:rotateZ(-10deg);}
+		}
+		@keyframes balloon1{
+			to{-moz-transform: rotateZ(0deg);}
+			from{-moz-transform:rotateZ(-10deg);}
+		}
+		h1{
+          	position: relative;
+			top: -2px;
+			left: -35%;
+			font-family: cursive;
+        }
+		h1:hover{
+			color:#d603d0;
+			cursor: pointer;
+		}
+		#play_screen{
+			 position:absolute;
+			 width:99%;
+			 height:98%;
+			  
+		}
+		#sky_screen{
+			position: relative;
+			height: 79%;
+			width: 70.8%;
+			top: 15%;
+			left: 3%;
+			overflow: hidden;
+			border: 10px dotted brown;
+			z-index: 23;
+			border-top: none;
+		}
+        #display_number{
+			position: absolute;
+			height: 0%;
+			width: 73.2%;
+			top: 72%;
+			left: 11.6%;
+		}
+		img{
+			height: 70px;
+			width: 200px;
+			position: relative;
+			-webkit-animation: bgimg 18s infinite alternate;
+			-moz-animation: bgimg 18s infinite alternate;
+		}
+		@-webkit-keyframes bgimg{
+			to{left:-50%;}
+			from{left:0%;}
+		}
+		@keyframes bgimg{
+			to{left:-50%;}
+			from{left:0%;}
+		}
+		.ballon{
+			position: relative;
+			-webkit-animation: balloon 1s linear infinite alternate;
+			-moz-animation: balloon 1s linear infinite alternate;
+		}
+		@-webkit-keyframes balloon{
+			0%{position: relative;margin-top:0px;}
+			100%{position: relative;margin-top: 3px;}
+		}
+		@keyframes balloon{
+			0%{position: relative;margin-top:0px;}
+			100%{position: relative;margin-top: 3px;}
+		}
+		#cloud{
+			background: url('images/stick.png') no-repeat;
+			-webkit-transform:rotate(90deg);
+			-moz-transform:rotate(90deg);
+			transform:rotate(90deg);
+			height: 100%;
+			width: 46%;
+			position: relative;
+			left: 41.5%;
+			top: -3%;
+		}
+@media all and (max-width:1280px ){
+    body{
+		height: 654px;
+	}
+    #count_div {
+		width: 67.3%;
+		top: 6%;
+		left: 3.5%;
+	}
+	#sky_screen {
+		height: 75%;
+		width: 67.96%;
+		top: 15%;
+		left: 2.9%;
+	}
+	#display_number {
+		height: 10%;
+		width: 76.2%;
+		top: 72%;
+		left: 10.6%;
+	}
+	#cloud {
+		width: 50%;
+		position: relative;
+		left: 39.5%;
+		top: -2%;
+		-moz-left: 35.5%;
+		-moz-top: -12%;
+	}
+	.number {
+		font-size: 20px;
+	}
+	.number:hover{
+		font-size:21px;
+	} 
+}	
+@media all and (max-width:1024px ){
+    body{
+		height: 654px;
+	}
+    #count_div {
+		width: 70.2%;
+		top: 6%;
+		left: 3.6%;
+		border: 8px double brown;
+		border-bottom:none; 
+	}
+	#sky_screen {
+		height: 72%;
+		width: 70.9%;
+		top: 15%;
+		left: 2.9%;
+		border: 8px dotted brown;
+		border-top:none; 
+	}
+	#display_number {
+		height: 10%;
+		width: 75.2%;
+		top: 70%;
+		left: 11.6%;
+	}
+	#cloud {
+		width: 61%;
+		left: 28%;
+		top: -2%;
+	}
+	.number {
+		font-size: 19px;
+		height: 52px;
+		background-size: 90%;
+		left: 89.5%;
+	}
+	.number:hover{
+		font-size:20px;
+	}  
+}
+@media screen and (max-width:960px) {
+	#count_div {
+		width: 70.3%;
+		top: 6%;
+		left: 3.7%;
+		border: 8px double brown;
+		border-bottom:none; 
+	}
+	#sky_screen {
+		height: 72%;
+		width: 70.9%;
+		top: 15%;
+		left: 2.9%;
+		border: 8px dotted brown;
+		border-top:none; 
+	}
+	#display_number {
+		height: 10%;
+		width: 75.2%;
+		top: 70%;
+		left: 11.6%;
+	}
+	#cloud {
+		width: 61%;
+		left: 28%;
+		top: -4%;
+	}
+	.number {
+		font-size: 16px;
+		height: 52px;
+		width: 17%;
+		background-size: 100%;
+		left:91.5%;
+	}
+	h1{
+		left:-30%;
+	}
+}
+@media screen and (max-width:800px) {
+	body{
+		height: 654px;
+	}
+    #count_div {
+		width: 77.6%;
+		top: 6%;
+		left: 3.5%;
+	}
+	#sky_screen {
+		height: 63%;
+		width: 78%;
+		top: 15%;
+		left: 2.9%;
+	}
+	#display_number {
+		height: 10%;
+		width: 75.2%;
+		top: 70%;
+		left: 11.6%;
+	}
+	#cloud {
+		width: 77%;
+		left: 18%;
+		top: -3%;
+	}
+	.number {
+		font-size: 16px;
+		height: 52px;
+		width: 17%;
+		background-size: 100%;
+		left: 97.5%;
+	}
+	.number:hover{
+		font-size:20px;
+	}
+	h1 {
+		top: 4px;
+		left: -32%;
+		font-size: 28px;
+	}
+}
+@media screen and (max-width: 768px) {
+	body{
+		height: 654px;
+	}
+    #count_div {
+		width: 77.3%;
+		top: 6%;
+		left: 3.8%;
+	}
+	#sky_screen {
+		height: 63%;
+		width: 78%;
+		top: 15%;
+		left: 2.9%;
+	}
+	#display_number {
+		height: 10%;
+		width: 75.2%;
+		top: 70%;
+		left: 11.6%;
+	}
+	#cloud {
+		width: 77%;
+		left: 17%;
+		top: -6%;
+	}
+	.number {
+		font-size: 16px;
+		height: 52px;
+		width: 17%;
+		background-size: 118%;
+		left: 97.5%;
+	}
+	.number:hover{
+		font-size:20px;
+	}
+	h1 {
+		top: 4px;
+		left: -28%;
+		font-size: 28px;
+	}
+}
+@media screen and (max-width: 720px) {
+	body{
+		height: 654px;
+	}
+    #count_div {
+		width: 77.3%;
+		top: 6%;
+		left: 3.8%;
+	}
+	#sky_screen {
+		height: 63%;
+		width: 78%;
+		top: 15%;
+		left: 2.9%;
+	}
+	#display_number {
+		height: 10%;
+		width: 75.2%;
+		top: 70%;
+		left: 11.6%;
+	}
+	#cloud {
+		width: 77%;
+		left: 14%;
+		top: -6%;
+	}
+	.number {
+		font-size: 16px;
+		height: 52px;
+		width: 17%;
+		background-size: 118%;
+		left: 97.5%;
+	}
+	.number:hover{
+		font-size:20px;
+	}
+	h1 {
+		top: 4px;
+		left: -28%;
+		font-size: 28px;
+	}
+}
+@media screen and (max-width: 685px) {
+	body{
+		height: 654px;
+	}
+   #count_div {
+		width: 97.5%;
+		top: 6%;
+		left: 0.5%;
+		border:5px solid brown;
+		border-bottom: none;
+	}
+	#sky_screen {
+		height: 60%;
+		width: 98.5%;
+		top: 15%;
+		left: -0.8%;
+		border:5px dotted brown;
+		border-top: none;
+	}
+	#display_number {
+		height: 20%;
+		width: 100%;
+		top: 59%;
+		left:2.3%;
+	}
+	#cloud {
+		width: 102%;
+		left: -1%;
+		top: -8%;
+		-webkit-transform: rotate(180deg);
+		-moz-transform: rotate(180deg);
+	}
+	.number {
+		font-size: 16px;
+		height: 90px;
+		width: 10%;
+		float: left;
+		background-size: 188% 48%;
+		left: -3.5%;
+		top: 91%;
+		-webkit-animation: balloon1 2s linear infinite alternate;
+		-moz-animation: balloon1 2s linear infinite alternate;
+		z-index: 10;
+	}
+	@-webkit-keyframes balloon1{
+		to{-webkit-transform: rotateZ(80deg);}
+		from{-webkit-transform:rotateZ(95deg);}
+	}
+	@keyframes balloon1{
+		to{transform: rotateZ(80deg);}
+		from{transform:rotateZ(95deg);}
+	}
+	.number:hover{
+		font-size:20px;
+	}
+	h1 {
+		top: 9px;
+		left: -14%;
+		font-size: 28px;
+		-webkit-transform:rotateZ(-90deg);
+		-moz-transform:rotateZ(-90deg);
+	}
+}
+@media screen and (max-width: 640px) {
+	body{
+		height: 654px;
+	}
+   #count_div {
+		width: 97.5%;
+		top: 6%;
+		left: 0.5%;
+		border:5px solid brown;
+		border-bottom: none;
+	}
+	#sky_screen {
+		height: 60%;
+		width: 98.5%;
+		top: 15%;
+		left: -0.8%;
+		border:5px dotted brown;
+		border-top: none;
+	}
+	#display_number {
+		height: 20%;
+		width: 100%;
+		top: 59%;
+		left:2.3%;
+	}
+	#cloud {
+		width: 102%;
+		left: -1%;
+		top: -8%;
+		-webkit-transform: rotate(180deg);
+		-moz-transform: rotate(180deg);
+	}
+	.number {
+		font-size: 16px;
+		height: 90px;
+		width: 10%;
+		float: left;
+		background-size: 188% 48%;
+		left: -3.5%;
+		top: 91%;
+		-webkit-animation: balloon1 2s linear infinite alternate;
+		-moz-animation: balloon1 2s linear infinite alternate;
+		z-index: 10;
+	}
+	@-webkit-keyframes balloon1{
+		to{-webkit-transform: rotateZ(80deg);}
+		from{-webkit-transform:rotateZ(95deg);}
+	}
+	@keyframes balloon1{
+		to{transform: rotateZ(80deg);}
+		from{transform:rotateZ(95deg);}
+	}
+	.number:hover{
+		font-size:20px;
+	}
+	h1 {
+		top: 9px;
+		left: -14%;
+		font-size: 28px;
+		-webkit-transform:rotateZ(-90deg);
+		-moz-transform:rotateZ(-90deg);
+	}
+}
+@media screen and (max-width:480px) {
+	body{
+		height: 654px;
+	}
+  	#count_div {
+		font-size:25px;
+		width: 96.2%;
+		top: 6%;
+		left: 1%;
+		border:5px solid brown;
+		border-bottom: none;
+	}
+	#sky_screen {
+		height: 55%;
+		width: 97.15%;
+		top: 15%;
+		left:-0.6%;
+		border:5px dotted brown;
+		border-top: none;
+	}
+	#display_number {
+		height: 20%;
+		width: 100%;
+		top: 59%;
+		left:4%;
+	}
+	#cloud {
+		width: 107%;
+		left: -1%;
+		top: -8%;
+		#-webkit-transform: rotate(180deg);
+		#-moz-transform: rotate(180deg);
+	}
+	.number {
+		font-size: 16px;
+		height: 90px;
+		width: 10%;
+		float: left;
+		background-size: 188% 48%;
+		left: -3.5%;
+		top: 91%;
+		z-index: 10;
+	}
+	.number:hover{
+		font-size:20px;
+	}
+	h1 {
+		top: 9px;
+		left: -14%;
+		font-size: 28px;
+	}
+}
+@media screen and (max-width: 380px) {
+  	#count_div {
+		font-size: 25px;
+		width: 97%;
+		top: 6%;
+		left: 0%;
+		border:5px solid brown;
+		border-bottom: none;
+	}
+	#sky_screen {
+		height: 50%;
+		width: 98%;
+		top: 14%;
+		left: -2%;
+		border:5px dotted brown;
+		border-top: none;
+	}
+	#display_number {
+		height: 20%;
+		width: 100%;
+		top: 59%;
+		left:4%;
+	}
+	#cloud {
+		display: none;
+	}
+	.number {
+		height: 94px;
+		width: 19%;
+		background-size: 194% 57%;
+		left: -3.5%;
+		top: 44%;
+	}
+	.number:hover{
+		font-size:20px;
+	}
+	h1 {
+		top: 9px;
+		left: -14%;
+		font-size: 28px;
+	}
+}
+@media screen and (max-width: 320px) {
+	body{
+		height:464px;
+	}
+  	#count_div {
+		font-size: 25px;
+		width: 97%;
+		top: 6%;
+		left: 0%;
+		border:5px solid brown;
+		border-bottom: none;
+	}
+	#sky_screen {
+		height: 55%;
+		width: 98%;
+		top: 14%;
+		left: -3%;
+		border:5px dotted brown;
+		border-top: none;
+	}
+	#display_number {
+		height: 20%;
+		width: 100%;
+		top: 59%;
+		left:4%;
+	}
+	#cloud {
+		display: none;
+	}
+	.number {
+		height: 94px;
+		width: 19%;
+		background-size: 194% 57%;
+		left: -3.5%;
+		top: 44%;
+	}
+	.number:hover{
+		font-size:20px;
+	}
+	h1 {
+		top: 9px;
+		left: -14%;
+		font-size: 28px;
+	}
+}
+@media screen and (max-width: 260px) {
+	body{
+		height:320px;
+	}
+  	#count_div {
+		font-size: 20px;
+		width: 97%;
+		top: 1%;
+		left: 0%;
+		border:5px solid brown;
+		border-bottom: none;
+	}
+	#sky_screen {
+		height: 55%;
+		width: 98%;
+		top:9%;
+		left: -3%;
+		border:5px dotted brown;
+		border-top: none;
+	}
+	#display_number {
+		height: 20%;
+		width: 105%;
+		top:52%;
+		left:4%;
+	}
+	#cloud {
+		display: none;
+	}
+	.number {
+		height: 94px;
+		width: 19%;
+		background-size: 200% 57%;
+		left: -3.5%;
+		top: 43%;
+	}
+	.number:hover{
+		font-size:20px;
+	}
+	h1 {
+		top: 9px;
+		left: -14%;
+		font-size: 28px;
+	}
+}
+</style>
+</head>
+<body>
+    <div id="wraper" style="position: absolute;">
+         <div id="header">
+            <!-- <a href="index.html">
+                <button id="mathwizard">MathWizardApps.com</button>
+            </a>-->
+                <a href="mathwizard-grade-1-learning-topic.html">
+                    <button class="sitemap">&nbsp;Grade-1</button>
+                </a>
+                <a href="mathwizard-grade-1-countballoon-learning.html">
+                    <button class="sitemap">&nbsp; >  &nbsp;Time</button>
+                </a>
+                <!--<button id="header-desc">Math Activities and Games for Kids</button>-->
+            </div>
+        <div id="play_screen">
+            <div id="sky_screen">
+                <img class="border" id="img1" src="images/sky.jpg" alt="" />
+            </div>
+        </div>
+        <div id="display_number">
+            <div id="1" onclick="number_click(this.id);" class="number">
+                <h1>1</h1>
+            </div>
+            <div id="2" onclick="number_click(this.id);" class="number">
+                <h1>2</h1>
+            </div>
+            <div id="3" onclick="number_click(this.id);" class="number">
+                <h1>3</h1>
+            </div>
+            <div id="4" onclick="number_click(this.id);" class="number">
+                <h1>4</h1>
+            </div>
+            <div id="5" onclick="number_click(this.id);" class="number">
+                <h1>5</h1>
+            </div>
+            <div id="6" onclick="number_click(this.id);" class="number">
+                <h1>6</h1>
+            </div>
+            <div id="7" onclick="number_click(this.id);" class="number">
+                <h1>7</h1>
+            </div>
+            <div id="8" onclick="number_click(this.id);" class="number">
+                <h1>8</h1>
+            </div>
+            <div id="9" onclick="number_click(this.id);" class="number">
+                <h1>9</h1>
+            </div>
+            <div id="10" onclick="number_click(this.id);" class="number">
+                <h1>10</h1>
+            </div>
+            <div id="footer">
+                <a href="index.html">&copy;MathWizardApps.com</a>
+                <a href="sitemap.html">
+                    <button id="sitemap-div">Sitemap</button></a>
+
+                <button id="header-desc">Math Activities and Games for Kids</button>
+            </div>
+        </div>
+        <div id="count_div"></div>
+        <div id="cloud">
+            <!--<img src="images/url1.png"/>-->
+        </div>
+
+        <!--<input id="txtx" type="text"  style="position:absolute; top:3%; left:3%;"/>-->
+        <!--<input id="txty" type="text"  style="position:absolute; top:3%; right:3%; width:40%;"/>-->
+    </div>
+    <script type="text/javascript">
+        var k = 0,
+            img_id,
+            temp_remove,
+            red_img,
+            color = 0,
+            color_randomaly = 0,
+            count_div,
+            temp = 0,
+            temp1 = 0,
+            temp2 = 0,
+            temp3 = 0, 
+            img_color,
+            img_array,
+            img,
+            randm_img_array,
+            img4=3,
+            i = 0,
+            play_screen,
+            height,
+            width;
+        
+
+        window.onload = load();
+        //window.onresize = resize();
+
+        height = parent.innerHeight;
+        width = parent.innerWidth;
+
+        function load() {
+            //resize();
+            initialize();
+        }
+
+        function initialize() {
+           
+            
+            k=0;
+            img_id;
+            temp_remove;
+            red_img;
+            color;
+            color_randomaly;
+            color = new Array("blue", "purpul", "red", "yellow");
+            color_randomaly = Math.floor(Math.random() * color.length);
+            count_div;
+            temp = 0;
+            temp1 = 0;
+            temp2 = 0;
+            temp3 = 0;
+            img_color;
+            img_array;
+            img;
+            randm_img_array;
+            img4 = 3;
+            i = 0;          
+            height;
+            width;
+            play_screen = document.getElementById('play_screen');
+
+           //resize();           
+           play();           
+        }
+
+        //function resize() {
+        //    sizer();
+        //}
+
+        //function sizer() {
+        //    play_screen.style.height = height/1.02 + 'px';
+        //    play_screen.style.width = width / 1.02 + 'px';           
+        //}
+                                                             
+        function play() {
+                k=0;
+                temp;
+                temp1;
+                temp2;
+                temp3;
+                color;
+                color_randomaly;
+                img4;
+                red_img;
+                randm_img_array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+                red_img = Math.floor(Math.random() * randm_img_array.length) + 1;
+                count_div;
+                img;
+                img_array;
+                img_color;
+                play_screen = document.getElementById('play_screen');
+
+                
+                if (0 <= img4) {
+                    
+                    for (k = 1; k <= red_img ; k++) {
+                        var random_position_top = Math.floor(Math.random(3) * 70);
+                        var random_position_left = Math.floor(Math.random() * 95);
+                        img = document.createElement('img');
+                        img_array = ["blue.png", "purpul.png", "red.png", "yellow.png"];                          
+                        img.setAttribute("src", 'images/' + img_array[img4]);
+                        img.setAttribute("class", 'ballon');
+                        img.id = 'img' + k + img4;
+                        img_id = img.getAttribute('id');                      
+                        img.style.position = "absolute";                        
+                        img.style.top = parseInt(random_position_top) +'%';                                                
+                        img.style.left = parseInt(random_position_left) + '%';
+                        img.style.height = parseInt((k)+12)  + '%';
+                        img.style.width = "8%";
+                        img.style.opacity = "0.8";
+                        document.getElementById("sky_screen").appendChild(img);
+                                             
+                        if (color_randomaly == 1) {
+                            if (img_array[img4] == 'purpul.png') {                               
+                                temp = k;                    
+                                //count_div.tagName += "h1";
+                                $("#count_div").html("count purple balloon");
+                                $("#count_div").css({ "background-color": "purple" });
+                            }
+                        }
+
+                        if (color_randomaly == 2) {
+                            if (img_array[img4] == 'red.png') {
+                                temp1 = k;
+                                //count_div.tagName += "h1";
+                                $("#count_div").html("count red balloon");
+                                $("#count_div").css({ "background-color": "red" });
+                            }
+                        }
+
+                        if (color_randomaly == 0) {
+                            if (img_array[img4] == 'blue.png') {
+                                temp2 = k;
+                                //count_div.tagName += "h1";
+                              
+                                $("#count_div").html("count blue balloon");
+                                $("#count_div").css({ "background-color": "blue" });
+                            }
+                        }
+
+                        if (color_randomaly == 3) {
+                            if (img_array[img4] == 'yellow.png') {
+                                temp3 = k;                                                               
+                                $("#count_div").html("count yellow balloon");
+                                $("#count_div").css({"background-color":"yellow"});
+                            }                         
+                        }                        
+                    }                                                        
+                    img4 = img4 - 1;
+                    play();
+                }              
+            }
+        var flag;
+        function number_click(control) {                                 
+            if (control == temp || control == temp1 || control == temp2 || control == temp3) {
+                score = localStorage.getItem("score");
+                var i = score;
+                localStorage.setItem("i", i);
+                localStorage.i;
+                i = i + 0;
+                flag = 0;               
+                localStorage.setItem("flag", flag);
+                localStorage.flag;  
+                localStorage.clear();
+                remove_balloons();
+               
+            }
+            else {
+                score = localStorage.getItem("score");
+                var i = score;
+                localStorage.setItem("i", i);
+                localStorage.i;                             
+                localStorage.clear();
+                flag = 1;
+                localStorage.setItem("flag", flag);
+                localStorage.flag;
+                localStorage.clear();
+            }
+        }
+           
+        function remove_balloons() {
+            $(".ballon").remove();
+            initialize();
+        }      
+    </script>
+</body>
+</html>

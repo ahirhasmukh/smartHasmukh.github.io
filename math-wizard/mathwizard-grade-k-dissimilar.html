@@ -1,0 +1,731 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title> Mathwizard-grade-k-dissimilar - Online math practice, math games and interactive math </title>
+
+    <meta name="description" content=" Mathwizard-grade-k-dissimilar is one of the most interactive math practice apps. 
+Math wizard is completely free online for studnets, teachers and schools.
+Math wizard provides unlimited math practice to kids.
+Math wizard provides a simple , intuitive learning system for kids with games , interactive actvities , making learning fun!
+" />
+     <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery-ui-1.10.2.custom.js"></script>
+    <script src="js/jquery.ui.touch-punch.js"></script>
+      <link href="style/common.css" rel="stylesheet" />
+    <style type="text/css">
+
+#point-container {
+			top:87%!important;
+   	 		background-color:#c0392b!important;
+		}
+        #dissimilarobject_div {
+            float: left;
+            height: 75%;
+            width: 60%;
+            position: absolute;
+            top: 15%;
+            left: 20%;
+        }
+
+            #dissimilarobject_div > div {
+                position: relative;
+                float: left;
+                height: 27%;
+                width: 20%;
+                /*box-shadow: 0px 0px 1px 0px black;*/
+                margin: 5%;
+                margin-left: 20%;
+            }
+
+.disobject-1 {
+    background-image: url('images/square.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+.disobject-2 {
+    background-image: url('images/rectangle.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+.disobject-3 {
+    background-image: url('images/circle.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+.disobject-4 {
+    background-image: url('images/triangle.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: inline;
+}
+
+.shape-correct {
+    -webkit-animation: shape-correct 1s linear;
+    -moz-animation: shape-correct 1s linear;
+}
+
+@-webkit-keyframes shape-correct {
+    0% {
+        -webkit-transform: scale(0);
+        -webkit-transform: rotateX(0deg);
+        -moz-transform: scale(0);
+        -moz-transform: rotateX(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        -webkit-transform: rotateX(190deg);
+        -moz-transform: rotateX(190deg);
+    }
+
+    20% {
+        -webkit-transform: scale(1.2);
+        -webkit-transform: rotateX(360deg);
+        -moz-transform: scale(1.2);
+        -moz-transform: rotateX(360deg);
+        opacity: 0.7;
+    }
+}
+
+
+@-moz-keyframes shape-correct {
+    0% {
+        -webkit-transform: scale(0);
+        -webkit-transform: rotateX(0deg);
+        -moz-transform: scale(0);
+        -moz-transform: rotateX(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        -webkit-transform: rotateX(190deg);
+        -moz-transform: rotateX(190deg);
+    }
+
+    20% {
+        -webkit-transform: scale(1.2);
+        -webkit-transform: rotateX(360deg);
+        -moz-transform: scale(1.2);
+        -moz-transform: rotateX(360deg);
+        opacity: 0.7;
+    }
+}
+
+.shape-correct-text {
+    -webkit-animation: shape-correct-text 1s linear;
+    -moz-animation: shape-correct-text 1s linear;
+}
+
+@-webkit-keyframes shape-correct-text {
+    0% {
+        -webkit-transform: scale(0);
+        -moz-transform: scale(0);
+        /*-webkit-transform:rotateX(0deg);*/
+        opacity: 0;
+    }
+
+    10% {
+        -webkit-transform: scale(1.5);
+        -moz-transform: scale(1.5);
+    }
+
+    20% {
+        -webkit-transform: scale(2);
+        -moz-transform: scale(2);
+        /*-webkit-transform:rotateX(360deg);
+        opacity: 0.7;*/
+    }
+}
+
+@-moz-keyframes shape-correct-text {
+    0% {
+        -webkit-transform: scale(0);
+        -moz-transform: scale(0);
+    }
+
+    10% {
+        -webkit-transform: scale(1.5);
+        -moz-transform: scale(1.5);
+    }
+
+    20% {
+        -webkit-transform: scale(2);
+        -moz-transform: scale(2);
+        /*-webkit-transform:rotateX(360deg);
+        opacity: 0.7;*/
+    }
+}
+
+
+#correct-text {
+    display: none;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    color: white;
+    top: 20%;
+    left: 45%;
+    height: 10%;
+    width: 15%;
+    font-size: 23px;
+}
+
+        #incorrect-text {
+            display: none;
+            background-color: transparent;
+            border: none;
+            position: absolute;
+            color: white;
+            top: 20%;
+            left: 45%;
+            height: 10%;
+            width: 15%;
+            font-size: 23px;
+        }
+         @-webkit-keyframes lightSpeedIn {
+            0% {
+                -webkit-transform: translateX(100%) skewX(-30deg);
+                opacity: 0;
+            }
+
+            60% {
+                -webkit-transform: translateX(-20%) skewX(30deg);
+                opacity: 1;
+            }
+
+            80% {
+                -webkit-transform: translateX(0%) skewX(-15deg);
+                opacity: 1;
+            }
+
+            100% {
+                -webkit-transform: translateX(0%) skewX(0deg);
+                opacity: 1;
+            }
+        }
+
+        @-moz-keyframes lightSpeedIn {
+            0% {
+                -moz-transform: translateX(100%) skewX(-30deg);
+                opacity: 0;
+            }
+
+            60% {
+                -moz-transform: translateX(-20%) skewX(30deg);
+                opacity: 1;
+            }
+
+            80% {
+                -moz-transform: translateX(0%) skewX(-15deg);
+                opacity: 1;
+            }
+
+            100% {
+                -moz-transform: translateX(0%) skewX(0deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes lightSpeedIn {
+            0% {
+                transform: translateX(100%) skewX(-30deg);
+                opacity: 0;
+            }
+
+            60% {
+                transform: translateX(-20%) skewX(30deg);
+                opacity: 1;
+            }
+
+            80% {
+                transform: translateX(0%) skewX(-15deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(0%) skewX(0deg);
+                opacity: 1;
+            }
+        }
+
+        .lightSpeedIn {
+            -webkit-animation: lightSpeedIn 2s ease-out;
+            -moz-animation: lightSpeedIn 2s ease-out;
+            animation: lightSpeedIn 2s ease-out;
+        }
+		.cross{
+			 position: absolute; 
+			 top: 22%; 
+			 left: 51%; 
+			 height: 53%; 
+			 width: 0.2%; 
+			 background-color: black;
+		}
+		.cross-2{
+			 position: absolute; 
+			 top: 48%; 
+			 left: 26%; 
+			 height: 0.6%; 
+			 width: 51%; 
+			 background-color: black;
+		}
+		#wraper #btn{
+			 position: absolute; 
+			 top: 9%; 
+			 width: 100%;
+			 font-size: 50px; 
+			 background-color: transparent; 
+			 border: none; 
+			 z-index: 1;
+			 font-weight:bolder;
+			 font-family: cursive;
+		}
+@media only screen and (max-width:800px){
+	#wraper #btn {
+		top: 5%;
+		font-size:50px;
+	}
+	#dissimilarobject_div {
+		height: 87%;
+		width: 87%;
+		top: 13%;
+		left: 3%;
+	}
+	#dissimilarobject_div > div {
+		width: 28%;
+		margin-left: 14%;
+	}
+	.cross{
+		top: 24%;
+		left: 48%;
+		height: 47%;
+		width: 1.5%;
+	}
+	.cross-2{
+		left: 16%;
+		height: 0.8%;
+		width: 65%;
+	}
+	#point-container > div:nth-child(1) {
+		margin-left: 16%;
+	}
+	#point-container > div {
+		width: 5%;
+	}
+}
+@media only screen and (max-width:768px){
+	#wraper #btn {
+		top: 5%;
+		font-size:50px;
+	}
+	#dissimilarobject_div {
+		height: 87%;
+		width: 87%;
+		top: 13%;
+		left: 3%;
+	}
+	#dissimilarobject_div > div {
+		width: 28%;
+		margin-left: 14%;
+	}
+	.cross{
+		top: 24%;
+		left: 48%;
+		height: 47%;
+		width: 1.5%;
+	}
+	.cross-2{
+		left: 16%;
+		height: 0.8%;
+		width: 65%;
+	}
+	#point-container > div:nth-child(1) {
+		margin-left: 16%;
+	}
+	#point-container > div {
+		width: 5%;
+	}
+}
+@media only screen and (max-width:320px){
+	#point-container {
+		top: 84%!important;
+	}
+	#wraper #btn {
+		top: 5%;
+		font-size:30px;
+	}
+	#dissimilarobject_div {
+		height: 83%;
+		width: 100%;
+		top: 17%;
+		left: -4%;
+	}
+	#dissimilarobject_div > div {
+		width: 28%;
+		margin-left: 14%;
+	}
+	.cross{
+		top: 24%;
+		left: 48%;
+		height: 47%;
+		width: 1.5%;
+	}
+	.cross-2{
+		left: 9%;
+		height: 0.8%;
+		width: 79%;
+	}
+	#point-container {
+		 top:85.5%;
+ 	}
+	#point-container > div:nth-child(1) {
+		margin-left: 2%;
+	}
+	#point-container > div {
+		width: 7%;
+		margin:4px;
+	}
+}	
+</style>
+</head>
+<body>
+
+    <div id="wraper">
+        <button id="btn">Find the odd one</button>
+        <div id="header">
+          <!--  <a href="index.html">
+                <button id="mathwizard">MathWizardApps.com</button>
+            </a>-->
+            <a href="mathwizard-grade-k-exercise-topic.html">
+                <button class="sitemap">  &nbsp;Grade-K</button>
+            </a>
+            <a href="mathwizard-grade-k-dissimilar.html">
+                <button class="sitemap">&nbsp; >  &nbsp;Dissimilar Object</button>
+            </a>
+             <!--<button id="header-desc">Math Activities and Games for Kids</button>-->
+        </div>
+        <div id="content" class="wd85e50">
+            <div id="dissimilarobject_div">
+                <!-- <div id="dissimilarobject-1"></div>
+            <div id="dissimilarobject-2"></div>
+            <div id="dissimilarobject-3"></div>
+            <div id="dissimilarobject-4"></div>-->
+            </div>
+        </div>
+
+        <div class="cross"></div>
+        <div class="cross-2"></div>
+         <div id="point-container">
+                <div class="point-1"></div>
+                <div class="point-2"></div>
+                <div class="point-3"></div>
+                <div class="point-4"></div>
+                <div class="point-5"></div>
+                <div class="point-6"></div>
+                <div class="point-7"></div>
+                <div class="point-8"></div>
+                <div class="point-9"></div>
+                <div class="point-10"></div>
+            </div>
+        <div id="footer"><a href="index.html">&copy;MathWizardApps.com</a>
+            <a href="sitemap.html"><button id="sitemap-div">Sitemap</button></a>
+             <button id="header-desc">Math Activities and Games for Kids</button></div>
+    </div>
+
+     <div id="score-card">
+       <!-- <button style="z-index: 5; position: absolute; height: 5%; width: 12%; color: white; box-shadow: 1px 1px 1px 0px; top: 2%; right: 2%; font-size: 20px; outline: none; border: none; background-color: #ff6a00;" onclick="remove_score_div();">
+            Close
+        </button>-->
+        <button id="score-board-label">Shape Identification Result</button>
+       <!-- <div id="question">
+            <button id="question_heading">Question</button>
+        </div>-->
+        <div id="your-answer" style="left:18%;">
+            <button id="your-answer-heading">Your Answer</button>
+        </div>
+        <div id="correct-answer" style="left:45%;">
+            <button id="correct-answer-heading">Correct Answer</button>
+        </div>
+        <div id="points" style="left:65%;">
+            <button id="points-heading">Points</button>
+        </div>
+        <!--<button id="score-card-time"></button>-->
+    </div>
+
+    <script type="text/ecmascript">
+
+        var answer_list = new Array();
+        var totalquestions = 10;
+        var currentquestion = 0;
+        var correctattempts = 0;
+        var question_list_time = new Array();
+        var question_list = new Array();
+        var user_answer = new Array();
+        var correct_answer = new Array();
+        var flag = true;
+        window.onload = function () {
+            create_dissimillarobject();
+        }
+
+        function create_dissimillarobject() {
+            $("#dissimilarobject_div > div").remove();
+            for (var j = 1; j <= 4; j++) {
+                var html = "";
+                html += '<div id="dissimilarobject-' + j + '"></div>';
+                $("#dissimilarobject_div").append(html);
+            }
+
+
+            $("#dissimilarobject_div > div").removeClass('shape-correct');
+
+            var select_target = Math.floor(Math.random() * 4 + 1);
+
+            var target_object = Math.floor(Math.random() * 4 + 1);
+
+            if (select_target == target_object) {
+                create_dissimillarobject();
+            }
+            else {
+                for (var i = 1; i <= 4; i++) {
+                    if (i == select_target) {
+                        $("#dissimilarobject-" + i).addClass("disobject-" + select_target);
+                        $("#dissimilarobject-" + i).addClass('correct');
+                       
+                    }
+                    else {
+                        $("#dissimilarobject-" + i).addClass("disobject-" + target_object);
+                        $("#dissimilarobject-" + i).addClass('incorrect');
+                    }
+                }
+            }
+
+
+            //$(".disobject-" + select_target).click(function () {
+            //    $(this).removeClass('shape-correct');
+            //    $(this).addClass('shape-correct');
+            //    $(this).addClass('correct');
+            //    $(".shape-correct").on('webkitAnimationEnd animationend', function (e) {
+            //        $("#dissimilarobject_div > div").remove();
+            //        create_dissimillarobject();
+            //    });
+            //});
+            //$(".disobject-" + target_object).click(function () {
+            //    $(this).removeClass('shape-correct');
+            //    $(this).addClass('shape-correct');
+            //    $(".shape-correct").on('webkitAnimationEnd animationend', function (e) {
+            //        $("#dissimilarobject_div > div").remove();
+            //        create_dissimillarobject();
+            //    })
+            //});
+
+            $(".correct").click(function () {
+                if (flag) {
+                    flag = false;
+                    var corr_ans = document.createElement('div');
+                    corr_ans.id = 'corr';
+                    corr_ans.style.height = '20%';
+                    corr_ans.style.width = '20%';
+                    corr_ans.style.zIndex = '10';
+                    corr_ans.style.position = 'absolute';
+                    corr_ans.style.left = '35%';
+                    corr_ans.style.top = '34%';
+                    corr_ans.setAttribute('class', 'lightSpeedIn');
+                    document.body.appendChild(corr_ans);
+                    var corr_imag = document.createElement('img');
+                    corr_imag.setAttribute('src', 'images/correct.png');
+                    currentquestion++;
+                    var create_point = "";
+                    create_point += '<div class="point-true"/>';
+                    $(".point-" + currentquestion).append(create_point);
+                    $("#points").append(create_point);
+                    corr_imag.setAttribute('src', 'images/correct.png');
+
+                    if (navigator.userAgent.search("Firefox") >= 0) {
+                        corr_imag.style.height = '100%';
+                        corr_imag.style.width = '100%';
+                        corr_ans.appendChild(corr_imag);
+                        document.getElementById('corr').addEventListener('animationend', function () {
+                            //document.body.removeChild(this);
+                            //source.innerHTML = "";
+                            //target.value = "";
+                            //attempt();
+                            //keyboard.style.visibility = "visible";
+                            $("#corr").remove();
+                            //$("#source > div").remove();
+                            flag = true;
+                            create_dissimillarobject();
+                        }, false);
+                    }
+                    else {
+                        corr_imag.style.height = '100%';
+                        corr_imag.style.width = '100%';
+                        corr_ans.appendChild(corr_imag);
+                        document.getElementById('corr').addEventListener('webkitAnimationEnd', function () {
+                            //document.body.removeChild(this);
+                            //source.innerHTML = "";
+                            //target.value = "";
+                            //attempt();
+                            //keyboard.style.visibility = "visible";
+                            $("#corr").remove();
+                            //$("#source > div").remove();
+                            flag = true;
+                            create_dissimillarobject();
+                        }, false);
+                    }
+                  
+                }
+            });
+
+            $(".incorrect").click(function () {
+                if (flag) {
+                    flag = false;
+                    var corr_ans = document.createElement('div');
+                    corr_ans.id = 'corr';
+                    corr_ans.style.height = '20%';
+                    corr_ans.style.width = '20%';
+                    corr_ans.style.zIndex = '10';
+                    corr_ans.style.position = 'absolute';
+                    corr_ans.style.left = '35%';
+                    corr_ans.style.top = '34%';
+                    corr_ans.setAttribute('class', 'lightSpeedIn');
+                    document.body.appendChild(corr_ans);
+                    var corr_imag = document.createElement('img');
+                    corr_imag.setAttribute('src', 'images/incorrect.png');
+                    currentquestion++;
+                    var create_point = "";
+                    create_point += '<div class="point-false"/>';
+                    $(".point-" + currentquestion).append(create_point);
+                    $("#points").append(create_point);
+                    corr_imag.setAttribute('src', 'images/incorrect.png');
+
+                    if (navigator.userAgent.search("Firefox") >= 0) {
+                        corr_imag.style.height = '100%';
+                        corr_imag.style.width = '100%';
+                        corr_ans.appendChild(corr_imag);
+                        document.getElementById('corr').addEventListener('animationend', function () {
+                            //document.body.removeChild(this);
+                            //source.innerHTML = "";
+                            //target.value = "";
+                            //attempt();
+                            //keyboard.style.visibility = "visible";
+                            $("#corr").remove();
+                            //$("#source > div").remove();
+                            flag = true;
+                            userAnswer();
+                            create_dissimillarobject();
+                        }, false);
+                    }
+                    else {
+                        corr_imag.style.height = '100%';
+                        corr_imag.style.width = '100%';
+                        corr_ans.appendChild(corr_imag);
+                        document.getElementById('corr').addEventListener('webkitAnimationEnd', function () {
+
+                            //document.body.removeChild(this);
+                            //source.innerHTML = "";
+                            //target.value = "";
+                            //attempt();
+                            //keyboard.style.visibility = "visible";
+                            $("#corr").remove();
+                            //$("#source > div").remove();
+                            flag = true;
+                            userAnswer();
+                            create_dissimillarobject();
+                        }, false);
+                    }
+                   
+                }
+            });
+        }
+        
+        function userAnswer() {
+            //switch (what) {
+            //    case "correct":
+            //        answer_list[currentquestion - 1] = "correct";
+            //        correctattempts++;
+            //        //$("#question-dots").find(".dot").eq(currentquestion - 1).removeClass("active-dot");
+            //        //$("#question-dots").find(".dot").eq(currentquestion - 1).addClass("correct-dot");
+            //        //stopAllAudio();
+            //        //$("#correct").get(0).play();
+            //        break;
+            //    case "incorrect":
+            //        answer_list[currentquestion - 1] = "incorrect";
+            //        //$("#question-dots").find(".dot").eq(currentquestion - 1).removeClass("active-dot");
+            //        //$("#question-dots").find(".dot").eq(currentquestion - 1).addClass("incorrect-dot");
+            //        //stopAllAudio();
+            //        //$("#incorrect").get(0).play();
+            //        break;
+            //}
+            if (currentquestion == totalquestions) {
+                $('.point-false').remove();
+                $('.point-true').remove();
+                currentquestion = 0;
+                alert("game over");
+                //gamestart = false;
+                //clearTimeout(timer);
+                //$("#score-card-time").text($("#time-holder").text());
+                //var html = '';
+                //var correct = 0;
+                //for (var i = 0; i < question_list.length; i++) {
+                    //html += '<button class="score-card-question">' + question_list[i] + '</button>';
+                    //if (answer_list[i] == "correct") {
+                    //    html += '<button class="score-card-answer score-card-answer-correct"></button>';
+                    //    correct++;
+                    //}
+                    //else {
+                    //    html += '<button class="score-card-answer score-card-answer-incorrect"></button>';
+                    //}
+
+                    //var temphtml = '';
+                    //$('#question').append('<button class="remove">' + question_list[i] + '</button>');
+                    //$('#correct-answer').append('<button class="remove">' + correct_answer[i] + '</button>');
+                    //$('#your-answer').append('<button class="remove">' + user_answer[i] + '</button>');
+                    //hour = parseInt(question_list_time[i] / 3600);
+                    //minute = parseInt((question_list_time[i] % 3600) / 60);
+                    //second = parseInt((question_list_time[i] % 3600) % 60);
+                    //temphtml = "";
+                    //var h = hour.toString();
+                    //var m = minute.toString();
+                    //var s = second.toString();
+                    //if (h.length == 1)
+                    //    temphtml += "";
+                    //else
+                    //    temphtml += h;
+                    //if (m.length == 1)
+                    //    temphtml += 0 + "" + m;
+                    //else
+                    //    temphtml += m;
+                    //temphtml += " : ";
+                    //if (s.length == 1)
+                    //    temphtml += 0 + "" + s;
+                    //else
+                    //    temphtml += s;
+                    //html += '<button class="score-card-question-time">' + temphtml + '</button>';
+                }
+                //$("#score-card-question-holder").html(html);
+                //$("#score-card").css('display', 'inline');
+
+            //}
+            //else {
+            //    currentquestion++;
+            //}
+        }
+
+
+    </script>
+</body>
+</html>

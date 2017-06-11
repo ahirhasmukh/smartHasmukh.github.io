@@ -1,0 +1,852 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Math Wizard-grade-2-abacus - Online math practice, math games and interactive math </title>
+
+    <meta name="description" content="Math Wizard-grade-2-abacus is one of the most interactive math practice apps. 
+Math wizard is completely free online for studnets, teachers and schools.
+Math wizard provides unlimited math practice to kids.
+Math wizard provides a simple , intuitive learning system for kids with games , interactive actvities , making learning fun!
+" />
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery-ui-1.10.2.custom.js"></script>
+    <script src="js/jquery.ui.touch-punch.js"></script>
+    <link href="style/common.css" rel="stylesheet" />
+
+    <style type="text/css">
+        body {
+            overflow: hidden;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #main_screen {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background: #00E397;
+        }
+
+        #display_number {
+            position: absolute;
+            height: 10%;
+            width: 30%;
+            top: 6%;
+            left: 45%;
+            color: white;
+        }
+
+        .display_number h1 {
+            position: relative;
+            float: left;
+            left: 8%;
+            width: 60%;
+            text-align: center;
+            font-size: 26px;
+            letter-spacing: 0.5em;
+        }
+
+        .screen {
+            position: absolute;
+            height: 70%;
+            width: 25%;
+            top: 20%;
+            left: 25%;
+        }
+
+        .stick_div {
+            position: relative;
+            float: left;
+            height: 55%;
+            width: 17%;
+        }
+
+        .stick {
+            position: relative;
+            float: left;
+            height: 40%;
+            width: 11%;
+            box-shadow: 0px 0px 1px 0px #808080;
+            top: 9%;
+            left: 8%;
+            background-color: #f7bf4b;
+            border-top-right-radius: 20px;
+            border-top-left-radius: 20px;
+            margin-left: 13%;
+        }
+
+        .middle_div {
+            position: absolute;
+            float: left;
+            height: 10%;
+            width: 25%;
+            left: 25%;
+            border-radius: 30px;
+            background-color: #8F7B52;
+            box-shadow: 0px 0px 1px 0px gray;
+            top: 54%;
+        }
+
+            .middle_div h1 {
+                position: relative;
+                left: 20%;
+                width: 25%;
+                float: left;
+                text-align: center;
+                font-size: 18px;
+                color: #fff;
+            }
+
+        .bottom_div {
+            position: absolute;
+            float: left;
+            height: 10%;
+            width: 19%;
+            left: 28%;
+            border-bottom-left-radius: 35px;
+            background-color: #FFDC7A;
+            box-shadow: 0px 0px 1px 0px gray;
+            top: 63%;
+            border-bottom-right-radius: 35px;
+        }
+
+            .bottom_div h1 {
+                position: absolute;
+                float: left;
+                top: -36%;
+                left: 12%;
+                width: 100%;
+                text-align: center;
+                font-size: 37px;
+                color: white;
+                letter-spacing: 1.4em;
+            }
+
+        .objects {
+            position: absolute;
+            height: 60%;
+            width: 35%;
+            left: 60%;
+            top: 25%;
+        }
+
+        .object1 {
+            position: absolute;
+            float: left;
+            height: 5%;
+            width: 10%;
+            left: 11.3%;
+            top: 5%;
+            background-color: #1a80ad;
+            background-image: -webkit-gradient(linear, left top, right top, from(#1a80ad), color-stop(0.5, white), color-stop(0.1, #1a80ad), color-stop(0.5, white), to(#1a80ad));
+            background-image: -moz-gradient(linear, left top, right top, from(#1a80ad), color-stop(0.5, white), color-stop(0.1, #1a80ad), color-stop(0.5, white), to(#1a80ad));
+            background-image: -gradient(linear, left top, right top, from(#1a80ad), color-stop(0.5, white), color-stop(0.1, #1a80ad), color-stop(0.5, white), to(#1a80ad));
+            box-shadow: 0px 0px 1px 0px #808080;
+        }
+
+        .object1_ob1 {
+            top: 20%;
+        }
+
+        .object1_ob2 {
+            top: 35%;
+        }
+
+        .object1_ob3 {
+            top: 50%;
+        }
+
+        .object1_ob4 {
+            top: 65%;
+        }
+
+        .object2 {
+            position: absolute;
+            float: left;
+            height: 5%;
+            width: 10%;
+            top: 5%;
+            left: 31.3%;
+            background-color: #fbef67;
+            background-image: -webkit-gradient(linear, left top, right top, from(#fbef67), color-stop(0.5, white), color-stop(0.1, #fbef67), color-stop(0.5, white), to(#fbef67));
+            background-image: -moz-gradient(linear, left top, right top, from(#fbef67), color-stop(0.5, white), color-stop(0.1, #fbef67), color-stop(0.5, white), to(#fbef67));
+            box-shadow: 0px 0px 1px 0px #808080;
+        }
+
+        .object2_ob1 {
+            top: 20%;
+        }
+
+        .object2_ob2 {
+            top: 35%;
+        }
+
+        .object2_ob3 {
+            top: 50%;
+        }
+
+        .object2_ob4 {
+            top: 65%;
+        }
+
+        .object3 {
+            position: absolute;
+            float: left;
+            height: 5%;
+            width: 10%;
+            top: 5%;
+            left: 48.2%;
+            background-color: #e947a5;
+            background-image: -webkit-gradient(linear, left top, right top, from(#e947a5), color-stop(0.5, white), color-stop(0.1, #e947a5), color-stop(0.5, white), to(#e947a5));
+            background-image: -moz-gradient(linear, left top, right top, from(#e947a5), color-stop(0.5, white), color-stop(0.1, #e947a5), color-stop(0.5, white), to(#e947a5));
+            background-image: -gradient(linear, left top, right top, from(#e947a5), color-stop(0.5, white), color-stop(0.1, #e947a5), color-stop(0.5, white), to(#e947a5));
+            box-shadow: 0px 0px 1px 0px #808080;
+        }
+
+        .object3_ob1 {
+            top: 20%;
+        }
+
+        .object3_ob2 {
+            top: 35%;
+        }
+
+        .object3_ob3 {
+            top: 50%;
+        }
+
+        .object3_ob4 {
+            top: 65%;
+        }
+
+        .object4 {
+            position: absolute;
+            float: left;
+            height: 5%;
+            width: 10%;
+            top: 5%;
+            left: 65.2%;
+            background-color: #70aa24;
+            background-image: -webkit-gradient(linear, left top, right top, from(#70aa24), color-stop(0.5, white), color-stop(0.1, #70aa24), color-stop(0.5, white), to(#70aa24));
+            background-image: -moz-linear-gradient(left top, right top, from(#70aa24), color-stop(0.5, white), color-stop(0.1, #70aa24), color-stop(0.5, white), to(#70aa24));
+            background-image: -gradient(linear, left top, right top, from(#e947a5), color-stop(0.5, white), color-stop(0.1, #e947a5), color-stop(0.5, white), to(#e947a5));
+            box-shadow: 0px 0px 1px 0px #808080;
+        }
+
+        .object4_ob1 {
+            top: 20%;
+        }
+
+        .object4_ob2 {
+            top: 35%;
+        }
+
+        .object4_ob3 {
+            top: 50%;
+        }
+
+        .object4_ob4 {
+            top: 65%;
+        }
+
+        .object5 {
+            position: absolute;
+            float: left;
+            height: 5%;
+            width: 10%;
+            top: 5%;
+            left: 82%;
+            background-color: #45b8e4;
+            background-image: -webkit-gradient(linear, left top, right top, from(#45b8e4), color-stop(0.5, white), color-stop(0.1, #45b8e4), color-stop(0.5, white), to(#45b8e4));
+            background-image: -moz-gradient(linear, left top, right top, from(#45b8e4), color-stop(0.5, white), color-stop(0.1, #45b8e4), color-stop(0.5, white), to(#45b8e4));
+            background-image: -gradient(linear, left top, right top, from(#45b8e4), color-stop(0.5, white), color-stop(0.1, #45b8e4), color-stop(0.5, white), to(#45b8e4));
+            box-shadow: 0px 0px 1px 0px #808080;
+        }
+
+        .object5_ob1 {
+            top: 20%;
+        }
+
+        .object5_ob2 {
+            top: 35%;
+        }
+
+        .object5_ob3 {
+            top: 50%;
+        }
+
+        .object5_ob4 {
+            top: 65%;
+        }
+
+        #holder {
+            /*height: 400px;*/
+            margin: 0px;
+            /*width: 400px;*/
+        }
+
+        @-webkit-keyframes lightSpeedIn {
+            0% {
+                -webkit-transform: translateX(100%) skewX(-30deg);
+                opacity: 0;
+            }
+
+            60% {
+                -webkit-transform: translateX(-20%) skewX(30deg);
+                opacity: 1;
+            }
+
+            80% {
+                -webkit-transform: translateX(0%) skewX(-15deg);
+                opacity: 1;
+            }
+
+            100% {
+                -webkit-transform: translateX(0%) skewX(0deg);
+                opacity: 1;
+            }
+        }
+
+        @-moz-keyframes lightSpeedIn {
+            0% {
+                -moz-transform: translateX(100%) skewX(-30deg);
+                opacity: 0;
+            }
+
+            60% {
+                -moz-transform: translateX(-20%) skewX(30deg);
+                opacity: 1;
+            }
+
+            80% {
+                -moz-transform: translateX(0%) skewX(-15deg);
+                opacity: 1;
+            }
+
+            100% {
+                -moz-transform: translateX(0%) skewX(0deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes lightSpeedIn {
+            0% {
+                transform: translateX(100%) skewX(-30deg);
+                opacity: 0;
+            }
+
+            60% {
+                transform: translateX(-20%) skewX(30deg);
+                opacity: 1;
+            }
+
+            80% {
+                transform: translateX(0%) skewX(-15deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(0%) skewX(0deg);
+                opacity: 1;
+            }
+        }
+
+        .lightSpeedIn {
+            -webkit-animation: lightSpeedIn 2s ease-out;
+            -moz-animation: lightSpeedIn 2s ease-out;
+            animation: lightSpeedIn 2s ease-out;
+        }
+		#main_screen #btn{
+			position: absolute; 
+			top:2%; 
+			width: 100%;
+			text-align: center;
+			font-size: 50px; 
+			color: black; 
+			background-color: transparent; 
+			border: none; 
+			z-index: 1;
+			font-family: cursive;
+		}
+@media only screen and (max-width:800px){
+	#main_screen #btn{
+			font-size:35px; 
+	}
+	.display_number h1 {
+		width: 34%;
+		font-size:36px;
+		letter-spacing: 1em;
+		left: 5%;
+	}
+	.screen {
+		width: 60%;
+		left: -10%;
+	}
+	.middle_div {
+		height: 12%;
+		width: 41%;
+		left: 0%;
+	}
+	.middle_div h1 {
+		left: 9%;
+		width: 32%;
+		font-size:20px;
+	}
+	.bottom_div {
+		height: 10%;
+		width: 30%;
+		left:5%;
+	}
+	.bottom_div h1 {
+		top:4%;
+		left: 12%;
+		font-size:25px;
+		letter-spacing:2.5em;
+	}
+	.objects {
+		width: 57%;
+		left: 43.5%;
+	}
+	.object1,.object2,.object3,.object4,.object5{
+		width: 15%;
+	}
+}
+@media only screen and (max-width:768px){
+	#main_screen #btn{
+			font-size:35px; 
+	}
+	.display_number h1 {
+		width: 34%;
+		font-size:36px;
+		letter-spacing: 1em;
+		left:5%;
+	}
+	.screen {
+		width: 60%;
+		left: -10%;
+	}
+	.middle_div {
+		height: 12%;
+		width: 41%;
+		left: 0%;
+	}
+	.middle_div h1 {
+		left: 9%;
+		width: 32%;
+		font-size:20px;
+	}
+	.bottom_div {
+		height: 10%;
+		width: 30%;
+		left:5%;
+	}
+	.bottom_div h1 {
+		top:4%;
+		left: 12%;
+		font-size:25px;
+		letter-spacing:2.5em;
+	}
+	.objects {
+		width: 57%;
+		left: 43.5%;
+	}
+	.object1,.object2,.object3,.object4,.object5{
+		width: 15%;
+	}
+}
+@media only screen and (max-width:320px){
+	#main_screen #btn{
+			font-size: 20px; 
+	}
+	.screen {
+		width: 70%;
+		left: -10%;
+		top: 21%;
+	}
+	.middle_div {
+		height: 12%;
+		width: 50%;
+		left: 0%;
+	}
+	.middle_div h1 {
+		left: 9%;
+		width: 34%;
+		font-size: 13px;
+	}
+	.bottom_div {
+		height: 10%;
+		width: 40%;
+		left:3.5%;
+	}
+	.bottom_div h1 {
+		top:5%;
+		left: 13%;
+		font-size:14px;
+	}
+	.objects {
+		width: 57%;
+		left: 43.5%;
+	}
+	.object1,.object2,.object3,.object4,.object5{
+		width: 15%;
+	}
+}
+</style>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <!--<a href="index.html">
+                <button id="mathwizard">MathWizardApps.com</button>
+            </a>-->
+            <a href="mathwizard-grade-2-topic.html">
+                <button class="sitemap"> &nbsp;Grade-2</button>
+            </a>
+            <a href="mathwizard-grade-2-abacus.html">
+                <button class="sitemap">&nbsp; >  &nbsp; Abacus</button>
+            </a>
+            <!--<button id="header-desc">Math Activities and Games for Kids</button>-->
+        </div>
+        <div id="content" >
+
+            <!--<div id="main_screen">-->
+            <!--<button style="position: absolute; top: 9%; left: 30%; font-size: 20px; color: black; background-color: transparent; border: none; z-index: 1;">
+            Drag on the abacus and count
+        </button>-->
+            <!--<div id="play_button" style="position:absolute;top:2%;left:5%;font-size:30px;color:black;background-color:gray" onclick="thousand(' + "'" + dynamicnumberofquestions + "'" + ')">Play</div>-->
+
+            <!--<div id="reset_button" style="position:absolute;top:2%;left:82%;font-size:30px;color:black;background-color:gray" onclick="resetabacus(\'' + dynamicactivityname + '\',\'' + dynamicnumberofquestions + '\');thousand(' + "'" + dynamicnumberofquestions + "'" + ')">Reset</div>-->
+            <!--  <div id="display_number" class="display_number">
+            <h1 id="display_number_h1"></h1>
+        </div>-->
+            <!--  <div class="screen">-->
+            <!-- <div id="stick_1" class="stick">
+            </div>
+            <div id="stick_2" class="stick">
+            </div>
+            <div id="stick_3" class="stick">
+            </div>-->
+            <!-- <div id="stick_4" class="stick">
+            </div>
+            <div id="stick_5" class="stick">
+            </div>
+        </div>-->
+            <!-- <div class="bottom_div">
+            <h1 id="bottom_div_h1"></h1>
+        </div>-->
+            <!-- <div class="middle_div">-->
+            <!-- <h1>Tth</h1>
+            <h1>Th</h1>
+            <h1>H</h1>-->
+            <!-- <h1>T</h1>
+            <h1>O</h1>
+        </div>-->
+            <!-- </div>-->
+            <!-- <div class="objects">-->
+            <!-- <div class="object1"></div>
+        <div class="object1 object1_ob1"></div>
+        <div class="object1 object1_ob2"></div>
+        <div class="object1 object1_ob3"></div>
+        <div class="object1 object1_ob4"></div>
+        <div class="object2"></div>
+        <div class="object2 object2_ob1"></div>
+        <div class="object2 object2_ob2"></div>
+        <div class="object2 object2_ob3"></div>
+        <div class="object2 object2_ob4"></div>
+        <div class="object3"></div>
+        <div class="object3 object3_ob1"></div>
+        <div class="object3 object3_ob2"></div>
+        <div class="object3 object3_ob3"></div>
+        <div class="object3 object3_ob4"></div>
+        <div class="object4"></div>
+        <div class="object4 object4_ob1"></div>
+        <div class="object4 object4_ob2"></div>
+        <div class="object4 object4_ob3"></div>
+        <div class="object4 object4_ob4"></div>
+        <div class="object5"></div>
+        <div class="object5 object5_ob1"></div>
+        <div class="object5 object5_ob2"></div>
+        <div class="object5 object5_ob3"></div>
+        <div class="object5 object5_ob4"></div>-->
+            <!--</div>-->
+        </div>
+        <div id="footer"><a href="index.html">&copy;MathWizardApps.com</a> <a href="sitemap.html"><button id="sitemap-div">Sitemap</button></a>  <button id="header-desc">Math Activities and Games for Kids</button></div>
+    </div>
+    <script type="text/ecmascript">
+        //$(function () {
+        //    $("#main_screen").draggable({
+        //        containment: "body",
+        //        scroll: false,
+        //        start: function (event, ui) {
+
+        //        },
+        //        drag: function () {
+
+        //        },
+        //        stop: function (event, ui) {
+        //        }
+        //    });
+        //    $("#main_screen").resizable({
+        //        start: function (event, ui) {
+        //        },
+        //        stop: function (event, ui) {
+
+        //        }
+        //    });
+
+        //});
+
+        window.onload = function () {
+            createabacus();
+        }
+
+        function createabacus() {
+
+            var main_content = "";
+            main_content += '<div id="main_screen">';
+            main_content += '<button id="btn"> Drag on the abacus and count</button>';
+            main_content += '<div id="display_number" class="display_number">';
+            main_content += '<h1 id="display_number_h1"></h1>';
+            main_content += '</div>';
+            main_content += '<div class="screen">';
+            main_content += '<div id="stick_3" class="stick">';
+            main_content += '</div>';
+            main_content += '<div id="stick_4" class="stick">';
+            main_content += '</div>';
+            main_content += '<div id="stick_5" class="stick">';
+            main_content += '</div>';
+            main_content += '</div>';
+            main_content += '<div class="bottom_div">';
+            main_content += '<h1 id="bottom_div_h1"></h1>';
+            main_content += '</div>';
+            main_content += '<div class="middle_div">';
+            main_content += '<h1 style="margin-left: -7%;">Hundreds</h1>';
+            main_content += '<h1>Tens</h1>';
+            main_content += '<h1>Ones</h1>';
+            main_content += '</div>';
+            main_content += '</div>';
+            main_content += '<div class="objects">';
+            main_content += '<div class="object1"></div>';
+            main_content += '<div class="object1 object1_ob1"></div>';
+            main_content += '<div class="object1 object1_ob2"></div>';
+            main_content += '<div class="object1 object1_ob3"></div>';
+            main_content += '<div class="object1 object1_ob4"></div>';
+            main_content += '<div class="object2"></div>';
+            main_content += '<div class="object2 object2_ob1"></div>';
+            main_content += '<div class="object2 object2_ob2"></div>';
+            main_content += '<div class="object2 object2_ob3"></div>';
+            main_content += '<div class="object2 object2_ob4"></div>';
+            main_content += '<div class="object3"></div>';
+            main_content += '<div class="object3 object3_ob1"></div>';
+            main_content += '<div class="object3 object3_ob2"></div>';
+            main_content += '<div class="object3 object3_ob3"></div>';
+            main_content += '<div class="object3 object3_ob4"></div>';
+            main_content += '<div class="object4"></div>';
+            main_content += '<div class="object4 object4_ob1"></div>';
+            main_content += '<div class="object4 object4_ob2"></div>';
+            main_content += '<div class="object4 object4_ob3"></div>';
+            main_content += '<div class="object4 object4_ob4"></div>';
+            main_content += '<div class="object5"></div>';
+            main_content += '<div class="object5 object5_ob1"></div>';
+            main_content += '<div class="object5 object5_ob2"></div>';
+            main_content += '<div class="object5 object5_ob3"></div>';
+            main_content += '<div class="object5 object5_ob4"></div>';
+            main_content += '</div>';
+
+            $("#content").html(main_content);
+            initialize();
+
+        }
+
+        function initialize() {
+            var sum3 = 0;
+            var sum4 = 0;
+            var sum5 = 0;
+            var randomally_number = 0;
+            randomally_number = Math.floor(Math.random() *  200) + 3;
+            document.getElementById("display_number_h1").innerHTML = randomally_number;
+            document.getElementById("bottom_div_h1").innerHTML = '000';
+
+
+
+            $(function () {
+                $(".objects > div").draggable({
+                    //revert: true,
+                    //helper: "clone",
+                });
+
+
+               
+
+                $(".screen > div").droppable({
+                
+                    drop: function (event, ui) {
+                        //var object = ui.draggable.attr('id');
+                        var change_position = ui.draggable.detach();
+                        change_position = change_position.css({ 'position': 'absolute', 'top': '0%', 'left': '-33%', 'width': '165%', 'height': '10%', 'align': 'center', 'z-index': '1' });
+                        $(this).append(change_position);
+                       
+                        var value = $(this).attr('id');
+                        //if (value.split('_')[1] == 1) {
+                        //    var inner_div_length = $('#stick_1 > div').length;
+                        //    $(change_position).delay(150).animate({
+                        //        top: (100 - (inner_div_length) * 7) + "%",
+
+                        //    }, 1000);
+                        //    sum1 = inner_div_length * 10000;
+
+                        //    var inner_div_length_2 = $('#stick_2 > div').length;
+                        //    sum2 = inner_div_length_2 * 1000;
+
+                        //    var inner_div_length_3 = $('#stick_3 > div').length;
+                        //    sum3 = inner_div_length_3 * 100;
+
+                        //    var inner_div_length_4 = $('#stick_4 > div').length;
+                        //    sum4 = inner_div_length_4 * 10;
+
+                        //    var inner_div_length_5 = $('#stick_5 > div').length;
+                        //    sum5 = inner_div_length_5 * 1;
+                        //}
+                        //if (value.split('_')[1] == 2) {
+                        //    var inner_div_length = $('#stick_2 > div').length;
+                        //    $(change_position).delay(150).animate({
+                        //        top: (100 - (inner_div_length) * 7) + "%",
+                        //    }, 1000);
+                        //    sum2 = inner_div_length * 1000;
+
+                        //    var inner_div_length_1 = $('#stick_1 > div').length;
+                        //    sum1 = inner_div_length_1 * 10000;
+
+                        //    var inner_div_length_3 = $('#stick_3 > div').length;
+                        //    sum3 = inner_div_length_3 * 100;
+
+                        //    var inner_div_length_4 = $('#stick_4 > div').length;
+                        //    sum4 = inner_div_length_4 * 10;
+
+                        //    var inner_div_length_5 = $('#stick_5 > div').length;
+                        //    sum5 = inner_div_length_5 * 1;
+
+                        //}
+                        if (value.split('_')[1] == 3) {
+                            var inner_div_length = $('#stick_3 > div').length;
+                            $(change_position).delay(150).animate({
+                                top: (100 - (inner_div_length) * 11) + "%",
+                            }, 1000);
+                            sum3 = inner_div_length * 100;
+                           
+
+                            var inner_div_length_4 = $('#stick_4 > div').length;
+                            sum4 = inner_div_length_4 * 10;
+
+                            var inner_div_length_5 = $('#stick_5 > div').length;
+                            sum5 = inner_div_length_5 * 1;
+                        }
+                        if (value.split('_')[1] == 4) {
+                            var inner_div_length = $('#stick_4 > div').length;
+                            $(change_position).delay(150).animate({
+                                top: (100 - (inner_div_length) * 11) + "%",
+                            }, 1000);
+                            sum4 = inner_div_length * 10;
+
+
+                            var inner_div_length_3 = $('#stick_3 > div').length;
+                            sum3 = inner_div_length_3 * 100;
+                            
+                            var inner_div_length_5 = $('#stick_5 > div').length;
+                            sum5 = inner_div_length_5 * 1;
+                        }
+                        if (value.split('_')[1] == 5) {
+                            var inner_div_length = $('#stick_5 > div').length;
+                            $(change_position).delay(150).animate({
+                                top: (100 - (inner_div_length) * 11) + "%",
+                            }, 1000);
+                            sum5 = inner_div_length * 1;
+                            //$('#stick_5 > div').unbind(".draggable");
+                            var inner_div_length_3 = $('#stick_3 > div').length;
+                            sum3 = inner_div_length_3 * 100;
+
+                            var inner_div_length_4 = $('#stick_4 > div').length;
+                            sum4 = inner_div_length_4 * 10;
+                        }
+                        var total_sum = sum3+sum4 + sum5;
+                        document.getElementById("bottom_div_h1").innerHTML = total_sum;
+                        if (sum3+sum4 + sum5 == randomally_number) {
+                            correct_answer_as();
+                        }
+                    }
+                });
+
+                $('.objects').droppable({
+                    drop: function (event, ui) {
+                        var change_position = ui.draggable.detach();
+                        change_position = change_position.css({ 'position': 'absolute', 'top': +event.pageY/$(this).innerHeight+'px', 'left': +event.pageX/$(this).innerWidth+'px', 'width': '9.5%', 'height': '5%', 'align': 'center', 'z-index': '1' });
+                        $(this).append(change_position);
+                        var inner_div_length_3 = $('#stick_3 > div').length;
+                        sum3 = inner_div_length_3 * 100;
+                        var inner_div_length_4 = $('#stick_4 > div').length;
+                        sum4 = inner_div_length_4 * 10;
+                        var inner_div_length_5 = $('#stick_5 > div').length;
+                        sum5 = inner_div_length_5 * 1;
+                        var total_sum = sum3 + sum4 + sum5;
+                        document.getElementById("bottom_div_h1").innerHTML = total_sum;
+                        if (sum4 + sum5 == randomally_number) {
+                            correct_answer_as();
+                        }
+                    }
+                });
+            });
+        }
+        function correct_answer_as() {
+            var corr_ans = document.createElement('div');
+            corr_ans.id = 'corr';
+            corr_ans.style.height = '20%';
+            corr_ans.style.width = '20%';
+            corr_ans.style.zIndex = '10';
+            corr_ans.style.position = 'absolute';
+            corr_ans.style.left = '35%';
+            corr_ans.style.top = '34%';
+            corr_ans.setAttribute('class', 'lightSpeedIn');
+            document.body.appendChild(corr_ans);
+
+            var corr_imag = document.createElement('img');
+
+            corr_imag.setAttribute('src', 'images/correct.png');
+
+            if (navigator.userAgent.search("Firefox") >= 0) {
+                corr_imag.style.height = '100%';
+                corr_imag.style.width = '100%';
+                corr_ans.appendChild(corr_imag);
+                document.getElementById('corr').addEventListener('animationend', function () {
+                    document.body.removeChild(this);
+                    //source.innerHTML = "";
+                    //target.value = "";
+                    //attempt();
+                    //keyboard.style.visibility = "visible";
+                    $("#corr").remove();
+                    //$("#source > div").remove();
+                    $("#content > div").remove();
+                    createabacus();
+                }, false);
+            }
+            else {
+                corr_imag.style.height = '100%';
+                corr_imag.style.width = '100%';
+                corr_ans.appendChild(corr_imag);
+                document.getElementById('corr').addEventListener('webkitAnimationEnd', function () {
+                    document.body.removeChild(this);
+                    //source.innerHTML = "";
+                    //target.value = "";
+                    $("#corr").remove();
+                    //$("#source > div").remove();
+                    $("#content > div").remove();
+                    createabacus();
+                }, false);
+            }
+        }
+
+
+      
+
+    </script>
+</body>
+</html>

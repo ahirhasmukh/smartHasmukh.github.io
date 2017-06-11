@@ -1,0 +1,1752 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title> Math Wizard-grade-4-time - Online math practice, math games and interactive math </title>
+
+    <meta name="description" content="Math Wizard-grade-4-time is one of the most interactive math practice apps. 
+Math wizard is completely free online for studnets, teachers and schools.
+Math wizard provides unlimited math practice to kids.
+Math wizard provides a simple , intuitive learning system for kids with games , interactive actvities , making learning fun!
+" />
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery-ui-1.10.2.custom.js"></script>
+    <link href="style/common.css" rel="stylesheet" />
+    <script src="js/jquery.ui.touch-punch.js"></script>
+
+
+    <style type="text/css">
+        body {
+            margin: 0px;
+            padding: 0px;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+        }
+
+        @font-face {
+            font-family: default_font;
+            src: url('font/JimNightshade-Regular.ttf');
+        }
+
+        @font-face {
+            font-family: digit-font;
+            src: url('font/NovaMono.ttf');
+        }
+
+        @font-face {
+            font-family: score-digit-font;
+            src: url('font/PatuaOne-Regular.ttf');
+        }
+
+        #wrapper {
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        /*#header {
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 15%;
+            background-color: black;
+            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(237,237,237, 0.5)), color-stop(100%, rgba(153,153,153, 0.5)));
+            background-image: -webkit-linear-gradient(top, rgba(237,237,237, 0.5), rgba(153,153,153, 0.5));
+            background-image: -moz-linear-gradient(top, rgba(237,237,237, 0.5), rgba(153,153,153, 0.5));
+            background-image: -ms-linear-gradient(top, rgba(237,237,237, 0.5), rgba(153,153,153, 0.5));
+            background-image: -o-linear-gradient(top, rgba(237,237,237, 0.5), rgba(153,153,153, 0.5));
+            background-image: linear-gradient(top, rgba(237,237,237, 0.5), rgba(153,153,153, 0.5));*/
+            /*display:none;*/
+        /*}*/
+
+        /*.back-button {
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    height: 48%;
+    width: 20%;*/
+        /*background-image: url('../images/back.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;*/
+        /*background-color: transparent;
+    border:none;
+    font-family: score-digit-font;
+    font-size: 25px;
+    text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.1);*/
+        /*display:none;*/
+        /*}*/
+
+        /*#time-holder {
+    position: absolute;
+    top: 30%;
+    right: 5%;
+    height: 40%;
+    width: 30%;
+    background: none;
+    border: none;
+    font-family: score-digit-font;
+    font-size: 25px;
+    text-shadow: 2px 2px 3px rgba(255,255,255,0.1);*/
+        /*display:none;*/
+        /*}*/
+
+        #play-screen {
+            position: absolute;
+            top: 15%;
+            left: 0%;
+            width: 100%;
+            height: 70%;
+            overflow: hidden;
+        }
+
+        #question {
+            /*background-image: -moz-linear-gradient(top, #00C3F7 90%,#00C3F7 62%,#00C3F7 80%,#474747 96%,#2C2C2C 109%,black 51%,#111 60%,#2B2B2B 76%,#1C1C1C 91%,#131313 100%); /* FF3.6+ */
+            /*background-image: -webkit-linear-gradient(top, #00C3F7 90%,#00C3F7 62%,#00C3F7 80%,#474747 96%,#2C2C2C 109%,black 51%,#111 60%,#2B2B2B 76%,#1C1C1C 91%,#131313 100%); /* Chrome,Safari4+ */
+            /*background-image: -webkit-linear-gradient(top, #00C3F7 90%,#00C3F7 62%,#00C3F7 80%,#474747 96%,#2C2C2C 109%,black 51%,#111 60%,#2B2B2B 76%,#1C1C1C 91%,#131313 100%);*/ /* Chrome10+,Safari5.1+ */
+            /*background-image: -o-linear-gradient(top, #00C3F7 90%,#00C3F7 62%,#00C3F7 80%,#474747 96%,#2C2C2C 109%,black 51%,#111 60%,#2B2B2B 76%,#1C1C1C 91%,#131313 100%);*/ /* Opera 11.10+ */
+            /*background-image: -ms-linear-gradient(top, #00C3F7 90%,#00C3F7 62%,#00C3F7 80%,#474747 96%,#2C2C2C 109%,black 51%,#111 60%,#2B2B2B 76%,#1C1C1C 91%,#131313 100%);*/ /* IE10+ */
+            /*background-image: linear-gradient(top, #00C3F7 90%,#00C3F7 62%,#00C3F7 80%,#474747 96%,#2C2C2C 109%,black 51%,#111 60%,#2B2B2B 76%,#1C1C1C 91%,#131313 100%);*/ /* W3C */
+            /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='*/*/*/*/#4c4c4c', endColorstr='#131313',GradientType=0 );*/ /* IE6-9 */*/
+        }
+
+        .question_animation {
+            position: relative;
+            float: right;
+            height: 50%;
+            width: 6%;
+            /*right: 46%;*/
+            color:black;
+            margin-left:3%;
+            -webkit-animation: ques 2s ease-out infinite;
+            -moz-animation: ques 2s ease-out infinite;
+            -o-animation: ques 2s ease-out infinite;
+            animation: ques 2s ease-out infinite;
+            /*display:none;*/
+        }
+
+        @-webkit-keyframes ques {
+            1% {
+                -webkit-transform: scale(1);
+            }
+
+            50% {
+                -webkit-transform: scale(1.4);
+            }
+
+            100% {
+                -webkit-transform: scale(1);
+            }
+        }
+
+        @-moz-keyframes ques {
+            1% {
+                -moz-transform: scale(1);
+            }
+
+            50% {
+                -moz-transform: scale(1.4);
+            }
+
+            100% {
+                -moz-transform: scale(1);
+            }
+        }
+        /*.active {
+    background-color: #0a8e90;
+}
+
+.deactive {
+    background-color: #6e773d;
+}*/
+
+        .object {
+            float: left;
+            height: 100%;
+            width: 13%;
+            background-color: transparent;
+            border: none;
+            font-size: xx-large;
+            font-family: digit-font;
+            color: white;
+            text-shadow: 1px 2px black;
+        }
+
+        .response-holder {
+            float: left;
+            height: 100%;
+            width: 35%;
+            background-color: transparent;
+            border: none;
+        }
+
+        .response-correct {
+            background-image: url('../images/correct.png');
+            background-size: 50% 70%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .response-incorrect {
+            background-image: url('../images/incorrect.png');
+            background-size: 50% 70%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .right-wrong-contanier {
+            float: right;
+            height: 100%;
+            width: 35%;
+        }
+
+        .wrong {
+            float: right;
+            width: 50%;
+            height: 100%;
+            border: none;
+            background: none;
+            background-image: url('../images/closeButton_pressed.png');
+            background-size: 70% 65%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .right {
+            float: left;
+            width: 50%;
+            height: 100%;
+            border: none;
+            background: none;
+            background-image: url('../images/CheckButton.png');
+            background-size: 100% 65%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .yes {
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 30%;
+            height: 30%;
+            color: white;
+            font-family: default_font;
+            background-color: transparent;
+            border: none;
+            font-size: xx-large;
+            border-radius: 5px;
+            background-color: green;
+            box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.6);
+        }
+
+        .no {
+            position: absolute;
+            top: 10%;
+            left: 60%;
+            width: 30%;
+            height: 30%;
+            color: white;
+            font-family: default_font;
+            background-color: transparent;
+            border: none;
+            font-size: xx-large;
+            border-radius: 5px;
+            background-color: #9d1d1d;
+            box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.6);
+        }
+
+
+
+        /*#footer {
+            position: absolute;
+            top: 90%;
+            left: 0%;
+            width: 100%;
+            height: 10%;
+            background-color: black;
+            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(237,237,237, 0.5)), color-stop(100%, rgba(153,153,153, 0.5)));
+            background-image: -webkit-linear-gradient(top, rgba(237,237,237, 0.5), rgba(153,153,153, 0.5));
+            background-image: -moz-linear-gradient(top, rgba(237,237,237, 0.5), rgba(153,153,153, 0.5));
+            background-image: -ms-linear-gradient(top, rgba(237,237,237, 0.5), rgba(153,153,153, 0.5));
+            background-image: -o-linear-gradient(top, rgba(237,237,237, 0.5), rgba(153,153,153, 0.5));
+            background-image: linear-gradient(top, rgba(237,237,237, 0.5), rgba(153,153,153, 0.5));
+            background: none;
+        }*/
+
+
+
+        .right_wrong_contanier {
+            position: absolute;
+            right: 2%;
+            height: 22%;
+            width: 30%;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .show {
+            display: inline;
+        }
+
+
+
+
+        @-webkit-keyframes example {
+            0% {
+                box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.6);
+            }
+
+            100% {
+                box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.6);
+            }
+        }
+
+        .button-press {
+            -webkit-animation: example 200ms linear;
+        }
+
+
+        .select-digit > .object {
+            width: 95%;
+            color: white;
+        }
+
+
+        #question-dots {
+            position: absolute;
+            top: 45%;
+            left: 0%;
+            width: 100%;
+            height: 45%;
+        }
+
+        .dot {
+            height: 46%;
+            width: 10%;
+            background-color: transparent;
+            border: none;
+            font-family: score-digit-font;
+            font-size: 18px;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+        }
+
+        @-webkit-keyframes correct-fadein {
+            from {
+                opacity: .4;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .incorrect-dot {
+            -webkit-transform: scale(1.2);
+            -moz-transform: scale(1.2);
+            color: rgba(0,0,0,0.6);
+            color: white;
+            color: #0A8E90;
+            background-image: url('../images/light_bulb_red.png');
+            background-size: 100% 80%;
+            background-repeat: no-repeat;
+            -webkit-animation: incorrect-fadein 200ms linear;
+        }
+
+        @-webkit-keyframes incorrect-fadein {
+            from {
+                opacity: .4;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+        /*.sound {
+    display: none;
+}*/
+
+        #answer {
+            z-index: 1;
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            height: 51%;
+            width: 48%;
+            font-size: 21px;
+            display: none;
+        }
+
+
+        /*/*#score-card {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0%;
+            left: 0%;
+            background-color: white;
+            display: none;
+            z-index: 3;
+            background-color: black;
+            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(237,237,237, 0.5)), color-stop(100%, rgba(153,153,153, 0.5)));
+            background-image: -webkit-linear-gradient(top, rgba(237,237,237, 0.5), rgba(153,153,153, 0.5));
+            background-image: -moz-linear-gradient(top, rgba(237,237,237, 0.5), rgba(153,153,153, 0.5));
+            background-image: -ms-linear-gradient(top, rgba(237,237,237, 0.5), rgba(153,153,153, 0.5));
+            background-image: -o-linear-gradient(top, rgba(237,237,237, 0.5), rgba(153,153,153, 0.5));
+            background-image: linear-gradient(top, rgba(237,237,237, 0.5), rgba(153,153,153, 0.5));
+        }
+
+        #score-board-label {
+            position: absolute;
+            height: 10%;
+            top: 1%;
+            /*left: 24%;*/
+            /*width: 100%;
+            background-color: transparent;
+            border: none;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+            background-color: transparent;
+            border: none;
+            float: left;
+            font-family: score-digit-font;
+            font-size: 30px;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+        }
+
+        #total-time {
+            position: absolute;
+            height: 10%;
+            top: 9%;*/
+            /*left: 9%;*/
+            /*/*width: 40%;
+            background-color: transparent;
+            border: none;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+            background-color: transparent;
+            border: none;
+            float: left;
+            font-family: score-digit-font;
+            font-size: 25px;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+        }*/
+
+        .separate {
+            position: absolute;
+            height: 10%;
+            top: 9%;
+            left: 40%;
+            width: 20%;
+            background-color: transparent;
+            border: none;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+            background-color: transparent;
+            border: none;
+            float: left;
+            font-family: score-digit-font;
+            font-size: 25px;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+        }
+
+        #score-card-time {
+            position: absolute;
+            height: 10%;
+            top: 9%;
+            left: 60%;
+            width: 40%;
+            background-color: transparent;
+            border: none;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+            background-color: transparent;
+            border: none;
+            float: left;
+            font-family: score-digit-font;
+            font-size: 25px;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+        }
+
+        #questionattempts {
+            position: absolute;
+            height: 5%;
+            top: 20%;
+            width: 40%;
+            background-color: transparent;
+            border: none;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+            background-color: transparent;
+            border: none;
+            float: left;
+            font-family: score-digit-font;
+            font-size: 20px;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+            text-align: left;
+        }
+
+        #displayattempts {
+            position: absolute;
+            height: 5%;
+            top: 20%;
+            left: 60%;
+            width: 40%;
+            background-color: transparent;
+            border: none;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+            background-color: transparent;
+            border: none;
+            float: left;
+            font-family: score-digit-font;
+            font-size: 25px;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+        }
+
+        #totalquestion {
+            position: absolute;
+            height: 5%;
+            top: 30%;
+            width: 40%;
+            background-color: transparent;
+            border: none;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+            background-color: transparent;
+            border: none;
+            float: left;
+            font-family: score-digit-font;
+            font-size: 20px;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+            text-align: left;
+        }
+
+        #dispalyquestion {
+            position: absolute;
+            height: 5%;
+            top: 30%;
+            left: 60%;
+            width: 40%;
+            background-color: transparent;
+            border: none;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+            background-color: transparent;
+            border: none;
+            float: left;
+            font-family: score-digit-font;
+            font-size: 25px;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+        }
+
+        #percent {
+            position: absolute;
+            height: 5%;
+            top: 40%;
+            width: 40%;
+            background-color: transparent;
+            border: none;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+            background-color: transparent;
+            border: none;
+            float: left;
+            font-family: score-digit-font;
+            font-size: 20px;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+            text-align: left;
+        }
+
+        #displaypercent {
+            position: absolute;
+            height: 5%;
+            top: 40%;
+            left: 60%;
+            width: 40%;
+            background-color: transparent;
+            border: none;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+            background-color: transparent;
+            border: none;
+            float: left;
+            font-family: score-digit-font;
+            font-size: 25px;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+        }
+
+        #score-card-question-holder {
+            position: absolute;
+            height: 50%;
+            top: 50%;
+            left: 0%;
+            width: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .score-card-question {
+            width: 48%;
+            height: 10%;
+            margin: 1%;
+            font-family: score-digit-font;
+            font-size: 22px;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+            background-color: transparent;
+            border: none;
+            float: left;
+            text-align: left;
+        }
+
+        .score-card-answer {
+            width: 15%;
+            height: 10%;
+            margin: 1%;
+            background-color: transparent;
+            border: none;
+            float: left;
+        }
+
+        .score-card-question-time {
+            width: 25%;
+            height: 10%;
+            margin: 1%;
+            background-color: transparent;
+            font-family: score-digit-font;
+            font-size: 20px;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+            background-color: transparent;
+            border: none;
+            float: left;
+        }
+
+        .score-card-answer-correct {
+            background-image: url('../images/correct.png');
+            background-size: 50% 50%;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .score-card-answer-incorrect {
+            background-image: url('../images/incorrect.png');
+            background-size: 50% 50%;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        Inherited from p#flashlight #play {
+            color: hsla(0,0%,0%,0);
+        }
+
+        /*#start-button:hover #play {
+    text-shadow: #fff 0 0 14px, #fcffbb 0 0 50px;
+    -webkit-transform: rotateY(-60deg);
+    transition: -webkit-transform 0.3s cubic-bezier(0.550, 0.055, 0.675, 0.190), text-shadow 0.1s ease-out;
+}*/
+
+        #play {
+            display: inline-block;
+            position: relative;
+            width: 0%;
+            left: -24%;
+            text-shadow: #111 0 0 1px, rgba(255,255,255,0.1) 0 1px 30px;
+        }
+
+
+        #auto-span {
+            display: inline-block;
+            text-shadow: #111 0 0 1px, rgba(255,255,255,0.1) 0 1px 30px;
+        }
+
+        /*time activity*/
+        canvas {
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+
+        .clocks {
+            height: 80%;
+            margin: 25px auto;
+            position: relative;
+            width: 50%;
+        }
+
+        #time-display {
+            position: absolute;
+            bottom: 29%;
+            left: 23%;
+            height: 38%;
+            width: 61%;
+        }
+
+        .main-time-container > button {
+            height: 100%;
+            width: 100%;
+            background-color: orange;
+            border: none;
+            font-size: 20px;
+            left: 1%;
+            position: relative;
+        }
+
+
+
+        .time-option {
+            position: absolute;
+            width: 30%;
+            height: 30%;
+            color: white;
+            font-family: default_font;
+            background-color: transparent;
+            border: none;
+            font-size: xx-large;
+            border-radius: 5px;
+            background-color: green;
+            box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.6);
+        }
+
+        #time-option1 {
+            top: 10%;
+            left: 10%;
+        }
+
+        #time-option2 {
+            top: 10%;
+            left: 60%;
+        }
+
+        .play-screen-background {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0%;
+            left: 0%;
+            background-image: url('../images/play_screen_background.png');
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+
+
+        .nobackground {
+            background: none;
+        }
+
+        #operator-list > button {
+            width: 100%;
+            position: relative;
+            float: left;
+            /*background-color: #6e773d;*/
+            border: none;
+            font-size: 20px;
+            font-family: digit-font;
+            color: white;
+            text-shadow: 1px 2px black;
+        }
+
+
+        /*clock-activity-2*/
+        .clocks-2 {
+            height: 86%;
+            margin: 1px auto;
+            position: relative;
+            width: 30%;
+            left: -26%;
+        }
+
+        /*#hour-minute-container {
+    position: absolute;
+    height: 32%;
+    width: 40%;
+    top: 25%;
+    right: 2%;
+    /*background-color: #0A8E90;*/
+        /*overflow: hidden;
+    background-image: url('../images/timegamedigitbox.png');
+    background-size: 102% 97%;
+    background-position: center;
+    background-repeat: no-repeat;
+}*/
+
+        div#hour-minute-slide {
+            width: 45%;
+            height: 206px;
+            overflow: hidden;
+            padding: 4px;
+            margin-bottom: 20px;
+            float: left;
+        }
+
+        #hour-minute-slide1 {
+            width: 45%;
+            height: 206px;
+            overflow: hidden;
+            padding: 4px;
+            margin-bottom: 20px;
+            float: left;
+        }
+
+        .btn-height {
+            /*float: left;*/
+            background-color: transparent;
+            border: none;
+            font-size: 50px;
+            width: 100%;
+            height: 28%;
+        }
+
+        .check-button {
+            position: absolute;
+            height: 10%;
+            width: 15%;
+            top: 79%;
+            left: 63%;
+            z-index: 1;
+            border: none;
+            background-color: #00C3F7;
+            font-size: 28px;
+            color: white;
+            border-radius: 8px;
+        }
+
+            .check-button:hover {
+                -webkit-transform: scale(1.2);
+                -moz-transform: scale(1.2);
+                background-color: #FF8B00;
+            }
+
+        .ans-button {
+            border: none;
+            width: 20%;
+            font-family: score-digit-font;
+            font-size: 32px;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+            background-color: black;
+            border-radius: 8px;
+            background-color: #00C3F7;
+            color: white;
+            /*display:none;*/
+        }
+
+            .ans-button:hover {
+                  -webkit-transform: scale(1.2);
+                   -moz-transform: scale(1.2);
+                   background-color:#FF8B00;
+                 
+            }
+
+      
+      
+
+        .minute {
+            position: relative;
+            color: white;
+            height: 100%;
+            width: 45%;
+            font-size: 20px;
+            left: 3%;
+            background-color: transparent;
+            border: none;
+        }
+
+        #question {
+            background-color: transparent;
+            border: none;
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            height: 10%;
+            width: 35%;
+            color: white;
+            font-size: 35px;
+            outline:none;
+        }
+
+        @-webkit-keyframes lightSpeedIn {
+            0% {
+                -webkit-transform: translateX(100%) skewX(-30deg);
+                opacity: 0;
+            }
+
+            60% {
+                -webkit-transform: translateX(-20%) skewX(30deg);
+                opacity: 1;
+            }
+
+            80% {
+                -webkit-transform: translateX(0%) skewX(-15deg);
+                opacity: 1;
+            }
+
+            100% {
+                -webkit-transform: translateX(0%) skewX(0deg);
+                opacity: 1;
+            }
+        }
+
+        @-moz-keyframes lightSpeedIn {
+            0% {
+                -moz-transform: translateX(100%) skewX(-30deg);
+                opacity: 0;
+            }
+
+            60% {
+                -moz-transform: translateX(-20%) skewX(30deg);
+                opacity: 1;
+            }
+
+            80% {
+                -moz-transform: translateX(0%) skewX(-15deg);
+                opacity: 1;
+            }
+
+            100% {
+                -moz-transform: translateX(0%) skewX(0deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes lightSpeedIn {
+            0% {
+                transform: translateX(100%) skewX(-30deg);
+                opacity: 0;
+            }
+
+            60% {
+                transform: translateX(-20%) skewX(30deg);
+                opacity: 1;
+            }
+
+            80% {
+                transform: translateX(0%) skewX(-15deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(0%) skewX(0deg);
+                opacity: 1;
+            }
+        }
+
+        .lightSpeedIn {
+            -webkit-animation: lightSpeedIn 2s ease-out;
+            -moz-animation: lightSpeedIn 2s ease-out;
+            animation: lightSpeedIn 2s ease-out;
+        }
+          #question1 > button {
+                border: none;
+                background-color: transparent;
+                width: 100%;
+                font-size: 20px;
+                text-align: left;
+            }
+
+        @media screen and (max-width: 400px) {
+            .minute {
+                /*bottom: 85%;*/
+            }
+
+            #question {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+         <!-- <a href="index.html">
+                <button id="mathwizard">MathWizardApps.com</button>
+            </a>-->
+            <a href="mathwizard-grade-4-topic.html">
+                <button class="sitemap">  &nbsp;Grade-4</button>
+            </a>
+            <a href="mathwizard-grade-4-time.html">
+                <button class="sitemap">&nbsp; >  &nbsp;Time</button>
+            </a>
+             <!--<button id="header-desc">Math Activities and Games for Kids</button>-->
+        </div>
+           <div id="content" class="w78BFFB">
+        <button id="question">
+            <span style="float: left; position: relative;">Set the time </span><span class="question_animation" style="float:left;position:relative;"></span><span style="float: left; position: relative;margin-left:15%;">o'clock </span>
+        </button>
+               <div id="answer">
+                   <button style="position: relative;outline:none; color: white; height: 12%; width: 43%; font-size: 21px; top: 0%; left: -2%; background-color: transparent; border: none;">
+                       Set the below Hours
+                   </button>
+                   <div id="ans-hour" style="margin-top: 0px;">
+                       <button class="ans-button">1</button>
+                       <button class="ans-button">2</button>
+                <button class="ans-button">3</button>
+                <button class="ans-button">4</button>
+                <button class="ans-button">5</button>
+                <button class="ans-button">6</button>
+                <button class="ans-button">7</button>
+                <button class="ans-button">8</button>
+                <button class="ans-button">9</button>
+                <button class="ans-button">10</button>
+                <button class="ans-button">11</button>
+                <button class="ans-button">12</button>
+            </div>
+
+            <div id="ans-minute" style="margin-top: 1%;">
+                <div style="position: relative; float: left; height: 10%; width: 90%; top: 36%;">
+                    <button class="minute">
+                        Select the below Minutes
+                    </button>
+                </div>
+                <button class="ans-button">05</button>
+                <button class="ans-button">10</button>
+                <button class="ans-button">15</button>
+                <button class="ans-button">20</button>
+                <button class="ans-button">25</button>
+                <button class="ans-button">30</button>
+                <button class="ans-button">35</button>
+                <button class="ans-button">40</button>
+                <button class="ans-button">45</button>
+                <button class="ans-button">50</button>
+                <button class="ans-button">55</button>
+                <button class="ans-button">60</button>
+            </div>
+
+        </div>
+        <div id="play-screen">
+            <div class="clocks-2">
+                <canvas id="canvas" width="500" height="500"></canvas>
+            </div>
+        </div>
+        <button class="check-button" onclick="check_ans_ques();">Submit</button>
+    </div>
+
+    <!--  <div id="start-screen">
+        <button id="activity-image">Time</button>
+        <div id="description">
+            <div id="animated" class="round" style="border-left-width: 15px; border-right-width: 15px; border-top-width: 15px; border-bottom-width: 15px;">
+            </div>
+        </div>
+
+        <div id="start-button" onclick="startGame(this);">
+            <p id="flashlight">
+                <span id="play">Play</span>
+            </p>
+        </div>
+
+        <div id="auto-play">
+            <p id="auto-para">
+                <span id="auto-span">Auto play</span>
+            </p>
+        </div>
+
+    </div>-->
+
+
+   <!-- <div id="score-card">
+        <button id="score-board-label">Clock</button>
+        <button id="total-time">Total time:-</button>
+        <button id="score-card-time"></button>-->
+
+        <!--<div id="score-card-question-holder">
+            <!--<button class="score-card-question">
+            </button>
+            <button class="score-card-answer">
+            </button>
+            <button class="score-card-question-time">
+            </button>
+                -->
+      
+
+    <!--</div>-->
+
+         <div id="point-container" style="top:86%;">
+                <div class="point-1"></div>
+                <div class="point-2"></div>
+                <div class="point-3"></div>
+                <div class="point-4"></div>
+                <div class="point-5"></div>
+                <div class="point-6"></div>
+                <div class="point-7"></div>
+                <div class="point-8"></div>
+                <div class="point-9"></div>
+                <div class="point-10"></div>
+                </div>
+
+
+         <div id="footer"><a href="index.html">&copy;MathWizardApps.com</a>
+             <a href="sitemap.html"><button id="sitemap-div">Sitemap</button></a>
+              <button id="header-desc">Math Activities and Games for Kids</button></div>
+        </div>
+
+       <div id="score-card">
+      <!--  <button style="z-index:5; position: absolute; height: 5%; width: 12%;color:white; box-shadow: 1px 1px 1px 0px; top: 2%; right: 2%; font-size: 20px; outline: none; border: none; background-color: #ff6a00;" onclick="remove_score_div();">
+            Close
+        </button>-->
+           <button id="score-board-label">Time Result</button>
+           <div id="question1" style="position: absolute; top: 15%; width: 25%; height: 75%; left: 5%;">
+               <button id="question_heading" style="border: none; background-color: transparent; width: 100%; font-size: 20px; text-align: left;">
+                   Question</button>
+           </div>
+           <div id="your-answer">
+               <button id="your-answer-heading">Your Answer</button>
+           </div>
+           <div id="correct-answer">
+            <button id="correct-answer-heading">Correct Answer</button>
+        </div>
+        <div id="points">
+            <button id="points-heading">Points</button>
+        </div>
+        <!--<button id="score-card-time"></button>-->
+    </div>
+    <!--   <audio id="start" class="sound" src="sounds/start.mp3"></audio>
+    <audio id="correct" class="sound" src ="sounds/correct.mp3"></audio>
+    <audio id="incorrect" class="sound" src="sounds/incorrect.mp3"></audio>
+    <audio id="clockticking" class="sound" src="sounds/clocktick.mp3" loop="loop"></audio>-->
+
+
+
+    <div id="text1" style="height: 10%; width: 30%; top: 1%; left: 0%; position: absolute;" />
+
+    <script type="text/ecmascript">
+        var activityname = null;
+      
+        var operator = '+';
+        var canvas;
+        var ctx;
+        var clockRadius;
+        var clockImage;
+        var hour, minute;
+        var selected_hour = 12;
+        var selected_minute = 60;
+        var act6_hour = 0;
+        var act6_minute = 0;
+        var answer_list = new Array();
+        var totalquestions = 10;
+        var currentquestion = 1;
+        var correctattempts = 0;
+        var question_list_time = new Array();
+        var question_list = new Array();
+        var user_answer = new Array();
+        var correct_answer = new Array();
+
+        window.onload = function () {
+            init();
+            gametimer();
+        }
+
+        function init() {
+            activityname = name;
+            //stopAllAudio();
+            $("#answer").css('display', 'block');
+            //$("#start").get(0).play();
+            canvas = document.getElementById("canvas");
+            ctx = canvas.getContext("2d");
+            clockRadius = 250;
+            clockImage;
+            question_list_time = new Array();
+            for (var i = 0; i < totalquestions; i++) {
+                question_list_time.push(0);
+            }
+            generateClock();
+            generate_activity3_clock();
+        }
+
+        //function stopAllAudio() {
+        //    $(".sound").each(function () {
+        //        if ($(this).attr('loop') != "loop") {
+        //            $(this).get(0).pause();
+        //            if (navigator.userAgent.search("Firefox") < 0) {
+        //                $(this).get(0).currentTime = 0;
+        //            }
+        //        }
+        //    });
+        //}
+
+        function other_option_generation(hour) {
+            var temp_hour = (Math.floor(Math.random() * 12) + 1);
+            if (temp_hour == hour) {
+                temp_hour = other_option_generation(hour);
+            }
+            return temp_hour;
+        }
+
+        function generateClock() {
+            //stopAllAudio();
+            //$("#clockticking").get(0).play();
+            if (currentquestion <= totalquestions) {
+                //hour = (Math.floor(Math.random() * 12) + 1);
+                hour = 12;
+                selected_hour = hour;
+               
+                minute = 60;
+                //minute = 30;
+                var random_option_selection = (Math.floor(Math.random() * 2) + 1);
+                $("#time-option" + random_option_selection).text(hour + " o'clock");
+                $("#time-option" + random_option_selection).attr('onclick', "userAnswer(this,'correct');");
+                //question_list.push(hour);
+                question_list_time.push(0);
+                if (random_option_selection != 1) {
+                    $("#time-option1").text(other_option_generation(hour) + " o'clock");
+                    $("#time-option1").attr('onclick', "userAnswer(this,'incorrect');");
+                }
+                else {
+                    $("#time-option2").text(other_option_generation(hour) + " o'clock");
+                    $("#time-option2").attr('onclick', "userAnswer(this,'incorrect');");
+                }
+                // draw functions :
+                function clear() {
+                    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                }
+                clear(); // clear canvas
+                clockImage = new Image();
+                clockImage.src = 'images/cface.png';
+                clockImage.onload = function () {
+                    ctx.save();
+                    ctx.drawImage(this, 0, 0, 500, 500);
+                    ctx.translate(canvas.width / 2, canvas.height / 1.8);
+                    ctx.beginPath();
+
+                    // draw number
+                    //ctx.font = '32px Arial';
+                    //ctx.fillStyle = 'yellow';
+                    //ctx.textAlign = 'center';
+                    //ctx.textBaseline = 'middle';
+                    //for (var n = 1; n <= 12; n++) {
+                    //    var theta = (n - 3) * (Math.PI * 2) / 12;
+                    //    var x = clockRadius * 0.6 * Math.cos(theta);
+                    //    var y = clockRadius * 0.6 * Math.sin(theta);
+                    //    ctx.fillText(n, x, y);
+                    //}
+
+                    // draw hour
+
+                    ctx.save();
+                    ctx.fillStyle = 'red';
+                    var theta = (hour - 3) * 2 * Math.PI / 12;
+                    ctx.rotate(theta);
+                    ctx.beginPath();
+                    ctx.moveTo(-15, -5);
+                    ctx.lineTo(-15, 10);
+                    ctx.lineTo(clockRadius * 0.5, 1);
+                    ctx.lineTo(clockRadius * 0.5, -1);
+                    ctx.fill();
+                    ctx.restore();
+                    // draw minute
+                    ctx.save();
+                    ctx.fillStyle = 'green';
+                    var theta = (minute - 15) * 2 * Math.PI / 60;
+                    ctx.rotate(theta);
+                    ctx.beginPath();
+                    ctx.moveTo(-15, -4);
+                    ctx.lineTo(-15, 4);
+                    ctx.lineTo(clockRadius * 0.6, 1);
+                    ctx.lineTo(clockRadius * 0.6, -1);
+                    ctx.fill();
+                    ctx.restore();
+                    //draw second
+                    //ctx.save();
+                    //var theta = (seconds - 15) * 2 * Math.PI / 60;
+                    //ctx.rotate(theta);
+                    //ctx.beginPath();
+                    //ctx.moveTo(-15, -3);
+                    //ctx.lineTo(-15, 3);
+                    //ctx.lineTo(clockRadius * 0.9, 1);
+                    //ctx.lineTo(clockRadius * 0.9, -1);
+                    //ctx.fillStyle = '#0f0';
+                    //ctx.fill();
+                    //ctx.restore();
+                    ctx.restore();
+                }
+            }
+            else {
+                //$("#score-card").css('display', 'inline');
+                //$("#score-card-time").text($("#time-holder").text());
+                var html = '';
+                for (var i = 0; i < question_list.length; i++) {
+                    //html += '<button class="score-card-question">' + question_list[i] + '</button>';
+                    if (answer_list[i] == "correct") {
+                        ////html += '<button class="score-card-answer score-card-answer-correct"></button>';
+                    }
+                    else {
+                        //html += '<button class="score-card-answer score-card-answer-incorrect"></button>';
+                    }
+                    var temphtml = '';
+                    hour = parseInt(question_list_time[i] / 3600);
+                    minute = parseInt((question_list_time[i] % 3600) / 60);
+                    second = parseInt((question_list_time[i] % 3600) % 60);
+                    temphtml = "";
+                    var h = hour.toString();
+                    var m = minute.toString();
+                    var s = second.toString();
+                    if (h.length == 1)
+                        temphtml += "";
+                    else
+                        temphtml += h;
+                    if (m.length == 1)
+                        temphtml += 0 + "" + m;
+                    else
+                        temphtml += m;
+                    temphtml += " : ";
+                    if (s.length == 1)
+                        temphtml += 0 + "" + s;
+                    else
+                        temphtml += s;
+
+
+                    html += '<button class="score-card-question-time">' + temphtml + '</button>';
+                }
+                ////$("#score-card-question-holder").html(html);
+                //    $("#score-card").css('display', 'inline');
+                //alert(question_list);
+                //alert(answer_list);
+                //alert(question_list_time);
+                //alert('gameover');
+            }
+
+            //if (activityname == "activity6") {
+            //    alert("k");
+            //    generate_activity3_clock();
+            //}
+
+            var increment = 0;
+            $(function () {
+                var ele = $('#hour-minute-slide');
+                var ele1 = $('#hour-minute-slide1');
+                var speed = 200, scroll = $('.btn-height').height(), scrolling;
+
+                $('#scroll-up').mousedown(function () {
+                    // Scroll the element up
+                    //scrolling = window.setInterval(function () {
+                    ele.scrollTop(ele.scrollTop() - scroll);
+                    $("#text1").html($("#1").position().top);
+                    //}, speed);
+                });
+
+                $('#scroll-down').mousedown(function () {
+                    // Scroll the element down
+                    //scrolling = window.setInterval(function () {
+                    increment = increment + 0.5;
+                    ele.scrollTop(ele.scrollTop() + scroll + increment);
+                    $("#text1").html($("#1").position().top);
+                    //}, speed);
+                });
+
+                $('#scroll-up, #scroll-down').bind({
+                    click: function (e) {
+                        // Prevent the default click action
+                        e.preventDefault();
+                    },
+                    mouseup: function () {
+                        if (scrolling) {
+                            window.clearInterval(scrolling);
+                            scrolling = false;
+                        }
+                    }
+                });
+
+                $('#scroll-up1').mousedown(function () {
+                    // Scroll the element up
+                    //scrolling = window.setInterval(function () {
+                    ele1.scrollTop(ele1.scrollTop() - scroll);
+
+                    //}, speed);
+                });
+
+                $('#scroll-down1').mousedown(function () {
+                    // Scroll the element down
+                    // scrolling = window.setInterval(function () {
+                    ele1.scrollTop(ele1.scrollTop() + scroll);
+                    // }, speed);
+                });
+
+                $('#scroll-up1, #scroll-down1').bind({
+                    mouseup: function () {
+                        if (scrolling) {
+                            window.clearInterval(scrolling);
+                            scrolling = false;
+                        }
+                    }
+                });
+
+                $('#scroll-up1, #scroll-down1').bind({
+                    click: function (e) {
+                        // Prevent the default click action
+                        e.preventDefault();
+                    },
+                    mouseleave: function () {
+                        if (scrolling) {
+                            window.clearInterval(scrolling);
+                            scrolling = false;
+                        }
+                    }
+                });
+            });
+        }
+
+        function generate_activity3_clock() {
+            act6_hour = (Math.floor(Math.random() * 12) + 1);
+            act6_minute = ['05', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55', '60'];
+            act6_minute_array = (Math.floor(Math.random() * 12));
+
+            var question_time = "   " + act6_hour + ":" + act6_minute[act6_minute_array];
+           
+            var question_time = "   " + act6_hour;
+           
+            question_list.push(act6_hour + ":" + act6_minute[act6_minute_array] + "     " + "o'clock");
+           
+            //alert(question_list);
+            //alert(act6_minute[act6_minute_array]);
+            $(".question_animation").html(act6_hour + ":" + act6_minute[act6_minute_array]);
+            $("#ans-hour > button").click(function () {
+                selected_hour = $(this).html();
+                //$("#clockticking").get(0).play();
+                if (currentquestion <= totalquestions) {
+                    //hour = (Math.floor(Math.random() * 12) + 1);
+                    hour = selected_hour;
+                    minute = 60;
+                    // draw functions :
+                    function clear() {
+                        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                    }
+                    clear(); // clear canvas
+                    clockImage = new Image();
+                    clockImage.src = 'images/cface.png';
+                    clockImage.onload = function () {
+                        ctx.save();
+                        ctx.drawImage(this, 0, 0, 500, 500);
+                        ctx.translate(canvas.width / 2, canvas.height / 1.8);
+                        ctx.beginPath();
+                        // draw number
+                        //ctx.font = '32px Arial';
+                        //ctx.fillStyle = 'yellow';
+                        //ctx.textAlign = 'center';
+                        //ctx.textBaseline = 'middle';
+                        //for (var n = 1; n <= 12; n++) {
+                        //    var theta = (n - 3) * (Math.PI * 2) / 12;
+                        //    var x = clockRadius * 0.6 * Math.cos(theta);
+                        //    var y = clockRadius * 0.6 * Math.sin(theta);
+                        //    ctx.fillText(n, x, y);
+                        //}
+
+                        // draw hour
+                        ctx.save();
+                        ctx.fillStyle = 'red';
+                        var theta = (hour - 3) * 2 * Math.PI / 12;
+                        ctx.rotate(theta);
+                        ctx.beginPath();
+                        ctx.moveTo(-15, -4);
+                        ctx.lineTo(-15, 10);
+                        ctx.lineTo(clockRadius * 0.5, 1);
+                        ctx.lineTo(clockRadius * 0.5, -1);
+                        ctx.fill();
+                        ctx.restore();
+                        // draw minute
+                        ctx.save();
+                        ctx.fillStyle = 'green';
+                        var theta = (minute - 15) * 2 * Math.PI / 60;
+                        ctx.rotate(theta);
+                        ctx.beginPath();
+                        ctx.moveTo(-15, -4);
+                        ctx.lineTo(-15, 4);
+                        ctx.lineTo(clockRadius * 0.6, 1);
+                        ctx.lineTo(clockRadius * 0.6, -1);
+                        ctx.fill();
+                        ctx.restore();
+                        ctx.restore();
+                    }
+                }
+            });
+
+            $("#ans-minute > button").click(function () {
+                selected_minute = $(this).html();
+
+                //$("#clockticking").get(0).play();
+                if (currentquestion <= totalquestions) {
+
+                    minute = selected_minute;
+                    if (selected_minute != 60) {
+                        if (selected_minute <= 30) {
+                            hour = selected_hour + ("." + (selected_minute / 5) + 15);
+                        }
+                        if (selected_minute > 30 && selected_minute < 50) {
+                            hour = selected_hour + ("." + (selected_minute) + 200);
+                        }
+                        if (selected_minute >= 50) {
+                            hour = selected_hour + ("." + (selected_minute) + 600);
+                        }
+                    } else { hour = selected_hour; }
+                    //alert(hour);
+                    question_list.push(hour);
+                    question_list_time.push(0);
+                    // draw functions :
+                    function clear() {
+                        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                    }
+                    clear(); // clear canvas
+                    clockImage = new Image();
+                    clockImage.src = 'images/cface.png';
+                    clockImage.onload = function () {
+                        ctx.save();
+                        ctx.drawImage(this, 0, 0, 500, 500);
+                        ctx.translate(canvas.width / 2, canvas.height / 1.8);
+                        ctx.beginPath();
+
+                        // draw number
+                        //ctx.font = '32px Arial';
+                        //ctx.fillStyle = 'yellow';
+                        //ctx.textAlign = 'center';
+                        //ctx.textBaseline = 'middle';
+                        //for (var n = 1; n <= 12; n++) {
+                        //    var theta = (n - 3) * (Math.PI * 2) / 12;
+                        //    var x = clockRadius * 0.6 * Math.cos(theta);
+                        //    var y = clockRadius * 0.6 * Math.sin(theta);
+                        //    ctx.fillText(n, x, y);
+                        //}
+
+                        // draw hour
+                        ctx.save();
+                        ctx.fillStyle = 'red';
+                        var theta = (hour - 3) * 2 * Math.PI / 12;
+                        ctx.rotate(theta);
+                        ctx.beginPath();
+                        ctx.moveTo(-15, -5);
+                        ctx.lineTo(-15, 10);
+                        ctx.lineTo(clockRadius * 0.5, 1);
+                        ctx.lineTo(clockRadius * 0.5, -1);
+                        ctx.fill();
+                        ctx.restore();
+                        // draw minute
+                        ctx.save();
+                        ctx.fillStyle = 'green';
+                        var theta = (minute - 15) * 2 * Math.PI / 60;
+                        ctx.rotate(theta);
+                        ctx.beginPath();
+                        ctx.moveTo(-15, -4);
+                        ctx.lineTo(-15, 4);
+                        ctx.lineTo(clockRadius * 0.6, 1);
+                        ctx.lineTo(clockRadius * 0.6, -1);
+                        ctx.fill();
+                        ctx.restore();
+                        ctx.restore();
+                    }
+                }
+            });
+
+        }
+
+        var flag = true;
+        function check_ans_ques() {
+            if (flag) {
+                flag = false;
+                if (selected_hour == act6_hour) {
+                    answer_list[currentquestion - 1] = "correct";
+                    correct_answer_as();
+                }
+                else {
+                    answer_list[currentquestion - 1] = "incorrect";
+                    correctanswer = null;
+                    correct_answer_as();
+                }
+            }
+            //var functionName = "questionComplete";
+            //var args = new Array();
+            //var correctanswer = question_list[currentquestion - 2];
+            //args[0] = "Question : " + question_list[currentquestion - 2];
+            //args[1] = "UserAnswer : " + selected_hour + ":" + selected_minute;
+            //args[2] = "CorrectAnswer : " + correctanswer;
+            //args[3] = "Status : " + answer_list[currentquestion - 1];
+
+            //var iframe = document.createElement("IFRAME");
+            //iframe.setAttribute("src", "js-frame:" + functionName + ":" + encodeURIComponent(JSON.stringify(args)));
+            //document.documentElement.appendChild(iframe);
+            //iframe.parentNode.removeChild(iframe);
+            //iframe = null;
+        }
+
+        var flag_animation = true;
+
+        function correct_answer_as() {
+            if (flag_animation) {
+                flag_animation = false;
+                user_answer.push(selected_hour + ":" + selected_minute+ "     " + "o'clock");
+                //question_list.push(act6_hour);
+                correct_answer.push(act6_hour + ":" + act6_minute[act6_minute_array] + "     " + "o'clock");
+                //alert(correct_answer);
+                var corr_ans = document.createElement('div');
+                corr_ans.id = 'corr';
+                corr_ans.style.height = '20%';
+                corr_ans.style.width = '20%';
+                corr_ans.style.zIndex = '10';
+                corr_ans.style.position = 'absolute';
+                corr_ans.style.left = '35%';
+                corr_ans.style.top = '34%';
+                corr_ans.setAttribute('class', ' lightSpeedIn');
+                document.body.appendChild(corr_ans);
+                var corr_imag = document.createElement('img');
+                if (selected_hour == act6_hour && selected_minute == act6_minute[act6_minute_array]) {
+                    var create_point = "";
+                    create_point += '<div class="point-true"/>';
+                    $(".point-" + currentquestion).append(create_point);
+                    $("#points").append(create_point);
+                    corr_imag.setAttribute('src', 'images/correct.png');
+                }
+                else {
+                    var create_point = "";
+                    create_point += '<div class="point-false"/>';
+                    $(".point-" + currentquestion).append(create_point);
+                    $("#points").append(create_point);
+                    corr_imag.setAttribute('src', 'images/incorrect.png');
+                }
+                corr_imag.style.height = '100%';
+                corr_imag.style.width = '100%';
+                corr_ans.appendChild(corr_imag);
+                if (navigator.userAgent.search("Firefox") >= 0) {
+
+                    document.getElementById('corr').addEventListener('animationend', function () {
+                        document.body.removeChild(this);
+                        //source.innerHTML = "";
+                        //target.value = "";
+                        //attempt();
+                        //keyboard.style.visibility = "visible";
+                        $("#corr").remove();
+                        flag = true;
+                        flag_animation = true;
+                        //$("#source > div").remove();
+                        userAnswer();
+                        init();
+                    }, false);
+                } else {
+                    document.getElementById('corr').addEventListener('webkitAnimationEnd', function () {
+                        document.body.removeChild(this);
+                        //operatorone.innerHTML = "";
+                        //operatortwo.innerHTML = "";
+                        $("#corr").remove();
+                        flag = true;
+                        flag_animation = true;
+                        userAnswer();
+                        init();
+                    }, false);
+                }
+            }
+        }
+
+        function userAnswer() {
+            //switch (what) {
+            //    case "correct":
+            //        answer_list[currentquestion - 1] = "correct";
+            //        correctattempts++;
+            //        //$("#question-dots").find(".dot").eq(currentquestion - 1).removeClass("active-dot");
+            //        //$("#question-dots").find(".dot").eq(currentquestion - 1).addClass("correct-dot");
+            //        //stopAllAudio();
+            //        //$("#correct").get(0).play();
+            //        break;
+            //    case "incorrect":
+            //        answer_list[currentquestion - 1] = "incorrect";
+            //        //$("#question-dots").find(".dot").eq(currentquestion - 1).removeClass("active-dot");
+            //        //$("#question-dots").find(".dot").eq(currentquestion - 1).addClass("incorrect-dot");
+            //        //stopAllAudio();
+            //        //$("#incorrect").get(0).play();
+            //        break;
+            //}
+            if (currentquestion == totalquestions) {
+                gamestart = false;
+                clearTimeout(timer);
+                //$("#score-card-time").text($("#time-holder").text());
+                var html = '';
+                var correct = 0;
+                for (var i = 0; i < question_list.length; i++) {
+                    
+                    //html += '<button class="score-card-question">' + question_list[i] + '</button>';
+                    //if (answer_list[i] == "correct") {
+                    //    html += '<button class="score-card-answer score-card-answer-correct"></button>';
+                    //    correct++;
+                    //}
+                    //else {
+                    //    html += '<button class="score-card-answer score-card-answer-incorrect"></button>';
+                    //}
+
+                    //var temphtml = '';
+                    $('#question1').append('<button class="remove">' + question_list[i] + '</button>');
+                    $('#correct-answer').append('<button class="remove">' + correct_answer[i] + '</button>');
+                    $('#your-answer').append('<button class="remove">' + user_answer[i] + '</button>');
+                    hour = parseInt(question_list_time[i] / 3600);
+                    minute = parseInt((question_list_time[i] % 3600) / 60);
+                    second = parseInt((question_list_time[i] % 3600) % 60);
+                    temphtml = "";
+                    var h = hour.toString();
+                    var m = minute.toString();
+                    var s = second.toString();
+                    if (h.length == 1)
+                        temphtml += "";
+                    else
+                        temphtml += h;
+                    if (m.length == 1)
+                        temphtml += 0 + "" + m;
+                    else
+                        temphtml += m;
+                    temphtml += " : ";
+                    if (s.length == 1)
+                        temphtml += 0 + "" + s;
+                    else
+                        temphtml += s;
+                    //html += '<button class="score-card-question-time">' + temphtml + '</button>';
+                }
+                //$("#score-card-question-holder").html(html);
+                $("#score-card").css('display', 'inline');
+
+            }
+            else {
+                currentquestion++;
+            }
+        }
+
+        var milisecond = 0;
+        function gametimer() {
+            var html = "";
+            question_list_time[currentquestion - 2]++;
+            milisecond++;
+            hour = parseInt(milisecond / 3600);
+            minute = parseInt((milisecond % 3600) / 60);
+            second = parseInt((milisecond % 3600) % 60);
+            html = "";
+            var h = hour.toString();
+            var m = minute.toString();
+            var s = second.toString();
+            if (h.length == 1)
+                html += "";
+            else
+                html += h;
+            if (m.length == 1)
+                html += 0 + "" + m;
+            else
+                html += m;
+            html += " : ";
+            if (s.length == 1)
+                html += 0 + "" + s;
+            else
+                html += s;
+
+            //$("#time-holder").html(html);
+
+            timer = setTimeout('gametimer();', 1000);
+        }
+
+        function remove_score_div() {
+            $(".remove").remove();
+            question_list.length = 0;
+            correct_answer.length = 0;
+            user_answer.length = 0;
+            currentquestion = 1;
+            $("#score-card").css('display', 'none');
+            $(".point-false").remove();
+            $(".point-true").remove();
+        }
+
+
+
+    </script>
+
+</body>
+</html>

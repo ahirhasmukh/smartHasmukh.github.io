@@ -1,0 +1,1750 @@
+﻿body {
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    font-family: Tahoma;
+}
+
+#banner {
+    position: absolute;
+    height: 35%;
+    width: 100%;
+    background-image: url('../images/banner.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    user-select: none;
+}
+
+#banner-icon {
+    position: absolute;
+    height: 65%;
+    width: 100%;
+    top: 35%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    user-select: none;
+    background-image: url('../images/mathwizardbg.png');
+    background-repeat: repeat;
+}
+
+    #banner-icon > button {
+        background-color: none;
+        border: none;
+        height: 22%;
+        width: 19%;
+        top: 30%;
+        left: 30%;
+        font-size: 25px;
+        text-shadow: -1px -1px 15px rgba(147, 150, 152, 1);
+        border-radius: 10px;
+        box-shadow: 0px 0px 1px 0px;
+        box-shadow: -1px -1px 5px -6px black;
+        margin-top: 1%;
+        user-select: none;
+    }
+
+
+
+#sitemap {
+    height: 100%;
+    font-size: 20px;
+    color: #376F92;
+    cursor: pointer;
+    font-weight: bolder;
+    text-align: left;
+    float: left;
+    user-select: none;
+}
+
+#grade-k {
+    background-image: url('../images/grade-k.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+#grade-1 {
+    background-image: url('../images/grade-1.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+#grade-2 {
+    background-image: url('../images/grade-2.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+#grade-3 {
+    background-image: url('../images/grade-3.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+#grade-4 {
+    background-image: url('../images/grade-3.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+
+
+#grade-scroll-placer {
+    height: auto;
+    width: 100%;
+    float:left;
+    margin-bottom:1%;
+    user-select: none;
+}
+
+#grade-scroll {
+    height: 100%;
+    width: 100%;
+    user-select: none;
+}
+
+.grade-div {
+    height: auto;
+    width: 16.64%;
+    float: left;
+    user-select: none;
+}
+
+
+.grade-content {
+    margin: 4%;
+    height: 145px;
+    width: 90%;
+    user-select: none;
+}
+
+#itune-placer {
+    height: 20%;
+    margin-left: 1%;
+    width: 99%;
+    text-align: left;
+    font-size: 20px;
+    float: left;
+    color:white;
+}
+
+#appstore-app {
+    height: auto;
+    width: 100%;
+    float: left;
+}
+
+#appstore-placer {
+    height: 145px;
+    width: 16%;
+}
+/*Color scheme start form here*/
+.w99CC00 {
+    /*background-color: #99CC00;*/
+}
+
+.w00C3F7 {
+    /*background-color: #00C3F7;*/
+}
+
+.wFDBC00 {
+    /*background-color: #FDBC00;*/
+}
+
+.orange {
+    background-color: orange;
+}
+
+.text-orange {
+    color: orange;
+}
+
+.green {
+    background-color: green;
+}
+
+.text-green {
+    color: green;
+}
+
+.light-blue {
+    background-color: #c4a6d1;
+}
+
+.text-light-blue {
+    color: #c4a6d1;
+}
+
+.text-black {
+    color: black;
+}
+
+.light-pink {
+    background-color: #F1562C;
+}
+
+.text-light-pink {
+    color: #F1562C;
+}
+
+/*end here*/
+
+
+
+
+.grade-content-placer {
+    height: 80%;
+    width: 85%;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.grade-content-taxt-placer {
+    height: 25%;
+    width: 84%;
+    outline: none;
+    font-size: 14px;
+    border: none;
+    background-color: transparent;
+    font-weight: bolder;
+    color: white;
+    user-select: none;
+}
+
+.grade-container {
+    height: 15%;
+    width: 10%;
+    border-radius: 10px;
+    margin: 4%;
+    top: 2%;
+    float: left;
+    user-select: none;
+    /*left: 70%;*/
+}
+
+
+/*jquery slider css start from here*/
+#jquery-slider-placer {
+    height:auto;
+    width: 100%;
+    float:left;
+}
+
+#sudoku-icon {
+    background-image: url('../images/sudoku-icon.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+
+#hungry-fish {
+    background-image: url('../images/hungry-fish.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+#equolo {
+    background-image: url('../images/equolo.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+#mathwiz-gradek {
+    /*#background-image: url('../images/mathwiz-gradek.png');*/
+	background-image: url('../images/equolo.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+#mathwiz-grade1 {
+    /*#background-image: url('../images/mathwiz-grade1.png');*/
+	background-image: url('../images/equolo.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+#lion-mouse {
+    background-image: url('../images/lion-mouse.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+.app-icon {
+    height: auto;
+    width: 15%;
+    float: left;
+    margin-bottom:1%;
+}
+
+.appstore-placer {
+    margin: 4%;
+    height: 130px;
+    width: 90%;
+}
+
+
+.picture-placer {
+    height: 100px;
+    width: 140px;
+    margin: 2%;
+    float: left;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    border-radius: 5px;
+}
+
+.select-activity {
+    background-color: transparent;
+    border: none;
+    height: 100%;
+    width: 100%;
+    box-shadow: 0px 0px 0px 2px black;
+    border-radius: 5px;
+    font-size: 25px;
+    outline: none;
+    background-color: #376F92;
+}
+
+.grade-wise {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0px 0px 0px 2px #376F92;
+}
+
+.activity-text {
+    outline: none;
+    background-color: transparent;
+    border: none;
+    height: 50%;
+    width: 100%;
+    font-weight: bold;
+    box-shadow: 0px 0px 0px 2px black;
+    border-radius: 5px;
+    white-space: pre-line;
+}
+
+
+/*counting activity image*/
+#counting {
+    background-image: url('../images/counting.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80% 80%;
+}
+
+#addition {
+    background-image: url('../images/addition.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80% 80%;
+}
+
+#substraction {
+    background-image: url('../images/subtraction.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80% 80%;
+}
+
+#shapeidentification {
+    background-image: url('../images/shape-identification.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80% 80%;
+}
+
+#dissimilarobject {
+    background-image: url('../images/dissimilar-objects.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80% 80%;
+}
+
+#ordering {
+    background-image: url('../images/ordering.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80% 80%;
+}
+/*stop her*/
+
+
+
+
+
+
+/*.grade-k-img {
+    background-image: url('../images/icon-72.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}*/
+
+/*.grade-1-img {
+    background-image: url('../images/icon-76.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}*/
+
+/*#grade-1 {
+    background-color: none;
+    border: none;
+    height: 22%;
+    width: 19%;
+    top: 30%;
+    left: 30%;
+    font-size: 25px;
+    text-shadow: -1px -1px 15px rgba(147, 150, 152, 1);
+    border-radius: 10px;
+    box-shadow: 0px 0px 1px 0px;
+    box-shadow: -1px -1px 13px -6px black;
+}*/
+
+#activity-select-page {
+    display: none;
+    position: absolute;
+    float: left;
+    height: 85%;
+    width: 70%;
+    left: 15%;
+    top: 5%;
+    overflow: auto;
+}
+
+.activity-select-btn {
+    background-color: none;
+    border: none;
+    outline: none;
+    font-size: 30px;
+    text-shadow: -1px -1px 15px rgba(147, 150, 152, 1);
+    border-radius: 10px;
+    box-shadow: 0px 0px 1px 0px;
+    box-shadow: -1px -1px 9px -5px black;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    height: 28%;
+    width: 98%;
+}
+
+/*#activity_select_page > button {
+        background-color: none;
+        border: none;
+        position: relative;
+        height: 27%;
+        width: 100%;
+        top: 55%;
+        font-size: 31px;
+        text-shadow: -1px -1px 15px rgba(147, 150, 152, 1);
+        border-radius: 10px;
+        box-shadow: 0px 0px 1px 0px;
+        box-shadow: -1px -1px 9px -5px black;
+        padding: 4%;
+        margin-top: 3px;
+        outline:none;
+    }*/
+
+#play-screen {
+    display: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0%;
+}
+
+#play_screen_footer {
+    display: none;
+    position: absolute;
+    height: 14%;
+    width: 100%;
+    /*box-shadow: 0px 0px 4px 0px black;*/
+}
+
+#keyboard {
+    position: absolute;
+    border-radius: 6px;
+    opacity: 0.95;
+    height: 11%;
+    width: 100%;
+    background-color: #6FBCDB;
+}
+
+#score {
+    display: none;
+}
+
+#displayscore {
+    display: none;
+}
+
+#play_screen_footer_center {
+    float: left;
+    top: 80%;
+}
+
+#play_screen_header {
+    height: 10%;
+    width: 100%;
+    position: absolute;
+    box-shadow: 0px 0px 1px 0px black;
+}
+
+#play_screen_footer {
+    height: 11%;
+    width: 100%;
+    position: absolute;
+    top: 78%;
+    left: 0%;
+}
+
+#play_screen_content {
+    width: 100%;
+    height: 78%;
+    position: absolute;
+    top: 7%;
+    left: 0%;
+}
+
+#play_screen_content_left {
+    height: 100%;
+    width: 15%;
+    float: left;
+}
+
+#play_screen_content_center {
+    height: 100%;
+    width: 70%;
+    float: left;
+}
+
+
+#play_screen_content_center_middle {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    height: 80%;
+    width: 90%;
+}
+
+#play_screen_content_center_bottom {
+    height: 10%;
+    width: 100%;
+}
+
+#play_screen_content_right {
+    height: 100%;
+    width: 15%;
+    float: left;
+}
+
+#source {
+    height: 100%;
+    width: 60%;
+    float: left;
+    box-shadow: 0px 0px 5px 0px black;
+    border-radius: 10px;
+}
+
+#target_placeholder {
+    height: 18%;
+    width: 27%;
+    float: left;
+    position: relative;
+    top: 40%;
+}
+
+
+#target_placeholder_middle {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+}
+
+#target {
+    margin-left: 2.5%;
+    height: 100%;
+    width: 80%;
+    font-size: 39px;
+    text-align: center;
+    font-family: 'Comic Sans MS';
+    border: none;
+    outline: none;
+    /*background-color: #ffaf46;*/
+    border-radius: 5px;
+    float: left;
+    box-shadow: 0px 1px 4px 0px black;
+}
+
+#go {
+    margin-left: 2.5%;
+    float: left;
+    height: 100%;
+    width: 40%;
+}
+
+#buttonbox {
+    font-size: 20px;
+    padding: 0%;
+    margin: 0%;
+    height: 100%;
+    width: 100%;
+    font-family: 'Comic Sans MS';
+}
+
+#score {
+    height: 100%;
+    width: 50%;
+    float: left;
+    box-shadow: 0px 0px 1px 0px black;
+    text-align: center;
+    font-family: 'Comic Sans MS';
+    font-weight: bold;
+    font-size: 43px;
+    color: white;
+}
+
+#displayscore {
+    height: 100%;
+    width: 50%;
+    float: left;
+    box-shadow: 0px 0px 1px 0px black;
+    font-family: 'Comic Sans MS';
+    font-weight: bold;
+    font-size: 43px;
+    color: white;
+}
+
+#myTypingText {
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    color: black;
+    font-family: 'Comic Sans MS';
+    font-size: 75px;
+    line-height: 1.5em;
+}
+
+/*.scorecard {
+    display: none;
+    text-align: center;
+    font-family: 'Comic Sans MS';
+    z-index: 100;
+    position: absolute;
+    top: 22%;
+    left: 23%;
+    background-color: white;
+    height: 56%;
+    width: 58%;
+    font-size: 59px;
+}*/
+
+
+
+#play_screen_middle {
+    height: 100%;
+    width: 25%;
+    float: left;
+    box-shadow: 0px 0px 1px 0px black;
+    position: absolute;
+    top: 0%;
+    left: 35%;
+}
+
+#play_screen_right {
+    height: 100%;
+    width: 33.33333333333333%;
+    float: left;
+    box-shadow: 0px 0px 1px 0px black;
+    position: absolute;
+    top: 0%;
+    left: 60%;
+}
+
+
+
+/*addition*/
+
+#play_screen_addition {
+    display: none;
+    /*background: url('../images/bg.jpg') no-repeat;*/
+    background-size: 100% 100%;
+    float: left;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0%;
+}
+
+#navigationbar {
+    position: absolute;
+    float: left;
+    height: 100%;
+    width: 100%;
+}
+
+#main_div {
+    margin-top: 3%;
+    width: 100%;
+    height: 80%;
+    position: absolute;
+}
+
+#answerdisplay {
+    margin-top: 1%;
+    margin-left: 5%;
+    float: left;
+    width: 8%;
+    height: 80%;
+    box-shadow: 0px 0px 5px 0px black;
+    text-align: center;
+    font-size: 69px;
+    border-radius: 3px;
+    color: black;
+    background: -webkit-linear-gradient(top, #ff670f 0%,#ff670f 100%);
+}
+
+#answerdisplay2 {
+    margin-top: 1%;
+    margin-left: 11%;
+    float: left;
+    width: 8%;
+    height: 80%;
+    box-shadow: 0px 0px 5px 0px black;
+    text-align: center;
+    font-size: 69px;
+    border-radius: 3px;
+    color: black;
+    background: -webkit-linear-gradient(top, #ff670f 0%,#ff670f 100%);
+}
+
+#answertext {
+    height: 92%;
+    width: 97%;
+    font-size: 52px;
+    font-weight: 900;
+}
+
+
+#play_screen_substracion {
+    display: none;
+    /*background: url('../images/bg.jpg') no-repeat;*/
+    background-size: 100% 100%;
+    float: left;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0%;
+}
+
+#answerdisplay_s {
+    margin-top: 1%;
+    margin-left: 5%;
+    float: left;
+    width: 8%;
+    height: 80%;
+    box-shadow: 0px 0px 5px 0px black;
+    text-align: center;
+    font-size: 69px;
+    border-radius: 3px;
+    color: black;
+    background: -webkit-linear-gradient(top, #ff670f 0%,#ff670f 100%);
+}
+
+#answerdisplay2_s {
+    margin-top: 1%;
+    margin-left: 11%;
+    float: left;
+    width: 8%;
+    height: 80%;
+    box-shadow: 0px 0px 5px 0px black;
+    text-align: center;
+    font-size: 69px;
+    border-radius: 3px;
+    color: black;
+    background: -webkit-linear-gradient(top, #ff670f 0%,#ff670f 100%);
+}
+
+#answertext_s {
+    height: 92%;
+    width: 97%;
+    font-size: 52px;
+    font-weight: 900;
+}
+/*shape_identification*/
+
+#shape_identification {
+    display: none;
+    float: left;
+    height: 80%;
+    width: 100%;
+    position: absolute;
+    top: 10%;
+}
+
+#shape_question {
+    position: absolute;
+    height: 45%;
+    width: 25%;
+    box-shadow: 0px 0px 8px 0px black inset;
+    top: 5%;
+    left: 40%;
+}
+
+#shape_answer {
+    position: absolute;
+    height: 50%;
+    width: 100%;
+    top: 50%;
+}
+
+#square_ques {
+    display: none;
+    float: left;
+    /*background-color: #6C6;*/
+    background-image: url('../images/square.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+#square_ans {
+    float: left;
+    /*background-color: #6C6;*/
+    background-image: url('../images/square.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+#triangle_ques {
+    display: none;
+    position: relative;
+    float: left;
+    /*border-left: 73px solid transparent;
+    border-right: 68px solid transparent;
+    border-bottom: 129px solid red;*/
+    background-image: url('../images/triangle.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+#rectangle_ques {
+    display: none;
+    position: relative;
+    float: left;
+    /*border-left: 73px solid transparent;
+    border-right: 68px solid transparent;
+    border-bottom: 129px solid red;*/
+    background-image: url('../images/rectangle.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+#triangle_ans {
+    /*border-left: 73px solid transparent;
+    border-right: 68px solid transparent;
+    border-bottom: 129px solid red;*/
+    top: 0%;
+    background-image: url('../images/triangle.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+#shape_question > div {
+    width: 90%;
+    height: 90%;
+    position: relative;
+    top: 5%;
+    left: 7%;
+}
+
+#shape_answer > div {
+    position: relative;
+    float: left;
+    margin: 2%;
+    width: 15%;
+    height: 60%;
+    margin-left: 6%;
+}
+
+#circle_ans {
+    /*background: #6FBCDB;*/
+    background-image: url('../images/circle.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+#rectangle_ans {
+    /*background: #6FBCDB;*/
+    background-image: url('../images/rectangle.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+/*#octagon_ans:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-bottom: 29px solid #6FBCDB;
+        border-left: 48px solid white;
+        border-right: 48px solid white;
+        width: 42px;
+        height: 0;
+    }*/
+
+/*#octagon_ans:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-top: 29px solid #6FBCDB;
+        border-left: 48px solid white;
+        border-right: 48px solid white;
+        width: 42px;
+        height: 0;
+    }*/
+
+#circle_ques {
+    display: none;
+    position: relative;
+    float: left;
+    width: 28%;
+    height: 63%;
+    top: 13%;
+    background-image: url('../images/circle.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+/*#octagon_ques:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-bottom: 29px solid red;
+        border-left: 48px solid white;
+        border-right: 48px solid white;
+        width: 42px;
+        height: 0;
+    }
+
+    #octagon_ques:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-top: 29px solid red;
+        border-left: 48px solid white;
+        border-right: 48px solid white;
+        width: 42px;
+        height: 0;
+    }*/
+
+.shape-correct-color {
+    background-color: green;
+}
+
+.shape-incorrect-color {
+    background-color: red;
+}
+
+
+.shape-correct {
+    -webkit-animation: shape-correct 1s linear;
+    -moz-animation: shape-correct 1s linear;
+}
+
+@-webkit-keyframes shape-correct {
+    0% {
+        -webkit-transform: scale(0);
+        -webkit-transform: rotateX(0deg);
+        -moz-transform: scale(0);
+        -moz-transform: rotateX(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        -webkit-transform: rotateX(190deg);
+        -moz-transform: rotateX(190deg);
+    }
+
+    20% {
+        -webkit-transform: scale(1.2);
+        -webkit-transform: rotateX(360deg);
+        -moz-transform: scale(1.2);
+        -moz-transform: rotateX(360deg);
+        opacity: 0.7;
+    }
+}
+
+
+@-moz-keyframes shape-correct {
+    0% {
+        -webkit-transform: scale(0);
+        -webkit-transform: rotateX(0deg);
+        -moz-transform: scale(0);
+        -moz-transform: rotateX(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        -webkit-transform: rotateX(190deg);
+        -moz-transform: rotateX(190deg);
+    }
+
+    20% {
+        -webkit-transform: scale(1.2);
+        -webkit-transform: rotateX(360deg);
+        -moz-transform: scale(1.2);
+        -moz-transform: rotateX(360deg);
+        opacity: 0.7;
+    }
+}
+
+.shape-correct-text {
+    -webkit-animation: shape-correct-text 1s linear;
+    -moz-animation: shape-correct-text 1s linear;
+}
+
+@-webkit-keyframes shape-correct-text {
+    0% {
+        -webkit-transform: scale(0);
+        -moz-transform: scale(0);
+        /*-webkit-transform:rotateX(0deg);*/
+        opacity: 0;
+    }
+
+    10% {
+        -webkit-transform: scale(1.5);
+        -moz-transform: scale(1.5);
+    }
+
+    20% {
+        -webkit-transform: scale(2);
+        -moz-transform: scale(2);
+        /*-webkit-transform:rotateX(360deg);
+        opacity: 0.7;*/
+    }
+}
+
+@-moz-keyframes shape-correct-text {
+    0% {
+        -webkit-transform: scale(0);
+        -moz-transform: scale(0);
+    }
+
+    10% {
+        -webkit-transform: scale(1.5);
+        -moz-transform: scale(1.5);
+    }
+
+    20% {
+        -webkit-transform: scale(2);
+        -moz-transform: scale(2);
+        /*-webkit-transform:rotateX(360deg);
+        opacity: 0.7;*/
+    }
+}
+
+
+#correct-text {
+    display: none;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    color: white;
+    top: 20%;
+    left: 45%;
+    height: 10%;
+    width: 15%;
+    font-size: 23px;
+}
+
+#incorrect-text {
+    display: none;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    color: white;
+    top: 20%;
+    left: 45%;
+    height: 10%;
+    width: 15%;
+    font-size: 23px;
+}
+
+/*dissimilarobject_div*/
+
+#dissimilarobject_div {
+    display: none;
+    float: left;
+    height: 80%;
+    width: 100%;
+    position: absolute;
+    top: 10%;
+}
+
+    #dissimilarobject_div > div {
+        position: relative;
+        float: left;
+        height: 27%;
+        width: 20%;
+        /*box-shadow: 0px 0px 1px 0px black;*/
+        margin: 5%;
+        margin-left: 20%;
+    }
+
+.disobject-1 {
+    background-image: url('../images/square.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+.disobject-2 {
+    background-image: url('../images/rectangle.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+.disobject-3 {
+    background-image: url('../images/circle.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+.disobject-4 {
+    background-image: url('../images/triangle.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: inline;
+}
+
+
+/*activity selecct screen*/
+#activity-select-screen {
+    height:auto;
+    float:left;
+    width: 100%;
+    /*overflow: auto;*/
+}
+
+
+a {
+    text-decoration: none;
+}
+#grade-1-multiplication-learning{
+	background-image: url('../images/multiplication.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+#grade-1-addition {
+    background-image: url('../images/addition.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-1-substraction {
+    background-image: url('../images/subtraction.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-1-multiplication {
+    background-image: url('../images/multiplication.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-1-division {
+    background-image: url('../images/division.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-1-time {
+    background-image: url('../images/time.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-1-learning-time {
+    background-image: url('../images/time.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-1-abacus {
+    background-image: url('../images/abacus.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+/*#grade-1-moneycount {
+     background-image:url('../images/addition.png');
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:80% 80%;
+}*/
+
+#grade-1-shapeidentification {
+    background-image: url('../images/shape-identification.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-1-fractionidentification {
+    background-image: url('../images/fraction.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-1-counting {
+    background-image: url('../images/counting.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-1-numberline {
+    background-image: url('../images/numberline.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-1-ordering {
+    background-image: url('../images/ordering.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-1-drag-drop {
+    background-image: url('../images/hungryfish.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 119%;
+}
+
+#grade-1-count-balloon {
+    background-image: url('../images/balloon.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-1-count-balloon-learning {
+    background-image: url('../images/balloon.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#comming-soon {
+    background-image: url('../images/comingsoon.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+
+
+
+
+#grade-2-addition {
+    background-image: url('../images/addition.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-2-substraction {
+    background-image: url('../images/subtraction.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-2-multiplication {
+    background-image: url('../images/multiplication.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-2-division {
+    background-image: url('../images/division.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-2-time {
+    background-image: url('../images/time.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-2-abacus {
+    background-image: url('../images/abacus.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+/*#grade-1-moneycount {
+     background-image:url('../images/addition.png');
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:80% 80%;
+}*/
+
+#grade-2-shapeidentification {
+    background-image: url('../images/shape-identification.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-2-fractionidentification {
+    background-image: url('../images/fraction.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-2-fractioncompare {
+    background-image: url('../images/fractioncomparison.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+
+
+#grade-2-counting {
+    background-image: url('../images/counting.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-2-numberline {
+    background-image: url('../images/numberline.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-2-ordering {
+    background-image: url('../images/ordering.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+
+
+
+
+#grade-3-addition {
+    background-image: url('../images/addition.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-3-substraction {
+    background-image: url('../images/subtraction.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-3-multiplication {
+    background-image: url('../images/multiplication.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-3-division {
+    background-image: url('../images/division.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-3-time {
+    background-image: url('../images/time.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-3-abacus {
+    background-image: url('../images/abacus.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+/*#grade-1-moneycount {
+     background-image:url('../images/addition.png');
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:80% 80%;
+}*/
+
+#grade-3-shapeidentification {
+    background-image: url('../images/shape-identification.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-3-fractionidentification {
+    background-image: url('../images/fraction.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-3-fractioncompare {
+    background-image: url('../images/fractioncomparison.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+
+
+#grade-3-counting {
+    background-image: url('../images/counting.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-3-numberline {
+    background-image: url('../images/numberline.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+#grade-3-ordering {
+    background-image: url('../images/ordering.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+
+.grade-select-div {
+    height: auto;
+    width: 50%;
+    float: left;
+}
+
+#learning {
+    background-image: url('../images/learning.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 95% 124%;
+}
+
+#exercise {
+    background-image: url('../images/exercise.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 95% 124%;
+}
+#grade-k-multiplication-learning{
+	background-image: url('../images/multiplication.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+#grade-k-time-learning{
+	background-image: url('../images/time.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+#grade-k-substraction-learning{
+	background-image: url('../images/comingsoon.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+}
+.grade-content-lear-exe {
+    margin: 9%;
+    height: 257px;
+    width: 91%;
+}
+
+.grade-content-placer-learning {
+    height: 68%;
+    width: 75%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+
+/*Media Query start from here.*/
+@media screen and (max-width:1024px) {
+    .grade-content-placer {
+        height: 70%;
+    }
+    .grade-content-taxt-placer {
+        font-size: 12px;
+    }
+}
+@media screen and (max-height:1280px) and (max-width:800px) {
+    .grade-content-placer {
+        height:68%;
+		width: 94%;
+		position: relative;
+		left: -3%;
+    }
+}
+@media screen and (max-height:1024px) and (max-width:768px) {
+    .grade-content-placer {
+        height: 53%;
+		width: 102%;
+    }
+	.app-icon {
+		width: 18%;
+	}
+
+    .grade-content-taxt-placer {
+        font-size: 11px;
+    }
+	#itune-placer {
+		margin-top: 15%;
+	}	
+	.grade-content {
+		height: 190px;
+	}
+	.appstore-placer {
+		height: 165px;
+		width: 90%;
+	}
+}
+
+@media screen and (max-width:640px) {
+    .grade-content-placer {
+        height: 45%;
+    }
+
+    .app-icon {
+        height: auto;
+        width: 20%;
+        float: left;
+    }
+
+    .appstore-placer {
+        margin: 4%;
+        height: 140px;
+        width: 70%;
+    }
+}
+
+@media screen and (max-width:480px) {
+    .appstore-placer {
+        margin: 4%;
+        height: 90px;
+        width: 70%;
+    }
+
+    .grade-content-taxt-placer {
+        margin: 0%;
+        padding: 0%;
+        font-size: 10px;
+        font-weight: inherit;
+        text-align: center;
+        white-space: pre;
+    }
+
+    .grade-content {
+        margin: 4%;
+        height: 120px;
+        width: 90%;
+        user-select: none;
+    }
+   
+    .grade-content-placer {
+        height: 70%;
+    }
+    #itune-placer {
+        margin-left:2%;
+        width:96%;
+        font-size: 12px;
+    }
+    #appstore-app {
+        margin-left: 2%;
+        width: 96%;
+    }
+    #activity-select-screen {
+        height: auto;
+        width: 100%;
+        float: left;
+    }
+    .grade-div {
+        height: auto;
+        width: 145px;
+        float: left;
+        user-select: none;
+        margin-left: 1%;
+    }
+}
+@media screen and (max-width:465px) {
+    .grade-div {
+        height: auto;
+        width: 140px;
+        float: left;
+        user-select: none;
+        margin-left: 1%;
+    }
+}
+
+@media screen and (max-width:450px) {
+    .grade-div {
+        height: auto;
+        width: 130px;
+        float: left;
+        user-select: none;
+        margin-left: 1%;
+    }
+}
+@media screen and (max-width:450px) {
+    .grade-div {
+        height: auto;
+        width: 110px;
+        float: left;
+        user-select: none;
+        margin-left: 1%;
+    }
+}
+@media screen and (max-width:356px) {
+    .grade-div {
+        height: auto;
+        width: 100px;
+        float: left;
+        user-select: none;
+        margin-left: 1%;
+    }
+}
+@media screen and (max-width:330px) {
+    .grade-content {
+        margin: 4%;
+        height: 90px;
+        width: 90%;
+        user-select: none;
+
+    }
+    .appstore-placer {
+        margin: 4%;
+        height: 60px;
+        width: 85%;
+    }
+    .grade-div {
+        height: auto;
+        width: 100px;
+        float: left;
+        user-select: none;
+        margin-left: 1%;
+    }
+}
+@media screen and (max-width:321px) {
+	.grade-content-placer {
+				float: left;
+				width: 100%;
+				height:100%;
+				position: relative;
+				left: -3%;
+    }	
+	.grade-content {
+        margin: 4%;
+        height: 75px;
+        width: 90%;
+        user-select: none;
+
+    }
+    .appstore-placer {
+        margin: 4%;
+        height:105px;
+        width:90%;
+		margin-bottom:12%;
+    }
+    .grade-div {
+		height: 225px;
+        width:95px;
+        float: left;
+        user-select: none;
+        margin-left:2%;
+		margin-bottom: 5%;
+    }
+	#grade-scroll-placer {
+		height: auto;
+		width: 96%;
+		float: left;
+		margin-top:-10%;
+		margin-bottom:0%;
+	}
+	.grade-content-taxt-placer {
+		font-size: 11px;
+	}
+	#itune-placer {
+		width: 98%;
+		font-size: 25px;
+		margin-top:-6%;
+	}
+	.app-icon {
+		width: 49%;
+		height: 135px;
+	}
+}

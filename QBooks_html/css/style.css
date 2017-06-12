@@ -80,6 +80,9 @@
 	margin-left: 94px;
     margin-top: 96px;
 }
+.logo-images h1{
+	color: #365ebf;
+}
 .logo-images img{
 	width:50px;
 }
@@ -242,6 +245,8 @@
 }
 .footer-block h3{
 	border-bottom: 2px solid #325360;
+    font-weight: 300;
+    font-size: 18px;
 }
 .footer-block img{
 	width:35px;
@@ -336,7 +341,9 @@
     overflow:inherit;
 }
 .testimonial-slider{
-	margin-top:60px;
+	margin-top: 60px;
+    overflow: hidden;
+    padding-top: 24px;
 }
 .testimonial-slider p{
 	font-size: 12px;

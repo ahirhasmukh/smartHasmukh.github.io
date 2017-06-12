@@ -132,16 +132,17 @@
 }
 .proAdvisorServiceImg{
 	background-color: #11315a;
-	height: 445px;
+	height: 463px;
 }
 .proAdvisorServiceImg img{
 	width: 100%;
+	max-height: 463px;
 }
 .proAdvisorService{
 	background-color: #11315a;
 	color:#fff;
 	padding-left: 50px;
-	height: 445px;
+	height: 463px;
 }
 .proAdvisorService ul{
 	margin:0;
